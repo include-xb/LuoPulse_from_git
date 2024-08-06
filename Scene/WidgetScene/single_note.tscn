@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnemvxbb375g6"]
+
+[ext_resource type="Script" path="res://Script/single_note.gd" id="1_3p3tp"]
+[ext_resource type="Texture2D" uid="uid://d3ndnwvd6xeav" path="res://Resource/Img/NoteSingle.png" id="1_y8gya"]
+[ext_resource type="PackedScene" uid="uid://dyks0bvgddfmg" path="res://Scene/WidgetScene/gpu_particles_2d.tscn" id="2_nbbmx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0y12"]
+size = Vector2(96, 22)
+
+[node name="SingleNote" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_3p3tp")
+deathParticle = ExtResource("2_nbbmx")
+
+[node name="NoteSingle" type="Sprite2D" parent="."]
+position = Vector2(0, -4.76837e-07)
+texture = ExtResource("1_y8gya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l0y12")

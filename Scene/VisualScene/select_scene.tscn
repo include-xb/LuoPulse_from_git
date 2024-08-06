@@ -1,0 +1,159 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhjbbmt3cc4xk"]
+
+[ext_resource type="Script" path="res://Script/select_scene.gd" id="1_epcql"]
+[ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="2_eg1p0"]
+[ext_resource type="Texture2D" uid="uid://cpgsf8udt415i" path="res://Resource/Img/17.png" id="2_kfirc"]
+[ext_resource type="Script" path="res://Script/MscList.gd" id="3_0it41"]
+[ext_resource type="PackedScene" uid="uid://d2dskmnmwub7o" path="res://Scene/WidgetScene/demo_msc.tscn" id="3_c5uxo"]
+[ext_resource type="Theme" uid="uid://cr5645fhno242" path="res://Resource/UITheme.tres" id="6_gd733"]
+
+[node name="SelectScene" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_epcql")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 645.0
+texture = ExtResource("2_kfirc")
+expand_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0.333333)
+layout_mode = 0
+offset_left = -14.0
+offset_top = -11.0
+offset_right = 1178.0
+offset_bottom = 653.0
+
+[node name="Left" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 537.0
+offset_bottom = 635.0
+theme_override_constants/separation = 15
+
+[node name="HSeparator" type="HSeparator" parent="Left"]
+layout_mode = 2
+
+[node name="HomeButton" type="Button" parent="Left"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_eg1p0")
+theme_override_font_sizes/font_size = 30
+text = "  主菜单 HOME  "
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Left"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MscList" type="VBoxContainer" parent="Left/ScrollContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+script = ExtResource("3_0it41")
+
+[node name="HSeparator" type="HSeparator" parent="Left/ScrollContainer/MscList"]
+layout_mode = 2
+
+[node name="DemoMsc" parent="Left/ScrollContainer/MscList" instance=ExtResource("3_c5uxo")]
+visible = false
+layout_mode = 2
+
+[node name="Right" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 583.0
+offset_top = 22.0
+offset_right = 1128.0
+offset_bottom = 582.0
+
+[node name="HSeparator" type="HSeparator" parent="Right"]
+layout_mode = 2
+
+[node name="MscTitleLable" type="Label" parent="Right"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_eg1p0")
+theme_override_font_sizes/font_size = 40
+
+[node name="InfoDiffi" type="VBoxContainer" parent="Right"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="InfoArea" type="VBoxContainer" parent="Right/InfoDiffi"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MscInfoLable" type="Label" parent="Right/InfoDiffi/InfoArea"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eg1p0")
+theme_override_font_sizes/font_size = 27
+text = "歌曲信息 INFORMATION"
+
+[node name="InfoTextbox" type="HBoxContainer" parent="Right/InfoDiffi/InfoArea"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="VSeparator" type="VSeparator" parent="Right/InfoDiffi/InfoArea/InfoTextbox"]
+layout_mode = 2
+
+[node name="MscInfo" type="Label" parent="Right/InfoDiffi/InfoArea/InfoTextbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/shadow_outline_size = 11
+theme_override_fonts/font = ExtResource("2_eg1p0")
+theme_override_font_sizes/font_size = 30
+text = "选择歌曲"
+
+[node name="HSeparator2" type="HSeparator" parent="Right/InfoDiffi/InfoArea"]
+layout_mode = 2
+
+[node name="DifficultyArea" type="HBoxContainer" parent="Right/InfoDiffi"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+
+[node name="DifficultyLable" type="Label" parent="Right/InfoDiffi/DifficultyArea"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eg1p0")
+theme_override_font_sizes/font_size = 27
+text = "难度指数 DIFFICULTY"
+
+[node name="DifficultyDegree" type="SpinBox" parent="Right/InfoDiffi/DifficultyArea"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = ExtResource("6_gd733")
+min_value = 1.0
+max_value = 3.0
+value = 1.0
+
+[node name="TipLable" type="Label" parent="Right/InfoDiffi/DifficultyArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_eg1p0")
+theme_override_font_sizes/font_size = 22
+
+[node name="StartButton" type="Button" parent="Right"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_eg1p0")
+theme_override_font_sizes/font_size = 32
+text = " 开始  START  "
+
+[connection signal="button_down" from="Left/HomeButton" to="." method="_on_home_button_button_down"]
+[connection signal="value_changed" from="Right/InfoDiffi/DifficultyArea/DifficultyDegree" to="." method="_on_difficulty_degree_value_changed"]
+[connection signal="button_down" from="Right/StartButton" to="." method="_on_start_button_button_down"]

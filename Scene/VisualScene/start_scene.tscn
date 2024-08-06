@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkjwf2af47bc8"]
+
+[ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="1_h24dc"]
+[ext_resource type="Script" path="res://Script/start_scene.gd" id="1_i4x5g"]
+[ext_resource type="Texture2D" uid="uid://3ko8pv2n6v6k" path="res://Resource/Img/1714708251113.jpg" id="2_itff4"]
+
+[node name="StartScene" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i4x5g")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -61.0
+offset_right = 1156.0
+offset_bottom = 682.0
+texture = ExtResource("2_itff4")
+expand_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0.333333)
+self_modulate = Color(0, 0, 0, 0.141176)
+layout_mode = 0
+offset_left = -13.0
+offset_top = -74.0
+offset_right = 1184.0
+offset_bottom = 697.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -464.0
+offset_top = -180.0
+offset_right = 458.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_constants/outline_size = 2
+theme_override_constants/line_spacing = 25
+theme_override_fonts/font = ExtResource("1_h24dc")
+theme_override_font_sizes/font_size = 80
+text = "Luo   Pulse  "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="StartButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h24dc")
+theme_override_font_sizes/font_size = 35
+text = "   开始 START"
+alignment = 0
+
+[node name="SettingButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h24dc")
+theme_override_font_sizes/font_size = 35
+text = "   设置 SETTING   "
+alignment = 0
+
+[node name="AboutButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h24dc")
+theme_override_font_sizes/font_size = 35
+text = "   关于 ABOUT"
+alignment = 0
+
+[node name="SubNameLabel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 183.0
+offset_top = 226.0
+offset_right = 954.0
+offset_bottom = 273.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_h24dc")
+theme_override_font_sizes/font_size = 33
+text = "- - - - - - 洛    /    之    /    动    /    脉 - - - - - -"
+
+[connection signal="button_down" from="VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/VBoxContainer/SettingButton" to="." method="_on_setting_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/VBoxContainer/AboutButton" to="." method="_on_about_button_button_down"]

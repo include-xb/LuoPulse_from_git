@@ -1,0 +1,145 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjv4oc38f6kk2"]
+
+[ext_resource type="Texture2D" uid="uid://3ko8pv2n6v6k" path="res://Resource/Img/1714708251113.jpg" id="1_ay7ai"]
+[ext_resource type="Script" path="res://Script/about_scene.gd" id="1_rj4dx"]
+[ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="1_tr70r"]
+[ext_resource type="Texture2D" uid="uid://13aqs0g32tus" path="res://Resource/Img/headimg.png" id="2_lplnt"]
+
+[node name="AboutScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rj4dx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -61.0
+offset_right = 1156.0
+offset_bottom = 682.0
+texture = ExtResource("1_ay7ai")
+expand_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0.705882)
+self_modulate = Color(0, 0, 0, 0.470588)
+layout_mode = 0
+offset_left = -13.0
+offset_top = -74.0
+offset_right = 1184.0
+offset_bottom = 697.0
+
+[node name="HomeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 37.0
+offset_right = 272.0
+offset_bottom = 85.0
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_tr70r")
+theme_override_font_sizes/font_size = 30
+text = "  主菜单 HOME  "
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 86.0
+offset_right = 1016.0
+offset_bottom = 545.0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+
+[node name="NameLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_constants/outline_size = 2
+theme_override_constants/line_spacing = 25
+theme_override_fonts/font = ExtResource("1_tr70r")
+theme_override_font_sizes/font_size = 80
+text = "Luo   Pulse"
+
+[node name="SubNameLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_tr70r")
+theme_override_font_sizes/font_size = 33
+text = "- - - - - - 洛    /    之    /    动    /    脉 - - - - - -"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+
+[node name="HeadImg" type="TextureRect" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("2_lplnt")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tr70r")
+theme_override_font_sizes/font_size = 38
+text = "Include源来是小白 制作
+Made by Include"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="BilibiliButton" type="LinkButton" parent="ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.984314, 0.447059, 0.756863, 1)
+theme_override_colors/font_hover_color = Color(0.984314, 0.447059, 0.756863, 1)
+theme_override_colors/font_focus_color = Color(0.984314, 0.447059, 0.756863, 1)
+theme_override_fonts/font = ExtResource("1_tr70r")
+theme_override_font_sizes/font_size = 25
+text = "  bilibili  "
+underline = 1
+uri = "https://space.bilibili.com/1640232445?spm_id_from=333.1007.0.0"
+
+[node name="GitHubButton" type="LinkButton" parent="ScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_tr70r")
+theme_override_font_sizes/font_size = 25
+text = "  GitHub "
+underline = 1
+uri = "https://github.com/include-xb/LuoPulse"
+
+[node name="InfoLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tr70r")
+theme_override_font_sizes/font_size = 30
+text = "  谨以此作纪念洛天依诞生十二周年"
+horizontal_alignment = 3
+
+[node name="CallLable" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("1_tr70r")
+theme_override_font_sizes/font_size = 20
+text = "- - - - -华 · 风 · 夏 · 韵 - - 洛 · 水 · 天 · 依 - - - - -"
+
+[connection signal="button_down" from="HomeButton" to="." method="_on_home_button_button_down"]
