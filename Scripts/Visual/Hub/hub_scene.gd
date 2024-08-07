@@ -1,11 +1,11 @@
 extends Control
 
 
-@onready var res_btn_ani = $MarginContainer/Container/ResMgrBtn/AnimationPlayer
+@onready var res_btn_ani = $ResButton/ResBtnAnimationPlayer
 
-@onready var setting_btn_ani = $MarginContainer/Container/SettingsBtn/AnimationPlayer
+@onready var setting_btn_ani = $SettingButton/SettingsBtn/SettingBtnAnimationPlayer
 
-@onready var start_btn_ani = $MarginContainer/Container/StartBtn/AnimationPlayer
+@onready var start_btn_ani = $StartButton/StartBtn/StartBtnAnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.

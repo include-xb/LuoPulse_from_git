@@ -19,7 +19,7 @@ func _process(delta):
 
 func _get_chart_list() -> void:
 	
-	var dir: DirAccess = DirAccess.open("user://MscList")
+	var dir: DirAccess = DirAccess.open(RunningData.msc_list_path)
 	var chartList: Array = []
 	# 是否存在msclist，如不存在则创建
 	if dir:
@@ -30,5 +30,6 @@ func _get_chart_list() -> void:
 				chartList.append(file_name)
 			file_name = dir.get_next()
 	else :
-		DirAccess.make_dir_absolute("user://MscList")
+		DirAccess.make_dir_absolute(RunningData.msc_list_path)
+	
 	RunningData.chartList = chartList
