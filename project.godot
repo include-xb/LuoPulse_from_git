@@ -10,51 +10,19 @@ config_version=5
 
 [application]
 
-config/name="LouPulse"
-run/main_scene="res://Scene/VisualScene/start_scene.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://icon-LP.png"
+config/name="LuoPulse"
+run/main_scene="res://Scenes/Visual/start_scene.tscn"
+config/features=PackedStringArray("4.1", "GL Compatibility")
+config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalScene="*res://Scene/WidgetScene/global_scene.tscn"
+RunningData="*res://Scripts/RunningData.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
 
-[dotnet]
+[rendering]
 
-project/assembly_name="LouMicling"
-
-[input]
-
-PS_D={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"echo":false,"script":null)
-]
-}
-PS_F={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"echo":false,"script":null)
-]
-}
-PS_J={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":74,"key_label":0,"unicode":106,"echo":false,"script":null)
-]
-}
-PS_K={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":75,"key_label":0,"unicode":107,"echo":false,"script":null)
-]
-}
-
-[internationalization]
-
-locale/locale_filter_mode=1
-
-[layer_names]
-
-2d_physics/layer_1="Decision"
-2d_physics/layer_2="Click"
+renderer/rendering_method.mobile="gl_compatibility"

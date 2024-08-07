@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://d05jikn6mvrm2"]
+
+[ext_resource type="Script" path="res://Scripts/Widgets/res_mgr_chart_item.gd" id="1_7s34i"]
+[ext_resource type="Texture2D" uid="uid://773ul25m51qk" path="res://Assets/Icons/delete.svg" id="2_e7sut"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb2pi"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryttf"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccofk"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgxu2"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="res_mgr_chart_item" type="HBoxContainer"]
+offset_right = 134.0
+offset_bottom = 56.0
+size_flags_horizontal = 3
+script = ExtResource("1_7s34i")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "谱面名称"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/margin_right = 20
+
+[node name="DeleteButton" type="Button" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_lb2pi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ryttf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ccofk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wgxu2")
+icon = ExtResource("2_e7sut")
+
+[connection signal="pressed" from="MarginContainer2/DeleteButton" to="." method="_on_button_pressed"]

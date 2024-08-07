@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8bbm8pxqfhuo"]
+
+[ext_resource type="Script" path="res://Scripts/Visual/start_scene.gd" id="1_d58eo"]
+[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_uie7a"]
+[ext_resource type="Texture2D" uid="uid://bgk2ylday8f1p" path="res://Assets/Images/start_bg.JPEG" id="3_1p4y1"]
+[ext_resource type="FontFile" uid="uid://c80ol0dpd1c3y" path="res://Assets/Forts/汉仪洛天依体简.ttf" id="3_wqr16"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_olkd4"]
+font = ExtResource("3_wqr16")
+font_size = 50
+
+[node name="StartScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_uie7a")
+script = ExtResource("1_d58eo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1p4y1")
+expand_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.545098)
+
+[node name="AppIcon" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 167.0
+
+[node name="Label" type="Label" parent="AppIcon"]
+layout_mode = 2
+text = "Luo Pulse
+洛之动脉"
+label_settings = SubResource("LabelSettings_olkd4")
+
+[node name="Label2" type="Label" parent="AppIcon"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "状态栏"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+layout_mode = 2
