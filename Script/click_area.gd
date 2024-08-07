@@ -31,7 +31,7 @@ func _process(delta):
 			GlobalScene.play_hit_audio()
 			
 			#对于 perfect 的判定
-			if abs(current_body.position.y - 185) <= 6:
+			if abs(current_body.position.y - 185) <= 10.5:
 				# perfect 计数加 1
 				GlobalScene.perfect_count += 1
 				
