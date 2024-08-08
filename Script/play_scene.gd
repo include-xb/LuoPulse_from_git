@@ -46,7 +46,7 @@ var note : PackedStringArray = []
 
 # var is_first_note : bool = true
 
-var first_note : CharacterBody2D
+var first_note : bool = false
 
 var total_duration : float = 0.0
 
@@ -112,7 +112,8 @@ func start_audio():
 func _process(delta):
 	# 正在加载音符
 	if is_loading_note:
-		loader.load_note(self, file)
+		for i in range(100):
+			loader.load_note(self, file)
 		
 	# 计算进度条进度
 	progressbar.value = int(loaded_note_num / total_note_num * 100)
@@ -130,13 +131,8 @@ func _process(delta):
 	
 	
 	# 如果是第一个音符被初始化时
-	if loaded_note_num == 1:
-		# 确保这部分只被运行一次
-		first_note = instance
-		
-		# 以 FIRST 标记这个音符
-		first_note.name = "FIRST"
-		
+	if first_note == false:
+		first_note = true
 		# 设置一个检测音符碰撞的碰撞箱, 如果第一个音符碰撞, 开始播放歌曲
 		start_audio_area.position.y = 185 - 10 * GlobalScene.saved_difficulty * 60 * ( GlobalScene.dt + GlobalScene.saved_adjustment)
 	
