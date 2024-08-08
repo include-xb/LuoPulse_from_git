@@ -37,7 +37,7 @@ var good_count : int = 0
 
 var score : int = 0
 
-var bpm : int = 0
+var bpm : float = 0
 
 var bpp : int = 0
 

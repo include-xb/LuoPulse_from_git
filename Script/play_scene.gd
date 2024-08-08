@@ -68,6 +68,10 @@ var single_note : PackedScene = load("res://Scene/WidgetScene/single_note.tscn")
 
 var instance : CharacterBody2D # = load("res://Scene/WidgetScene/single_note.tscn").instantiate()
 
+var index : int = 0
+
+var res : PackedStringArray
+
 
 func _ready():
 	
@@ -78,6 +82,10 @@ func _ready():
 	
 	if file == null or !file.is_open():
 		return
+	
+	res = file.get_as_text().split('\n')
+	
+	print(res)
 	
 	# finished 信号连接
 	finished.connect(display_finish_panel)
@@ -112,7 +120,9 @@ func start_audio():
 func _process(delta):
 	# 正在加载音符
 	if is_loading_note:
-		loader.load_note(self, file)
+		# loader.load_note(self, file)
+		loader.load_note_in_once(self, res)
+		# loader_cs.load_note_by_cs(self, res)
 		
 	# 计算进度条进度
 	progressbar.value = int(loaded_note_num / total_note_num * 100)
@@ -122,10 +132,10 @@ func _process(delta):
 	
 	# 加载过程中的小tip
 	if dialog_timer.time_left <= 0.1:
-		var index = randi() % GlobalScene.dialog.size()
-		dialog_lable.text = GlobalScene.dialog[index]
+		var tip_index = randi() % GlobalScene.dialog.size()
+		dialog_lable.text = GlobalScene.dialog[tip_index]
 		# print(dialog_lable.text)
-		var delay_time = GlobalScene.dialog[index].length() * 0.15
+		var delay_time = GlobalScene.dialog[tip_index].length() * 0.15
 		dialog_timer.start(delay_time)
 	
 	
@@ -223,5 +233,5 @@ func _on_start_aud_area_2d_body_entered(body : CharacterBody2D):
 # 结束 展示结算画面
 func display_finish_panel():
 	var panel : PackedScene = preload("res://Scene/WidgetScene/finished_panel.tscn")
-	var instance : Panel = panel.instantiate()
-	add_child(instance)
+	var panel_instance : Panel = panel.instantiate()
+	add_child(panel_instance)
