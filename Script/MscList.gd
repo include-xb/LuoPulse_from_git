@@ -6,6 +6,7 @@ var file_path : String = GlobalScene.saved_msclist_path + "MscList.txt"
 
 var msc : PackedScene = preload("res://Scene/WidgetScene/demo_msc.tscn")
 
+
 func _ready():
 	
 	# 根据路径打开歌单记录文件
@@ -20,8 +21,6 @@ func _ready():
 			continue
 		if data == "<EOF>" or file.get_position() == file.get_length():
 			break
-		print(file.get_position(), "/", file.get_length())
-		print(data)
 		
 		# 根据读取到的信息实例化歌单内容
 		var instance : DemoMsc = msc.instantiate()

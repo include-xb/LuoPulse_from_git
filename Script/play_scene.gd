@@ -46,7 +46,7 @@ var note : PackedStringArray = []
 
 # var is_first_note : bool = true
 
-var first_note : CharacterBody2D
+var first_note : bool = false
 
 var total_duration : float = 0.0
 
@@ -103,43 +103,21 @@ func _ready():
 	cover.texture = GlobalScene.selected_msc_cover
 
 
-func start_audio():
-	audio_stream_player.play()
-	audio_stream_player.volume_db = linear_to_db(GlobalScene.saved_volume * 0.01)
-
-
 @warning_ignore("unused_parameter")
 func _process(delta):
 	# 正在加载音符
 	if is_loading_note:
-		loader.load_note(self, file)
-		
+		for i in range(100):
+			loader.load_note(self, file)
+	
 	# 计算进度条进度
 	progressbar.value = int(loaded_note_num / total_note_num * 100)
-	phara_count_box.text = str(GlobalScene.phara)
-	num_count_box.text = str(loaded_note_num) + "/" + str(total_note_num)
-	current_note_box.text = str(note)
-	
-	# 加载过程中的小tip
-	if dialog_timer.time_left <= 0.1:
-		var index = randi() % GlobalScene.dialog.size()
-		dialog_lable.text = GlobalScene.dialog[index]
-		# print(dialog_lable.text)
-		var delay_time = GlobalScene.dialog[index].length() * 0.15
-		dialog_timer.start(delay_time)
-	
 	
 	# 如果是第一个音符被初始化时
-	if loaded_note_num == 1:
-		# 确保这部分只被运行一次
-		first_note = instance
-		
-		# 以 FIRST 标记这个音符
-		first_note.name = "FIRST"
-		
+	if first_note == false:
+		first_note = true
 		# 设置一个检测音符碰撞的碰撞箱, 如果第一个音符碰撞, 开始播放歌曲
 		start_audio_area.position.y = 185 - 10 * GlobalScene.saved_difficulty * 60 * ( GlobalScene.dt + GlobalScene.saved_adjustment)
-	
 	
 	# 如果按下 ESC
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -165,6 +143,11 @@ func _process(delta):
 		# 广播结束信号
 		emit_signal("finished")
 		is_running = false
+
+
+func start_audio():
+	audio_stream_player.play()
+	audio_stream_player.volume_db = linear_to_db(GlobalScene.saved_volume * 0.01)
 
 
 # 打开暂停菜单

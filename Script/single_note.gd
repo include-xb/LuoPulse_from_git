@@ -26,7 +26,7 @@ func _physics_process(delta):
 func _process(delta):
 	if GlobalScene.is_running_note and !is_set:
 		# 开始运行音符 (赋予音符下落速度)
-		print("loaded")
+		# print("loaded")
 		velocity.y = speed
 		is_set = true
 

@@ -44,11 +44,6 @@ func _on_next_button_button_down():
 		return
 	
 	var data = file.get_line()
-	# print("data: " + data)
-	# 如果文件记录的分数小于本次获得分数
-	# print("原分数: " + data)
-	# print("当前分数: ", GlobalScene.score)
-	# print("是否覆盖分数: ", GlobalScene.score >= int(data))
 	if int(data) <= GlobalScene.score:
 		# 重写文件
 		file.seek(0)

@@ -4,19 +4,26 @@ extends Control
 # 难度选择
 @onready var diffic_degree = $Right/InfoDiffi/DifficultyArea/DifficultyDegree
 
+"""
 # 简单 中等 困难
 @onready var tip_lable = $Right/InfoDiffi/DifficultyArea/TipLable
+"""
 
 @onready var msc_title = $Right/MscTitleLable
 
 @onready var msc_info = $Right/InfoDiffi/InfoArea/InfoTextbox/MscInfo
 
+"""
 # 简单 中等 困难
-var tip_text : String
+var tip_text : String = ""
+"""
+
+var original_text : String = ""
 
 
 func _ready():
 	GlobalScene.init()
+	original_text = msc_info.text
 
 
 @warning_ignore("unused_parameter")
@@ -24,14 +31,6 @@ func _process(delta):
 	
 	"""
 	--------------------------------------------- 待开发 ---------------------------------------
-	if diffic_degree.text == 1:
-		tip_text = " 简单 EASY "
-	if diffic_degree.text == 2:
-		tip_text = " 中等 SECONDARY "
-	if diffic_degree.text == 3:
-		tip_text = " 困难 HARD "
-	
-	tip_lable.text = tip_text
 	"""
 	pass
 
@@ -51,8 +50,7 @@ func _on_start_button_button_down():
 	GlobalScene.selected_msc_title = msc_title.text
 	
 	# 如果没有选择
-	if msc_info.text == "选择歌曲":
-		# print("no selecting")
+	if msc_info.text == original_text:
 		return
 	
 	# 转入游戏场景

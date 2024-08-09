@@ -26,33 +26,34 @@ func _process(delta):
 		# 对应轨道变透明
 		get_node("../../../BackPanel/Panel" + POS).modulate = Color(1, 1, 1, 0.5)
 		
-		if able_to_judge:
-			# 播放打击音符的音效
-			GlobalScene.play_hit_audio()
+		if !able_to_judge:
+			return
+		
+		# 播放打击音符的音效
+		GlobalScene.play_hit_audio()
+		
+		#对于 perfect 的判定
+		if abs(current_body.position.y - 185) <= 10.5:
+			# perfect 计数加 1
+			GlobalScene.perfect_count += 1
 			
-			#对于 perfect 的判定
-			if abs(current_body.position.y - 185) <= 10.5:
-				# perfect 计数加 1
-				GlobalScene.perfect_count += 1
-				
-				# perfect 标签显示
-				tip_animation_player.stop()
-				tip_lable.text = "PERFECT"
-				tip_animation_player.play("fadeout")
-				
-			else:
-				tip_animation_player.stop()
-				tip_lable.text = "GOOD"
-				tip_animation_player.play("fadeout")
-				
-				# good 计数加 1
-				GlobalScene.good_count += 1
-			# 音符被点击后的粒子效果
-			current_body.kill()
+			# perfect 标签显示
+			tip_animation_player.stop()
+			tip_lable.text = "PERFECT"
+			tip_animation_player.play("fadeout")
+		else:
+			tip_animation_player.stop()
+			tip_lable.text = "GOOD"
+			tip_animation_player.play("fadeout")
+			
+			# good 计数加 1
+			GlobalScene.good_count += 1
+		# 音符被点击后的粒子效果
+		current_body.kill()
+	
 	else:
 		# 轨道颜色重置
 		get_node("../../../BackPanel/Panel"+POS).modulate = Color(1, 1, 1, 1)
-	
 
 
 # 如果有音符进入判定区, 开始判定
@@ -65,4 +66,3 @@ func _on_body_entered(body):
 @warning_ignore("unused_parameter")
 func _on_body_exited(body):
 	able_to_judge = false
-

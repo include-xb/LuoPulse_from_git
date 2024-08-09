@@ -7,7 +7,6 @@
 
 """
 
-
 extends CharacterBody2D
 
 class_name SLIDE_NOTE
@@ -15,7 +14,6 @@ class_name SLIDE_NOTE
 @export var sec = 2.0 # beat
 
 var length
-
 
 func _ready():
 	
