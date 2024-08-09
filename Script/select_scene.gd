@@ -6,10 +6,10 @@ extends Control
 
 """
 # 简单 中等 困难
-@onready var tip_lable = $Right/InfoDiffi/DifficultyArea/TipLable
+@onready var tip_label = $Right/InfoDiffi/DifficultyArea/TipLabel
 """
 
-@onready var msc_title = $Right/MscTitleLable
+@onready var msc_title = $Right/MscTitleLabel
 
 @onready var msc_info = $Right/InfoDiffi/InfoArea/InfoTextbox/MscInfo
 
@@ -37,24 +37,20 @@ func _process(delta):
 
 # 返回主菜单 按钮在左上角
 func _on_home_button_button_down():
-	GlobalScene.play_click_audio()
-	get_tree().change_scene_to_file("res://Scene/VisualScene/start_scene.tscn")
+	GlobalScene.change_scene_with_audio("res://Scene/VisualScene/start_scene.tscn")
 
 
 # 开始游戏 按钮在右下角
 func _on_start_button_button_down():
 	GlobalScene.play_click_audio()
 	
-	# 保存选择的信息
-	GlobalScene.saved_difficulty = diffic_degree.value
-	GlobalScene.selected_msc_title = msc_title.text
-	
-	# 如果没有选择
-	if msc_info.text == original_text:
-		return
-	
-	# 转入游戏场景
-	get_tree().change_scene_to_file("res://Scene/VisualScene/play_scene.tscn")
+	# 如果已选择
+	if msc_info.text != original_text:
+		# 保存选择的信息
+		GlobalScene.saved_difficulty = diffic_degree.value
+		GlobalScene.selected_msc_title = msc_title.text
+		# 转入游戏场景
+		get_tree().change_scene_to_file("res://Scene/VisualScene/play_scene.tscn")
 
 
 @warning_ignore("unused_parameter")

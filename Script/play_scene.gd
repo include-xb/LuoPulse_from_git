@@ -32,9 +32,9 @@ var loader : Loader = Loader.new()
 
 @onready var current_note_box : LineEdit = $LoadingPanel/CurrentNoteLineEdit
 
-@onready var dialog_lable : Label = $LoadingPanel/DialogLable
+@onready var dialog_label : Label = $LoadingPanel/DialogLabel
 
-@onready var dialog_timer : Timer = $LoadingPanel/DialogLable/Timer
+@onready var dialog_timer : Timer = $LoadingPanel/DialogLabel/Timer
 
 var notes_path : String = GlobalScene.saved_msclist_path + \
 					 GlobalScene.selected_msc_title + "/" + \

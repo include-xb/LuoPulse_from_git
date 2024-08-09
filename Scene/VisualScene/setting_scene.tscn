@@ -51,7 +51,7 @@ layout_mode = 2
 size_flags_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="AdjustLable" type="Label" parent="ScrollContainer/HBoxContainer/Adjust"]
+[node name="AdjustLabel" type="Label" parent="ScrollContainer/HBoxContainer/Adjust"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("1_v8qym")
@@ -74,7 +74,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="VolumeLable" type="Label" parent="ScrollContainer/HBoxContainer/Volume"]
+[node name="VolumeLabel" type="Label" parent="ScrollContainer/HBoxContainer/Volume"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("1_v8qym")
@@ -95,7 +95,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="PathLable" type="Label" parent="ScrollContainer/HBoxContainer/Path"]
+[node name="PathLabel" type="Label" parent="ScrollContainer/HBoxContainer/Path"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("1_v8qym")

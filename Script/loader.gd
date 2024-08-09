@@ -9,47 +9,46 @@ scene.notes				PlayScene 中放置音符的节点
 scene.loaded_note_num	已加载的音符数
 """
 
+# INFO: 既然用了标签那铺面为啥不用xml格式呢
+
 var first = null
 
 # return 相当于 continue
 func load_note(scene : PlayScene, file : FileAccess) -> void:
 	var data : String = file.get_line()
 	
-	# 获取bpm
-	if data == "<bpm>":
-		data = file.get_line()
-		GlobalScene.bpm = float(data)
-		return
+	# INFO: 这里把一堆if换成了match，代码看起来会更紧凑
+	match data:
+		"<bpm>":
+			# 获取bpm
+			data = file.get_line()
+			GlobalScene.bpm = float(data)
+			return
+		"<bpp>":
+			# 获取每小节有几拍
+			data = file.get_line()
+			GlobalScene.bpp = int(data)
+			return
+		"<dt>":
+			# 获取开头延时
+			data = file.get_line()
+			GlobalScene.dt = float(data)
+			return
+		"<del>":
+			data = file.get_line()
+			GlobalScene.dt = float(data)
+			return
+		"<tal>":
+			# 获取音符总数
+			data = file.get_line()
+			scene.total_note_num = int(data)
+			return
+		"<p>", "<P>":
+			# 获取小节数
+			data = file.get_line()
+			GlobalScene.phara = int(data) - 1
+			return
 
-	# 获取每小节有几拍
-	if data == "<bpp>":
-		data = file.get_line()
-		GlobalScene.bpp = int(data)
-		return
-
-	# 获取开头延时
-	if data == "<dt>":
-		data = file.get_line()
-		GlobalScene.dt = float(data)
-		return
-	
-	if data == "<del>":
-		data = file.get_line()
-		GlobalScene.del = float(data)
-		return
-	
-	# 获取音符总数
-	if data == "<tal>":
-		data = file.get_line()
-		scene.total_note_num = int(data)
-		return
-	
-	# 获取小节数
-	if data == "<p>" or data == "<P>":
-		data = file.get_line()
-		GlobalScene.phara = int(data) - 1
-		return
-	
 	# 结束读取
 	if data == "<EOF>" or scene.file.get_position() == scene.file.get_length():
 		file.close()
@@ -83,5 +82,3 @@ func load_note(scene : PlayScene, file : FileAccess) -> void:
 	if first == null:
 		first = scene.instance
 		first.name = "FIRST"
-	
-	return
