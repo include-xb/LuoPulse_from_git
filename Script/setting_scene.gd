@@ -16,6 +16,10 @@ func default_setting():
 	adjust.value = GlobalScene.default_adjustment
 	volume.value = GlobalScene.default_volume
 	path.text = GlobalScene.default_msclist_path
+	
+	GlobalScene.saved_adjustment = GlobalScene.default_adjustment
+	GlobalScene.saved_volume = GlobalScene.default_volume
+	GlobalScene.saved_msclist_path = GlobalScene.default_msclist_path
 
 
 func _ready():
@@ -33,7 +37,6 @@ func _on_default_button_button_down():
 # 保存更改按钮
 func _on_save_button_button_down():
 	GlobalScene.set_volume(volume.value)
-	GlobalScene.play_click_audio()
 	
 	# 检查路径最后是否有 /
 	if path.text[path.text.length() - 1] != "/" and path.text[path.text.length() - 1] != "\\":
@@ -42,7 +45,7 @@ func _on_save_button_button_down():
 	GlobalScene.saved_adjustment = adjust.value
 	GlobalScene.saved_volume = volume.value
 	GlobalScene.saved_msclist_path = path.text
-	get_tree().change_scene_to_file("res://Scene/VisualScene/start_scene.tscn")
+	GlobalScene.change_scene_with_audio("res://Scene/VisualScene/start_scene.tscn")
 
 
 func _on_volume_h_slider_value_changed(value):

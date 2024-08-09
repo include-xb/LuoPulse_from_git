@@ -5,7 +5,7 @@ extends Area2D
 @export_enum("D", "F", "J", "K" ) var POS: String
 
 # 提示 Perfect 标签
-@onready var tip_lable = $"../../TipLabel"
+@onready var tip_label = $"../../TipLabel"
 
 # 提示标签的淡出动画
 @onready var tip_animation_player : AnimationPlayer = $"../../TipLabel/AnimationPlayer"
@@ -39,11 +39,11 @@ func _process(delta):
 			
 			# perfect 标签显示
 			tip_animation_player.stop()
-			tip_lable.text = "PERFECT"
+			tip_label.text = "PERFECT"
 			tip_animation_player.play("fadeout")
 		else:
 			tip_animation_player.stop()
-			tip_lable.text = "GOOD"
+			tip_label.text = "GOOD"
 			tip_animation_player.play("fadeout")
 			
 			# good 计数加 1

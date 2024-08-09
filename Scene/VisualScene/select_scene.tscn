@@ -79,7 +79,7 @@ offset_bottom = 582.0
 [node name="HSeparator" type="HSeparator" parent="Right"]
 layout_mode = 2
 
-[node name="MscTitleLable" type="Label" parent="Right"]
+[node name="MscTitleLabel" type="Label" parent="Right"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_eg1p0")
@@ -94,7 +94,7 @@ theme_override_constants/separation = 4
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MscInfoLable" type="Label" parent="Right/InfoDiffi/InfoArea"]
+[node name="MscInfoLabel" type="Label" parent="Right/InfoDiffi/InfoArea"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_eg1p0")
 theme_override_font_sizes/font_size = 27
@@ -127,7 +127,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_constants/separation = 20
 
-[node name="DifficultyLable" type="Label" parent="Right/InfoDiffi/DifficultyArea"]
+[node name="DifficultyLabel" type="Label" parent="Right/InfoDiffi/DifficultyArea"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_eg1p0")
 theme_override_font_sizes/font_size = 27
@@ -142,7 +142,7 @@ min_value = 1.0
 max_value = 3.0
 value = 1.0
 
-[node name="TipLable" type="Label" parent="Right/InfoDiffi/DifficultyArea"]
+[node name="TipLabel" type="Label" parent="Right/InfoDiffi/DifficultyArea"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_eg1p0")
