@@ -177,3 +177,84 @@ func load_note_in_once(scene : PlayScene, res_str : PackedStringArray) -> void:
 	
 	scene.index += 1
 	return
+
+
+func load_note_res_only(scene : PlayScene, res_str : PackedStringArray) -> Array:
+	var res_arr : Array = [ ]
+	
+	for i in range(0, res_str.size()):
+		var data : String = res_str[i]
+		
+		if data == "" or data[0] == '-':
+			continue
+		
+		if data[-1] == '\r':
+			data = data.trim_suffix('\r')
+		
+		if data == "<bpm>":
+			i += 1
+			data = res_str[i]
+			GlobalScene.bpm = float(data)
+			continue
+		
+		if data == "<bpp>":
+			i += 1
+			data = res_str[i]
+			GlobalScene.bpp = int(data)
+			continue
+		
+		if data == "<dt>":
+			i += 1
+			data = res_str[i]
+			GlobalScene.dt = float(data)
+			continue
+		
+		if data == "<del>":
+			i += 1
+			data = res_str[i]
+			GlobalScene.del = float(data)
+			continue
+		
+		if data == "<tal>":
+			i += 1
+			data = res_str[i]
+			scene.total_note_num = int(data)
+			continue
+		
+		if data == "<p>" or data == "<P>":
+			i += 1
+			data = res_str[i]
+			GlobalScene.phara = int(data)
+			continue
+		
+		var note : PackedStringArray = data.split(":")
+		
+		if not(note[0] in "1234"):
+			continue
+		
+		if note.size() < 2:
+			continue
+		
+		# print(note)
+		res_arr.append(note[0] + ":" + str((GlobalScene.phara * GlobalScene.bpp + float(note[1])) * 60 / GlobalScene.bpm))
+		scene.loaded_note_num += 1
+		
+	scene.get_tree().paused = false
+	GlobalScene.is_running_note = true
+	scene.is_loading_note = false
+	scene.loading_panel.visible = false
+	return res_arr
+
+
+func load_note_from_res_piece(scene : PlayScene, res_piece : String) -> void:
+	var note : PackedStringArray = res_piece.split(":")
+	var track_num : int = int(note[0])
+	var time : float = float(note[1])
+	
+	var instance : SINGLE_NOTE = scene.single_note.instantiate()
+	scene.notes.add_child(instance)
+	
+	# 计算音符坐标
+	instance.position.x = 100 * track_num - 250
+	# instance.position.y = 185 - 10 * Engine.get_frames_per_second() * time
+	instance.posotion.y = 185 - 10 * Engine.get_frames_per_second() * time

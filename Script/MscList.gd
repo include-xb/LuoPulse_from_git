@@ -20,8 +20,8 @@ func _ready():
 			continue
 		if data == "<EOF>" or file.get_position() == file.get_length():
 			break
-		print(file.get_position(), "/", file.get_length())
-		print(data)
+		# print(file.get_position(), "/", file.get_length())
+		# print(data)
 		
 		# 根据读取到的信息实例化歌单内容
 		var instance : DemoMsc = msc.instantiate()

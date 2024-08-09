@@ -85,7 +85,7 @@ func _ready():
 	
 	res = file.get_as_text().split('\n')
 	
-	print(res)
+	# print(res)
 	
 	# finished 信号连接
 	finished.connect(display_finish_panel)
@@ -121,8 +121,8 @@ func _process(delta):
 	# 正在加载音符
 	if is_loading_note:
 		# loader.load_note(self, file)
-		loader.load_note_in_once(self, res)
-		# loader_cs.load_note_by_cs(self, res)
+		# loader.load_note_in_once(self, res)
+		print(loader.load_note_res_only(self, res))
 		
 	# 计算进度条进度
 	progressbar.value = int(loaded_note_num / total_note_num * 100)
