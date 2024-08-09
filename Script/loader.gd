@@ -9,6 +9,8 @@ scene.notes				PlayScene 中放置音符的节点
 scene.loaded_note_num	已加载的音符数
 """
 
+var first = null
+
 # return 相当于 continue
 func load_note(scene : PlayScene, file : FileAccess) -> void:
 	var data : String = file.get_line()
@@ -77,6 +79,10 @@ func load_note(scene : PlayScene, file : FileAccess) -> void:
 	# 计算音符坐标
 	scene.instance.position.x = 100 * float(scene.note[0]) - 250
 	scene.instance.position.y = GlobalScene.sec_to_length(float(scene.note[1]) + GlobalScene.bpp * GlobalScene.phara )
+	
+	if first == null:
+		first = scene.instance
+		first.name = "FIRST"
 	
 	return
 
