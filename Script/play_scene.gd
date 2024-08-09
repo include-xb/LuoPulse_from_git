@@ -109,7 +109,7 @@ func _process(delta):
 	if is_loading_note:
 		for i in range(100):
 			loader.load_note(self, file)
-	
+		
 	# 计算进度条进度
 	progressbar.value = int(loaded_note_num / total_note_num * 100)
 	
