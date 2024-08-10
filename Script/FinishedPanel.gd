@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var tilte_lable = $TitleLabel
+@onready var tilte_label = $TitleLabel
 
 @onready var speed_box = $InfoVBoxContainer/SPEEDHBoxContainer/SpeedLineEdit
 
@@ -20,7 +20,7 @@ func _ready():
 	var good = GlobalScene.good_count
 	var missing = GlobalScene.missing_count
 	
-	tilte_lable.text = GlobalScene.selected_msc_title
+	tilte_label.text = GlobalScene.selected_msc_title
 	speed_box.text = str(speed)
 	perfect_box.text = str(perfect)
 	good_box.text = str(good)
@@ -33,8 +33,7 @@ func _ready():
 
 
 func _on_next_button_button_down():
-	GlobalScene.play_click_audio()
-	
+
 	# 打开计分文件
 	var file = FileAccess.open(GlobalScene.saved_msclist_path + GlobalScene.selected_msc_title + "/" + "score.txt", FileAccess.READ_WRITE)
 	
@@ -50,7 +49,7 @@ func _on_next_button_button_down():
 		file.store_string(str(GlobalScene.score))
 	file.close()
 	
-	get_tree().change_scene_to_file("res://Scene/VisualScene/select_scene.tscn")
+	GlobalScene.change_scene_with_audio("res://Scene/VisualScene/select_scene.tscn")
 
 
 # 返回游戏

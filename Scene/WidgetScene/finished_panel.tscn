@@ -36,7 +36,7 @@ offset_bottom = 402.0
 [node name="SPEEDHBoxContainer" type="HBoxContainer" parent="InfoVBoxContainer"]
 layout_mode = 2
 
-[node name="SpeedLable" type="Label" parent="InfoVBoxContainer/SPEEDHBoxContainer"]
+[node name="SpeedLabel" type="Label" parent="InfoVBoxContainer/SPEEDHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_jllik")
@@ -56,7 +56,7 @@ editable = false
 [node name="PERFECTHBoxContainer" type="HBoxContainer" parent="InfoVBoxContainer"]
 layout_mode = 2
 
-[node name="PerfectLable" type="Label" parent="InfoVBoxContainer/PERFECTHBoxContainer"]
+[node name="PerfectLabel" type="Label" parent="InfoVBoxContainer/PERFECTHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_jllik")
@@ -75,7 +75,7 @@ editable = false
 [node name="GOODHBoxContainer" type="HBoxContainer" parent="InfoVBoxContainer"]
 layout_mode = 2
 
-[node name="GoodLable" type="Label" parent="InfoVBoxContainer/GOODHBoxContainer"]
+[node name="GoodLabel" type="Label" parent="InfoVBoxContainer/GOODHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_jllik")
@@ -94,7 +94,7 @@ editable = false
 [node name="MISSINGHBoxContainer" type="HBoxContainer" parent="InfoVBoxContainer"]
 layout_mode = 2
 
-[node name="MissingLable" type="Label" parent="InfoVBoxContainer/MISSINGHBoxContainer"]
+[node name="MissingLabel" type="Label" parent="InfoVBoxContainer/MISSINGHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_jllik")

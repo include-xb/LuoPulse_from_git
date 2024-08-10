@@ -454,7 +454,7 @@ offset_bottom = 647.0
 theme_override_font_sizes/font_size = 22
 editable = false
 
-[node name="CurrentNoteLable" type="Label" parent="LoadingPanel"]
+[node name="CurrentNoteLabel" type="Label" parent="LoadingPanel"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 614.0
@@ -463,7 +463,7 @@ offset_bottom = 645.0
 theme_override_font_sizes/font_size = 20
 text = "CURRENT_NOTE: "
 
-[node name="DialogLable" type="Label" parent="LoadingPanel"]
+[node name="DialogLabel" type="Label" parent="LoadingPanel"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 365.0
@@ -477,7 +477,7 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="LoadingPanel/DialogLable"]
+[node name="Timer" type="Timer" parent="LoadingPanel/DialogLabel"]
 wait_time = 2.0
 
 [connection signal="button_down" from="MenuButton" to="." method="_on_menu_button_button_down"]
