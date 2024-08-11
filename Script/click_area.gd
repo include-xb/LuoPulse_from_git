@@ -22,13 +22,13 @@ func _process(delta):
 	
 	# 对应键位按下
 	if Input.is_action_pressed("PS_" + POS):
-		
 		# 对应轨道变透明
 		get_node("../../../BackPanel/Panel" + POS).modulate = Color(1, 1, 1, 0.5)
+	else:
+		# 轨道颜色重置
+		get_node("../../../BackPanel/Panel"+POS).modulate = Color(1, 1, 1, 1)
 		
-		if !able_to_judge:
-			return
-		
+	if Input.is_action_just_pressed("PS_" + POS) && able_to_judge:
 		# 播放打击音符的音效
 		GlobalScene.play_hit_audio()
 		
@@ -51,9 +51,6 @@ func _process(delta):
 		# 音符被点击后的粒子效果
 		current_body.kill()
 	
-	else:
-		# 轨道颜色重置
-		get_node("../../../BackPanel/Panel"+POS).modulate = Color(1, 1, 1, 1)
 
 
 # 如果有音符进入判定区, 开始判定

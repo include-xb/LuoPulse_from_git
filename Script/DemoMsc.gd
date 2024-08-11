@@ -34,10 +34,9 @@ func set_score() -> void:
 	if (file != null and file.is_open()):
 		var data = file.get_line()
 		score_title.text = data
+		file.close()
 	else:
 		score_title.text = str(0)
-
-	file.close()
 
 
 func _on_info_button_button_down():
