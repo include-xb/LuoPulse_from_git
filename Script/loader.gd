@@ -13,10 +13,13 @@ scene.loaded_note_num	已加载的音符数
 
 var first = null
 
-
 var data : String = ""
 
-# return 相当于 continue
+var track : int = -1
+
+var time : float = -1
+
+# 暂时弃用
 func load_note(scene : PlayScene, file : FileAccess) -> void:
 	data = file.get_line()
 	
@@ -46,7 +49,7 @@ func load_note(scene : PlayScene, file : FileAccess) -> void:
 			data = file.get_line()
 			scene.total_note_num = int(data)
 			return
-		"<p>", "<P>":
+		"<p>":
 			# 获取小节数
 			data = file.get_line()
 			GlobalScene.phara = int(data) - 1
@@ -86,7 +89,7 @@ func load_note(scene : PlayScene, file : FileAccess) -> void:
 		first = scene.instance
 		first.name = "FIRST"
 
-
+# 新的加载函数
 func load_note_in_once(scene : PlayScene, res_str : PackedStringArray) -> void:
 	
 	if data == "<EOF>" or scene.index == res_str.size() - 1:
@@ -147,7 +150,7 @@ func load_note_in_once(scene : PlayScene, res_str : PackedStringArray) -> void:
 			print("total: ", scene.total_note_num)
 			scene.index += 1
 			return
-		"<p>", "<P>":
+		"<p>":
 			scene.index += 1
 			data = res_str[scene.index]
 			GlobalScene.phara = int(data) - 1
@@ -161,20 +164,27 @@ func load_note_in_once(scene : PlayScene, res_str : PackedStringArray) -> void:
 		scene.index += 1
 		return
 	
+	track = int(scene.note[0])
+	time = float(scene.note[1]) + GlobalScene.bpp * GlobalScene.phara
+	
 	scene.instance = scene.single_note.instantiate()
 	scene.notes.add_child(scene.instance)
 	
+	# 计算音符坐标
+	scene.instance.position.x = 100 * track - 250
+	scene.instance.position.y = GlobalScene.sec_to_length(time)
+	
+	scene.instance.id = scene.loaded_note_num
+	scene.instance.appeal_time = (float(scene.note[1]) + GlobalScene.bpp * GlobalScene.phara) * 60 / GlobalScene.bpm + GlobalScene.saved_adjustment
+	
 	# 已加载的音符数加 1
 	scene.loaded_note_num += 1
-	
-	# 计算音符坐标
-	scene.instance.position.x = 100 * float(scene.note[0]) - 250
-	scene.instance.position.y = GlobalScene.sec_to_length(float(scene.note[1]) + GlobalScene.bpp * GlobalScene.phara )
-	
+	# 谱面缓存的下标后移 1
 	scene.index += 1
 	
 	if first == null:
 		first = scene.instance
 		first.name = "FIRST"
+		print(first)
 	
 	return

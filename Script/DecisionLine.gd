@@ -7,7 +7,10 @@ extends Area2D
 @onready var tip_animation_player = $"../TipLabel/AnimationPlayer"
 
 
+@warning_ignore("unused_parameter")
 func _on_body_entered(body):
+	return
+	tip_animation_player.stop()
 	tip_label.text = "MISSING"
 	tip_animation_player.play("fadeout")
 	

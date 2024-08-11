@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Script/click_area.gd" id="1_datj7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qj2fv"]
-size = Vector2(97, 32)
+size = Vector2(97, 52)
 
 [node name="ClickArea" type="Area2D"]
 collision_layer = 2

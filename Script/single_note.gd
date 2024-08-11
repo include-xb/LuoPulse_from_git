@@ -6,10 +6,14 @@ class_name SINGLE_NOTE
 @export var deathParticle : PackedScene = null
 
 # 速度
-var speed = 10
+const speed : int = 10
 
 # 是否被放置
 var is_set = false
+
+var id : int = -1
+
+var appeal_time : float = -1
 
 
 func _ready():

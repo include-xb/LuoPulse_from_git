@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2s53txwsqj4v"]
+[gd_scene load_steps=13 format=3 uid="uid://d2s53txwsqj4v"]
 
 [ext_resource type="Script" path="res://Script/play_scene.gd" id="1_qxdkb"]
 [ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="2_ckpc2"]
 [ext_resource type="Texture2D" uid="uid://cpgsf8udt415i" path="res://Resource/Img/17.png" id="2_rnm7q"]
-[ext_resource type="Script" path="res://Script/DecisionLine.gd" id="4_03xr8"]
 [ext_resource type="Texture2D" uid="uid://da2mk8cctwkyq" path="res://Resource/Img/DecisionLine.png" id="4_i0p33"]
 [ext_resource type="PackedScene" uid="uid://dtjft5oel4a0q" path="res://Scene/WidgetScene/click_area.tscn" id="7_ed5i2"]
 [ext_resource type="Script" path="res://Script/KillArea.gd" id="7_hnfqe"]
@@ -69,9 +68,6 @@ _data = {
 "fadeout": SubResource("Animation_ymvd8")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_otg03"]
-size = Vector2(1099.34, 28.4483)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t4f6r"]
 size = Vector2(424, 49)
 
@@ -112,30 +108,30 @@ offset_bottom = -284.0
 [node name="PanelD" type="Panel" parent="BackPanel"]
 layout_mode = 0
 offset_right = 100.0
-offset_bottom = 505.0
-
-[node name="PanelJ" type="Panel" parent="BackPanel"]
-layout_mode = 0
-offset_left = 200.0
-offset_right = 300.0
-offset_bottom = 505.0
+offset_bottom = 523.0
 
 [node name="PanelF" type="Panel" parent="BackPanel"]
 layout_mode = 0
 offset_left = 100.0
 offset_right = 200.0
-offset_bottom = 505.0
+offset_bottom = 522.0
+
+[node name="PanelJ" type="Panel" parent="BackPanel"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 300.0
+offset_bottom = 522.0
 
 [node name="PanelK" type="Panel" parent="BackPanel"]
 layout_mode = 0
 offset_left = 301.0
 offset_right = 401.0
-offset_bottom = 505.0
+offset_bottom = 522.0
 
 [node name="PanelBotton" type="Panel" parent="BackPanel"]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 512.0
+offset_top = 524.0
 offset_right = 401.0
 offset_bottom = 689.0
 
@@ -241,6 +237,8 @@ libraries = {
 "": SubResource("AnimationLibrary_62xos")
 }
 
+[node name="Timer" type="Timer" parent="PlayPanel/TipLabel"]
+
 [node name="Separators" type="Control" parent="PlayPanel"]
 anchors_preset = 0
 offset_right = 40.0
@@ -281,22 +279,18 @@ offset_top = -625.0
 offset_right = 334.0
 offset_bottom = 802.0
 
-[node name="Notes" type="Node2D" parent="PlayPanel"]
-position = Vector2(200, 332)
-
-[node name="DecisionLine" type="Area2D" parent="PlayPanel"]
-position = Vector2(200, 519)
-scale = Vector2(0.368403, 0.58)
-script = ExtResource("4_03xr8")
-
-[node name="DecisionBox" type="CollisionShape2D" parent="PlayPanel/DecisionLine"]
-position = Vector2(2.71442, 109.914)
-shape = SubResource("RectangleShape2D_otg03")
-
-[node name="DecisionLineImg" type="Sprite2D" parent="PlayPanel/DecisionLine"]
-position = Vector2(-1.35719, -3.44823)
-scale = Vector2(1.01288, 0.724138)
+[node name="DecisionLineImg" type="Sprite2D" parent="PlayPanel"]
+position = Vector2(199, 502)
+scale = Vector2(0.373148, 0.42)
 texture = ExtResource("4_i0p33")
+
+[node name="DecisionLineImg2" type="Sprite2D" parent="PlayPanel"]
+position = Vector2(199, 532)
+scale = Vector2(0.373148, 0.42)
+texture = ExtResource("4_i0p33")
+
+[node name="Notes" type="Node2D" parent="PlayPanel"]
+position = Vector2(200, 302)
 
 [node name="ClickBoxs" type="Node2D" parent="PlayPanel"]
 
@@ -315,6 +309,19 @@ POS = "J"
 [node name="ClickArea4" parent="PlayPanel/ClickBoxs" instance=ExtResource("7_ed5i2")]
 position = Vector2(351, 517)
 POS = "K"
+
+[node name="TimeLabel" type="Label" parent="PlayPanel"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 379.0
+offset_right = 281.0
+offset_bottom = 426.0
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="PlayPanel/TimeLabel"]
+one_shot = true
 
 [node name="KillArea" type="Area2D" parent="."]
 position = Vector2(-3, 348)
@@ -390,46 +397,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_xjtc1")
 
 [node name="LoadingPanel" type="Panel" parent="."]
+visible = false
 offset_left = -578.0
 offset_top = -328.0
 offset_right = 584.0
 offset_bottom = 329.0
-
-[node name="PharaLineEdit" type="LineEdit" parent="LoadingPanel"]
-layout_mode = 0
-offset_left = 216.0
-offset_top = 572.0
-offset_right = 440.0
-offset_bottom = 611.0
-theme_override_font_sizes/font_size = 22
-editable = false
-
-[node name="NumLineEdit" type="LineEdit" parent="LoadingPanel"]
-layout_mode = 0
-offset_left = 216.0
-offset_top = 539.0
-offset_right = 440.0
-offset_bottom = 578.0
-theme_override_font_sizes/font_size = 22
-editable = false
-
-[node name="PharaLabel" type="Label" parent="LoadingPanel"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 543.0
-offset_right = 88.0
-offset_bottom = 574.0
-theme_override_font_sizes/font_size = 20
-text = "NUM: "
-
-[node name="NumLabel" type="Label" parent="LoadingPanel"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 578.0
-offset_right = 88.0
-offset_bottom = 609.0
-theme_override_font_sizes/font_size = 20
-text = "PHARA: "
 
 [node name="ProgressBar" type="ProgressBar" parent="LoadingPanel"]
 layout_mode = 0
@@ -445,43 +417,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/fill = SubResource("StyleBoxLine_dsd7j")
 step = 1.0
 
-[node name="CurrentNoteLineEdit" type="LineEdit" parent="LoadingPanel"]
-layout_mode = 0
-offset_left = 216.0
-offset_top = 608.0
-offset_right = 443.0
-offset_bottom = 647.0
-theme_override_font_sizes/font_size = 22
-editable = false
-
-[node name="CurrentNoteLabel" type="Label" parent="LoadingPanel"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 614.0
-offset_right = 175.0
-offset_bottom = 645.0
-theme_override_font_sizes/font_size = 20
-text = "CURRENT_NOTE: "
-
-[node name="DialogLabel" type="Label" parent="LoadingPanel"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 365.0
-offset_right = 1156.0
-offset_bottom = 408.0
-theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
-theme_override_colors/font_outline_color = Color(0.4, 0.8, 1, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("2_ckpc2")
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Timer" type="Timer" parent="LoadingPanel/DialogLabel"]
-wait_time = 2.0
-
 [connection signal="button_down" from="MenuButton" to="." method="_on_menu_button_button_down"]
-[connection signal="body_entered" from="PlayPanel/DecisionLine" to="PlayPanel/DecisionLine" method="_on_body_entered"]
 [connection signal="body_entered" from="KillArea" to="KillArea" method="_on_body_entered"]
 [connection signal="button_down" from="MenuPanel/Buttons/HomeButton" to="." method="_on_home_button_button_down"]
 [connection signal="button_down" from="MenuPanel/Buttons/ViewButton" to="." method="_on_view_button_button_down"]

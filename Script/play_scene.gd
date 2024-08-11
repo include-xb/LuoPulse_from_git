@@ -26,15 +26,10 @@ var loader : Loader = Loader.new()
 
 @onready var progressbar : ProgressBar = $LoadingPanel/ProgressBar
 
-@onready var phara_count_box : LineEdit = $LoadingPanel/PharaLineEdit
+@onready var time_label : Label = $PlayPanel/TimeLabel
 
-@onready var num_count_box : LineEdit = $LoadingPanel/NumLineEdit
+@onready var time_label_timer : Timer = $PlayPanel/TimeLabel/Timer
 
-@onready var current_note_box : LineEdit = $LoadingPanel/CurrentNoteLineEdit
-
-@onready var dialog_label : Label = $LoadingPanel/DialogLabel
-
-@onready var dialog_timer : Timer = $LoadingPanel/DialogLabel/Timer
 
 var notes_path : String = GlobalScene.saved_msclist_path + \
 					 GlobalScene.selected_msc_title + "/" + \
@@ -43,8 +38,6 @@ var notes_path : String = GlobalScene.saved_msclist_path + \
 var file : FileAccess # = FileAccess.open(notes_path, FileAccess.READ)
 
 var note : PackedStringArray = []
-
-# var is_first_note : bool = true
 
 var first_note : bool = false
 
@@ -66,24 +59,26 @@ var loaded_note_num : float = 0.0
 
 var single_note : PackedScene = load("res://Scene/WidgetScene/single_note.tscn")
 
-var instance : CharacterBody2D # = load("res://Scene/WidgetScene/single_note.tscn").instantiate()
+var instance : SINGLE_NOTE # = load("res://Scene/WidgetScene/single_note.tscn").instantiate()
 
 var index : int = 0
 
 var res : PackedStringArray
 
-
 func _ready():
 	
-	# 加载画面
+	# 开始时加载画面显示
 	loading_panel.visible = true
+	
+	# 开始时暂停菜单是隐藏状态
+	menu_panle.visible = false
 	
 	file = FileAccess.open(notes_path, FileAccess.READ)
 	
 	if file == null or !file.is_open():
 		return
 	
-	res = file.get_as_text().split('\n') #########################################
+	res = file.get_as_text().split('\n')
 	
 	# finished 信号连接
 	finished.connect(display_finish_panel)
@@ -98,9 +93,6 @@ func _ready():
 	# 获取音频的总时长（秒）
 	total_duration = audio_stream_player.stream.get_length()
 	
-	# 开始时暂停菜单是隐藏状态
-	menu_panle.visible = false
-	
 	# 判空则使用默认
 	if GlobalScene.selected_msc_cover == null:
 		GlobalScene.selected_msc_cover = preload("res://Resource/Img/17.png")
@@ -114,17 +106,24 @@ func _process(delta):
 	# 正在加载音符
 	if is_loading_note:
 		for i in range(100):
-			# loader.load_note(self, file)
-			loader.load_note_in_once(self, res)
+			# loader.load_note(self, file) # 这个函数是读一行加载一行
+			# return
+			loader.load_note_in_once(self, res) # 这个函数是全部读完了之后把谱面放入缓存, 读缓存加载音符
 		
 	# 计算进度条进度
 	progressbar.value = int(loaded_note_num / total_note_num * 100)
 	
+	if not time_label_timer.is_stopped():
+		time_label.text = "-" + str(round(time_label_timer.time_left * 10) / 10)
+	else:
+		time_label.visible = false
+	
 	# 如果是第一个音符被初始化时
-	if first_note == false:
+	if not first_note:
 		first_note = true
 		# 设置一个检测音符碰撞的碰撞箱, 如果第一个音符碰撞, 开始播放歌曲
 		start_audio_area.position.y = 185 - 10 * GlobalScene.saved_difficulty * 60 * ( GlobalScene.dt + GlobalScene.saved_adjustment)
+	
 	
 	# 如果按下 ESC
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -155,6 +154,10 @@ func _process(delta):
 func start_audio():
 	audio_stream_player.play()
 	audio_stream_player.volume_db = linear_to_db(GlobalScene.saved_volume * 0.01)
+	
+	time_label_timer.start(GlobalScene.dt)
+	time_label.visible = true
+	
 
 
 # 打开暂停菜单
