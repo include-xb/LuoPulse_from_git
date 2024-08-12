@@ -15,20 +15,14 @@ extends Panel
 func _ready():
 	
 	# 基本信息的展示
-	var speed = 10
-	var perfect = GlobalScene.perfect_count
-	var good = GlobalScene.good_count
-	var missing = GlobalScene.missing_count
-	
 	tilte_label.text = GlobalScene.selected_msc_title
-	speed_box.text = str(speed)
-	perfect_box.text = str(perfect)
-	good_box.text = str(good)
-	missing_box.text =  str(missing)
+	speed_box.text = "10"
+	perfect_box.text = str(GlobalScene.perfect_count)
+	good_box.text = str(GlobalScene.good_count)
+	missing_box.text =  str(GlobalScene.missing_count)
 	
 	# 计算分数
-	GlobalScene.score = speed * (perfect * 10 + good * 5 - missing * 5)
-	
+	GlobalScene.score = GlobalScene.calc_score()
 	score_box.text = str(GlobalScene.score)
 
 

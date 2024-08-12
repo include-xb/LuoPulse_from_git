@@ -17,7 +17,7 @@ var data : String = ""
 
 var track : int = -1
 
-var time : float = -1
+var beat : float = -1
 
 # 暂时弃用
 func load_note(scene : PlayScene, file : FileAccess) -> void:
@@ -154,7 +154,6 @@ func load_note_in_once(scene : PlayScene, res_str : PackedStringArray) -> void:
 			scene.index += 1
 			data = res_str[scene.index]
 			GlobalScene.phara = int(data) - 1
-			# print("当前phara: ", GlobalScene.phara)
 			scene.index += 1
 			return
 
@@ -165,17 +164,17 @@ func load_note_in_once(scene : PlayScene, res_str : PackedStringArray) -> void:
 		return
 	
 	track = int(scene.note[0])
-	time = float(scene.note[1]) + GlobalScene.bpp * GlobalScene.phara
+	beat = float(scene.note[1]) + GlobalScene.bpp * GlobalScene.phara
 	
 	scene.instance = scene.single_note.instantiate()
 	scene.notes.add_child(scene.instance)
 	
 	# 计算音符坐标
 	scene.instance.position.x = 100 * track - 250
-	scene.instance.position.y = GlobalScene.sec_to_length(time)
+	scene.instance.position.y = GlobalScene.beat_to_length(beat)
 	
 	scene.instance.id = scene.loaded_note_num
-	scene.instance.appeal_time = (float(scene.note[1]) + GlobalScene.bpp * GlobalScene.phara) * 60 / GlobalScene.bpm + GlobalScene.saved_adjustment
+	scene.instance.appeal_time = beat * 60 / GlobalScene.bpm + GlobalScene.saved_adjustment
 	
 	# 已加载的音符数加 1
 	scene.loaded_note_num += 1

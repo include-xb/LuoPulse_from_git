@@ -74,10 +74,16 @@ func play_click_audio() -> void:
 func play_hit_audio() -> void:
 	hit_audio_player.play(0.0)
 
+
 func change_scene_with_audio(scene: String) -> void:
 	click_audio_player.play(0.0)
 	get_tree().change_scene_to_file(scene)
 
+
 # 将拍子计算为音符的 y 坐标
-func sec_to_length(sec) -> float:
-	return 185 - 10 * 60 * ((sec) * 60 / bpm + dt + saved_adjustment)
+func beat_to_length(beat) -> float:
+	return 185 - 10 * 60 * ((beat) * 60 / bpm + dt + saved_adjustment)
+
+
+func calc_score():
+	return perfect_count * 100 + good_count * 50
