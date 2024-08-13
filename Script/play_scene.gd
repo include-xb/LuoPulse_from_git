@@ -123,7 +123,7 @@ func _process(delta):
 		first_note = true
 		# 设置一个检测音符碰撞的碰撞箱, 如果第一个音符碰撞, 开始播放歌曲
 		start_audio_area.position.y = 185 - 10 * GlobalScene.saved_difficulty * 60 * ( GlobalScene.dt + GlobalScene.saved_adjustment + AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency())
-	
+		print(start_audio_area.position.y)
 	
 	# 如果按下 ESC
 	if Input.is_key_pressed(KEY_ESCAPE):

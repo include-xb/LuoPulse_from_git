@@ -184,6 +184,6 @@ func load_note_in_once(scene : PlayScene, res_str : PackedStringArray) -> void:
 	if first == null:
 		first = scene.instance
 		first.name = "FIRST"
-		print(first)
+		print(first.position.y)
 	
 	return
