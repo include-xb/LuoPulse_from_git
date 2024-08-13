@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=3 uid="uid://cefmobjhkihhf"]
+
+[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_fvmjx"]
+[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="2_3j4cg"]
+[ext_resource type="Script" path="res://Scripts/Visual/notice_scene.gd" id="2_5ha37"]
+
+[sub_resource type="Gradient" id="Gradient_rykua"]
+colors = PackedColorArray(0.4, 0.8, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_83lur"]
+gradient = SubResource("Gradient_rykua")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxjl8"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2cah"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ic4mn"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tj0kj"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toe56"]
+bg_color = Color(0, 0, 0, 0.321569)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="notice_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fvmjx")
+script = ExtResource("2_5ha37")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_83lur")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.313726)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="BackBtn" type="Button" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fxjl8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s2cah")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ic4mn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tj0kj")
+icon = ExtResource("2_3j4cg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_toe56")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "暂无新消息"
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/BackBtn" to="." method="_on_back_btn_pressed"]

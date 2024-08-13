@@ -21,8 +21,11 @@ RunningData="*res://Scripts/RunningData.gd"
 
 [display]
 
+window/size/viewport_width=1728
+window/size/viewport_height=972
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 
 [rendering]
 
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="gl_compatibility"

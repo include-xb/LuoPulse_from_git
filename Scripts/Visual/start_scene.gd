@@ -3,33 +3,43 @@ extends Control
 @onready var statusLabel: Label = $VBoxContainer/MarginContainer/Label3
 @onready var progressBar: ProgressBar = $VBoxContainer/ProgressBar
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	statusLabel.text = "正在加载资源"
 	_get_chart_list()
 	progressBar.value = 100
 	statusLabel.text = "准备就绪。欢迎！"
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/Visual/hub_scene.tscn")
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _get_chart_list() -> void:
 	
-	var dir: DirAccess = DirAccess.open(RunningData.msc_list_path)
-	var chartList: Array = []
-	# 是否存在msclist，如不存在则创建
+	var dir: DirAccess = DirAccess.open(RunningData.rootMscPath)
+	var mscPackList: Dictionary = {}
+
 	if dir:
+		# 获取曲包
 		dir.list_dir_begin()
-		var file_name: String = dir.get_next()
-		while file_name != "": 
+		var dirName: String = dir.get_next()
+		while dirName != "": 
 			if dir.current_is_dir(): # 是否为文件夹？
-				chartList.append(file_name)
-			file_name = dir.get_next()
-	else :
-		DirAccess.make_dir_absolute(RunningData.msc_list_path)
+				var mscList: Array[String] = []
+				
+				# 获取曲包内歌曲列表
+				var packDir: DirAccess = DirAccess.open(RunningData.rootMscPath + "/" + dirName)
+				
+				packDir.list_dir_begin()
+				
+				var mscName: String = packDir.get_next()
+				
+				while mscName != "":
+					if packDir.current_is_dir():
+						mscList.append(mscName)
+					mscName = packDir.get_next()
+				
+				mscPackList.merge(
+					{dirName: mscList}
+				)
+				
+			dirName = dir.get_next()
 	
-	RunningData.chartList = chartList
+	RunningData.mscPackList = mscPackList

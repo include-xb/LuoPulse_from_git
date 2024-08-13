@@ -1,5 +1,5 @@
 extends Node
 
-var msc_list_path: String = "D:/MscList/" # user://MscList
+var rootMscPath: String = "res://MscList"
 
-var chartList: Array
+var mscPackList: Dictionary

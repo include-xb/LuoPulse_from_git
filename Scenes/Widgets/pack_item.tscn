@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8c5p8pksxj77"]
+
+[ext_resource type="Script" path="res://Scripts/Widgets/pack_item.gd" id="1_xiwyr"]
+[ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="2_5b6ln"]
+[ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="3_d1eo7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqwmv"]
+bg_color = Color(0, 0, 0, 0.360784)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmn4p"]
+shader = ExtResource("2_5b6ln")
+
+[node name="pack_item" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xiwyr")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hqwmv")
+
+[node name="PackPic" type="TextureRect" parent="PanelContainer"]
+material = SubResource("ShaderMaterial_lmn4p")
+layout_mode = 2
+texture = ExtResource("3_d1eo7")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PackPic"]
+layout_mode = 2
+offset_right = 1728.0
+offset_bottom = 100.0
+theme_override_constants/margin_left = 10
+
+[node name="PackNameLabel" type="Label" parent="PanelContainer/PackPic/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "曲包名称"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/PackPic"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="GridContainer" type="GridContainer" parent="."]
+visible = false
+layout_mode = 2
+columns = 2
+
+[connection signal="pressed" from="PanelContainer/PackPic/Button" to="." method="_on_button_pressed"]
