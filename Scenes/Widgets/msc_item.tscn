@@ -1,10 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cly862j7n64hl"]
 
 [ext_resource type="Script" path="res://Scripts/Widgets/msc_item.gd" id="1_yd80u"]
-[ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="2_g73k1"]
+[ext_resource type="Shader" path="res://Shader/msc_item.gdshader" id="3_twci8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cfcp7"]
-shader = ExtResource("2_g73k1")
+shader = ExtResource("3_twci8")
+shader_parameter/albedo_color = Vector4(0, 0, 0, 0)
+shader_parameter/transparency = 0.5
+shader_parameter/distortion = Vector2(0.01, 0.01)
 
 [node name="msc_item" type="Control"]
 clip_contents = true
@@ -25,8 +28,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-expand_mode = 1
-stretch_mode = 3
+expand_mode = 2
+stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -52,3 +55,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
