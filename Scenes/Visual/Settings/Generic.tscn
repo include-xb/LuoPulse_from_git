@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceeba0oqytaao"]
+
+[ext_resource type="Script" path="res://Scripts/Visual/Settings/Generic.gd" id="1_x0msm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5b6lv"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Generic" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+script = ExtResource("1_x0msm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HesitateSetting" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HesitateSetting"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HesitateSetting/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HesitateSetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "延迟(ms)"
+
+[node name="BGLightSetting" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/BGLightSetting"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BGLightSetting/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/BGLightSetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "背景亮度
+"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/BGLightSetting/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+
+[node name="VolumeSetting" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VolumeSetting"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VolumeSetting/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VolumeSetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "音量"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/VolumeSetting/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1

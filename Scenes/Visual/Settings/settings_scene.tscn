@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5h5eissc0lip"]
+[gd_scene load_steps=9 format=3 uid="uid://c5h5eissc0lip"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/settings_scene.gd" id="1_cqxw0"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="1_hcupo"]
+[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_uisr1"]
+[ext_resource type="PackedScene" uid="uid://ceeba0oqytaao" path="res://Scenes/Visual/Settings/Generic.tscn" id="3_j23vn"]
+[ext_resource type="PackedScene" uid="uid://chdtj3o3nad8p" path="res://Scenes/Visual/Settings/About.tscn" id="4_gylh5"]
 
 [sub_resource type="Gradient" id="Gradient_h2cr3"]
 colors = PackedColorArray(0.4, 0.8, 1, 1, 1, 1, 1, 1)
@@ -16,13 +19,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6b2f1"]
-bg_color = Color(0, 0, 0, 0.447059)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [node name="SettingsScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -30,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_uisr1")
 script = ExtResource("1_cqxw0")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -84,25 +81,15 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer2"]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_6b2f1")
+theme_override_font_sizes/font_size = 27
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/PanelContainer"]
+[node name="通用" parent="VBoxContainer/MarginContainer2/TabContainer" instance=ExtResource("3_j23vn")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
+[node name="关于" parent="VBoxContainer/MarginContainer2/TabContainer" instance=ExtResource("4_gylh5")]
+visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 10
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -13,7 +13,7 @@ config_version=5
 config/name="LuoPulse"
 run/main_scene="res://Scenes/Visual/start_scene.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Assets/Icons/icon-LP.png"
 
 [autoload]
 
@@ -21,8 +21,8 @@ RunningData="*res://Scripts/RunningData.gd"
 
 [display]
 
-window/size/viewport_width=1728
-window/size/viewport_height=972
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 
