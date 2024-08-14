@@ -12,6 +12,7 @@ var coverView: TextureRect
 var root: ColorRect
 var audioPlayer: AudioStreamPlayer
 
+# TODO: 自动调整大小以适应不同屏幕
 func set_up(
 	packName: String, 
 	mscName: String, 

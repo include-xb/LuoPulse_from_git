@@ -113,6 +113,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Info" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

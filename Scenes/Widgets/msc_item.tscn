@@ -8,7 +8,7 @@ shader = ExtResource("2_g73k1")
 
 [node name="msc_item" type="Control"]
 clip_contents = true
-custom_minimum_size = Vector2(840, 150)
+custom_minimum_size = Vector2(616, 150)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
