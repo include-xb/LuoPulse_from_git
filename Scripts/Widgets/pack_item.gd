@@ -7,7 +7,7 @@ func _ready():
 
 
 func set_up(
-	packName: StringName, 
+	packName: String, 
 	mscList: Array[String], 
 	nameLabel: Label, 
 	arLabel: Label, 

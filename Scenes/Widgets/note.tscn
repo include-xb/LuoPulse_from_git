@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bspog0syusb0p"]
+
+[ext_resource type="Script" path="res://Scripts/Widgets/note.gd" id="1_fay5a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bitp"]
+size = Vector3(2, 0.125, 0.5)
+
+[node name="Note" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_1bitp")
+script = ExtResource("1_fay5a")

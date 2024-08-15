@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfnbffqbgeu2"]
+
+[ext_resource type="Script" path="res://Scripts/Visual/play_scene.gd" id="1_hc52r"]
+[ext_resource type="PackedScene" uid="uid://bspog0syusb0p" path="res://Scenes/Widgets/note.tscn" id="2_lkr0c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3b6o"]
+transparency = 1
+albedo_color = Color(0.0392157, 0.0392157, 0.0392157, 0.941176)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ypq6r"]
+material = SubResource("StandardMaterial3D_n3b6o")
+size = Vector2(8, 500)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_blj66"]
+sky_top_color = Color(0.4, 0.8, 1, 1)
+sky_horizon_color = Color(0.65, 0.74225, 0.78325, 1)
+ground_horizon_color = Color(0.65, 0.74225, 0.78325, 1)
+
+[sub_resource type="Sky" id="Sky_xkxya"]
+sky_material = SubResource("ProceduralSkyMaterial_blj66")
+
+[sub_resource type="Environment" id="Environment_t3spo"]
+background_mode = 2
+sky = SubResource("Sky_xkxya")
+tonemap_mode = 2
+
+[node name="PlayScene" type="Node3D"]
+script = ExtResource("1_hc52r")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.932292, 0.361706, 0, -0.361706, 0.932292, 0, 3.1995, 2.88206)
+fov = 77.0
+
+[node name="track" type="Node3D" parent="."]
+
+[node name="track_panel" type="MeshInstance3D" parent="track"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -240)
+mesh = SubResource("PlaneMesh_ypq6r")
+skeleton = NodePath("../..")
+
+[node name="track1" type="Node3D" parent="track"]
+
+[node name="Note" parent="track/track1" instance=ExtResource("2_lkr0c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04628, 0, -21.3146)
+
+[node name="track2" type="Node3D" parent="track"]
+
+[node name="track3" type="Node3D" parent="track"]
+
+[node name="track4" type="Node3D" parent="track"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t3spo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

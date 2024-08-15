@@ -1,8 +1,8 @@
 extends Control
 
-var packName: StringName
-var mscName: StringName
-var artists: StringName
+var packName: String
+var mscName: String
+var artists: String
 var cover: Texture2D
 var path: String
 
@@ -14,8 +14,8 @@ var audioPlayer: AudioStreamPlayer
 
 # TODO: 自动调整大小以适应不同屏幕
 func set_up(
-	packName: StringName, 
-	mscName: StringName, 
+	packName: String, 
+	mscName: String, 
 	nameLabel: Label, 
 	arLabel: Label, 
 	coverView: TextureRect, 
