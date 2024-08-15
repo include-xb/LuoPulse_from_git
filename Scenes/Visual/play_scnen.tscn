@@ -41,7 +41,7 @@ skeleton = NodePath("../..")
 [node name="track1" type="Node3D" parent="track"]
 
 [node name="Note" parent="track/track1" instance=ExtResource("2_7og7w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04628, 0, -3.28661)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04628, 0, -21.3146)
 
 [node name="track2" type="Node3D" parent="track"]
 

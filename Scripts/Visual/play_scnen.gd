@@ -6,12 +6,14 @@ class_name PlayScene
 # 音乐播放器
 @onready var audioPlayer = $AudioStreamPlayer3D
 
-# 谱面文件内容
-var mscFile : String
 
 
 func _ready():
-	mscFile = RunningData.mscFile
+	var xml_doc : XMLDocument = XML.parse_file(RunningData.xml_path)
+	var root : XMLNode = xml_doc.root
+	var dict : Dictionary = root.to_dict()
+	
+	# print(JSON.stringify(dict, "\t"))
 
 
 func _process(delta):

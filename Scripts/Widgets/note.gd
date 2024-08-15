@@ -18,7 +18,7 @@ func _ready():
 	position.y = 0 # y 坐标永远是0
 
 func _process(delta):
-	position.z += velosity * delta
+	position += velosity * delta
 
 
 func set_note(note_track : int, time : float, note_type : StringName):
