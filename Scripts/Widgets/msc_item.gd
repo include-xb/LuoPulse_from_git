@@ -1,37 +1,50 @@
 extends Control
 
-# 指向歌曲文件夹路径
-var path : String = ""
+var packName: String
+var mscName: String
+var artists: String
+var cover: Texture2D
+var path: String
 
-# 歌曲名称
-var msc_name : StringName = ""
+var nameLabel: Label
+var arLabel: Label
+var coverView: TextureRect
+var root: ColorRect
+var audioPlayer: AudioStreamPlayer
 
-func set_up(packName: String, mscName: String) -> void:
+# TODO: 自动调整大小以适应不同屏幕
+func set_up(
+	packName: String, 
+	mscName: String, 
+	nameLabel: Label, 
+	arLabel: Label, 
+	coverView: TextureRect, 
+	root: ColorRect, 
+	audioPlayer: AudioStreamPlayer
+	) -> void:
+
 	path = RunningData.rootMscPath + "/" + packName + "/" + mscName + "/"
 	
-	msc_name = mscName
-	$VBoxContainer/MscNameLabel.text = mscName 
+	self.mscName = mscName
+	self.packName = packName
+	self.artists = FileAccess.get_file_as_string(path + "info.txt")
+	self.cover = load(path + "cover.png")
 	
-	$VBoxContainer/ArLabel.text = FileAccess.get_file_as_string(
-		path + "info.txt"
-	)
-	$TextureRect.texture = ImageTexture.create_from_image(
-		Image.load_from_file(
-			path + "cover.png"
-		)
-	)
+	self.nameLabel = nameLabel
+	self.arLabel = arLabel
+	self.coverView = coverView
+	self.root = root
+	self.audioPlayer = audioPlayer
 
-# 玩家点击了选择的歌曲, 进入下一场景
+	$MarginContainer/VBoxContainer/MscNameLabel.text = mscName 
+	$MarginContainer/VBoxContainer/ArLabel.text = artists
+	$MarginContainer/TextureRect.texture = cover
+
+
 func _on_button_pressed():
-	print("select finished")
-	RunningData.selected_msc_path = path
-	RunningData.selected_msc_name = msc_name
-	
-	
-	
-	RunningData.xml_path = path + RunningData.selected_msc_name + ".lp"		# XX/XX/pack_name/msc_name/msc_name.lp
-	
-	# print(path + RunningData.selected_msc_name + ".lp")
-	# print(FileAccess.get_file_as_string(path + RunningData.selected_msc_name + ".lp"))
-	
-	get_tree().change_scene_to_file("res://Scenes/Visual/play_scnen.tscn")
+	nameLabel.text = mscName
+	arLabel.text = artists
+	coverView.texture = cover
+	audioPlayer.stream = load(path + "audio.mp3")
+	audioPlayer.play()
+	root.visible = true

@@ -35,6 +35,12 @@ texture = ExtResource("3_d1eo7")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/PackPic"]
+layout_mode = 2
+offset_right = 1728.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 0.392157)
+
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PackPic"]
 layout_mode = 2
 offset_right = 1728.0
@@ -54,10 +60,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 flat = true
 
 [node name="GridContainer" type="GridContainer" parent="."]
-visible = false
 layout_mode = 2
 columns = 2
 

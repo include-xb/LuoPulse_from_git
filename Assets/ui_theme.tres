@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://cbp070bdnvxi0"]
 
-[ext_resource type="FontFile" uid="uid://c7erxderdxn73" path="res://Assets/Forts/SanJiYuanTiJian.ttf" id="1_3ug5e"]
+[ext_resource type="FontFile" uid="uid://dcw2x1xu6b2db" path="res://Assets/Forts/KiwiMaru-Regular-2.ttf" id="1_fq7nt"]
 
 [resource]
-default_font = ExtResource("1_3ug5e")
-default_font_size = 25
+default_font = ExtResource("1_fq7nt")
+default_font_size = 30
