@@ -2,24 +2,15 @@ extends VBoxContainer
 
 var grid: GridContainer
 
-func set_up(
-	packName: String, 
-	mscList: Array[String], 
-	nameLabel: Label, 
-	arLabel: Label, 
-	coverView: TextureRect, 
-	root: ColorRect,
-	audioPlayer: AudioStreamPlayer
-	) -> void:
-
+func set_up(name: String, mscList: Array[String]) -> void:
+	var label: Label = $PanelContainer/PackPic/MarginContainer/PackNameLabel
 	grid = $GridContainer
 	
-	$PanelContainer/PackPic/MarginContainer/PackNameLabel.text = packName
-	$PanelContainer/PackPic.texture = load(RunningData.rootMscPath + "/" + packName + "/" + "cover.jpg")
+	label.text = name
 	
 	for i in mscList:
 		var item: Node = preload("res://Scenes/Widgets/msc_item.tscn").instantiate()
-		item.set_up(packName, i, nameLabel, arLabel, coverView, root, audioPlayer)
+		item.set_up(name, i)
 		grid.add_child(item)
 
 
