@@ -34,4 +34,4 @@ func _on_button_pressed():
 	# print(path + RunningData.selected_msc_name + ".lp")
 	# print(FileAccess.get_file_as_string(path + RunningData.selected_msc_name + ".lp"))
 	
-	get_tree().change_scene_to_file("res://Scenes/Visual/play_scnen.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Visual/play_scene.tscn")

@@ -16,6 +16,7 @@ run/main_scene="res://Scenes/Visual/start_scene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/max_fps=60
 
 [autoload]
 
@@ -68,3 +69,4 @@ locale/locale_filter_mode=1
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
