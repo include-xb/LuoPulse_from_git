@@ -6,7 +6,7 @@
 
 洛天依同人音游 洛之动脉 LuoPulse
 
-引擎: [Godot 4.1.4](https://godotengine.org/download/archive/4.1.4-stable)
+引擎: [Godot 4.2.2](https://godotengine.org/download/archive/4.2.2-stable)
 
 ---
 
