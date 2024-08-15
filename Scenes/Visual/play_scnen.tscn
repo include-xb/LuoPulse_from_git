@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://boxhx4pkr1tu0"]
+[gd_scene load_steps=8 format=3 uid="uid://cfnbffqbgeu2"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/play_scnen.gd" id="1_phxa4"]
-[ext_resource type="PackedScene" uid="uid://iifyp3putqei" path="res://Scenes/Widgets/note.tscn" id="2_7og7w"]
+[ext_resource type="PackedScene" path="res://Scenes/Widgets/note.tscn" id="2_7og7w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3b6o"]
 transparency = 1
