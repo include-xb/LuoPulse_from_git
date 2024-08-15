@@ -1,4 +1,6 @@
-extends MeshInstance3D
+extends StaticBody3D
+
+var id : int = -1
 
 var type : StringName
 
@@ -17,7 +19,7 @@ track | position.x
 
 func _ready():
 	velosity.z = RunningData.speed # 实际上, 音符速度 和 流速 之间是一个线性方程, 此处暂时省略, 直接赋值
-	position.y = 0 # y 坐标永远是0
+	position.y = 0.2 # y 坐标不变
 
 func _process(delta):
 	position += velosity * delta

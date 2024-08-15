@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfnbffqbgeu2"]
+[gd_scene load_steps=10 format=3 uid="uid://cfnbffqbgeu2"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/play_scene.gd" id="1_hc52r"]
 [ext_resource type="PackedScene" uid="uid://bspog0syusb0p" path="res://Scenes/Widgets/note.tscn" id="2_lkr0c"]
@@ -23,6 +23,11 @@ sky_material = SubResource("ProceduralSkyMaterial_blj66")
 background_mode = 2
 sky = SubResource("Sky_xkxya")
 tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n42nc"]
+size = Vector3(1.03882, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0koq1"]
 
 [node name="PlayScene" type="Node3D"]
 script = ExtResource("1_hc52r")
@@ -59,3 +64,12 @@ shadow_enabled = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.224836, 0.918326, -3.67918)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_n42nc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_0koq1")
