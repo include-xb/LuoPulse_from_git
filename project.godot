@@ -12,7 +12,7 @@ config_version=5
 
 config/name="LuoPulse"
 run/main_scene="res://Scenes/Visual/start_scene.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://Assets/Icons/icon-LP.png"
 
 [autoload]
@@ -25,6 +25,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
