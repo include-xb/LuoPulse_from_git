@@ -13,9 +13,8 @@ config_version=5
 config/name="LuoPulse"
 config/description="洛天依音游: LuoPulse 洛之动脉"
 run/main_scene="res://Scenes/Visual/start_scene.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
-run/max_fps=60
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.1", "GL Compatibility")
+config/icon="res://Assets/Icons/icon-LP.png"
 
 [autoload]
 
@@ -24,8 +23,8 @@ RunningData="*res://Scripts/RunningData.gd"
 
 [display]
 
-window/size/viewport_width=1728
-window/size/viewport_height=972
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 

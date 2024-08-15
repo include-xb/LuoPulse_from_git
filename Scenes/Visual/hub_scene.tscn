@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cgdu41dxvx813"]
+[gd_scene load_steps=17 format=3 uid="uid://cgdu41dxvx813"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_i8mrh"]
 [ext_resource type="Script" path="res://Scripts/Visual/hub_scene.gd" id="2_q14h0"]
@@ -29,24 +29,6 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu6sc"]
 content_margin_left = 40.0
 content_margin_right = 20.0
-bg_color = Color(0, 0, 0, 0.607843)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icup4"]
-content_margin_left = 40.0
-bg_color = Color(0, 0, 0, 0.607843)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhiey"]
-content_margin_left = 40.0
-bg_color = Color(0, 0, 0, 0.607843)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1sbmo"]
-content_margin_left = 40.0
 bg_color = Color(0, 0, 0, 0.607843)
 corner_radius_top_left = 10
 corner_radius_bottom_left = 10
@@ -115,11 +97,11 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -745.0
-offset_bottom = 143.0
+offset_left = -736.0
+offset_bottom = 151.0
 grow_horizontal = 0
 theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 50
+theme_override_constants/margin_right = 30
 
 [node name="PanelContainer" type="PanelContainer" parent="AppTile"]
 layout_mode = 2
@@ -135,8 +117,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="AppTile/MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "Luo Pulse v1.0beta
-"
+text = "AppTile"
 
 [node name="TimeLabel" type="Label" parent="AppTile/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -145,10 +126,10 @@ text = "00:00:00"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 2
-offset_left = 34.0
-offset_top = 270.0
-offset_right = 836.0
-offset_bottom = 1314.0
+offset_left = -25.0
+offset_top = 212.0
+offset_right = 674.0
+offset_bottom = 1163.0
 texture = ExtResource("5_tec6b")
 expand_mode = 1
 
@@ -160,11 +141,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -779.0
+offset_left = -757.0
 offset_top = -296.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/margin_right = 70
+theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 30
 
 [node name="Control" type="Control" parent="BtnGroup"]
@@ -185,9 +166,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_yu6sc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_icup4")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dhiey")
-theme_override_styles/focus = SubResource("StyleBoxFlat_1sbmo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yu6sc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yu6sc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_yu6sc")
 text = "消息"
 icon = ExtResource("8_vqhgq")
 
@@ -196,6 +177,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_bmluv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bmluv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bmluv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bmluv")
 text = "设置"
 icon = ExtResource("3_voi8l")
 
@@ -211,7 +195,7 @@ offset_top = -220.0
 grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_spwvd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_spwvd")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_spwvd")
