@@ -2,10 +2,7 @@ extends Control
 
 @onready var timeLabel: Label = $AppTile/MarginContainer/HBoxContainer/TimeLabel
 
-func _ready():
-	$AppTile/MarginContainer/HBoxContainer/Label.text = "Luo Pulse " + RunningData.versionName
-
-func _process(_delta):
+func _process(delta):
 	var time_dict: Dictionary = Time.get_time_dict_from_system()
 	var minute: String = str(time_dict["minute"])
 	var second: String = str(time_dict["second"])
