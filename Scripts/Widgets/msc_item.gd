@@ -35,7 +35,6 @@ func set_up(
 			path + "cover.png"
 		)
 	)
-	RunningData.selected_msc_cover = self.cover
 	
 	self.nameLabel = nameLabel
 	self.arLabel = arLabel
@@ -61,12 +60,15 @@ func _on_button_pressed():
 	arLabel.text = RunningData.parsed_json.General.Artist
 	coverView.texture = cover
 	
+	RunningData.selected_msc_cover = self.cover
+	
 	# audioPlayer.stream = load(path + "audio.mp3")
-	RunningData.audio_path = path + "audio.mp3"
-	var audio_file = FileAccess.open(RunningData.audio_path, FileAccess.READ)
+	var audio_path = path + "audio.mp3"
+	var audio_file = FileAccess.open(audio_path, FileAccess.READ)
 	var sound = AudioStreamMP3.new()
 	sound.data = audio_file.get_buffer(audio_file.get_length())
 	audioPlayer.stream = sound
+	RunningData.audio_stream = sound
 	
 	audioPlayer.play()
 	root.visible = true

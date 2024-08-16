@@ -32,8 +32,8 @@ theme_override_constants/margin_right = 5
 material = SubResource("ShaderMaterial_cfcp7")
 clip_contents = true
 layout_mode = 2
-expand_mode = 1
-stretch_mode = 3
+expand_mode = 3
+stretch_mode = 6
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2

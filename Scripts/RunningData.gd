@@ -15,8 +15,8 @@ var selected_msc_name : String = ""
 # 选择歌曲的封面
 var selected_msc_cover : Texture
 
-# .mp3 文件路径
-var audio_path : String = ""
+# .mp3 音频流
+var audio_stream : AudioStreamMP3
 
 # json文件目录
 var json_path : String = ""
@@ -32,3 +32,5 @@ var speed : int = 10
 
 # 音频当前的播放时间
 var current_audio_time : float = -1.0
+
+var is_running_note : bool = false
