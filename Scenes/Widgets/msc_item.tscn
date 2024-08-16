@@ -48,6 +48,7 @@ theme_override_font_sizes/font_size = 33
 text = "歌曲名"
 
 [node name="ArLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 27
 text = "staff"

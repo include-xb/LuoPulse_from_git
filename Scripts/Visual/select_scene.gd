@@ -23,9 +23,24 @@ func _ready():
 		)
 		listView.add_child(item)
 
-##############################
+
+func _input(event : InputEvent):
+	if event is InputEventScreenTouch and info.visible == true:
+		audioPlayer.stop()
+		if event.double_tap:
+			event.canceled = true
+			print("开始")
+			get_tree().change_scene_to_file("res://Scenes/Visual/play_scene.tscn")
+		if event.pressed:
+			print("返回歌单")
+			info.visible = false
+			# event.canceled = true
+
+
+"""
 # 返回
 func _on_info_gui_input(event):
+	audioPlayer.stop()
 	print("返回歌单")
 	if event is InputEventScreenTouch and event.pressed:
 		pass
@@ -33,6 +48,8 @@ func _on_info_gui_input(event):
 
 # 开始
 func _on_texture_rect_gui_input(event):
+	audioPlayer.stop()
 	print("开始")
 	if event is InputEventScreenTouch and event.pressed:
 		pass
+"""

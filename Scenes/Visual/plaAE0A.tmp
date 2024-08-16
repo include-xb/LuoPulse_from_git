@@ -1,31 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfnbffqbgeu2"]
+[gd_scene load_steps=10 format=3 uid="uid://cfnbffqbgeu2"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/play_scene.gd" id="1_hc52r"]
 [ext_resource type="PackedScene" uid="uid://bspog0syusb0p" path="res://Scenes/Widgets/note.tscn" id="2_lkr0c"]
-[ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="2_vunmb"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_52ylc"]
-sky_top_color = Color(0.4, 0.8, 1, 1)
-sky_horizon_color = Color(0.65, 0.74225, 0.78325, 1)
-ground_horizon_color = Color(0.65, 0.74225, 0.78325, 1)
-
-[sub_resource type="Sky" id="Sky_n2lv2"]
-sky_material = SubResource("ProceduralSkyMaterial_52ylc")
-
-[sub_resource type="Environment" id="Environment_od3mk"]
-background_mode = 2
-sky = SubResource("Sky_n2lv2")
-tonemap_mode = 2
-ssao_enabled = true
-glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3b6o"]
 transparency = 1
-albedo_color = Color(0, 0, 0, 0.823529)
+albedo_color = Color(0.0392157, 0.0392157, 0.0392157, 0.941176)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ypq6r"]
 material = SubResource("StandardMaterial3D_n3b6o")
 size = Vector2(8, 500)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_blj66"]
+sky_top_color = Color(0.4, 0.8, 1, 1)
+sky_horizon_color = Color(0.65, 0.74225, 0.78325, 1)
+ground_horizon_color = Color(0.65, 0.74225, 0.78325, 1)
+
+[sub_resource type="Sky" id="Sky_xkxya"]
+sky_material = SubResource("ProceduralSkyMaterial_blj66")
+
+[sub_resource type="Environment" id="Environment_t3spo"]
+background_mode = 2
+sky = SubResource("Sky_xkxya")
+tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n42nc"]
 size = Vector3(1.03882, 1, 1)
@@ -35,14 +32,9 @@ size = Vector3(1.03882, 1, 1)
 [node name="PlayScene" type="Node3D"]
 script = ExtResource("1_hc52r")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_od3mk")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, -1, -1.5)
-visible = false
-modulate = Color(1, 1, 1, 0.588235)
-texture = ExtResource("2_vunmb")
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.775727, 0.631069, 0, -0.631069, 0.775727, 0, 2.656, 2.88206)
+far = 5000.0
 
 [node name="track" type="Node3D" parent="."]
 
@@ -63,6 +55,9 @@ visible = false
 
 [node name="track4" type="Node3D" parent="track"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t3spo")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
@@ -70,11 +65,6 @@ shadow_enabled = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 2.656, 2.88206)
-current = true
-far = 5000.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.224836, 0.918326, -3.67918)

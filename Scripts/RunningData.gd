@@ -2,7 +2,7 @@ extends Node
 
 var rootMscPath: String = "res://MscList"
 
-var mscPackList: Dictionary
+var mscPackList: Dictionary = { }
 
 var versionName: String = "v0.1beta"
 
@@ -12,8 +12,20 @@ var selected_msc_path : String = ""
 # 选中歌曲标题
 var selected_msc_name : String = ""
 
-# xml文件目录
-var xml_path : String = ""
+# 选择歌曲的封面
+var selected_msc_cover : Texture
+
+# .mp3 文件路径
+var audio_path : String = ""
+
+# json文件目录
+var json_path : String = ""
+
+# json文件内容
+var json_file_data : String = ""
+
+# JSON.parse_string(...) 的返回值
+var parsed_json : Dictionary = { }
 
 # 音符流速, 玩家可调, 默认 10
 var speed : int = 10
