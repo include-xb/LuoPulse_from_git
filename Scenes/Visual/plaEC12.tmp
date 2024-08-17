@@ -30,7 +30,7 @@ material = SubResource("StandardMaterial3D_n3b6o")
 size = Vector2(8, 70)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vqku2"]
-size = Vector3(8.5, 0.25, 70)
+size = Vector3(8, 1, 70)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8lni7"]
 albedo_color = Color(0.4, 0.8, 1, 1)
@@ -71,7 +71,7 @@ mesh = SubResource("PlaneMesh_ypq6r")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="track/track_body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -33)
 shape = SubResource("BoxShape3D_vqku2")
 
 [node name="decision_line" type="MeshInstance3D" parent="track"]
@@ -82,7 +82,6 @@ mesh = SubResource("PlaneMesh_g4uwe")
 
 [node name="Note" parent="track/track1" instance=ExtResource("2_lkr0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.046, 0.192994, -3.45401)
-visible = false
 
 [node name="track2" type="Node3D" parent="track"]
 
@@ -107,7 +106,6 @@ far = 5000.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.85405)
-visible = false
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]

@@ -30,7 +30,7 @@ material = SubResource("StandardMaterial3D_n3b6o")
 size = Vector2(8, 70)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vqku2"]
-size = Vector3(8.5, 0.25, 70)
+size = Vector3(8, 1, 70)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8lni7"]
 albedo_color = Color(0.4, 0.8, 1, 1)
@@ -71,7 +71,7 @@ mesh = SubResource("PlaneMesh_ypq6r")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="track/track_body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -33)
 shape = SubResource("BoxShape3D_vqku2")
 
 [node name="decision_line" type="MeshInstance3D" parent="track"]

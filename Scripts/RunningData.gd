@@ -28,9 +28,13 @@ var json_file_data : String = ""
 var parsed_json : Dictionary = { }
 
 # 音符流速, 玩家可调, 默认 10
-var speed : int = 10
+var speed : int = 5
 
 # 音频当前的播放时间
 var current_audio_time : float = -1.0
 
-var is_running_note : bool = false
+# 开始后的等待时间
+var delay_time : int = -2
+
+# 处于判定区间内的音符
+var decision_area : Array = [ ]

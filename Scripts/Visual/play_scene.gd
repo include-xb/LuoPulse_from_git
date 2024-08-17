@@ -25,7 +25,7 @@ var packed_touch_line : PackedScene = preload("res://Scenes/Widgets/touch_line.t
 var note_loader = NoteLoader.new()
 
 # 触摸距离
-const ray_length : int = 1000
+const ray_length : int = 100
 
 # 触摸接触坐标
 var touch_position_2d : Vector2 = Vector2.ZERO
@@ -37,22 +37,39 @@ var total_note_num : int = -1
 var is_loading_note : bool = true
 
 # 每一次加载的音符数量
-var once_load_num : int = 20
+#var once_load_num : int = 20
 
 # 最后一次加载音符数量
-var last_load_num : int = -1
+#var last_load_num : int = -1
 
 # 加载次数
-var load_times : int = 0
+#var load_times : int = 0
 
 # 当前加载次数
-var current_load_times : int = 0
+#var current_load_times : int = 0
 
 # 当前加载个数 / 已经加载了多少音符
 var current_load_num : int = 0
 
 # 音符提前多少毫秒加载
-var advanced_time : int = 1000
+#var advanced_time : int = 1
+
+# 开始时留给玩家的等待时间
+var delay_time : int = 1
+
+# 开始后的延时
+var loader_timer : float = RunningData.delay_time #-delay_time + advanced_time
+
+var note_time_array : Array = [ ]
+
+#  note_time_arrat 的索引
+var index : int = 0
+
+var note_type_array : Array = [ ]
+
+var note_column_array : Array = [ ]
+
+var note_duration_array : Array = [ ]
 
 # 测试用 ######
 var json_contant = \
@@ -72,42 +89,42 @@ var json_contant = \
 			"bpm": 120 
 		}, 
 		{ 
-			"time": 5000, 
+			"time": 0.5, 
 			"bpm": 60 
 		}
 	], 
 	"HitObjects": [
 		{ 
 			"type": "tap", 
-			"time": 1000, 
+			"time": 1, 
 			"column": 1 
 		}, 
 		{ 
 			"type": "tap", 
-			"time": 1500, 
+			"time": 1.5, 
 			"column": 2 
 		}, 
 		{ 
 			"type": "tap", 
-			"time": 2000, 
+			"time": 2, 
 			"column": 3 
 		}, 
 		{ 
 			"type": "tap", 
-			"time": 2500, 
+			"time": 2.5, 
 			"column": 4 
 		}, 
 		{ 
 			"type": "hold", 
-			"time": 3000, 
+			"time": 3, 
 			"column": 1, 
-			"duration": 1000 
+			"duration": 1 
 		}, 
 		{ 
 			"type": "hold", 
-			"time": 4000, 
+			"time": 4, 
 			"column": 4, 
-			"duration": 1000 
+			"duration": 1 
 		}
 	] 
 }
@@ -141,9 +158,12 @@ var json_data : Dictionary = \
 ##############
 
 func _ready() -> void:
-	json_data = JSON.parse_string(json_contant)
+	# json_data = JSON.parse_string(json_contant)
+	json_data = RunningData.parsed_json
+	if json_data == { }: json_data = JSON.parse_string(json_contant)
 	
 	audio_player.stream = RunningData.audio_stream
+	audio_player.stop()
 	
 	if cover.texture == null:
 		cover.texture = preload("res://Assets/Images/hub_bg.jpg")
@@ -151,44 +171,45 @@ func _ready() -> void:
 		cover.texture = RunningData.selected_msc_cover
 	
 	total_note_num = json_data.HitObjects.size()
-	load_times = int(total_note_num / once_load_num)
-	last_load_num = int(total_note_num % once_load_num)
+	# load_times = int(total_note_num / once_load_num)
+	# last_load_num = int(total_note_num % once_load_num)
 	
 	print("共有音符: ", total_note_num, "个")
-	print("每次加载: ", once_load_num , "个")
-	print("需要加载: ", load_times, "次")
-	print("最后一次需要加载: ", last_load_num, "个")
+	# print("每次加载: ", once_load_num , "个")
+	# print("需要加载: ", load_times, "次")
+	# print("最后一次需要加载: ", last_load_num, "个")
 	
-	"""
 	for i in json_data.HitObjects:
-		var type = i.type
-		var time = i.time
-		var column = i.column
-		var duration = i.duration if i.has("duration") else 0
-	"""
+		note_type_array.push_back(i.type)
+		note_time_array.push_back(i.time)
+		note_column_array.push_back(i.column)
+		note_duration_array.push_back(i.duration if i.has("duration") else 0)
+		print(i)
 	
 	audio_player.play()
 
 
 func _process(delta) -> void:
-	RunningData.current_audio_time = int( 
-		( 
-			audio_player.get_playback_position() - AudioServer.get_time_to_next_mix() + AudioServer.get_time_since_last_mix()
-		) * 1000 
-	)
+	RunningData.current_audio_time = audio_player.get_playback_position() - AudioServer.get_time_to_next_mix() + AudioServer.get_time_since_last_mix()
+		 
 	# print(RunningData.current_audio_time)
+	loader_timer += delta
 	
 	if is_loading_note:
-		var obj = json_data.HitObjects[current_load_num]
-		var type = obj.type
-		var time = obj.time
-		var column = obj.column
-		var duration = obj.duration if obj.has("duration") else 0
-		note_loader.load_note(self, type, time, column, duration)
+		if loader_timer >= note_time_array[index]:
+			note_loader.load_note(
+				self, 
+				note_type_array[index], 
+				note_time_array[index], 
+				note_column_array[index], 
+				note_duration_array[index]
+			)
+			index += 1
+		if index >= total_note_num:
+			is_loading_note = false
 
 
 func _input(event) -> void:
-	
 	if event is InputEventScreenTouch and event.pressed:
 		
 		var from = camera.project_ray_origin(event.position)
@@ -201,17 +222,31 @@ func _input(event) -> void:
 		
 		if result:
 			# 处理碰撞结果
-			print("Hit object: ", result.collider.name)
+			# print("Hit object: ", result.collider.name)
 			# print("Hit object id: ", result.collider.id)
 			
-			if result.collider.name != "track_body":
-				result.collider.queue_free()
 			for tl in $track/touch_lines.get_children():
 				tl.queue_free()
 			
-			var instanced_touch_note = packed_touch_line.instantiate()
-			instanced_touch_note.position.x = result.position.x
-			instanced_touch_note.position.y = 0.25
-			instanced_touch_note.position.z = -33
+			var instanced_touch_line = packed_touch_line.instantiate()
+			instanced_touch_line.position.x = result.position.x
+			instanced_touch_line.position.y = 0.01
+			instanced_touch_line.position.z = -33
+			$track/touch_lines.add_child(instanced_touch_line)
 			
-			$track/touch_lines.add_child(instanced_touch_note)
+			# if not(null in RunningData.decision_area):
+			for i in RunningData.decision_area:
+				print(result.position.z)
+				print(i)
+				print(RunningData.decision_area)
+				print(result)
+				print(result.size())
+				# if i != null && i.judge_note(result.position.z):
+				if i.judge_note(result.position.z):
+					print("ok")
+					print("当前列表: ", RunningData.decision_area)
+					
+					# TODO: good 和 perfect 判定
+					
+					event.set_canceled(false)
+
