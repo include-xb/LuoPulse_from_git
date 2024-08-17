@@ -6,15 +6,11 @@ class_name  NoteLoader
 
 func load_note(scene : PlayScene, type : String, time : int, column : int, duration : int):
 	scene.current_load_num += 1
-	# if type == "hold":
-	#	return
-	# var note : Note = Note.new()
-	
-	# note.set_note(type, time, column)
-	# var track : Node3D = tracks[column - 1]
-	# track.add_child(note)
 	var instanced_note : Note = scene.packed_note.instantiate()
-	scene.add_child(instanced_note)
+	
+	scene.get_node("track/track" + str(column)).add_child(instanced_note)
+	
+	# scene.add_child(instanced_note)
 	
 	instanced_note.id = scene.current_load_num
 	instanced_note.position.x = 2 * column - 5

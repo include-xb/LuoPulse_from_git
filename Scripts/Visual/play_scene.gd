@@ -12,7 +12,15 @@ class_name PlayScene
 @onready var cover : Sprite3D = $Sprite3D
 
 
+@onready var track1 : Node3D = $track/track1
+@onready var track2 : Node3D = $track/track2
+@onready var track3 : Node3D = $track/track3
+@onready var track4 : Node3D = $track/track4
+
+
 var packed_note : PackedScene = preload("res://Scenes/Widgets/note.tscn")
+
+var packed_touch_line : PackedScene = preload("res://Scenes/Widgets/touch_line.tscn")
 
 var note_loader = NoteLoader.new()
 
@@ -178,7 +186,9 @@ func _process(delta) -> void:
 		var duration = obj.duration if obj.has("duration") else 0
 		note_loader.load_note(self, type, time, column, duration)
 
+
 func _input(event) -> void:
+	
 	if event is InputEventScreenTouch and event.pressed:
 		
 		var from = camera.project_ray_origin(event.position)
@@ -193,5 +203,15 @@ func _input(event) -> void:
 			# 处理碰撞结果
 			print("Hit object: ", result.collider.name)
 			# print("Hit object id: ", result.collider.id)
-			# if result.collider.name == "Note":
-			result.collider.queue_free()
+			
+			if result.collider.name != "track_body":
+				result.collider.queue_free()
+			for tl in $track/touch_lines.get_children():
+				tl.queue_free()
+			
+			var instanced_touch_note = packed_touch_line.instantiate()
+			instanced_touch_note.position.x = result.position.x
+			instanced_touch_note.position.y = 0.25
+			instanced_touch_note.position.z = -33
+			
+			$track/touch_lines.add_child(instanced_touch_note)

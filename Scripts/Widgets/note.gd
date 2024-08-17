@@ -1,6 +1,8 @@
-extends StaticBody3D
+extends Node3D
 
 class_name Note
+
+var shared_class_name : String = "Note"
 
 var id : int = -1
 
@@ -30,13 +32,18 @@ func _ready():
 func _process(delta):
 
 	if RunningData.is_running_note:
+		# return
 		position += velosity * delta
 	
-	if id == 1:
-		print(position.z)
+	# if id == 1:
+	#	print(position.z)
 	
 	if position.z >= 3:
 		queue_free()
+
+
+func kill():
+	queue_free()
 
 """
 func set_note(note_type : StringName, time : float, note_track : int):

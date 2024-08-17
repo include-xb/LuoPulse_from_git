@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlnpjc60fp25e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bis73"]
+albedo_color = Color(0.4, 0.8, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_inv0f"]
+material = SubResource("StandardMaterial3D_bis73")
+size = Vector2(0.125, 70)
+
+[node name="touch_line" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -33)
+mesh = SubResource("PlaneMesh_inv0f")
