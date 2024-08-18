@@ -29,12 +29,12 @@ func set_up(
 	self.packName = packName
 	# self.artists = FileAccess.get_file_as_string(path + "info.txt")
 	
-	# self.cover = load(path + "cover.png")
-	self.cover = ImageTexture.create_from_image(
-		Image.load_from_file(
-			path + "cover.png"
-		)
-	)
+	self.cover = load(path + "cover.png")
+	#self.cover = ImageTexture.create_from_image(
+		#Image.load_from_file(
+			#path + "cover.png"
+		#)
+	#)
 	
 	self.nameLabel = nameLabel
 	self.arLabel = arLabel
@@ -48,8 +48,9 @@ func set_up(
 
 
 func _on_button_pressed():
+	print('prressed')
 	# 在这个地方就已经开始解析谱面开头部分
-	RunningData.json_path =  ProjectSettings.globalize_path(path + mscName + ".json")
+	RunningData.json_path = path + mscName + ".json"
 	if !FileAccess.file_exists(RunningData.json_path):
 		print("文件 <" + RunningData.json_path + "> 不存在")
 		return
@@ -62,13 +63,13 @@ func _on_button_pressed():
 	
 	RunningData.selected_msc_cover = self.cover
 	
-	# audioPlayer.stream = load(path + "audio.mp3")
-	var audio_path = path + "audio.mp3"
-	var audio_file = FileAccess.open(audio_path, FileAccess.READ)
-	var sound = AudioStreamMP3.new()
-	sound.data = audio_file.get_buffer(audio_file.get_length())
-	audioPlayer.stream = sound
-	RunningData.audio_stream = sound
+	audioPlayer.stream = load(path + "audio.mp3")
+	#var audio_path = path + "audio.mp3"
+	#var audio_file = FileAccess.open(audio_path, FileAccess.READ)
+	#var sound = AudioStreamMP3.new()
+	#sound.data = audio_file.get_buffer(audio_file.get_length())
+	#audioPlayer.stream = sound
+	#RunningData.audio_stream = sound
 	
 	audioPlayer.play()
 	root.visible = true

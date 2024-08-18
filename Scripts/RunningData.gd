@@ -4,7 +4,7 @@ var rootMscPath: String = "res://MscList"
 
 var mscPackList: Dictionary = { }
 
-var versionName: String = "v0.1beta"
+var versionName: String = "v1.0beta"
 
 # 选择歌曲的路径, 指向歌曲文件夹而不是.MP3
 var selected_msc_path : String = ""
