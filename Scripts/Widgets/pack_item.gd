@@ -23,14 +23,8 @@ func set_up(
 	# INFO: Godot 是无法直接加载未导入的外部资源的
 	# $PanelContainer/PackPic.texture = load(RunningData.rootMscPath + "/" + packName + "/" + "cover.jpg")
 	
-	$PanelContainer/PackPic.texture = ImageTexture.create_from_image(
-		Image.load_from_file(
-			RunningData.rootMscPath + "/" + packName + "/" + "cover.jpg" 
-			# 加载失败就使用默认图像
-			if FileAccess.file_exists(RunningData.rootMscPath + "/" + packName + "/" + "cover.jpg")
-			else "res://Assets/Images/hub_bg.jpg"
-		)
-	)
+	$PanelContainer/PackPic.texture = load(
+			RunningData.rootMscPath + "/" + packName + "/" + "cover.jpg")
 	# 加载失败就使用默认图像
 	if $PanelContainer/PackPic.texture == null:
 		$PanelContainer/PackPic.texture = load("res://Assets/Images/hub_bg.jpg")
