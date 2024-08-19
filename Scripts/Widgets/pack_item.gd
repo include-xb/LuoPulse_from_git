@@ -45,8 +45,4 @@ func set_up(
 
 
 func _on_button_pressed():
-	#if grid.visible == false:
-	#	grid.visible = true
-	#else :
-	#	grid.visible = false
 	grid.visible = !grid.visible

@@ -9,13 +9,17 @@ class_name PlayScene
 @onready var audio_player = $AudioStreamPlayer3D
 
 # 封面
-@onready var cover : Sprite3D = $Sprite3D
+# @onready var cover : Sprite3D = $Sprite3D
 
-
+# 四条轨道
 @onready var track1 : Node3D = $track/track1
 @onready var track2 : Node3D = $track/track2
 @onready var track3 : Node3D = $track/track3
 @onready var track4 : Node3D = $track/track4
+
+@onready var perfect_count : Label = $Control/VBoxContainer/MarginContainer/HBoxContainer/PerfectCount
+@onready var good_count : Label = $Control/VBoxContainer/MarginContainer2/HBoxContainer/GoodCount
+@onready var missing_count : Label = $Control/VBoxContainer/MarginContainer3/HBoxContainer/MissingCount
 
 
 var packed_note : PackedScene = preload("res://Scenes/Widgets/note.tscn")
@@ -55,7 +59,7 @@ var current_load_num : int = 0
 #var advanced_time : int = 1
 
 # 开始时留给玩家的等待时间
-var delay_time : int = 1
+# var delay_time : int = 1
 
 # 开始后的延时
 var loader_timer : float = RunningData.delay_time #-delay_time + advanced_time
@@ -65,11 +69,17 @@ var note_time_array : Array = [ ]
 #  note_time_arrat 的索引
 var index : int = 0
 
+# 存储所有音符的种类
 var note_type_array : Array = [ ]
 
+# 存储所有音符的轨道
 var note_column_array : Array = [ ]
 
+# 存储所有音符的持续时间
 var note_duration_array : Array = [ ]
+
+# 多点触摸
+var touch_position : Array = [ ]
 
 # 测试用 ######
 var json_contant = \
@@ -158,95 +168,160 @@ var json_data : Dictionary = \
 ##############
 
 func _ready() -> void:
-	# json_data = JSON.parse_string(json_contant)
+	# 三个统计标签都初始为0
+	perfect_count.text = "0"
+	good_count.text = "0"
+	missing_count.text = "0"
+	
+	# 获取解析到的谱面内容
 	json_data = RunningData.parsed_json
-	if json_data == { }: json_data = JSON.parse_string(json_contant)
+	if json_data == { }: # INFO: 谱面为空则使用 json_contant, 这只是方便运行调试
+		json_data = JSON.parse_string(json_contant)
 	
 	audio_player.stream = RunningData.audio_stream
 	audio_player.stop()
 	
+	"""
 	if cover.texture == null:
 		cover.texture = preload("res://Assets/Images/hub_bg.jpg")
 	else:
 		cover.texture = RunningData.selected_msc_cover
+	"""
 	
 	total_note_num = json_data.HitObjects.size()
-	# load_times = int(total_note_num / once_load_num)
-	# last_load_num = int(total_note_num % once_load_num)
-	
 	print("共有音符: ", total_note_num, "个")
-	# print("每次加载: ", once_load_num , "个")
-	# print("需要加载: ", load_times, "次")
-	# print("最后一次需要加载: ", last_load_num, "个")
 	
+	# 音符的各个信息写入列表
 	for i in json_data.HitObjects:
 		note_type_array.push_back(i.type)
 		note_time_array.push_back(i.time)
 		note_column_array.push_back(i.column)
 		note_duration_array.push_back(i.duration if i.has("duration") else 0)
-		print(i)
 	
 	audio_player.play()
 
 
 func _process(delta) -> void:
 	RunningData.current_audio_time = audio_player.get_playback_position() - AudioServer.get_time_to_next_mix() + AudioServer.get_time_since_last_mix()
-		 
-	# print(RunningData.current_audio_time)
 	loader_timer += delta
 	
-	if is_loading_note:
-		if loader_timer >= note_time_array[index]:
-			note_loader.load_note(
-				self, 
-				note_type_array[index], 
-				note_time_array[index], 
-				note_column_array[index], 
-				note_duration_array[index]
-			)
-			index += 1
-		if index >= total_note_num:
-			is_loading_note = false
+	missing_count.text = str(RunningData.missing_count)
+	
+	if !is_loading_note:
+		return
+	
+	if loader_timer >= note_time_array[index]:
+		note_loader.load_note(
+			self, 
+			note_type_array[index], 
+			note_time_array[index], 
+			note_column_array[index], 
+			note_duration_array[index]
+		)
+		index += 1
+	
+	if index >= total_note_num:
+		is_loading_note = false
 
-
+"""
 func _input(event) -> void:
-	if event is InputEventScreenTouch and event.pressed:
+	if not(event is InputEventScreenTouch and event.pressed):
+		return
+
+	var from = camera.project_ray_origin(event.position)
+	var to = from + camera.project_ray_normal(event.position) * ray_length
+	
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var result : Dictionary = { "collider": Node3D }
+	result = space_state.intersect_ray(query)
+	
+	if result == { }:
+		return
+	
+	for tl in $track/touch_lines.get_children():
+		tl.queue_free()
+	
+	var instanced_touch_line = packed_touch_line.instantiate()
+	instanced_touch_line.position.x = result.position.x
+	instanced_touch_line.position.y = 0.01
+	instanced_touch_line.position.z = -33
+	$track/touch_lines.add_child(instanced_touch_line)
+	
+	for i in RunningData.decision_area:
+		if !i.judge_note(result.position.z):
+			return
 		
-		var from = camera.project_ray_origin(event.position)
-		var to = from + camera.project_ray_normal(event.position) * ray_length
+		if abs(i.appear_time - loader_timer - RunningData.delay_time) < 0.3:
+			# TODO: perfect
+			perfect_hote()
+		else:
+			# TODO: good
+			good_note()
+		# event.set_canceled(false)
+"""
+
+
+
+
+func _input(event):
+	# 仅处理按下事件
+	if not(event is InputEventScreenTouch and event.pressed):
+		return
+	var touch_count = event.get_index() + 1
+	print("touch_count: ", touch_count)
+	print(event)
+	var space_state = get_world_3d().direct_space_state
+
+	for ind in range(touch_count):
+		# 获取每个触摸点的位置
 		
-		var space_state = get_world_3d().direct_space_state
-		var query = PhysicsRayQueryParameters3D.create(from, to)
-		var result : Dictionary = { "collider": Node3D }
-		result = space_state.intersect_ray(query)
+		# var touch_index = ind
+		var touch_position = event.get_position()
+		var from = camera.project_ray_origin(touch_position)
+		var to = from + camera.project_ray_normal(touch_position) * ray_length
+
+		# 创建射线查询参数
+		var query = PhysicsRayQueryParameters3D.new()
+		query.from = from
+		query.to = to
+
+		# 执行射线检测
+		var result = space_state.intersect_ray(query)
 		
-		if result:
-			# 处理碰撞结果
-			# print("Hit object: ", result.collider.name)
-			# print("Hit object id: ", result.collider.id)
-			
-			for tl in $track/touch_lines.get_children():
-				tl.queue_free()
-			
-			var instanced_touch_line = packed_touch_line.instantiate()
-			instanced_touch_line.position.x = result.position.x
-			instanced_touch_line.position.y = 0.01
-			instanced_touch_line.position.z = -33
-			$track/touch_lines.add_child(instanced_touch_line)
-			
-			# if not(null in RunningData.decision_area):
-			for i in RunningData.decision_area:
-				print(result.position.z)
-				print(i)
-				print(RunningData.decision_area)
-				print(result)
-				print(result.size())
-				# if i != null && i.judge_note(result.position.z):
-				if i.judge_note(result.position.z):
-					print("ok")
-					print("当前列表: ", RunningData.decision_area)
-					
-					# TODO: good 和 perfect 判定
-					
-					event.set_canceled(false)
+		if result == { }:
+			# 如果没有检测到碰撞，在这里处理没有碰撞的情况
+			return
+		
+		for touch_line in $track/touch_lines.get_children():
+			touch_line.queue_free()
+		
+		print(result.position)
+		# 处理每个触摸点的碰撞结果
+		var instanced_touch_line = packed_touch_line.instantiate()
+		instanced_touch_line.position.x = result.position.x
+		instanced_touch_line.position.y = 0.01  # 根据需要调整高度
+		instanced_touch_line.position.z = -33   # 根据需要调整深度
+		$track/touch_lines.add_child(instanced_touch_line)
+		
+		for i in RunningData.decision_area:
+			if !i.judge_note(result.position.z):
+				return
+			if abs(i.appear_time - loader_timer - RunningData.delay_time) < 0.3:
+				# TODO: perfect
+				perfect_hote()
+			else:
+				# TODO: good
+				good_note()
+
+
+func perfect_hote() -> void:
+	RunningData.perfect_count += 1
+	perfect_count.text = str(RunningData.perfect_count)
+	print("perfect")
+
+
+func good_note() -> void:
+	RunningData.good_count += 1
+	good_count.text = str(RunningData.good_count)
 

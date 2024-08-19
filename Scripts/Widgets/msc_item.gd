@@ -48,7 +48,7 @@ func set_up(
 
 
 func _on_button_pressed():
-	print('prressed')
+	print('pressed')
 	# 在这个地方就已经开始解析谱面开头部分
 	RunningData.json_path = path + mscName + ".json"
 	if !FileAccess.file_exists(RunningData.json_path):
@@ -69,7 +69,7 @@ func _on_button_pressed():
 	#var sound = AudioStreamMP3.new()
 	#sound.data = audio_file.get_buffer(audio_file.get_length())
 	#audioPlayer.stream = sound
-	#RunningData.audio_stream = sound
+	RunningData.audio_stream = audioPlayer.stream
 	
 	audioPlayer.play()
 	root.visible = true

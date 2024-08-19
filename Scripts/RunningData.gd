@@ -28,7 +28,7 @@ var json_file_data : String = ""
 var parsed_json : Dictionary = { }
 
 # 音符流速, 玩家可调, 默认 10
-var speed : int = 5
+var speed : int = 10
 
 # 音频当前的播放时间
 var current_audio_time : float = -1.0
@@ -38,3 +38,14 @@ var delay_time : int = -2
 
 # 处于判定区间内的音符
 var decision_area : Array = [ ]
+
+# play_scene 中 per/good/mis 的统计
+var perfect_count : int = 0
+var good_count : int = 0
+var missing_count : int = 0
+
+"""func init_play_scene() -> void:
+	perfect_count = 0
+	good_count = 0
+	missing_count = 0
+"""
