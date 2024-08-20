@@ -27,9 +27,6 @@ var json_file_data : String = ""
 # JSON.parse_string(...) 的返回值
 var parsed_json : Dictionary = { }
 
-# 音符流速, 玩家可调, 默认 10
-var speed : int = 10
-
 # 音频当前的播放时间
 var current_audio_time : float = -1.0
 
@@ -44,8 +41,13 @@ var perfect_count : int = 0
 var good_count : int = 0
 var missing_count : int = 0
 
-"""func init_play_scene() -> void:
-	perfect_count = 0
-	good_count = 0
-	missing_count = 0
-"""
+# setting:
+
+var is_auto_play : bool = false
+
+# 音符流速, 玩家可调, 默认 10
+var speed : int = 10
+
+var volume : int = 0
+
+var bglight : int = 0

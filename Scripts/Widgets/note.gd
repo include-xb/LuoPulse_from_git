@@ -77,6 +77,7 @@ func judge_note(touch_z : float) -> bool:
 
 func kill():
 	
-	# TODO: 粒子效果...
+	# TODO: 点击效果...
+	# $MeshInstance3D.mesh.material.albedo_color = Color(102, 204, 255)
 	
 	queue_free()

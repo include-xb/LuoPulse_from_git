@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bspog0syusb0p"]
+[gd_scene load_steps=5 format=3 uid="uid://bspog0syusb0p"]
 
 [ext_resource type="Script" path="res://Scripts/Widgets/note.gd" id="1_fay5a"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urqdb"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_cchck"]
+material = SubResource("StandardMaterial3D_urqdb")
 size = Vector3(2, 0.125, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6gco7"]

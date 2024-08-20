@@ -21,6 +21,7 @@ class_name PlayScene
 @onready var good_count : Label = $Control/VBoxContainer/MarginContainer2/HBoxContainer/GoodCount
 @onready var missing_count : Label = $Control/VBoxContainer/MarginContainer3/HBoxContainer/MissingCount
 
+@onready var resume_panel : Panel = $Control/Panel
 
 var packed_note : PackedScene = preload("res://Scenes/Widgets/note.tscn")
 
@@ -168,6 +169,8 @@ var json_data : Dictionary = \
 ##############
 
 func _ready() -> void:
+	resume_panel.visible = false
+	
 	# 三个统计标签都初始为0
 	perfect_count.text = "0"
 	good_count.text = "0"
@@ -277,7 +280,7 @@ func _input(event):
 		# 获取每个触摸点的位置
 		
 		# var touch_index = ind
-		var touch_position = event.get_position()
+		var touch_position = event.position
 		var from = camera.project_ray_origin(touch_position)
 		var to = from + camera.project_ray_normal(touch_position) * ray_length
 
@@ -325,3 +328,23 @@ func good_note() -> void:
 	RunningData.good_count += 1
 	good_count.text = str(RunningData.good_count)
 
+
+
+func _on_resume_button_pressed():
+	print("resume")
+	resume_panel.visible = false
+	get_tree().paused = false
+	pass # Replace with function body.
+
+
+func _on_home_button_pressed():
+	print("back to home")
+	resume_panel.visible = false
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/Visual/start_scene.tscn")
+	pass # Replace with function body.
+
+# 暂停按钮
+func _on_pause_button_pressed():
+	resume_panel.visible = true
+	get_tree().paused = true

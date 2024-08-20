@@ -1,9 +1,22 @@
-[gd_scene load_steps=19 format=3 uid="uid://cfnbffqbgeu2"]
+[gd_scene load_steps=22 format=3 uid="uid://cfnbffqbgeu2"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/play_scene.gd" id="1_hc52r"]
 [ext_resource type="PackedScene" uid="uid://bspog0syusb0p" path="res://Scenes/Widgets/note.tscn" id="2_lkr0c"]
+[ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="2_xa2pb"]
 [ext_resource type="Script" path="res://Scripts/Widgets/track.gd" id="3_6u5d2"]
+[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="3_dyqp6"]
 [ext_resource type="PackedScene" uid="uid://dlnpjc60fp25e" path="res://Scenes/Widgets/touch_line.tscn" id="4_2x7fw"]
+[ext_resource type="Texture2D" uid="uid://bvt7y5gdwxas6" path="res://Assets/Icons/resume_temp.png" id="4_7hnb7"]
+[ext_resource type="Texture2D" uid="uid://dfpl88l0dottx" path="res://Assets/Icons/home_temp.png" id="5_iqpsq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsdyw"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xn2iv"]
+size = Vector2(280, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_am240"]
+size = Vector2(220, 80)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_stnow"]
 sky_top_color = Color(0.4, 0.8, 1, 1)
@@ -19,18 +32,6 @@ sky = SubResource("Sky_bj5oq")
 tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_jyree"]
-points = PackedVector2Array(19, -121, 200, -121, 30, 200, -270, 200)
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_57ni5"]
-points = PackedVector2Array(-19, -121, -200, -121, -30, 200, 270, 200)
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_rdtsl"]
-points = PackedVector2Array(-53, -125, 130, -125, 130, 200, -200, 200)
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_g3dlv"]
-points = PackedVector2Array(-120, -125, 60, -125, 200, 200, -120, 200)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3b6o"]
 transparency = 1
@@ -58,14 +59,8 @@ size = Vector3(1.03882, 1, 1)
 [node name="PlayScene" type="Node3D"]
 script = ExtResource("1_hc52r")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_kqrws")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
-
 [node name="Control" type="Control" parent="."]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,16 +68,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 0
-offset_right = 185.0
-offset_bottom = 205.0
+offset_right = 1548.0
+offset_bottom = 893.0
+texture = ExtResource("2_xa2pb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -206.0
+offset_bottom = 185.0
+grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -100,8 +106,9 @@ text = "1000000"
 [node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer2"]
 layout_mode = 2
@@ -119,8 +126,8 @@ text = "1000000"
 [node name="MarginContainer3" type="MarginContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer3"]
 layout_mode = 2
@@ -135,25 +142,36 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "1000000"
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Control"]
-visible = false
-position = Vector2(217, 514)
-shape = SubResource("ConvexPolygonShape2D_jyree")
+[node name="PauseButton" type="TouchScreenButton" parent="Control"]
+position = Vector2(25, 24)
+scale = Vector2(2.10417, 2.08333)
+texture_normal = ExtResource("3_dyqp6")
+shape = SubResource("RectangleShape2D_bsdyw")
 
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="Control"]
-visible = false
-position = Vector2(1063, 513)
-shape = SubResource("ConvexPolygonShape2D_57ni5")
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="Control"]
-visible = false
-position = Vector2(498, 514)
-shape = SubResource("ConvexPolygonShape2D_rdtsl")
+[node name="ResumeButton" type="TouchScreenButton" parent="Control/Panel"]
+position = Vector2(188, 252)
+texture_normal = ExtResource("4_7hnb7")
+shape = SubResource("RectangleShape2D_xn2iv")
 
-[node name="TouchScreenButton3" type="TouchScreenButton" parent="Control"]
-visible = false
-position = Vector2(780, 514)
-shape = SubResource("ConvexPolygonShape2D_g3dlv")
+[node name="HomeButton" type="TouchScreenButton" parent="Control/Panel"]
+position = Vector2(820, 258)
+texture_normal = ExtResource("5_iqpsq")
+shape = SubResource("RectangleShape2D_am240")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kqrws")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 3.25, 2)
@@ -209,3 +227,7 @@ shape = SubResource("BoxShape3D_n42nc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_0koq1")
+
+[connection signal="pressed" from="Control/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="Control/Panel/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/Panel/HomeButton" to="." method="_on_home_button_pressed"]

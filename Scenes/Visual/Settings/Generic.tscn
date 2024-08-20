@@ -23,6 +23,43 @@ script = ExtResource("1_x0msm")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
+[node name="NoteSpeedSetting" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/NoteSpeedSetting"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/NoteSpeedSetting/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/NoteSpeedSetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "音符流速
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/NoteSpeedSetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="SpeedLabel" type="Label" parent="VBoxContainer/NoteSpeedSetting/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/NoteSpeedSetting/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+min_value = -20.0
+max_value = 20.0
+value = 10.0
+
 [node name="HesitateSetting" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -39,6 +76,17 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/HesitateSetting/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "延迟(ms)"
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HesitateSetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+min_value = -1000.0
+max_value = 1000.0
+
+[node name="Label2" type="Label" parent="VBoxContainer/HesitateSetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "ms"
 
 [node name="BGLightSetting" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -86,3 +134,30 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
+
+[node name="AutoplaySetting" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/AutoplaySetting"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/AutoplaySetting/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "自动点击
+"
+
+[node name="Button" type="CheckButton" parent="VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "OFF"
+
+[connection signal="value_changed" from="VBoxContainer/NoteSpeedSetting/MarginContainer/HBoxContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

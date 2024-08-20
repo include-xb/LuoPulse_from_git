@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0rvhlpfaoko5"]
+
+[ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="1_e83f0"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_jyree"]
+points = PackedVector2Array(19, -121, 200, -121, 30, 200, -270, 200)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_57ni5"]
+points = PackedVector2Array(-19, -121, -200, -121, -30, 200, 270, 200)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_rdtsl"]
+points = PackedVector2Array(-53, -125, 130, -125, 130, 200, -200, 200)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_g3dlv"]
+points = PackedVector2Array(-120, -125, 60, -125, 200, 200, -120, 200)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1548.0
+offset_bottom = 893.0
+texture = ExtResource("1_e83f0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 185.0
+offset_bottom = 205.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PerfectLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Perfect"
+
+[node name="PerfectCount" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1000000"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="GoodLabel" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Good"
+
+[node name="GoodCount" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1000000"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="MissingLabel" type="Label" parent="VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Missing"
+
+[node name="MissingCount" type="Label" parent="VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1000000"
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2(217, 514)
+shape = SubResource("ConvexPolygonShape2D_jyree")
+
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2(1063, 513)
+shape = SubResource("ConvexPolygonShape2D_57ni5")
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2(498, 514)
+shape = SubResource("ConvexPolygonShape2D_rdtsl")
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2(780, 514)
+shape = SubResource("ConvexPolygonShape2D_g3dlv")
