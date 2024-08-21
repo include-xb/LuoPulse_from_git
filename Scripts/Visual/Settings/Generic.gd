@@ -8,6 +8,7 @@ extends MarginContainer
 
 func _ready():
 	speed_silder.value = (RunningData.speed - 15) * 2
+	toggle_button.button_pressed = RunningData.is_auto_play
 	toggle_button.text = "ON" if toggle_button.button_pressed else "OFF"
 
 
