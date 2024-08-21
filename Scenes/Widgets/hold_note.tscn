@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmkqkg5rp6b53"]
+
+[ext_resource type="Script" path="res://Scripts/Widgets/hold_note.gd" id="1_g1fsn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjb02"]
+albedo_color = Color(0.4, 0.8, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fn6qn"]
+material = SubResource("StandardMaterial3D_tjb02")
+size = Vector3(2, 0.1, 0.5)
+
+[node name="HoldNote" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_fn6qn")
+script = ExtResource("1_g1fsn")
+
+[node name="HoldTimer" type="Timer" parent="."]
+one_shot = true

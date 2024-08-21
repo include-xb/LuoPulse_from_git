@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://cfnbffqbgeu2"]
+[gd_scene load_steps=21 format=3 uid="uid://cfnbffqbgeu2"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/play_scene.gd" id="1_hc52r"]
-[ext_resource type="PackedScene" uid="uid://bspog0syusb0p" path="res://Scenes/Widgets/note.tscn" id="2_lkr0c"]
-[ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="2_xa2pb"]
+[ext_resource type="Texture2D" path="res://Assets/Images/hub_bg.jpg" id="2_xa2pb"]
 [ext_resource type="Script" path="res://Scripts/Widgets/track.gd" id="3_6u5d2"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="3_dyqp6"]
 [ext_resource type="PackedScene" uid="uid://dlnpjc60fp25e" path="res://Scenes/Widgets/touch_line.tscn" id="4_2x7fw"]
@@ -57,6 +56,7 @@ size = Vector3(1.03882, 1, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_0koq1"]
 
 [node name="PlayScene" type="Node3D"]
+process_mode = 1
 script = ExtResource("1_hc52r")
 
 [node name="Control" type="Control" parent="."]
@@ -149,6 +149,8 @@ texture_normal = ExtResource("3_dyqp6")
 shape = SubResource("RectangleShape2D_bsdyw")
 
 [node name="Panel" type="Panel" parent="Control"]
+process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,6 +167,23 @@ shape = SubResource("RectangleShape2D_xn2iv")
 position = Vector2(820, 258)
 texture_normal = ExtResource("5_iqpsq")
 shape = SubResource("RectangleShape2D_am240")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+offset_right = 89.0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="AutoplayLabel" type="Label" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "AutoPlay"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kqrws")
@@ -198,9 +217,6 @@ mesh = SubResource("PlaneMesh_g4uwe")
 
 [node name="track1" type="Node3D" parent="track"]
 
-[node name="Note" parent="track/track1" instance=ExtResource("2_lkr0c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.046, 0.192994, -3.45401)
-
 [node name="track2" type="Node3D" parent="track"]
 
 [node name="track3" type="Node3D" parent="track"]
@@ -227,6 +243,9 @@ shape = SubResource("BoxShape3D_n42nc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_0koq1")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="pressed" from="Control/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="Control/Panel/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -1,8 +1,9 @@
-extends Node3D
+extends MeshInstance3D
+
 
 
 """
-kill() 或者 queue_free() 之前, 一定需要
+queue_free() 之前, 一定需要
 RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 将对象移除判定区间
 
@@ -32,52 +33,68 @@ var add : bool = true
 var remove : bool = true
 
 # 引用 play_scene 场景, 这个引用在 note_loader 中被初始化
-# var placed_scene : PlayScene
+#var placed_scene : PlayScene
 
 
 func _ready():
 	velosity.z = RunningData.speed # 实际上, 音符速度 和 流速 之间是一个线性方程, 此处暂时省略, 直接赋值
-	position.y = 0.2 # y 坐标不变
+	position.y = 0.4 # y 坐标不变
 
+var temp = true
 
 func _process(delta):
 	position += velosity * delta
-	# if position.z >= 5:
-	#	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
-	#	queue_free()
 	
 	running_timer += delta
 	
-	# INFO: 音符判定区间: 正负0.6秒
-	if add && running_timer >= -0.6:
+	# INFO: 音符判定区间: 负0.2秒 - 正0.08秒
+	if add && running_timer >= -0.2:
 		add = false
 		RunningData.decision_area.push_back(self)
-	elif remove && running_timer >= 0.6:
+		position.y = 0.2
+		#print(RunningData.decision_area.size())
+	elif remove && running_timer >= 0.2:
 		remove = false
+		position.y = 0.4
 		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 		
 		# TODO: MISSING 部分
 		RunningData.missing_count += 1
-		
 		queue_free()
-		print("delete: ", self)
+		#print(RunningData.decision_area.size())
+	
+	if RunningData.is_auto_play:
+		auto_play()
 
 
-func judge_note(touch_z : float) -> bool:
-	var z = abs(position.z - touch_z)
-	if z <= 1:
+func judge_note(touch_position : Vector3) -> bool:
+	var z = abs(position.z - touch_position.z)
+	var x = abs(position.x - touch_position.x)
+	
+	if z <= 1 and x <= 1.25:
 		
 		# TODO: 计分
 		
-		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 		kill()
 		return true
 	return false
 
 
+func auto_play():
+	if position.z >= 0 and temp:
+		velosity = Vector3.ZERO
+		RunningData.perfect_count += 1
+		kill()
+		temp = false
+
+
 func kill():
-	
+	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 	# TODO: 点击效果...
 	# $MeshInstance3D.mesh.material.albedo_color = Color(102, 204, 255)
+	GlobalScene.play_hit_audio()
 	
 	queue_free()
+
+
+

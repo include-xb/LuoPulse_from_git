@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk3rsx42uqw8a"]
+
+[ext_resource type="Script" path="res://Scripts/RunningData.gd" id="1_d0pr2"]
+[ext_resource type="AudioStream" uid="uid://g4fx54t7ipd3" path="res://Assets/audio/soft-hitfinish.wav" id="2_487mx"]
+
+[node name="GlobalScene" type="Node2D"]
+script = ExtResource("1_d0pr2")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_487mx")

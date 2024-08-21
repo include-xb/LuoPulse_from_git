@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b8bbm8pxqfhuo"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/start_scene.gd" id="1_d58eo"]
-[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_uie7a"]
-[ext_resource type="Texture2D" uid="uid://bgk2ylday8f1p" path="res://Assets/Images/start_bg.JPEG" id="3_1p4y1"]
-[ext_resource type="FontFile" uid="uid://c80ol0dpd1c3y" path="res://Assets/Forts/汉仪洛天依体简.ttf" id="3_wqr16"]
+[ext_resource type="Theme" path="res://Assets/ui_theme.tres" id="1_uie7a"]
+[ext_resource type="Texture2D" path="res://Assets/Images/start_bg.JPEG" id="3_1p4y1"]
+[ext_resource type="FontFile" path="res://Assets/Forts/汉仪洛天依体简.ttf" id="3_wqr16"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_olkd4"]
 font = ExtResource("3_wqr16")

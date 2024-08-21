@@ -3,10 +3,10 @@ extends Node3D
 class_name PlayScene
 
 
-@onready var camera = $Camera3D
+@onready var camera : Camera3D = $Camera3D
 
 # 音乐播放器
-@onready var audio_player = $AudioStreamPlayer3D
+@onready var audio_player : AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 # 封面
 # @onready var cover : Sprite3D = $Sprite3D
@@ -24,6 +24,8 @@ class_name PlayScene
 @onready var resume_panel : Panel = $Control/Panel
 
 var packed_note : PackedScene = preload("res://Scenes/Widgets/note.tscn")
+
+var packed_hold_note : PackedScene = preload("res://Scenes/Widgets/hold_note.tscn")
 
 var packed_touch_line : PackedScene = preload("res://Scenes/Widgets/touch_line.tscn")
 
@@ -168,10 +170,17 @@ var json_data : Dictionary = \
 }
 ##############
 
+var temp : bool = true
+
 func _ready() -> void:
+	print("loader_timer: ", loader_timer)
+	print("runningdata.delay_time:", RunningData.delay_time)
 	resume_panel.visible = false
 	
+	$Control/MarginContainer.visible = RunningData.is_auto_play
+	
 	# 三个统计标签都初始为0
+	RunningData.count_clean()
 	perfect_count.text = "0"
 	good_count.text = "0"
 	missing_count.text = "0"
@@ -201,30 +210,42 @@ func _ready() -> void:
 		note_column_array.push_back(i.column)
 		note_duration_array.push_back(i.duration if i.has("duration") else 0)
 	
-	audio_player.play()
+	$Timer.start(RunningData.delay_time)
+	
+	# audio_player.play()
 
 
 func _process(delta) -> void:
+
 	RunningData.current_audio_time = audio_player.get_playback_position() - AudioServer.get_time_to_next_mix() + AudioServer.get_time_since_last_mix()
 	loader_timer += delta
 	
 	missing_count.text = str(RunningData.missing_count)
+	perfect_count.text = str(RunningData.perfect_count)
+	good_count.text = str(RunningData.good_count)
 	
 	if !is_loading_note:
 		return
 	
-	if loader_timer >= note_time_array[index]:
-		note_loader.load_note(
-			self, 
-			note_type_array[index], 
-			note_time_array[index], 
-			note_column_array[index], 
-			note_duration_array[index]
-		)
-		index += 1
+	# print(loader_timer)
+	if loader_timer >= 0 and temp:
+		audio_player.play()
+		temp = false
 	
-	if index >= total_note_num:
-		is_loading_note = false
+	for i in range(4):
+		if loader_timer >= note_time_array[index] + RunningData.delay_time:
+			note_loader.load_note(
+				self, 
+				note_type_array[index], 
+				note_time_array[index], 
+				note_column_array[index], 
+				note_duration_array[index]
+			)
+			index += 1
+			
+			if index >= total_note_num:
+				is_loading_note = false
+				return
 
 """
 func _input(event) -> void:
@@ -265,12 +286,18 @@ func _input(event) -> void:
 """
 
 
-
-
 func _input(event):
-	# 仅处理按下事件
-	if not(event is InputEventScreenTouch and event.pressed):
+	if RunningData.is_auto_play:
 		return
+	
+	if event.is_pressed() == false:
+		for touch_line in $track/touch_lines.get_children():
+			touch_line.queue_free()
+	
+	if not(event is InputEventScreenTouch and event.pressed):
+	# if not(event is InputEventScreenTouch):
+		return
+	
 	var touch_count = event.get_index() + 1
 	print("touch_count: ", touch_count)
 	print(event)
@@ -296,10 +323,7 @@ func _input(event):
 			# 如果没有检测到碰撞，在这里处理没有碰撞的情况
 			return
 		
-		for touch_line in $track/touch_lines.get_children():
-			touch_line.queue_free()
-		
-		print(result.position)
+		# print(result.position)
 		# 处理每个触摸点的碰撞结果
 		var instanced_touch_line = packed_touch_line.instantiate()
 		instanced_touch_line.position.x = result.position.x
@@ -308,26 +332,14 @@ func _input(event):
 		$track/touch_lines.add_child(instanced_touch_line)
 		
 		for i in RunningData.decision_area:
-			if !i.judge_note(result.position.z):
+			if i == null || !i.judge_note(result.position): # || 运算符具有短路性
 				return
-			if abs(i.appear_time - loader_timer - RunningData.delay_time) < 0.3:
+			if abs(i.appear_time - loader_timer) < 0.05: # 正负 50ms 判定为 perfect
 				# TODO: perfect
-				perfect_hote()
+				RunningData.perfect_count += 1
 			else:
 				# TODO: good
-				good_note()
-
-
-func perfect_hote() -> void:
-	RunningData.perfect_count += 1
-	perfect_count.text = str(RunningData.perfect_count)
-	print("perfect")
-
-
-func good_note() -> void:
-	RunningData.good_count += 1
-	good_count.text = str(RunningData.good_count)
-
+				RunningData.good_count += 1
 
 
 func _on_resume_button_pressed():
@@ -340,8 +352,10 @@ func _on_resume_button_pressed():
 func _on_home_button_pressed():
 	print("back to home")
 	resume_panel.visible = false
+	audio_player.stop()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/Visual/start_scene.tscn")
+	
 	pass # Replace with function body.
 
 # 暂停按钮

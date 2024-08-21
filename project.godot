@@ -18,6 +18,7 @@ config/icon="res://Assets/Icons/icon-LP.png"
 [autoload]
 
 RunningData="*res://Scripts/RunningData.gd"
+GlobalScene="*res://Scenes/global_scene.tscn"
 
 [display]
 

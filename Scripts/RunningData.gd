@@ -51,3 +51,13 @@ var speed : int = 10
 var volume : int = 0
 
 var bglight : int = 0
+
+
+func play_hit_audio():
+	$Hit.play()
+
+
+func count_clean():
+	perfect_count = 0
+	good_count = 0
+	missing_count = 0
