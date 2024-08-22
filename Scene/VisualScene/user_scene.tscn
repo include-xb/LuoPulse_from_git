@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://hkortokloyq3"]
+
+[ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="1_lia4c"]
+[ext_resource type="Script" path="res://Script/Visual/user_scene.gd" id="1_ne5k1"]
+[ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_qtaen"]
+[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="3_741ld"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1hp1x"]
+shader = ExtResource("1_lia4c")
+
+[node name="UserScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ne5k1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_1hp1x")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qtaen")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+
+[node name="Button" type="Button" parent="MarginContainer"]
+layout_mode = 2
+icon = ExtResource("3_741ld")
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]

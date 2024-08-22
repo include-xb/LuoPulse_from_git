@@ -19,7 +19,6 @@ size_flags_vertical = 4
 script = ExtResource("1_epcql")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,15 +27,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_kfirc")
 expand_mode = 5
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.470588)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -62,12 +52,14 @@ text = "  主菜单 HOME  "
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
 [node name="MscList" type="VBoxContainer" parent="MarginContainer/Left/ScrollContainer"]
 layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 25
 script = ExtResource("3_0it41")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Left/ScrollContainer/MscList"]

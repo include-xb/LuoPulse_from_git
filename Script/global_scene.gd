@@ -8,82 +8,17 @@ extends Node2D
 # 播放音符点击音效
 @onready var hit_audio_player = $Hit
 
+# 用户名
+var user_name : String = "user"
 
-var selected_msc_cover = null
+# 曲包目录
+var root_msc_path : String = "res://MscList"
 
-var selected_msc_title : String = ""
+# 自定义曲包目录
+var individual_msc_path : String = ""
 
-var default_msc_cover_path : String = "res://Resource/Img/17.png"
+# 歌单列表
+var msc_list : Array[String] = [ ]
 
-var default_adjustment : float = 0.0
-
-var default_volume : int = 50
-
-var default_msclist_path : String= "D:/MscList/"
-
-var saved_adjustment : float = 0.0
-
-var saved_volume :int = 50
-
-var saved_msclist_path : String = "D:/MscList/"
-
-var saved_difficulty : int = 1
-
-var missing_count : int = 0
-
-var perfect_count : int = 0
-
-var good_count : int = 0
-
-var score : int = 0
-
-var bpm : float = 0
-
-var bpp : int = 0
-
-var dt : float = 0.0
-
-var del : float = 0.0
-
-var phara : int = 0
-
-var is_running_note : bool = false
-
-
-func _ready():
-	click_audio_player.volume_db = linear_to_db(saved_volume * 0.02)
-	hit_audio_player.volume_db = linear_to_db(saved_volume * 0.02)
-
-
-func init() -> void:
-	missing_count = 0
-	perfect_count = 0
-	good_count = 0
-	selected_msc_title = ""
-
-
-func set_volume(volume) -> void:
-	saved_volume = volume
-	_ready()
-
-
-func play_click_audio() -> void:
-	click_audio_player.play(0.0)
-
-
-func play_hit_audio() -> void:
-	hit_audio_player.play(0.0)
-
-
-func change_scene_with_audio(scene: String) -> void:
-	click_audio_player.play(0.0)
-	get_tree().change_scene_to_file(scene)
-
-
-# 将拍子计算为音符的 y 坐标
-func beat_to_length(beat) -> float:
-	return 185 - 10 * 60 * ((beat) * 60 / bpm + dt + saved_adjustment)
-
-
-func calc_score():
-	return perfect_count * 100 + good_count * 50
+# 自定义歌单列表
+var individual_msc_list : Array[String] = [ ]
