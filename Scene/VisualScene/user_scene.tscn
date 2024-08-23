@@ -3,10 +3,16 @@
 [ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="1_lia4c"]
 [ext_resource type="Script" path="res://Script/Visual/user_scene.gd" id="1_ne5k1"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_qtaen"]
-[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="3_741ld"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1hp1x"]
 shader = ExtResource("1_lia4c")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ldtc"]
+bg_color = Color(0, 0, 0, 0.470588)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="UserScene" type="Control"]
 layout_mode = 3
@@ -28,15 +34,61 @@ grow_vertical = 2
 texture = ExtResource("2_qtaen")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="Button" type="Button" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
-icon = ExtResource("3_741ld")
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ldtc")
 
-[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "昵称: "
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "luoty712"
+placeholder_text = "输入你的昵称..."
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="SublimeButton" type="Button" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 30
+text = " 确认 "
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/SublimeButton" to="." method="_on_sublime_button_pressed"]

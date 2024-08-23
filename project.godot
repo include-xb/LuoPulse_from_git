@@ -20,6 +20,7 @@ config/icon="res://icon-LP.png"
 [autoload]
 
 GlobalScene="*res://Scene/WidgetScene/global_scene.tscn"
+SceneChanger="*res://Scene/WidgetScene/scene_changer.tscn"
 
 [display]
 

@@ -4,8 +4,14 @@
 [ext_resource type="AudioStream" uid="uid://c6q0ilg66s2m6" path="res://Resource/Audio/BUTTON_05.wav" id="2_ihuie"]
 [ext_resource type="AudioStream" uid="uid://bnkxhlc18dwbe" path="res://Resource/Audio/soft-hitfinish.wav" id="3_mjxem"]
 
-[node name="GlobalScene" type="Node2D"]
+[node name="GlobalScene" type="Control"]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_fqqpk")
 
 [node name="UIClick" type="AudioStreamPlayer2D" parent="."]

@@ -1,6 +1,12 @@
-extends Node2D
+extends Control
 
 # 全局变量
+
+# 切换场景
+@onready var color_rect : ColorRect = $ColorRect
+
+# 切换场景
+@onready var animation_player : AnimationPlayer = $ColorRect/AnimationPlayer
 
 # 播放 UI 点击音效
 @onready var click_audio_player = $UIClick
@@ -22,3 +28,10 @@ var msc_list : Array[String] = [ ]
 
 # 自定义歌单列表
 var individual_msc_list : Array[String] = [ ]
+
+
+func change_scene(scene_path : String):
+	animation_player.play("change_scene")
+	await animation_player.animation_finished
+	get_tree().change_scene_to_file(scene_path)
+	animation_player.play_backwards("change_scene")

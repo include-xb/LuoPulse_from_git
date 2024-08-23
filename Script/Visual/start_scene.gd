@@ -35,5 +35,5 @@ func _ready():
 	progress_bar.value = 100
 	await get_tree().create_timer(0.5).timeout
 	
-	get_tree().change_scene_to_file("res://Scene/VisualScene/hub_scene.tscn")
+	SceneChanger.change_scene("res://Scene/VisualScene/hub_scene.tscn")
 	print("进入 hub_scene")
