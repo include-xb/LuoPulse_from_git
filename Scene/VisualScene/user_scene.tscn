@@ -75,6 +75,14 @@ theme_override_font_sizes/font_size = 25
 text = "昵称: "
 vertical_alignment = 1
 
+[node name="TipLabel" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.686275, 0, 0, 1)
+text = "用户名过长"
+vertical_alignment = 1
+
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -91,4 +99,5 @@ size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 30
 text = " 确认 "
 
+[connection signal="text_changed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/SublimeButton" to="." method="_on_sublime_button_pressed"]

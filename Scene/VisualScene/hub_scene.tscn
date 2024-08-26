@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgdu41dxvx813"]
+[gd_scene load_steps=13 format=3 uid="uid://cgdu41dxvx813"]
 
 [ext_resource type="Theme" uid="uid://cr5645fhno242" path="res://Resource/UITheme.tres" id="1_i8mrh"]
 [ext_resource type="Script" path="res://Script/Visual/hub_scene.gd" id="2_7knkj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Resource/Icons/gear-fill.svg" id="3_voi8l"]
 [ext_resource type="Shader" path="res://Shader/radius.gdshader" id="5_3bvb8"]
 [ext_resource type="Texture2D" uid="uid://dc6dyer52ocv3" path="res://Resource/Img/char.png" id="5_tec6b"]
+[ext_resource type="Texture2D" uid="uid://cyhro8uyb54ie" path="res://Resource/Icons/message.svg" id="7_emvp2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_matop"]
 shader = ExtResource("3_n05rd")
@@ -16,6 +17,13 @@ shader = ExtResource("3_n05rd")
 shader = ExtResource("5_3bvb8")
 shader_parameter/texture_size = Vector2(200, 200)
 shader_parameter/radius = 100.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6k5j3"]
+bg_color = Color(0, 0, 0, 0.470588)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="HubScene" type="Control"]
 clip_contents = true
@@ -39,18 +47,27 @@ grow_vertical = 2
 texture = ExtResource("3_imp0h")
 expand_mode = 1
 
-[node name="UserInfo" type="MarginContainer" parent="."]
+[node name="Header" type="MarginContainer" parent="."]
 layout_mode = 1
-offset_right = 274.0
-offset_bottom = 86.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 73.0
+grow_horizontal = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UserInfo"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
 layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="UserInfo" type="HBoxContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "个人信息"
 theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="UserInfo/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Header/HBoxContainer/UserInfo"]
 material = SubResource("ShaderMaterial_k3c71")
 layout_mode = 2
 size_flags_horizontal = 0
@@ -59,11 +76,51 @@ texture = ExtResource("3_2hkyl")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="UserInfo/HBoxContainer"]
+[node name="Label" type="Label" parent="Header/HBoxContainer/UserInfo"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "游客"
+max_lines_visible = 10
+visible_characters = 10
+visible_ratio = 5.0
+
+[node name="GameInfo" type="PanelContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6k5j3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header/HBoxContainer/GameInfo"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Header/HBoxContainer/GameInfo/HBoxContainer"]
+layout_mode = 2
+text = " 洛之动脉"
+vertical_alignment = 1
+
+[node name="Version" type="Label" parent="Header/HBoxContainer/GameInfo/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "版本信息"
+mouse_filter = 1
+text = "pc3.1.0"
+
+[node name="Buttons" type="HBoxContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MessageButton" type="Button" parent="Header/HBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 8
+tooltip_text = "消息"
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("7_emvp2")
+
+[node name="SettingButton" type="Button" parent="Header/HBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 8
+tooltip_text = "设置"
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("3_voi8l")
 
 [node name="Char" type="TextureRect" parent="."]
 clip_contents = true
@@ -77,20 +134,12 @@ expand_mode = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 776.0
-offset_top = 513.0
-offset_right = 1001.0
-offset_bottom = 570.0
+offset_left = 745.0
+offset_top = 260.0
+offset_right = 1036.0
+offset_bottom = 313.0
 
-[node name="SettingButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 966.0
-offset_top = 51.0
-offset_right = 1066.0
-offset_bottom = 97.0
-text = "设置"
-icon = ExtResource("3_voi8l")
-
-[connection signal="gui_input" from="UserInfo/HBoxContainer/TextureRect" to="." method="_on_texture_rect_gui_input"]
-[connection signal="gui_input" from="UserInfo/HBoxContainer/Label" to="." method="_on_texture_rect_gui_input"]
+[connection signal="gui_input" from="Header/HBoxContainer/UserInfo/TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="gui_input" from="Header/HBoxContainer/UserInfo/Label" to="." method="_on_texture_rect_gui_input"]
+[connection signal="pressed" from="Header/HBoxContainer/Buttons/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

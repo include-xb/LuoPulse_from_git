@@ -1,14 +1,31 @@
 extends Control
 
 
-@onready var nick_name_editor : LineEdit = $VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LineEdit
+@onready var user_name_editor : LineEdit = $VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LineEdit
 
+@onready var tip_label : Label = $VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TipLabel
 
 func _ready():
-	nick_name_editor.text = GlobalScene.user_name
+	user_name_editor.text = GlobalScene.user_name
 
 
 func _on_sublime_button_pressed():
-	GlobalScene.user_name = nick_name_editor.text
+	if tip_label.visible:
+		return
+	GlobalScene.user_name = user_name_editor.text
 	SceneChanger.change_scene("res://Scene/VisualScene/hub_scene.tscn")
 	print("进入 hub_scene")
+
+
+func _on_line_edit_text_changed(new_text : String):
+	var length = new_text.length()
+	if length > GlobalScene.max_user_name_length:
+		print("用户名过长")
+		tip_label.text = "用户名过长"
+		tip_label.visible = true
+	elif length == 0:
+		print("用户名不能为空")
+		tip_label.text = "用户名不能为空"
+		tip_label.visible = true
+	else:
+		tip_label.visible = false

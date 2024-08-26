@@ -1,15 +1,99 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2dskmnmwub7o"]
+[gd_scene load_steps=6 format=3 uid="uid://d2dskmnmwub7o"]
 
 [ext_resource type="Script" path="res://Script/DemoMsc.gd" id="1_fh3nh"]
 
-[node name="DemoMsc" type="TextureRect"]
-offset_right = 282.0
-offset_bottom = 82.0
+[sub_resource type="Animation" id="Animation_mxi32"]
+resource_name = "on_hover"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.4, 0.8, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [20, 40]
+}
+
+[sub_resource type="Animation" id="Animation_pjrle"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
+[sub_resource type="Animation" id="Animation_paso1"]
+resource_name = "larger"
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3t41"]
+_data = {
+"RESET": SubResource("Animation_pjrle"),
+"larger": SubResource("Animation_paso1"),
+"on_hover": SubResource("Animation_mxi32")
+}
+
+[node name="DemoMsc" type="MarginContainer"]
+clip_contents = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 2
 script = ExtResource("1_fh3nh")
 
-[node name="Button" type="Button" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-offset_left = 1.0
-offset_right = 282.0
-offset_bottom = 82.0
-size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "DEMO_MSC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HoverAnimation" type="AnimationPlayer" parent="MarginContainer/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_n3t41")
+}
