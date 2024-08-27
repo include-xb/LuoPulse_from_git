@@ -29,3 +29,11 @@ var msc_list : Array[String] = [ ]
 
 # 自定义歌单列表
 var individual_msc_list : Array[String] = [ ]
+
+
+var json_path : String = ""
+
+var json_string : String = ""
+
+var parsed_json : Dictionary = { }
+
