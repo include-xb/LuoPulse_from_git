@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgdu41dxvx813"]
+[gd_scene load_steps=14 format=3 uid="uid://cgdu41dxvx813"]
 
 [ext_resource type="Theme" uid="uid://cr5645fhno242" path="res://Resource/UITheme.tres" id="1_i8mrh"]
 [ext_resource type="Script" path="res://Script/Visual/hub_scene.gd" id="2_7knkj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://Shader/radius.gdshader" id="5_3bvb8"]
 [ext_resource type="Texture2D" uid="uid://dc6dyer52ocv3" path="res://Resource/Img/char.png" id="5_tec6b"]
 [ext_resource type="Texture2D" uid="uid://cyhro8uyb54ie" path="res://Resource/Icons/message.svg" id="7_emvp2"]
+[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="10_ysuws"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_matop"]
 shader = ExtResource("3_n05rd")
@@ -134,10 +135,14 @@ expand_mode = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 745.0
-offset_top = 260.0
-offset_right = 1036.0
-offset_bottom = 313.0
+offset_left = 720.0
+offset_top = 428.0
+offset_right = 1002.0
+offset_bottom = 496.0
+theme_override_constants/icon_max_width = 60
+theme_override_font_sizes/font_size = 40
+text = "开始"
+icon = ExtResource("10_ysuws")
 
 [connection signal="gui_input" from="Header/HBoxContainer/UserInfo/TextureRect" to="." method="_on_texture_rect_gui_input"]
 [connection signal="gui_input" from="Header/HBoxContainer/UserInfo/Label" to="." method="_on_texture_rect_gui_input"]

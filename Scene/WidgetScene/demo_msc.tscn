@@ -1,36 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2dskmnmwub7o"]
+[gd_scene load_steps=5 format=3 uid="uid://d2dskmnmwub7o"]
 
 [ext_resource type="Script" path="res://Script/DemoMsc.gd" id="1_fh3nh"]
 
-[sub_resource type="Animation" id="Animation_mxi32"]
-resource_name = "on_hover"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_colors/font_color")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.4, 0.8, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:theme_override_font_sizes/font_size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [20, 40]
-}
-
-[sub_resource type="Animation" id="Animation_pjrle"]
+[sub_resource type="Animation" id="Animation_s0m6h"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -42,7 +14,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [null]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -57,15 +29,39 @@ tracks/1/keys = {
 "values": [20]
 }
 
-[sub_resource type="Animation" id="Animation_paso1"]
-resource_name = "larger"
-length = 0.5
+[sub_resource type="Animation" id="Animation_v28j6"]
+resource_name = "click_on"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.4, 0.8, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [20, 35, 20]
+}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3t41"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2rci"]
 _data = {
-"RESET": SubResource("Animation_pjrle"),
-"larger": SubResource("Animation_paso1"),
-"on_hover": SubResource("Animation_mxi32")
+"RESET": SubResource("Animation_s0m6h"),
+"click_on": SubResource("Animation_v28j6")
 }
 
 [node name="DemoMsc" type="MarginContainer"]
@@ -88,12 +84,15 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "DEMO_MSC"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HoverAnimation" type="AnimationPlayer" parent="MarginContainer/Label"]
+[node name="ClickAnimation" type="AnimationPlayer" parent="MarginContainer/Label"]
 libraries = {
-"": SubResource("AnimationLibrary_n3t41")
+"": SubResource("AnimationLibrary_n2rci")
 }
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

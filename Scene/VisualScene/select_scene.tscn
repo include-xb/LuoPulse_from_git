@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhjbbmt3cc4xk"]
+[gd_scene load_steps=12 format=3 uid="uid://bhjbbmt3cc4xk"]
 
 [ext_resource type="Script" path="res://Script/select_scene.gd" id="1_epcql"]
 [ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="2_eg1p0"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_gn7a3"]
-[ext_resource type="Script" path="res://Script/MscList.gd" id="3_0it41"]
 [ext_resource type="PackedScene" uid="uid://d2dskmnmwub7o" path="res://Scene/WidgetScene/demo_msc.tscn" id="3_c5uxo"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="4_fbpn5"]
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="5_jukrg"]
+[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="8_6l4y1"]
+[ext_resource type="Texture2D" uid="uid://cpgsf8udt415i" path="res://Resource/Img/17.png" id="8_bpsdr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_djvg2"]
 shader = ExtResource("5_jukrg")
@@ -105,9 +106,10 @@ vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 2
-offset_top = 71.0
-offset_right = 309.0
+offset_top = 82.0
+offset_right = 304.0
 offset_bottom = 648.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 10
@@ -116,6 +118,7 @@ theme_override_constants/margin_bottom = 20
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 scroll_horizontal_custom_step = 1.0
 scroll_vertical_custom_step = 1.0
 horizontal_scroll_mode = 3
@@ -127,40 +130,67 @@ layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("3_0it41")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/ScrollContainer/MscList"]
-layout_mode = 2
-theme_override_constants/margin_top = 30
 
 [node name="DemoMsc" parent="MarginContainer2/ScrollContainer/MscList" instance=ExtResource("3_c5uxo")]
-layout_mode = 2
-
-[node name="DemoMscFly" type="MarginContainer" parent="."]
 visible = false
-clip_contents = true
 layout_mode = 2
-offset_left = 522.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_left = 335.0
+offset_top = 82.0
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 40
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer3"]
+layout_mode = 2
+texture = ExtResource("8_bpsdr")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_left = 335.0
 offset_top = 509.0
-offset_right = 826.0
-offset_bottom = 589.0
-grow_horizontal = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 2
+offset_right = 1072.0
+offset_bottom = 608.0
+size_flags_vertical = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="DemoMscFly"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="DemoMscFly/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
-theme_override_font_sizes/font_size = 40
-text = "DEMO_MSC"
+
+[node name="ArtistLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="CreatorLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 40
+theme_override_font_sizes/font_size = 25
+text = "开始 "
+icon = ExtResource("8_6l4y1")
 
 [connection signal="button_down" from="MarginContainer/HBoxContainer/MarginContainer/HomeButton" to="." method="_on_home_button_button_down"]
-[connection signal="gui_input" from="MarginContainer2/ScrollContainer" to="." method="_on_scroll_container_gui_input"]
