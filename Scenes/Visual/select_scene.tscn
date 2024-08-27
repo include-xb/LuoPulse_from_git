@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://s7fnwp3kpghg"]
+[gd_scene load_steps=18 format=3 uid="uid://s7fnwp3kpghg"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_x4nmn"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="2_e2m0u"]
 [ext_resource type="Script" path="res://Scripts/Visual/select_scene.gd" id="2_vecil"]
 [ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="4_ubhgx"]
+[ext_resource type="Texture2D" uid="uid://d2alevalhmaus" path="res://Assets/Icons/close.svg" id="5_h5xjw"]
+[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Assets/Icons/play-fill.svg" id="6_vxxd5"]
 
 [sub_resource type="Gradient" id="Gradient_ur731"]
 colors = PackedColorArray(0.4, 0.8, 1, 1, 1, 1, 1, 1)
@@ -41,6 +43,34 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_diijr"]
 bg_color = Color(0, 0, 0, 0.443137)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk8yj"]
+bg_color = Color(0, 0, 0, 0.392157)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65np7"]
+bg_color = Color(0, 0, 0, 0.392157)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxber"]
+bg_color = Color(0, 0, 0, 0.392157)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lecsn"]
+bg_color = Color(0, 0, 0, 0.392157)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="select_scene" type="Control"]
 layout_mode = 3
@@ -160,14 +190,29 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="Info/CenterContainer/TextureRect/MarginContainer"]
 layout_mode = 2
 
-[node name="MscName" type="Label" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="MscName" type="Label" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "歌曲名称"
 
-[node name="ArName" type="Label" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer"]
+[node name="ArName" type="Label" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "曲作列表"
+
+[node name="CloseButton" type="Button" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+icon = ExtResource("5_h5xjw")
+flat = true
+icon_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -178,16 +223,23 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "0000000"
 
-[node name="TipLabel" type="Label" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="StartButton" type="Button" parent="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 10
-size_flags_vertical = 8
-text = "双击封面开始
-点击其他区域关闭"
-horizontal_alignment = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_jk8yj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_65np7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lxber")
+theme_override_styles/focus = SubResource("StyleBoxFlat_lecsn")
+icon = ExtResource("6_vxxd5")
+icon_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 mix_target = 1
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="visibility_changed" from="Info" to="Info" method="_on_visibility_changed"]
+[connection signal="pressed" from="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

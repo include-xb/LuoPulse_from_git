@@ -6,11 +6,15 @@ extends Control
 func _ready():
 	statusLabel.text = "正在加载资源"
 	_get_chart_list()
+	progressBar.value = 50
+	statusLabel.text = "正在加载配置"
+	_get_user_config()
 	progressBar.value = 100
 	statusLabel.text = "准备就绪。欢迎！"
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://Scenes/Visual/hub_scene.tscn")
 
+# 读曲包
 func _get_chart_list() -> void:
 	
 	var dir: DirAccess = DirAccess.open(RunningData.rootMscPath)
@@ -43,3 +47,13 @@ func _get_chart_list() -> void:
 			dirName = dir.get_next()
 	
 	RunningData.mscPackList = mscPackList
+
+# 读配置
+func _get_user_config() -> void:
+	var cfgFile: String = FileAccess.get_file_as_string("user://config.json")
+	# 判空
+	if cfgFile != "":
+		var config: Dictionary = JSON.parse_string(cfgFile)
+		RunningData.volume = config.volume
+		RunningData.bglight = config.bglight
+		RunningData.speed = config.speed

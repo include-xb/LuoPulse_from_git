@@ -36,7 +36,7 @@ var delay_time : int = -2
 # 处于判定区间内的音符
 var decision_area : Array = [ ]
 
-# play_scene 中 per/good/mis 的统计
+# play_scene 中 per/good/miss 的统计
 var perfect_count : int = 0
 var good_count : int = 0
 var missing_count : int = 0

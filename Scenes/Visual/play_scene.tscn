@@ -1,21 +1,88 @@
-[gd_scene load_steps=21 format=3 uid="uid://cfnbffqbgeu2"]
+[gd_scene load_steps=28 format=3 uid="uid://cfnbffqbgeu2"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/play_scene.gd" id="1_hc52r"]
-[ext_resource type="Texture2D" path="res://Assets/Images/hub_bg.jpg" id="2_xa2pb"]
+[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="2_nai6g"]
+[ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="2_xa2pb"]
 [ext_resource type="Script" path="res://Scripts/Widgets/track.gd" id="3_6u5d2"]
-[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="3_dyqp6"]
 [ext_resource type="PackedScene" uid="uid://dlnpjc60fp25e" path="res://Scenes/Widgets/touch_line.tscn" id="4_2x7fw"]
-[ext_resource type="Texture2D" uid="uid://bvt7y5gdwxas6" path="res://Assets/Icons/resume_temp.png" id="4_7hnb7"]
-[ext_resource type="Texture2D" uid="uid://dfpl88l0dottx" path="res://Assets/Icons/home_temp.png" id="5_iqpsq"]
+[ext_resource type="Texture2D" uid="uid://bq1ans1k2uhqj" path="res://Assets/Icons/pause.svg" id="4_uobv1"]
+[ext_resource type="Texture2D" uid="uid://clyg4t15sencw" path="res://Assets/Icons/play-fill-lowdpi.svg" id="5_21way"]
+[ext_resource type="Texture2D" uid="uid://ds7vq0u42tqmn" path="res://Assets/Icons/exit-to-app.svg" id="6_c0off"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsdyw"]
 size = Vector2(50, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xn2iv"]
-size = Vector2(280, 80)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ualgg"]
+content_margin_left = 40.0
+content_margin_right = 40.0
+bg_color = Color(0.564706, 0.933333, 0.564706, 0.729412)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_am240"]
-size = Vector2(220, 80)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocy0x"]
+content_margin_left = 40.0
+content_margin_right = 40.0
+bg_color = Color(0.564706, 0.933333, 0.564706, 0.729412)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7bd4"]
+content_margin_left = 40.0
+content_margin_right = 40.0
+bg_color = Color(0.564706, 0.933333, 0.564706, 0.729412)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0rr53"]
+content_margin_left = 40.0
+content_margin_right = 40.0
+bg_color = Color(0.564706, 0.933333, 0.564706, 0.729412)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5f01"]
+content_margin_left = 40.0
+content_margin_right = 40.0
+bg_color = Color(1, 0.168627, 0, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgtpy"]
+content_margin_left = 40.0
+content_margin_right = 40.0
+bg_color = Color(1, 0.168627, 0, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qs3cr"]
+content_margin_left = 40.0
+content_margin_right = 40.0
+bg_color = Color(1, 0.168627, 0, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnkv0"]
+content_margin_left = 40.0
+content_margin_right = 40.0
+bg_color = Color(1, 0.168627, 0, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_stnow"]
 sky_top_color = Color(0.4, 0.8, 1, 1)
@@ -67,6 +134,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_nai6g")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 visible = false
@@ -145,7 +213,7 @@ text = "1000000"
 [node name="PauseButton" type="TouchScreenButton" parent="Control"]
 position = Vector2(25, 24)
 scale = Vector2(2.10417, 2.08333)
-texture_normal = ExtResource("3_dyqp6")
+texture_normal = ExtResource("4_uobv1")
 shape = SubResource("RectangleShape2D_bsdyw")
 
 [node name="Panel" type="Panel" parent="Control"]
@@ -158,15 +226,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResumeButton" type="TouchScreenButton" parent="Control/Panel"]
-position = Vector2(188, 252)
-texture_normal = ExtResource("4_7hnb7")
-shape = SubResource("RectangleShape2D_xn2iv")
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="HomeButton" type="TouchScreenButton" parent="Control/Panel"]
-position = Vector2(820, 258)
-texture_normal = ExtResource("5_iqpsq")
-shape = SubResource("RectangleShape2D_am240")
+[node name="Label" type="Label" parent="Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.4
+theme_override_font_sizes/font_size = 60
+text = "已暂停"
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/HBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="ResumeButton" type="Button" parent="Control/Panel/HBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ualgg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ocy0x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n7bd4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0rr53")
+text = "继续"
+icon = ExtResource("5_21way")
+
+[node name="HomeButton" type="Button" parent="Control/Panel/HBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_h5f01")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jgtpy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qs3cr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_lnkv0")
+text = "退出"
+icon = ExtResource("6_c0off")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -248,5 +356,5 @@ mesh = SubResource("BoxMesh_0koq1")
 one_shot = true
 
 [connection signal="pressed" from="Control/PauseButton" to="." method="_on_pause_button_pressed"]
-[connection signal="pressed" from="Control/Panel/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Control/Panel/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="Control/Panel/HBoxContainer/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/Panel/HBoxContainer/CenterContainer/VBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]

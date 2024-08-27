@@ -341,24 +341,21 @@ func _input(event):
 				# TODO: good
 				RunningData.good_count += 1
 
-
-func _on_resume_button_pressed():
-	print("resume")
-	resume_panel.visible = false
-	get_tree().paused = false
-	pass # Replace with function body.
-
-
-func _on_home_button_pressed():
-	print("back to home")
-	resume_panel.visible = false
-	audio_player.stop()
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Scenes/Visual/start_scene.tscn")
-	
-	pass # Replace with function body.
-
 # 暂停按钮
 func _on_pause_button_pressed():
 	resume_panel.visible = true
 	get_tree().paused = true
+
+
+func _on_home_button_pressed() -> void:
+	print("back to home")
+	resume_panel.visible = false
+	audio_player.stop()
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/Visual/select_scene.tscn")
+
+
+func _on_resume_button_pressed() -> void:
+	print("resume")
+	resume_panel.visible = false
+	get_tree().paused = false
