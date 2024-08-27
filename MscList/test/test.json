@@ -1,8 +1,8 @@
 {
     "General": {
         "Title": "test",
-        "Artist": "xxx",
-        "Creator": "yyy",
+        "Artist": "-",
+        "Creator": "-",
         "Version": "1.0",
         "BPM": 120
     },

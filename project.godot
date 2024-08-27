@@ -24,6 +24,8 @@ SceneChanger="*res://Scene/WidgetScene/scene_changer.tscn"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [dotnet]
@@ -53,6 +55,10 @@ PS_K={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [internationalization]
 
 locale/locale_filter_mode=1
@@ -61,3 +67,8 @@ locale/locale_filter_mode=1
 
 2d_physics/layer_1="Decision"
 2d_physics/layer_2="Click"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

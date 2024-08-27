@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhjbbmt3cc4xk"]
+[gd_scene load_steps=17 format=3 uid="uid://bhjbbmt3cc4xk"]
 
 [ext_resource type="Script" path="res://Script/select_scene.gd" id="1_epcql"]
 [ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="2_eg1p0"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="4_fbpn5"]
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="5_jukrg"]
 [ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="8_6l4y1"]
-[ext_resource type="Texture2D" uid="uid://cpgsf8udt415i" path="res://Resource/Img/17.png" id="8_bpsdr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_djvg2"]
 shader = ExtResource("5_jukrg")
@@ -23,6 +22,176 @@ corner_radius_bottom_left = 5
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vufjv"]
 shader = ExtResource("5_jukrg")
 shader_parameter/lod = 0.5
+
+[sub_resource type="Animation" id="Animation_05pjf"]
+resource_name = "move_left"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 105.5), Vector2(-350, 105.5)]
+}
+
+[sub_resource type="Animation" id="Animation_fxwyw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 105.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gqbtc"]
+_data = {
+"RESET": SubResource("Animation_fxwyw"),
+"move_left": SubResource("Animation_05pjf")
+}
+
+[sub_resource type="Animation" id="Animation_hv187"]
+resource_name = "center"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(918, 628), Vector2(1403, 854)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(362, 92), Vector2(0, -43)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioPreplayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 3.13834),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4oteg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(918, 628)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(362, 92)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioPreplayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s3rgp"]
+_data = {
+"RESET": SubResource("Animation_4oteg"),
+"center": SubResource("Animation_hv187")
+}
 
 [node name="SelectScene" type="Control"]
 process_mode = 3
@@ -105,10 +274,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 2
-offset_top = 82.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = 105.5
 offset_right = 304.0
-offset_bottom = 648.0
+offset_bottom = 614.5
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -135,62 +308,79 @@ size_flags_vertical = 3
 visible = false
 layout_mode = 2
 
+[node name="MoveLeft" type="AnimationPlayer" parent="MarginContainer2"]
+libraries = {
+"": SubResource("AnimationLibrary_gqbtc")
+}
+
 [node name="MarginContainer3" type="MarginContainer" parent="."]
-layout_mode = 2
-offset_left = 335.0
-offset_top = 82.0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = 92.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 90
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer3"]
 layout_mode = 2
-texture = ExtResource("8_bpsdr")
+texture = ExtResource("2_gn7a3")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer3"]
 layout_mode = 2
-offset_left = 335.0
-offset_top = 509.0
-offset_right = 1072.0
-offset_bottom = 608.0
 size_flags_vertical = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer3/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer3/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="ArtistLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-vertical_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
-
-[node name="CreatorLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="ArtistLabel" type="Label" parent="MarginContainer3/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+text = "作词/作曲/编曲 XXX
+演唱 洛天依"
 vertical_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="CreatorLabel" type="Label" parent="MarginContainer3/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "制谱 XXX
+ "
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer3/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/icon_max_width = 40
 theme_override_font_sizes/font_size = 25
 text = "开始 "
 icon = ExtResource("8_6l4y1")
 
+[node name="AudioPreplayer2D" type="AudioStreamPlayer2D" parent="MarginContainer3"]
+
+[node name="Center" type="AnimationPlayer" parent="MarginContainer3"]
+libraries = {
+"": SubResource("AnimationLibrary_s3rgp")
+}
+
 [connection signal="button_down" from="MarginContainer/HBoxContainer/MarginContainer/HomeButton" to="." method="_on_home_button_button_down"]
+[connection signal="pressed" from="MarginContainer3/PanelContainer/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
