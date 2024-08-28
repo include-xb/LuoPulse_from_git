@@ -73,6 +73,24 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_227ed")
 theme_override_styles/focus = SubResource("StyleBoxFlat_227ed")
 icon = ExtResource("1_hcupo")
 
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_227ed")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "设置"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -84,6 +102,7 @@ theme_override_constants/margin_bottom = 20
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 27
+tab_focus_mode = 0
 
 [node name="通用" parent="VBoxContainer/MarginContainer2/TabContainer" instance=ExtResource("3_j23vn")]
 layout_mode = 2

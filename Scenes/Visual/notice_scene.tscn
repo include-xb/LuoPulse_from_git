@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cefmobjhkihhf"]
+[gd_scene load_steps=12 format=3 uid="uid://cefmobjhkihhf"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_fvmjx"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="2_3j4cg"]
@@ -32,6 +32,13 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tj0kj"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofcb4"]
 bg_color = Color(0, 0, 0, 0.388235)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -81,19 +88,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="BackBtn" type="Button" parent="VBoxContainer/MarginContainer"]
+[node name="BackBtn" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_fxjl8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_s2cah")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ic4mn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_tj0kj")
 icon = ExtResource("2_3j4cg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ofcb4")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "消息中心"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -123,4 +151,4 @@ layout_mode = 2
 layout_mode = 2
 text = "暂无新消息"
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/BackBtn" to="." method="_on_back_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/BackBtn" to="." method="_on_back_btn_pressed"]

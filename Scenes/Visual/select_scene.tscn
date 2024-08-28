@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://s7fnwp3kpghg"]
+[gd_scene load_steps=19 format=3 uid="uid://s7fnwp3kpghg"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_x4nmn"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="2_e2m0u"]
@@ -35,6 +35,13 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ls7uq"]
+bg_color = Color(0, 0, 0, 0.388235)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hax1n"]
 bg_color = Color(0, 0, 0, 0.388235)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -108,19 +115,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="Button" type="Button" parent="VBoxContainer/MarginContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_6hmpq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pe1vh")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_w4ehp")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ls7uq")
 icon = ExtResource("2_e2m0u")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hax1n")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "选择曲目"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -239,7 +267,7 @@ icon_alignment = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 mix_target = 1
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="visibility_changed" from="Info" to="Info" method="_on_visibility_changed"]
 [connection signal="pressed" from="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Info/CenterContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
