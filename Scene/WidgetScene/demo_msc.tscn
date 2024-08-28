@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2dskmnmwub7o"]
 
-[ext_resource type="Script" path="res://Script/DemoMsc.gd" id="1_fh3nh"]
+[ext_resource type="Script" path="res://Script/Widget/DemoMsc.gd" id="1_u8733"]
 
 [sub_resource type="Animation" id="Animation_s0m6h"]
 length = 0.001
@@ -74,7 +74,7 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 2
-script = ExtResource("1_fh3nh")
+script = ExtResource("1_u8733")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

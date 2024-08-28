@@ -1,48 +1,46 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2s53txwsqj4v"]
+[gd_scene load_steps=10 format=3 uid="uid://btx54tjnay7pk"]
 
 [ext_resource type="Script" path="res://Script/Visual/play_scene.gd" id="1_5kuat"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="1_discp"]
 [ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="2_ckpc2"]
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="2_hmmav"]
-[ext_resource type="Texture2D" uid="uid://cpgsf8udt415i" path="res://Resource/Img/17.png" id="2_rnm7q"]
 [ext_resource type="Texture2D" uid="uid://da2mk8cctwkyq" path="res://Resource/Img/DecisionLine.png" id="4_i0p33"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="4_mymca"]
+[ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Resource/Icons/gear-fill.svg" id="7_tg2r6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ls77b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfegf"]
 shader = ExtResource("2_hmmav")
 shader_parameter/lod = 2.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnmof"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu5tb"]
 bg_color = Color(0, 0, 0, 0.470588)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="PlayerScene" type="Control"]
-clip_contents = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PlayScene" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_5kuat")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.470588)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -651.0
+offset_top = -376.0
+offset_right = 648.0
+offset_bottom = 373.359
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rnm7q")
+texture = ExtResource("1_discp")
 expand_mode = 5
 
 [node name="Mushy" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_ls77b")
-layout_mode = 1
+material = SubResource("ShaderMaterial_sfegf")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -50,81 +48,91 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_discp")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_right = 200.0
-offset_bottom = 726.0
-grow_horizontal = 2
-metadata/_edit_group_ = true
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -199.0
+offset_top = -360.0
+offset_right = 204.0
+offset_bottom = 359.0
 
-[node name="Panel" type="Panel" parent="Control"]
+[node name="Panel" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_right = 100.0
-offset_bottom = 600.0
+offset_bottom = 589.0
 
-[node name="Panel2" type="Panel" parent="Control"]
+[node name="Panel2" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_left = 100.0
 offset_right = 200.0
-offset_bottom = 600.0
+offset_bottom = 590.0
 
-[node name="Panel3" type="Panel" parent="Control"]
+[node name="Panel3" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_left = 200.0
 offset_right = 300.0
-offset_bottom = 600.0
+offset_bottom = 589.0
 
-[node name="Panel4" type="Panel" parent="Control"]
+[node name="Panel4" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_left = 300.0
 offset_right = 400.0
-offset_bottom = 600.0
+offset_bottom = 590.0
 
-[node name="Panel5" type="Panel" parent="Control"]
+[node name="Panel5" type="Panel" parent="Panel"]
 layout_mode = 0
-offset_top = 603.0
+offset_top = 590.0
 offset_right = 400.0
-offset_bottom = 723.0
+offset_bottom = 729.0
 
-[node name="Line2D" type="Line2D" parent="Control"]
-position = Vector2(90, 0)
-points = PackedVector2Array(-90, -59, -90, 797)
+[node name="Line2D" type="Line2D" parent="Panel"]
+position = Vector2(0.25, 1.19646)
+scale = Vector2(0.75, 1.29911)
+points = PackedVector2Array(-1, -2, -1, 559)
 width = 2.0
-default_color = Color(0.4, 0.8, 0.866667, 1)
+default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D2" type="Line2D" parent="Control"]
-position = Vector2(190, 2)
-points = PackedVector2Array(-90, -59, -90, 797)
+[node name="Line2D2" type="Line2D" parent="Panel"]
+position = Vector2(101, 1.21062)
+scale = Vector2(1, 1.30265)
+points = PackedVector2Array(-1, -2, -1, 559)
 width = 2.0
-default_color = Color(0.4, 0.8, 0.866667, 1)
+default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D3" type="Line2D" parent="Control"]
-position = Vector2(290, -2)
-points = PackedVector2Array(-90, -59, -90, 797)
+[node name="Line2D3" type="Line2D" parent="Panel"]
+position = Vector2(200, 1.21062)
+scale = Vector2(1, 1.30265)
+points = PackedVector2Array(-1, -2, -1, 559)
 width = 2.0
-default_color = Color(0.4, 0.8, 0.866667, 1)
+default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D4" type="Line2D" parent="Control"]
-position = Vector2(390, -4)
-points = PackedVector2Array(-90, -59, -90, 797)
+[node name="Line2D4" type="Line2D" parent="Panel"]
+position = Vector2(301, 1.2177)
+scale = Vector2(1, 1.30442)
+points = PackedVector2Array(-1, -2, -1, 559)
 width = 2.0
-default_color = Color(0.4, 0.8, 0.866667, 1)
+default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D5" type="Line2D" parent="Control"]
-position = Vector2(490, -3)
-points = PackedVector2Array(-90, -59, -90, 797)
+[node name="Line2D5" type="Line2D" parent="Panel"]
+position = Vector2(400, 1.18231)
+scale = Vector2(1, 1.29558)
+points = PackedVector2Array(-1, -2, -1, 559)
 width = 2.0
-default_color = Color(0.4, 0.8, 0.866667, 1)
+default_color = Color(0.4, 0.8, 1, 1)
+
+[node name="Notes" type="Node2D" parent="."]
+
+[node name="DecisionLine" type="Sprite2D" parent="."]
+position = Vector2(0, 230)
+scale = Vector2(0.38, 0.4)
+texture = ExtResource("4_i0p33")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 53.0
+offset_left = -639.0
+offset_top = -360.0
+offset_right = 641.0
+offset_bottom = -302.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 20
@@ -137,7 +145,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/margin_right = 5
 
-[node name="HomeButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer"]
+[node name="PauseButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/icon_max_width = 30
@@ -152,7 +160,7 @@ theme_override_constants/margin_left = 5
 [node name="Info" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_cnmof")
+theme_override_styles/panel = SubResource("StyleBoxFlat_yu5tb")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/Info"]
 layout_mode = 2
@@ -165,11 +173,22 @@ text = " 洛之动脉"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("7_tg2r6")
+
 [node name="MscPlayer" type="AudioStreamPlayer2D" parent="."]
 
-[node name="DecisionLine" type="Sprite2D" parent="."]
-position = Vector2(640, 600)
-scale = Vector2(0.386, 0.4)
-texture = ExtResource("4_i0p33")
+[node name="PausePanel" type="Panel" parent="."]
+visible = false
+offset_left = -649.0
+offset_top = -380.0
+offset_right = 649.0
+offset_bottom = 380.0
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/PauseButton" to="." method="_on_pause_button_pressed"]

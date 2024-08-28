@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl8uspuw6yytn"]
+
+[ext_resource type="Texture2D" uid="uid://d3ndnwvd6xeav" path="res://Resource/Img/NoteSingle.png" id="1_ea8w5"]
+[ext_resource type="Script" path="res://Script/Widget/tap.gd" id="1_knc1q"]
+
+[node name="Tap" type="Node2D"]
+script = ExtResource("1_knc1q")
+
+[node name="NoteSingle" type="Sprite2D" parent="."]
+texture = ExtResource("1_ea8w5")
