@@ -85,6 +85,7 @@ var is_loading_note : bool = true
 # 处于判定区间范围内的音符
 var decision_area : Array = [ ]
 
+var exchange_scene
 
 func play_hit_audio():
 	hit_audio_player.play()

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "ME4LfMpiYUcLSsYwENxXHIH1Wz88ERJCwpC7zpDPKaTobI5mTAg+v9qevLDnDfgyrEZnYC4dGM9wHAvY8CnJvw==",
+  "success": true,
+  "projectFilePath": "D:\\main\\Include\\Project\\LuoPulse_from_git\\LouMicling.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\XBLW\\.nuget\\packages\\godot.sourcegenerators\\4.1.1\\godot.sourcegenerators.4.1.1.nupkg.sha512",
+    "C:\\Users\\XBLW\\.nuget\\packages\\godotsharp\\4.1.1\\godotsharp.4.1.1.nupkg.sha512",
+    "C:\\Users\\XBLW\\.nuget\\packages\\godotsharpeditor\\4.1.1\\godotsharpeditor.4.1.1.nupkg.sha512",
+    "C:\\Users\\XBLW\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\XBLW\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\XBLW\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512"
+  ],
+  "logs": []
+}

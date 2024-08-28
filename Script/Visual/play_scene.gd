@@ -34,6 +34,8 @@ var index : int = 0
 
 
 func _ready():
+	GlobalScene.exchange_scene = self
+	
 	title_label.text = GlobalScene.selected_msc_title
 	background.texture = GlobalScene.selected_msc_cover
 	msc_player.stream = GlobalScene.selected_stream

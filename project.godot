@@ -21,11 +21,13 @@ config/icon="res://icon-LP.png"
 
 GlobalScene="*res://Scene/WidgetScene/global_scene.tscn"
 SceneChanger="*res://Scene/WidgetScene/scene_changer.tscn"
+RunningData="*res://Scripts/RunningData.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 
 [dotnet]
