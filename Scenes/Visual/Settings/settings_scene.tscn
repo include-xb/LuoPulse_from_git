@@ -87,6 +87,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_227ed")
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer2/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
 text = "设置"
 horizontal_alignment = 1
 vertical_alignment = 1

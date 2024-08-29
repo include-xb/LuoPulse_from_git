@@ -180,7 +180,7 @@ func _ready() -> void:
 	$Control/MarginContainer.visible = RunningData.is_auto_play
 	
 	# 三个统计标签都初始为0
-	RunningData.count_clean()
+	Utils.count_clean()
 	perfect_count.text = "0"
 	good_count.text = "0"
 	missing_count.text = "0"

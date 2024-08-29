@@ -1,13 +1,11 @@
 extends Node
 
-var rootMscPath: String = "res://MscList"
-
-var mscPackList: Dictionary = { }
-
-var versionName: String = "v1.0beta"
+var mscPackList: Dictionary
 
 # 选择歌曲的路径, 指向歌曲文件夹而不是.MP3
 var selected_msc_path : String = ""
+
+var selected_pack_name: String
 
 # 选中歌曲标题
 var selected_msc_name : String = ""
@@ -51,13 +49,3 @@ var speed : int = 10
 var volume : int = 0
 
 var bglight : int = 0
-
-
-func play_hit_audio():
-	$Hit.play()
-
-
-func count_clean():
-	perfect_count = 0
-	good_count = 0
-	missing_count = 0
