@@ -3,38 +3,38 @@ extends Control
 var packed_demo_msc : PackedScene = preload("res://Scene/WidgetScene/demo_msc.tscn")
 
 # 滚动容器本身
-@onready var scroll : ScrollContainer = $MarginContainer2/ScrollContainer
+@onready var scroll : ScrollContainer = $MscList/ScrollContainer
 
 # 滚动容器主体
-@onready var scroll_body : VBoxContainer = $MarginContainer2/ScrollContainer/MscList
+@onready var scroll_body : VBoxContainer = $MscList/ScrollContainer/Body
 
 # 模糊后的背景
 @onready var background : TextureRect = $TextureRect
 
 # 窗口顶部中间的歌曲标题
-@onready var title_label : Label = $MarginContainer/HBoxContainer/MarginContainer2/Info/HBoxContainer/Name
+@onready var title_label : Label = $Header/HBoxContainer/Center/Info/HBoxContainer/Name
 
 # 作词作曲 演唱 等信息
-@onready var artist_label : Label = $MarginContainer3/PanelContainer/MarginContainer/HBoxContainer/ArtistLabel
+@onready var artist_label : Label = $Cover/Info/MarginContainer/HBoxContainer/ArtistLabel
 
 # 谱面制作者
-@onready var creator_label : Label = $MarginContainer3/PanelContainer/MarginContainer/HBoxContainer/CreatorLabel
+@onready var creator_label : Label = $Cover/Info/MarginContainer/HBoxContainer/CreatorLabel
 
 # 窗口右半部分的歌曲封面
-@onready var cover : TextureRect = $MarginContainer3/TextureRect
+@onready var cover : TextureRect = $Cover/TextureRect
 
 # 歌曲预播放
-@onready var audio_preplayer : AudioStreamPlayer2D = $MarginContainer3/AudioPreplayer2D
+@onready var audio_preplayer : AudioStreamPlayer2D = $Cover/AudioPreplayer2D
 
 # 点击开始按钮后, 歌单向左移, 封面居中
 # 拿到歌单节点
-@onready var msc_list : MarginContainer = $MarginContainer2
+@onready var msc_list : MarginContainer = $MscList
 
 # 歌单向左边飞啊飞啊的动画播放
-@onready var move_left_animation : AnimationPlayer = $MarginContainer2/MoveLeft
+@onready var move_left_animation : AnimationPlayer = $MscList/MoveLeft
 
 # 封面向中间挤呀挤呀挤到中间填满整个窗口的动画播放
-@onready var center_animation : AnimationPlayer = $MarginContainer3/Center
+@onready var center_animation : AnimationPlayer = $Cover/Center
 
 
 func set_demo_msc_cover(msc_title : String):

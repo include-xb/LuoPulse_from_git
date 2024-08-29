@@ -15,6 +15,10 @@ var note_loader : NoteLoader = NoteLoader.new()
 
 @onready var notes : Node2D = $Notes
 
+@onready var pause_panel : Panel = $PausePanel
+
+@onready var setting_panel : Panel = $SettingPanel
+
 var note_type_array : Array = [ ]
 
 var note_time_array : Array = [ ]
@@ -32,9 +36,15 @@ var timer : float = 0
 
 var index : int = 0
 
+var key_1 : String = "D"
+var key_2 : String = "F"
+var key_3 : String = "J"
+var key_4 : String = "K"
+
 
 func _ready():
-	GlobalScene.exchange_scene = self
+	pause_panel.visible = false
+	setting_panel.visible = false
 	
 	title_label.text = GlobalScene.selected_msc_title
 	background.texture = GlobalScene.selected_msc_cover
@@ -55,7 +65,10 @@ func _ready():
 
 
 func _process(delta):
-	timer += delta
+	timer = msc_player.get_playback_position() \
+		- AudioServer.get_time_to_next_mix() \
+		+ AudioServer.get_time_since_last_mix() \
+		+ GlobalScene.delay_time
 	
 	if !GlobalScene.is_loading_note:
 		return
@@ -75,7 +88,49 @@ func _process(delta):
 				return
 
 
+func _input(event : InputEvent):
+	return
+	if event is InputEventKey:
+		# INFO: 这里有一坨大的
+		if Input.is_action_just_pressed("PS_" + key_1):
+			for note in GlobalScene.decision_area:
+				if note.column == 1:
+					note.judge(timer)
+					return
+		if Input.is_action_just_pressed("PS_" + key_2):
+			for note in GlobalScene.decision_area:
+				if note.column == 2:
+					note.judge(timer)
+					return
+		if Input.is_action_just_pressed("PS_" + key_3):
+			for note in GlobalScene.decision_area:
+				if note.column == 3:
+					note.judge(timer)
+					return
+		if Input.is_action_just_pressed("PS_" + key_4):
+			for note in GlobalScene.decision_area:
+				if note.column == 4:
+					note.judge(timer)
+					return
+
+
 func _on_pause_button_pressed():
 	print("暂停")
 	get_tree().paused = true
-	# SceneChanger.change_scene("res://Scene/VisualScene/start_scene.tscn")
+	pause_panel.visible = true
+
+
+func _on_resume_pressed():
+	pause_panel.visible = false
+	get_tree().paused = false
+
+
+func _on_setting_button_pressed():
+	get_tree().paused = true
+	setting_panel.visible = true
+
+
+func _on_sublime_button_pressed():
+	GlobalScene.save_cfg_data()
+	setting_panel.visible = false
+	get_tree().paused = false

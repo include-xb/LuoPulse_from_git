@@ -1,9 +1,9 @@
 extends Control
 
 
-@onready var user_name_editor : LineEdit = $VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LineEdit
+@onready var user_name_editor : LineEdit = $MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName/MarginContainer/HBoxContainer/LineEdit
 
-@onready var tip_label : Label = $VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TipLabel
+@onready var tip_label : Label = $MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName/MarginContainer/HBoxContainer/TipLabel
 
 func _ready():
 	user_name_editor.text = GlobalScene.user_name
@@ -13,6 +13,7 @@ func _on_sublime_button_pressed():
 	if tip_label.visible:
 		return
 	GlobalScene.user_name = user_name_editor.text
+	GlobalScene.save_cfg_data()
 	SceneChanger.change_scene("res://Scene/VisualScene/hub_scene.tscn")
 	print("进入 hub_scene")
 

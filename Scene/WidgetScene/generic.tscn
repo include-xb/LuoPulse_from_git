@@ -1,13 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ceeba0oqytaao"]
+[gd_scene load_steps=2 format=3 uid="uid://ceeba0oqytaao"]
 
 [ext_resource type="Script" path="res://Script/Widget/generic.gd" id="1_x0msm"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5b6lv"]
-bg_color = Color(0, 0, 0, 0.235294)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="Generic" type="MarginContainer"]
 anchors_preset = 15
@@ -15,74 +8,132 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
 script = ExtResource("1_x0msm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="HesitateSetting" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="HesitateSetting" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HesitateSetting"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HesitateSetting/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HesitateSetting"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HesitateSetting/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HesitateSetting/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "延迟(ms)"
 
-[node name="BGLightSetting" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HesitateSetting/HBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
+size_flags_horizontal = 10
+min_value = -1000.0
+max_value = 1000.0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/BGLightSetting"]
+[node name="TipLabel" type="Label" parent="VBoxContainer/HesitateSetting/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 10
+theme_override_font_sizes/font_size = 20
+text = "    ms"
+vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BGLightSetting/MarginContainer"]
+[node name="SpeedSetting" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SpeedSetting"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/BGLightSetting/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/SpeedSetting/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "音符流速"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/SpeedSetting/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="SpeedLabel" type="Label" parent="VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedHSlider" type="HSlider" parent="VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+min_value = -20.0
+max_value = 20.0
+
+[node name="BGLightSetting" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BGLightSetting"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/BGLightSetting/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "背景亮度
 "
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/BGLightSetting/MarginContainer/HBoxContainer"]
+[node name="BglightHSlider" type="HSlider" parent="VBoxContainer/BGLightSetting/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
 
-[node name="VolumeSetting" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="VolumeSetting" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VolumeSetting"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VolumeSetting/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VolumeSetting"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/VolumeSetting/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VolumeSetting/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "音量"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/VolumeSetting/MarginContainer/HBoxContainer"]
+[node name="VolumeHSlider" type="HSlider" parent="VBoxContainer/VolumeSetting/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
+
+[node name="AutoPlaySetting" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/AutoPlaySetting"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/AutoPlaySetting/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "自动点击"
+
+[node name="TipLabel" type="Label" parent="VBoxContainer/AutoPlaySetting/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 20
+text = "ON/OFF"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/AutoPlaySetting/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[connection signal="value_changed" from="VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedHSlider" to="." method="_on_speed_h_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/AutoPlaySetting/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]

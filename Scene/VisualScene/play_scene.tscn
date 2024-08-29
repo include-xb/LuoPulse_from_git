@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://btx54tjnay7pk"]
+[gd_scene load_steps=12 format=3 uid="uid://btx54tjnay7pk"]
 
 [ext_resource type="Script" path="res://Script/Visual/play_scene.gd" id="1_5kuat"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="1_discp"]
 [ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="2_ckpc2"]
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="2_hmmav"]
+[ext_resource type="Script" path="res://Script/Widget/keyboard_hit.gd" id="4_ethtw"]
 [ext_resource type="Texture2D" uid="uid://da2mk8cctwkyq" path="res://Resource/Img/DecisionLine.png" id="4_i0p33"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="4_mymca"]
 [ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Resource/Icons/gear-fill.svg" id="7_tg2r6"]
+[ext_resource type="PackedScene" uid="uid://ceeba0oqytaao" path="res://Scene/WidgetScene/generic.tscn" id="8_gwvle"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sfegf"]
 shader = ExtResource("2_hmmav")
@@ -20,7 +22,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="PlayScene" type="Node2D"]
-process_mode = 3
+process_mode = 1
 script = ExtResource("1_5kuat")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -44,6 +46,10 @@ material = SubResource("ShaderMaterial_sfegf")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -774.0
+offset_top = -446.5
+offset_right = 774.0
+offset_bottom = 446.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_discp")
@@ -55,30 +61,38 @@ offset_top = -360.0
 offset_right = 204.0
 offset_bottom = 359.0
 
-[node name="Panel" type="Panel" parent="Panel"]
+[node name="Panel_1" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 589.0
+script = ExtResource("4_ethtw")
+KEY = "D"
 
-[node name="Panel2" type="Panel" parent="Panel"]
+[node name="Panel_2" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_left = 100.0
 offset_right = 200.0
 offset_bottom = 590.0
+script = ExtResource("4_ethtw")
+KEY = "F"
 
-[node name="Panel3" type="Panel" parent="Panel"]
+[node name="Panel_3" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_left = 200.0
 offset_right = 300.0
 offset_bottom = 589.0
+script = ExtResource("4_ethtw")
+KEY = "J"
 
-[node name="Panel4" type="Panel" parent="Panel"]
+[node name="Panel_4" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_left = 300.0
 offset_right = 400.0
 offset_bottom = 590.0
+script = ExtResource("4_ethtw")
+KEY = "K"
 
-[node name="Panel5" type="Panel" parent="Panel"]
+[node name="ExtraPanel" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_top = 590.0
 offset_right = 400.0
@@ -177,18 +191,76 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/margin_left = 5
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer3"]
+[node name="SettingButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer3"]
 layout_mode = 2
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("7_tg2r6")
 
 [node name="MscPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -20.0
 
 [node name="PausePanel" type="Panel" parent="."]
+process_mode = 3
 visible = false
 offset_left = -649.0
 offset_top = -380.0
 offset_right = 649.0
 offset_bottom = 380.0
 
+[node name="Resume" type="Button" parent="PausePanel"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 449.0
+offset_right = 335.0
+offset_bottom = 504.0
+text = "Resume"
+
+[node name="Button2" type="Button" parent="PausePanel"]
+layout_mode = 0
+offset_left = 947.0
+offset_top = 452.0
+offset_right = 1026.0
+offset_bottom = 495.0
+text = "?"
+
+[node name="SettingPanel" type="Panel" parent="."]
+process_mode = 3
+visible = false
+offset_left = -650.0
+offset_top = -378.0
+offset_right = 652.0
+offset_bottom = 380.0
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Generic" parent="SettingPanel/MarginContainer/VBoxContainer" instance=ExtResource("8_gwvle")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="SublimeButton" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 25
+text = "确认"
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer3/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="PausePanel/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer/SublimeButton" to="." method="_on_sublime_button_pressed"]

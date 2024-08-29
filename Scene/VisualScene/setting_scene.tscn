@@ -1,14 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://da3rvnllokpwl"]
+[gd_scene load_steps=10 format=3 uid="uid://da3rvnllokpwl"]
 
 [ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="1_0s786"]
 [ext_resource type="Script" path="res://Script/Visual/setting_scene.gd" id="1_1fguw"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_x0fgp"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="3_h25v2"]
+[ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="4_uwb1c"]
 [ext_resource type="PackedScene" uid="uid://ceeba0oqytaao" path="res://Scene/WidgetScene/generic.tscn" id="4_xukye"]
 [ext_resource type="PackedScene" uid="uid://chdtj3o3nad8p" path="res://Scene/WidgetScene/about.tscn" id="5_5udnn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smcap"]
 shader = ExtResource("1_0s786")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4murr"]
+shader = ExtResource("4_uwb1c")
+shader_parameter/lod = 2.0
 
 [node name="SettingScene" type="Control"]
 layout_mode = 3
@@ -19,7 +24,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1fguw")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
 material = SubResource("ShaderMaterial_smcap")
 layout_mode = 1
 anchors_preset = 15
@@ -30,7 +43,21 @@ grow_vertical = 2
 texture = ExtResource("2_x0fgp")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Mushy" type="TextureRect" parent="ColorRect"]
+material = SubResource("ShaderMaterial_4murr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -134.0
+offset_top = -86.5
+offset_right = 134.0
+offset_bottom = 86.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_x0fgp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,33 +65,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Header" type="MarginContainer" parent="VBoxContainer"]
+[node name="Header" type="MarginContainer" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 20
 
-[node name="Button" type="Button" parent="VBoxContainer/Header"]
+[node name="Button" type="Button" parent="ColorRect/VBoxContainer/Header"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/icon_max_width = 25
 icon = ExtResource("3_h25v2")
 
-[node name="Body" type="MarginContainer" parent="VBoxContainer"]
+[node name="Body" type="MarginContainer" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="TabContainer" type="TabContainer" parent="VBoxContainer/Body"]
+[node name="TabContainer" type="TabContainer" parent="ColorRect/VBoxContainer/Body"]
 layout_mode = 2
 
-[node name="通用" parent="VBoxContainer/Body/TabContainer" instance=ExtResource("4_xukye")]
+[node name="通用" parent="ColorRect/VBoxContainer/Body/TabContainer" instance=ExtResource("4_xukye")]
 layout_mode = 2
 
-[node name="关于" parent="VBoxContainer/Body/TabContainer" instance=ExtResource("5_5udnn")]
+[node name="关于" parent="ColorRect/VBoxContainer/Body/TabContainer" instance=ExtResource("5_5udnn")]
 visible = false
 layout_mode = 2
 
-[connection signal="pressed" from="VBoxContainer/Header/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Header/Button" to="." method="_on_button_pressed"]

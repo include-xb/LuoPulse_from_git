@@ -1,11 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://hkortokloyq3"]
+[gd_scene load_steps=8 format=3 uid="uid://hkortokloyq3"]
 
 [ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="1_lia4c"]
 [ext_resource type="Script" path="res://Script/Visual/user_scene.gd" id="1_ne5k1"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_qtaen"]
+[ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="4_woyl0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1hp1x"]
 shader = ExtResource("1_lia4c")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh0rx"]
+shader = ExtResource("4_woyl0")
+shader_parameter/lod = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ldtc"]
 bg_color = Color(0, 0, 0, 0.470588)
@@ -34,7 +39,21 @@ grow_vertical = 2
 texture = ExtResource("2_qtaen")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Mushy" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_lh0rx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -134.0
+offset_top = -86.5
+offset_right = 134.0
+offset_bottom = 86.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qtaen")
+
+[node name="MainBody" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +61,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainBody"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 50
@@ -50,24 +69,32 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer"]
+[node name="CentralPanel" type="PanelContainer" parent="MainBody/MarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5ldtc")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/PanelContainer"]
+[node name="PanelBody" type="MarginContainer" parent="MainBody/MarginContainer/CentralPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainBody/MarginContainer/CentralPanel/PanelBody"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="UserName" type="VBoxContainer" parent="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -75,7 +102,7 @@ theme_override_font_sizes/font_size = 25
 text = "昵称: "
 vertical_alignment = 1
 
-[node name="TipLabel" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TipLabel" type="Label" parent="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName/MarginContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 1
@@ -83,21 +110,21 @@ theme_override_colors/font_color = Color(0.686275, 0, 0, 1)
 text = "用户名过长"
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "luoty712"
 placeholder_text = "输入你的昵称..."
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Sublime" type="HBoxContainer" parent="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="SublimeButton" type="Button" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="SublimeButton" type="Button" parent="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/Sublime"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 30
 text = " 确认 "
 
-[connection signal="text_changed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/SublimeButton" to="." method="_on_sublime_button_pressed"]
+[connection signal="text_changed" from="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName/MarginContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/Sublime/SublimeButton" to="." method="_on_sublime_button_pressed"]

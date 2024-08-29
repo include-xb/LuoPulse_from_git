@@ -21,7 +21,7 @@ func _on_texture_rect_gui_input(event : InputEvent):
 
 func _on_button_pressed():
 	SceneChanger.change_scene("res://Scene/VisualScene/select_scene.tscn")
-	print("进入 user_scene")
+	print("进入 select_scene")
 
 
 func _on_setting_button_pressed():

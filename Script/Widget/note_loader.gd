@@ -17,5 +17,6 @@ func load_note(
 		instanced_note = packed_tap.instantiate()
 	instanced_note.position.x = 100 * column - 250
 	instanced_note.position.y = 230 - GlobalScene.speed * GlobalScene.delay_time
+	instanced_note.column = column
 	
 	scene.notes.add_child(instanced_note)
