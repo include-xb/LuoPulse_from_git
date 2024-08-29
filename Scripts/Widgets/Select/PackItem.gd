@@ -13,4 +13,4 @@ func set_up(name: String) -> void:
 
 func _on_button_pressed() -> void:
 	RunningData.selected_pack_name = pack_name
-	get_tree().change_scene_to_file("res://Scenes/Visual/Select/mselect_scene.tscn")
+	SceneChanger.change_scene("res://Scenes/Visual/Select/mselect_scene.tscn")

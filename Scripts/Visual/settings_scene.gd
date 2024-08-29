@@ -6,7 +6,7 @@ func _ready():
 
 func _on_back_button_pressed():
 	_safe_cfg_data()
-	get_tree().change_scene_to_file("res://Scenes/Visual/hub_scene.tscn")
+	SceneChanger.change_scene("res://Scenes/Visual/hub_scene.tscn")
 
 # 用户设置持久化
 func _safe_cfg_data() -> void:

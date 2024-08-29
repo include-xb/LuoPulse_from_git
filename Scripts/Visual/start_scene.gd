@@ -12,7 +12,7 @@ func _ready():
 	progressBar.value = 100
 	statusLabel.text = "准备就绪。欢迎！"
 	await get_tree().create_timer(1.0).timeout
-	get_tree().change_scene_to_file("res://Scenes/Visual/hub_scene.tscn")
+	SceneChanger.change_scene("res://Scenes/Visual/hub_scene.tscn")
 
 # 读曲包
 func _get_chart_list() -> void:

@@ -20,6 +20,7 @@ config/icon="res://Assets/Icons/icon-LP.png"
 RunningData="*res://Scripts/RunningData.gd"
 Utils="*res://Scripts/Utils.gd"
 Constant="*res://Scripts/Constant.gd"
+SceneChanger="*res://Scenes/Widgets/scene_changer.tscn"
 
 [display]
 

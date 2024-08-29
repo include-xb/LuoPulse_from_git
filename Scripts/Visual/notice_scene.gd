@@ -1,4 +1,4 @@
 extends Control
 
 func _on_back_btn_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Visual/hub_scene.tscn")
+	SceneChanger.change_scene("res://Scenes/Visual/hub_scene.tscn")
