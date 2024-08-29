@@ -17,7 +17,7 @@ func _ready():
 # 读曲包
 func _get_chart_list() -> void:
 	
-	var dir: DirAccess = DirAccess.open(RunningData.rootMscPath)
+	var dir: DirAccess = DirAccess.open(Constant.ROOT_PATH)
 	var mscPackList: Dictionary = { }
 
 	if dir:
@@ -29,7 +29,7 @@ func _get_chart_list() -> void:
 				var mscList: Array[String] = []
 				
 				# 获取曲包内歌曲列表
-				var packDir: DirAccess = DirAccess.open(RunningData.rootMscPath + "/" + dirName)
+				var packDir: DirAccess = DirAccess.open(Constant.ROOT_PATH + "/" + dirName)
 				
 				packDir.list_dir_begin()
 				

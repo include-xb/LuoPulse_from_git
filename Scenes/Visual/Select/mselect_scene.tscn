@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4rqqnplbbrpa"]
+[gd_scene load_steps=16 format=3 uid="uid://b4rqqnplbbrpa"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_hjn3g"]
 [ext_resource type="Script" path="res://Scripts/Visual/Select/mselect_scene.gd" id="2_h12np"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="3_k2kfh"]
+[ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="3_vq6i3"]
 [ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="4_muhx1"]
 [ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Assets/Icons/play-fill.svg" id="5_qrx4f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_15r1n"]
+shader = ExtResource("3_vq6i3")
 
 [sub_resource type="Gradient" id="Gradient_ur731"]
 colors = PackedColorArray(0.4, 0.8, 1, 1, 1, 1, 1, 1)
@@ -67,6 +71,7 @@ theme = ExtResource("1_hjn3g")
 script = ExtResource("2_h12np")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_15r1n")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,6 +79,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_nhjyq")
+expand_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -150,6 +156,8 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 
 [node name="List" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
@@ -170,7 +178,6 @@ custom_minimum_size = Vector2(750, 450)
 layout_mode = 2
 texture = ExtResource("4_muhx1")
 expand_mode = 1
-stretch_mode = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/CenterContainer/TextureRect"]
 custom_minimum_size = Vector2(0, 100)
@@ -221,6 +228,7 @@ theme_override_constants/separation = 13
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
+focus_mode = 0
 text = "游戏选项"
 
 [node name="StartButton" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer"]
@@ -236,4 +244,7 @@ text = "START"
 icon = ExtResource("5_qrx4f")
 expand_icon = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

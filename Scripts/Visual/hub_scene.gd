@@ -3,7 +3,7 @@ extends Control
 @onready var timeLabel: Label = $AppTile/MarginContainer/HBoxContainer/TimeLabel
 
 func _ready():
-	$AppTile/MarginContainer/HBoxContainer/Label.text = "Luo Pulse " + RunningData.versionName
+	$AppTile/MarginContainer/HBoxContainer/Label.text = "Luo Pulse " + Constant.VERSION_NAME
 
 func _process(_delta):
 	var time_dict: Dictionary = Time.get_time_dict_from_system()

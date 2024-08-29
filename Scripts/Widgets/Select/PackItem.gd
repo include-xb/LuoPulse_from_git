@@ -6,7 +6,7 @@ func set_up(name: String) -> void:
 	var p_background: TextureRect = $PanelContainer/PackPic
 	var name_label: Label = $PanelContainer/PackPic/MarginContainer/PackNameLabel
 	
-	p_background.texture = load("res://MscList/" + name + "/cover.jpg")
+	p_background.texture = load("res://MscList/" + name + "/cover.png")
 	name_label.text = name
 	pack_name = name
 

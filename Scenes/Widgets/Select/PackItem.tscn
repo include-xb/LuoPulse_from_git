@@ -33,7 +33,7 @@ material = SubResource("ShaderMaterial_lmn4p")
 layout_mode = 2
 texture = ExtResource("2_fvney")
 expand_mode = 1
-stretch_mode = 1
+stretch_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="PanelContainer/PackPic"]
 layout_mode = 2

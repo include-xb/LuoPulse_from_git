@@ -1,10 +1,5 @@
 {
     "title": "春风来",
-    "artist": {
-        "composer": "阿良良木健",
-        "Arranger": "阿良良木健",
-        "singer": "洛天依"
-    },
-    "shortArtistList": "阿良良木健",
+    "shortArtistsList": "阿良良木健",
     "creator": "Bnao"
 }

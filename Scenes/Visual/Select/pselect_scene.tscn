@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://beitpkji4wy60"]
+[gd_scene load_steps=11 format=3 uid="uid://beitpkji4wy60"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_4mvj3"]
 [ext_resource type="Script" path="res://Scripts/Visual/Select/pselect_scene.gd" id="2_3b114"]
@@ -44,9 +44,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yo3rp"]
-bg_color = Color(0, 0, 0, 0.443137)
 
 [node name="pselect_scene" type="Control"]
 layout_mode = 3
@@ -128,14 +125,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer2"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_yo3rp")
-
-[node name="PackList" type="ScrollContainer" parent="VBoxContainer/MarginContainer2/PanelContainer"]
+[node name="PackList" type="ScrollContainer" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/PackList"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/PackList"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

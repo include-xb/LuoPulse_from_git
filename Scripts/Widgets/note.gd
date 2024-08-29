@@ -32,8 +32,8 @@ var running_timer : float = RunningData.delay_time
 var add : bool = true
 var remove : bool = true
 
-# 引用 play_scene 场景, 这个引用在 note_loader 中被初始化
-#var placed_scene : PlayScene
+# 引用 game_scene_scene 场景, 这个引用在 note_loader 中被初始化
+#var placed_scene : GameScene
 
 
 func _ready():
