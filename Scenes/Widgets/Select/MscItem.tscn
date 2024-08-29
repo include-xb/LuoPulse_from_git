@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce0c0sg5mfe7a"]
+
+[ext_resource type="Script" path="res://Scripts/Widgets/Select/MscItem.gd" id="1_lp06i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q12jl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ebto8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u1ydr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nx8vj"]
+bg_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hua4s"]
+
+[node name="MscItem" type="Button"]
+custom_minimum_size = Vector2(400, 70)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_q12jl")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ebto8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u1ydr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nx8vj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hua4s")
+alignment = 0
+script = ExtResource("1_lp06i")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 33
+text = "歌曲名
+"
+
+[node name="ArLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "曲作
+"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
