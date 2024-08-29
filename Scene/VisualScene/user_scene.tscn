@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://hkortokloyq3"]
+[gd_scene load_steps=11 format=3 uid="uid://hkortokloyq3"]
 
 [ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="1_lia4c"]
 [ext_resource type="Script" path="res://Script/Visual/user_scene.gd" id="1_ne5k1"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_qtaen"]
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="4_woyl0"]
+[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="5_4qswp"]
+[ext_resource type="Texture2D" uid="uid://couvegm2xw032" path="res://Resource/Icons/icon-LP.png" id="6_10q1a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1hp1x"]
 shader = ExtResource("1_lia4c")
@@ -11,6 +13,13 @@ shader = ExtResource("1_lia4c")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lh0rx"]
 shader = ExtResource("4_woyl0")
 shader_parameter/lod = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16qfb"]
+bg_color = Color(0, 0, 0, 0.470588)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ldtc"]
 bg_color = Color(0, 0, 0, 0.470588)
@@ -53,11 +62,67 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_qtaen")
 
+[node name="Header" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
+layout_mode = 2
+
+[node name="Home" type="MarginContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 5
+
+[node name="SublimeButton" type="Button" parent="Header/HBoxContainer/Home"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/icon_max_width = 30
+theme_override_font_sizes/font_size = 30
+icon = ExtResource("5_4qswp")
+
+[node name="Center" type="MarginContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Info" type="PanelContainer" parent="Header/HBoxContainer/Center"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_16qfb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header/HBoxContainer/Center/Info"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Header/HBoxContainer/Center/Info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "个人信息"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="MarginContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="Button" type="Button" parent="Header/HBoxContainer/Icon"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("6_10q1a")
+
 [node name="MainBody" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -120,11 +185,5 @@ placeholder_text = "输入你的昵称..."
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="SublimeButton" type="Button" parent="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/Sublime"]
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_font_sizes/font_size = 30
-text = " 确认 "
-
+[connection signal="pressed" from="Header/HBoxContainer/Home/SublimeButton" to="." method="_on_sublime_button_pressed"]
 [connection signal="text_changed" from="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName/MarginContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
-[connection signal="pressed" from="MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/Sublime/SublimeButton" to="." method="_on_sublime_button_pressed"]

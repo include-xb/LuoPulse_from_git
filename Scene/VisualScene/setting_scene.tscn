@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://da3rvnllokpwl"]
+[gd_scene load_steps=12 format=3 uid="uid://da3rvnllokpwl"]
 
 [ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="1_0s786"]
 [ext_resource type="Script" path="res://Script/Visual/setting_scene.gd" id="1_1fguw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="4_uwb1c"]
 [ext_resource type="PackedScene" uid="uid://ceeba0oqytaao" path="res://Scene/WidgetScene/generic.tscn" id="4_xukye"]
 [ext_resource type="PackedScene" uid="uid://chdtj3o3nad8p" path="res://Scene/WidgetScene/about.tscn" id="5_5udnn"]
+[ext_resource type="Texture2D" uid="uid://couvegm2xw032" path="res://Resource/Icons/icon-LP.png" id="6_emgl7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smcap"]
 shader = ExtResource("1_0s786")
@@ -14,6 +15,13 @@ shader = ExtResource("1_0s786")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4murr"]
 shader = ExtResource("4_uwb1c")
 shader_parameter/lod = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlidn"]
+bg_color = Color(0, 0, 0, 0.470588)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="SettingScene" type="Control"]
 layout_mode = 3
@@ -65,16 +73,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Header" type="MarginContainer" parent="ColorRect/VBoxContainer"]
+[node name="Header2" type="MarginContainer" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
 
-[node name="Button" type="Button" parent="ColorRect/VBoxContainer/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/Header2"]
+layout_mode = 2
+
+[node name="Home" type="MarginContainer" parent="ColorRect/VBoxContainer/Header2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 5
+
+[node name="Button" type="Button" parent="ColorRect/VBoxContainer/Header2/HBoxContainer/Home"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/icon_max_width = 25
 icon = ExtResource("3_h25v2")
+
+[node name="Center" type="MarginContainer" parent="ColorRect/VBoxContainer/Header2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Info" type="PanelContainer" parent="ColorRect/VBoxContainer/Header2/HBoxContainer/Center"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wlidn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/Header2/HBoxContainer/Center/Info"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="ColorRect/VBoxContainer/Header2/HBoxContainer/Center/Info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "设置"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="MarginContainer" parent="ColorRect/VBoxContainer/Header2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="Button" type="Button" parent="ColorRect/VBoxContainer/Header2/HBoxContainer/Icon"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("6_emgl7")
 
 [node name="Body" type="MarginContainer" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -94,4 +141,4 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[connection signal="pressed" from="ColorRect/VBoxContainer/Header/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Header2/HBoxContainer/Home/Button" to="." method="_on_button_pressed"]
