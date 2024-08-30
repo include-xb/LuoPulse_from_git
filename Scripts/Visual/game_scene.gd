@@ -175,29 +175,32 @@ var temp : bool = true
 func _ready() -> void:
 	print("loader_timer: ", loader_timer)
 	print("runningdata.delay_time:", RunningData.delay_time)
-	resume_panel.visible = false
-	
-	$Control/MarginContainer.visible = RunningData.is_auto_play
-	
+
+	var path: String = RunningData.selected_msc["path"]
+
+	$Control/MarginContainer/MscNameLabel.text = RunningData.selected_msc["name"]
+
 	# 三个统计标签都初始为0
 	Utils.count_clean()
 	perfect_count.text = "0"
 	good_count.text = "0"
 	missing_count.text = "0"
 	
-	# 获取解析到的谱面内容
-	json_data = RunningData.parsed_json
-	if json_data == { }: # INFO: 谱面为空则使用 json_contant, 这只是方便运行调试
+	# 解析谱面
+	json_data = JSON.parse_string(
+		FileAccess.get_file_as_string(path + "/chart.json")
+	)
+	if json_data == null: # INFO: 谱面为空则使用 json_contant, 这只是方便运行调试
 		json_data = JSON.parse_string(json_contant)
-	
-	audio_player.stream = RunningData.audio_stream
+
+	audio_player.stream = load(path + "/audio.mp3")
 	audio_player.stop()
 	
 	"""
 	if cover.texture == null:
-		cover.texture = preload("res://Assets/Images/hub_bg.jpg")
+		cover.texture = load("res://Assets/Images/hub_bg.jpg")
 	else:
-		cover.texture = RunningData.selected_msc_cover
+		cover.texture = path + "/cover.png"
 	"""
 	
 	total_note_num = json_data.HitObjects.size()
@@ -352,7 +355,7 @@ func _on_home_button_pressed() -> void:
 	resume_panel.visible = false
 	audio_player.stop()
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Scenes/Visual/select_scene.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Visual/Select/mselect_scene.tscn")
 
 
 func _on_resume_button_pressed() -> void:

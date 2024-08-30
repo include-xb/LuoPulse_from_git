@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4rqqnplbbrpa"]
+[gd_scene load_steps=18 format=3 uid="uid://b4rqqnplbbrpa"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_hjn3g"]
 [ext_resource type="Script" path="res://Scripts/Visual/Select/mselect_scene.gd" id="2_h12np"]
@@ -59,6 +59,16 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hh7h"]
+bg_color = Color(0, 0, 0, 0.607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3ywq"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="MselectScene" type="Control"]
 layout_mode = 3
@@ -244,7 +254,109 @@ text = "START"
 icon = ExtResource("5_qrx4f")
 expand_icon = true
 
+[node name="ModSetting" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4hh7h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModSetting"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ModSetting/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ModSetting/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="ModCloseButton" type="Button" parent="ModSetting/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e1c7i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b0n1f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nuycu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_cnrkh")
+icon = ExtResource("3_k2kfh")
+
+[node name="MarginContainer2" type="MarginContainer" parent="ModSetting/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="ModSetting/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1xepv")
+
+[node name="Label" type="Label" parent="ModSetting/VBoxContainer/HBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "游戏选项"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ModSetting/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModSetting/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AutoplaySetting" type="PanelContainer" parent="ModSetting/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g3ywq")
+
+[node name="MarginContainer" type="MarginContainer" parent="ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "自动演示
+"
+
+[node name="SubLabel" type="Label" parent="ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "注意：此选项启用后将不会记录游戏数据"
+
+[node name="AutoPlaySettingButton" type="Button" parent="ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+focus_mode = 0
+text = "关"
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer/ModButton" to="." method="_on_mod_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ModSetting/VBoxContainer/HBoxContainer/MarginContainer/ModCloseButton" to="." method="_on_mod_close_button_pressed"]
+[connection signal="pressed" from="ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer/AutoPlaySettingButton" to="." method="_on_auto_play_setting_button_pressed"]

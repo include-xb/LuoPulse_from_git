@@ -9,8 +9,9 @@ RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 
 """
 
-
 class_name Note
+
+@onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 # 已弃用 shared_class_name 判定音符独特标志
 var shared_class_name : String = "Note"
@@ -89,11 +90,10 @@ func auto_play():
 
 
 func kill():
+	audio_player.play()
 	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 	# TODO: 点击效果...
 	# $MeshInstance3D.mesh.material.albedo_color = Color(102, 204, 255)
-	GlobalScene.play_hit_audio()
-	
 	queue_free()
 
 

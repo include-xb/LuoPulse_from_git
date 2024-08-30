@@ -136,31 +136,6 @@ layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
 
-[node name="AutoplaySetting" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/AutoplaySetting"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/AutoplaySetting/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "自动点击
-"
-
-[node name="Button" type="CheckButton" parent="VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-text = "OFF"
-
 [connection signal="value_changed" from="VBoxContainer/NoteSpeedSetting/MarginContainer/HBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/BGLightSetting/MarginContainer/HBoxContainer/HSlider" to="." method="_on_bgLight_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/VolumeSetting/MarginContainer/HBoxContainer/HSlider" to="." method="_on_volume_h_slider_value_changed"]
-[connection signal="pressed" from="VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cfnbffqbgeu2"]
+[gd_scene load_steps=21 format=3 uid="uid://cfnbffqbgeu2"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/game_scene.gd" id="1_hc52r"]
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="2_nai6g"]
@@ -9,80 +9,23 @@
 [ext_resource type="Texture2D" uid="uid://clyg4t15sencw" path="res://Assets/Icons/play-fill-lowdpi.svg" id="5_21way"]
 [ext_resource type="Texture2D" uid="uid://ds7vq0u42tqmn" path="res://Assets/Icons/exit-to-app.svg" id="6_c0off"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsdyw"]
-size = Vector2(50, 50)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ualgg"]
 content_margin_left = 40.0
 content_margin_right = 40.0
 bg_color = Color(0.564706, 0.933333, 0.564706, 0.729412)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocy0x"]
-content_margin_left = 40.0
-content_margin_right = 40.0
-bg_color = Color(0.564706, 0.933333, 0.564706, 0.729412)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7bd4"]
-content_margin_left = 40.0
-content_margin_right = 40.0
-bg_color = Color(0.564706, 0.933333, 0.564706, 0.729412)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0rr53"]
-content_margin_left = 40.0
-content_margin_right = 40.0
-bg_color = Color(0.564706, 0.933333, 0.564706, 0.729412)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5f01"]
 content_margin_left = 40.0
 content_margin_right = 40.0
 bg_color = Color(1, 0.168627, 0, 0.862745)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgtpy"]
-content_margin_left = 40.0
-content_margin_right = 40.0
-bg_color = Color(1, 0.168627, 0, 0.862745)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qs3cr"]
-content_margin_left = 40.0
-content_margin_right = 40.0
-bg_color = Color(1, 0.168627, 0, 0.862745)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnkv0"]
-content_margin_left = 40.0
-content_margin_right = 40.0
-bg_color = Color(1, 0.168627, 0, 0.862745)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_stnow"]
 sky_top_color = Color(0.4, 0.8, 1, 1)
@@ -210,11 +153,16 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "1000000"
 
-[node name="PauseButton" type="TouchScreenButton" parent="Control"]
-position = Vector2(25, 24)
+[node name="PauseButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 24.0
+offset_right = 25.0
+offset_bottom = 24.0
 scale = Vector2(2.10417, 2.08333)
-texture_normal = ExtResource("4_uobv1")
-shape = SubResource("RectangleShape2D_bsdyw")
+focus_mode = 0
+icon = ExtResource("4_uobv1")
+flat = true
 
 [node name="Panel" type="Panel" parent="Control"]
 process_mode = 3
@@ -257,9 +205,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ualgg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ocy0x")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n7bd4")
-theme_override_styles/focus = SubResource("StyleBoxFlat_0rr53")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ualgg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ualgg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ualgg")
 text = "继续"
 icon = ExtResource("5_21way")
 
@@ -270,9 +218,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_h5f01")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jgtpy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qs3cr")
-theme_override_styles/focus = SubResource("StyleBoxFlat_lnkv0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h5f01")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5f01")
+theme_override_styles/focus = SubResource("StyleBoxFlat_h5f01")
 text = "退出"
 icon = ExtResource("6_c0off")
 
@@ -287,7 +235,7 @@ grow_vertical = 0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="AutoplayLabel" type="Label" parent="Control/MarginContainer"]
+[node name="MscNameLabel" type="Label" parent="Control/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8

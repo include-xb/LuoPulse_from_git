@@ -4,6 +4,8 @@ extends Control
 @onready var texture_rect: TextureRect = $VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/CenterContainer/TextureRect
 @onready var bg_texture_rect: TextureRect = $TextureRect
 @onready var player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var auto_play_setting_button: Button = $ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer/AutoPlaySettingButton
+@onready var mod_panel: Panel = $ModSetting
 
 # 曲目列表路径
 var msc_list_path: String
@@ -11,14 +13,22 @@ var msc_list_path: String
 var items: Array[Button] = []
 # 曲目列表
 var msc: Array[Dictionary] = []
+# 已选择的项目索引
+var selected_index: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# 当前曲包名
 	var pack_name = RunningData.selected_pack_name
 	msc_list_path = Constant.ROOT_PATH + "/" + pack_name
+	
+	if RunningData.is_auto_play:
+		auto_play_setting_button.text = "开"
+	else:
+		auto_play_setting_button.text = "关"
+	
 	# 曲名列表
-	var msc_name_list: Array[String] = RunningData.mscPackList[pack_name]
+	var msc_name_list: Array[String] = RunningData.pack_list[pack_name]
 	$VBoxContainer/HBoxContainer/MarginContainer2/PanelContainer/Label.text = pack_name
 	# 添加项目至列表
 	for i in msc_name_list.size():
@@ -54,6 +64,7 @@ func on_selected(index: int) -> void:
 
 # 选择
 func _select(index: int) -> void:
+	selected_index = index
 	if player.playing == true:
 		player.stop()
 	var select_path: String = msc[index]["path"]
@@ -65,5 +76,22 @@ func _select(index: int) -> void:
 
 
 func _on_start_button_pressed() -> void:
-	# 跳转游戏页面
-	pass
+	RunningData.selected_msc = msc[selected_index]
+	get_tree().change_scene_to_file("res://Scenes/Visual/game_scene.tscn")
+
+
+func _on_auto_play_setting_button_pressed() -> void:
+	if RunningData.is_auto_play:
+		RunningData.is_auto_play = false
+		auto_play_setting_button.text = "关"
+	else:
+		RunningData.is_auto_play = true
+		auto_play_setting_button.text = "开"
+
+
+func _on_mod_close_button_pressed() -> void:
+	mod_panel.visible = false
+
+
+func _on_mod_button_pressed() -> void:
+	mod_panel.visible = true

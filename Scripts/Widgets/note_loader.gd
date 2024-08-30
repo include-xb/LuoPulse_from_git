@@ -1,10 +1,10 @@
 extends Node
 
-class_name  NoteLoader
+class_name NoteLoader
 
 # var packed_note : PackedScene = preload("res://Scenes/Widgets/note.tscn")
 
-func load_note(scene : PlayScene, type : String, time : float, column : int, duration : float):
+func load_note(scene : GameScene, type : String, time : float, column : int, duration : float):
 	scene.current_load_num += 1
 	
 	if type == "tap" || true:

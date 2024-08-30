@@ -18,7 +18,7 @@ func _ready():
 func _get_chart_list() -> void:
 	
 	var dir: DirAccess = DirAccess.open(Constant.ROOT_PATH)
-	var mscPackList: Dictionary = { }
+	var pack_list: Dictionary = { }
 
 	if dir:
 		# 获取曲包
@@ -40,13 +40,13 @@ func _get_chart_list() -> void:
 						mscList.append(mscName)
 					mscName = packDir.get_next()
 				
-				mscPackList.merge(
+				pack_list.merge(
 					{ dirName: mscList }
 				)
 				
 			dirName = dir.get_next()
 	
-	RunningData.mscPackList = mscPackList
+	RunningData.pack_list = pack_list
 
 # 读配置
 func _get_user_config() -> void:

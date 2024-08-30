@@ -5,7 +5,7 @@ var index: int
 
 func set_up(msc_name: String, index: int, parent: Control, path: String) -> void:
 	$MarginContainer/VBoxContainer/NameLabel.text = msc_name
-	$MarginContainer/VBoxContainer/ArLabel.text = Utils.get_artists(path)
+	$MarginContainer/VBoxContainer/ArLabel.text = Utils.get_short_artists_list(path)
 	self.parent = parent
 	self.index = index
 	
