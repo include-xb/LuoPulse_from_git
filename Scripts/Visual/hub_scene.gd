@@ -21,12 +21,12 @@ func _process(_delta):
 
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Visual/Select/pselect_scene.tscn")
+	SceneChanger.change_scene("res://Scenes/Visual/Select/pselect_scene.tscn")
 
 
 func _on_notice_btn_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Visual/notice_scene.tscn")
+	SceneChanger.change_scene("res://Scenes/Visual/notice_scene.tscn")
 
 
 func _on_settings_btn_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Visual/Settings/settings_scene.tscn")
+	SceneChanger.change_scene("res://Scenes/Visual/Settings/settings_scene.tscn")
