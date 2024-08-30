@@ -4,6 +4,13 @@ extends Control
 
 func _ready():
 	$AppTile/MarginContainer/HBoxContainer/Label.text = "Luo Pulse " + Constant.VERSION_NAME
+	# 从保存的配置文件读取用户名
+	$UserInfo/HBoxContainer/UserNameLabel.text = RunningData.user_name
+	print(RunningData.user_name)
+	# 头像自动设置
+	if Constant.PRODUCTORS_HEAD_PORTRAIT.has(RunningData.user_name):
+		print("hit")
+		$UserInfo/HBoxContainer/HeadPortrait.texture = Constant.PRODUCTORS_HEAD_PORTRAIT[RunningData.user_name]
 
 func _process(_delta):
 	var time_dict: Dictionary = Time.get_time_dict_from_system()

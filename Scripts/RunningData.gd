@@ -2,7 +2,12 @@ extends Node
 
 var pack_list: Dictionary
 
+# 选中曲包名
 var selected_pack_name: String
+
+# 用户名
+var user_name: String = "游客"
+var temp_user_name: String
 
 # 选中歌曲信息
 var selected_msc: Dictionary

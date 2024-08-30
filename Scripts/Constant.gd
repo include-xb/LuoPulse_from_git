@@ -6,3 +6,13 @@ const ROOT_PATH: String = "res://MscList"
 const VERSION_NAME: String = "1.2.1beta"
 #GitHub仓库地址
 const GITHUB_URL: String = "https://github.com/include-xb/LuoPulse_from_git"
+# P主头像列表
+const PRODUCTORS_HEAD_PORTRAIT: Dictionary = {
+	"ilem": preload("res://Assets/Images/ProductorsHeadPortrait/ilem.jpg"),
+	"纯白": preload("res://Assets/Images/ProductorsHeadPortrait/cb.jpg"),
+	"COP": preload("res://Assets/Images/ProductorsHeadPortrait/COP.jpg"),
+	"阿良良木健": preload("res://Assets/Images/ProductorsHeadPortrait/allmj.jpg"),
+	"litterzy": preload("res://Assets/Images/ProductorsHeadPortrait/litterzy.jpg"),
+	"雨狸": preload("res://Assets/Images/ProductorsHeadPortrait/yl.jpg"),
+	"JUSF周存": preload("res://Assets/Images/ProductorsHeadPortrait/zc.jpg")
+}

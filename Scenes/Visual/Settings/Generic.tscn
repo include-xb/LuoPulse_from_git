@@ -23,6 +23,33 @@ script = ExtResource("1_x0msm")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
+[node name="UserNameSetting" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/UserNameSetting"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/UserNameSetting/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/UserNameSetting/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "用户名"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/UserNameSetting/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+placeholder_text = "输入用户名(最大8字符)"
+max_length = 8
+clear_button_enabled = true
+caret_blink = true
+
 [node name="NoteSpeedSetting" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
@@ -53,7 +80,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/NoteSpeedSetting/MarginContainer/HBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
@@ -79,6 +106,7 @@ layout_mode = 2
 text = "偏移量"
 
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/HesitateSetting/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
@@ -108,7 +136,7 @@ text = "背景亮度
 "
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/BGLightSetting/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
@@ -131,11 +159,13 @@ layout_mode = 2
 text = "游戏音量"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/VolumeSetting/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
 
+[connection signal="focus_exited" from="VBoxContainer/UserNameSetting/MarginContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/UserNameSetting/MarginContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="value_changed" from="VBoxContainer/NoteSpeedSetting/MarginContainer/HBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/BGLightSetting/MarginContainer/HBoxContainer/HSlider" to="." method="_on_bgLight_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/VolumeSetting/MarginContainer/HBoxContainer/HSlider" to="." method="_on_volume_h_slider_value_changed"]

@@ -57,3 +57,4 @@ func _get_user_config() -> void:
 		RunningData.volume = config.volume
 		RunningData.bglight = config.bglight
 		RunningData.speed = config.speed
+		RunningData.user_name = config["user_name"]

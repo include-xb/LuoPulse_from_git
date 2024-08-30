@@ -78,7 +78,7 @@ theme_override_constants/margin_top = 50
 [node name="HBoxContainer" type="HBoxContainer" parent="UserInfo"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UserInfo/HBoxContainer"]
+[node name="HeadPortrait" type="TextureRect" parent="UserInfo/HBoxContainer"]
 material = SubResource("ShaderMaterial_k3c71")
 layout_mode = 2
 size_flags_horizontal = 3
@@ -86,7 +86,7 @@ size_flags_stretch_ratio = 0.8
 texture = ExtResource("3_2hkyl")
 expand_mode = 4
 
-[node name="Label" type="Label" parent="UserInfo/HBoxContainer"]
+[node name="UserNameLabel" type="Label" parent="UserInfo/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 40
