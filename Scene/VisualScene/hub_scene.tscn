@@ -1,6 +1,5 @@
 [gd_scene load_steps=14 format=3 uid="uid://cgdu41dxvx813"]
 
-[ext_resource type="Theme" uid="uid://decfqcvdbtig0" path="res://Resource/UITheme.tres" id="1_i8mrh"]
 [ext_resource type="Script" path="res://Script/Visual/hub_scene.gd" id="2_7knkj"]
 [ext_resource type="Texture2D" uid="uid://ba83wknv4e7bb" path="res://Resource/Img/user.jpeg" id="3_2hkyl"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="3_imp0h"]
@@ -9,6 +8,7 @@
 [ext_resource type="Shader" path="res://Shader/radius.gdshader" id="5_3bvb8"]
 [ext_resource type="Texture2D" uid="uid://dc6dyer52ocv3" path="res://Resource/Img/char.png" id="5_tec6b"]
 [ext_resource type="Texture2D" uid="uid://cyhro8uyb54ie" path="res://Resource/Icons/message.svg" id="7_emvp2"]
+[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="10_gyodw"]
 [ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="10_ysuws"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_matop"]
@@ -34,7 +34,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_i8mrh")
 script = ExtResource("2_7knkj")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -80,7 +79,7 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="Header/HBoxContainer/UserInfo"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "游客"
 max_lines_visible = 10
 visible_characters = 10
@@ -93,14 +92,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6k5j3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Header/HBoxContainer/GameInfo"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Name" type="Label" parent="Header/HBoxContainer/GameInfo/HBoxContainer"]
 layout_mode = 2
-text = " 洛之动脉"
+size_flags_horizontal = 4
+text = "洛之动脉"
 vertical_alignment = 1
 
 [node name="Version" type="Label" parent="Header/HBoxContainer/GameInfo/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 tooltip_text = "版本信息"
 mouse_filter = 1
 text = "pc3.1.0"
@@ -133,18 +135,31 @@ offset_bottom = 1129.0
 texture = ExtResource("5_tec6b")
 expand_mode = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 802.0
-offset_top = 572.0
-offset_right = 1084.0
-offset_bottom = 633.0
-theme_override_constants/icon_max_width = 50
-theme_override_font_sizes/font_size = 40
+offset_left = 813.0
+offset_top = 452.0
+offset_right = 1027.0
+offset_bottom = 599.0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/icon_max_width = 45
+theme_override_font_sizes/font_size = 35
 text = "开始"
 icon = ExtResource("10_ysuws")
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/icon_max_width = 50
+theme_override_font_sizes/font_size = 35
+text = "退出"
+icon = ExtResource("10_gyodw")
 
 [connection signal="gui_input" from="Header/HBoxContainer/UserInfo/TextureRect" to="." method="_on_texture_rect_gui_input"]
 [connection signal="gui_input" from="Header/HBoxContainer/UserInfo/Label" to="." method="_on_texture_rect_gui_input"]
 [connection signal="pressed" from="Header/HBoxContainer/Buttons/SettingButton" to="." method="_on_setting_button_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

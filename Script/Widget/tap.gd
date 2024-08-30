@@ -12,6 +12,8 @@ var add : bool = false
 
 var remove : bool = false
 
+var is_hit : bool = false
+
 func _ready():
 	speed = GlobalScene.speed
 
@@ -30,32 +32,42 @@ func _process(delta):
 		GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 		
 		# INFO: missing
+		GlobalScene.miss_count += 1
 		
 		self.queue_free()
+	
 	if GlobalScene.auto_play:
 		auto_play()
 
 
 func judge(hit_time : float):
 	GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
-	var adjust_time : float = abs(hit_time - timer)
-	
+	var adjust_time : float = abs(timer - GlobalScene.delay_time)
 	# perfect: 正负 0.05 秒
 	if adjust_time <= 0.05:
 		GlobalScene.perfect_count += 1
 	else:
 		GlobalScene.good_count += 1
 	
-	kill()
+	dead_particle()
+	self.queue_free()
 
 
 func auto_play():
-	if timer >= GlobalScene.delay_time:
+	if timer >= GlobalScene.delay_time and not is_hit:
+		is_hit = true
+		get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 0.5)
 		GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
-		kill()
+		dead_particle()
+		GlobalScene.perfect_count += 1
+		self.visible = false
+		
+	if timer >= GlobalScene.delay_time + 0.1:
+		self.queue_free()
+		get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 1)
 
 
-func kill():
+func dead_particle():
 	GlobalScene.play_hit_audio()
 	var instanced_particle : GPUParticles2D = packed_particle.instantiate()
 	instanced_particle.global_position = self.global_position
@@ -63,4 +75,4 @@ func kill():
 	get_tree().current_scene.add_child(instanced_particle)
 	instanced_particle.position = global_position
 	instanced_particle.emitting = true
-	self.queue_free()
+	

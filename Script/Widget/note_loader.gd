@@ -20,3 +20,7 @@ func load_note(
 	instanced_note.column = column
 	
 	scene.notes.add_child(instanced_note)
+	
+	if GlobalScene.first_note_time == -1:
+		GlobalScene.first_note_time = time
+		print(GlobalScene.first_note_time)

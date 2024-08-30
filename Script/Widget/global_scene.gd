@@ -4,18 +4,21 @@ extends Control
 
 
 # 播放 UI 点击音效
-@onready var click_audio_player = $UIClick
+@onready var click_audio_player : AudioStreamPlayer2D = $UIClick
 
 # 播放音符点击音效
-@onready var hit_audio_player = $Hit
+@onready var hit_audio_player : AudioStreamPlayer2D = $Hit
+
 
 # 版本
-var version : String = "pc3.1.0"
+var version : String = "pc3.2.0.8"
 
 
 # SETTING:
 # 用户名
 var user_name : String = "user"
+
+var user_img : Texture = preload("res://Resource/Img/user.jpeg")
 
 # 最大用户名长度
 var max_user_name_length : int = 15
@@ -92,6 +95,7 @@ var selected_msc_cover : Texture
 # 音频
 var selected_stream : AudioStream
 
+var first_note_time : float = -1
 
 # 开始 (进入 play_scene) 后的延迟
 var delay_time : float = 2.0
@@ -106,16 +110,24 @@ var perfect_count : int = 0
 
 var good_count : int = 0
 
-var missing_count : int = 0
+var miss_count : int = 0
+
+
+func clear_count():
+	perfect_count = 0
+	good_count = 0
+	miss_count = 0
 
 
 func save_cfg_data() -> void:
 	var config : Dictionary = {
+		"root_msc_path": root_msc_path,
 		"speed": speed,
 		"volume": volume,
 		"bglight": bglight,
 		"user_name": user_name,
-		"auto_play": auto_play
+		"auto_play": auto_play,
+		"key_map": key_map,
 	}
 	var cfgFile : FileAccess = FileAccess.open("user://config.json", FileAccess.WRITE)
 	cfgFile.store_string(JSON.stringify(config))

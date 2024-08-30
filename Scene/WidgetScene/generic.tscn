@@ -42,6 +42,29 @@ theme_override_font_sizes/font_size = 20
 text = "    ms"
 vertical_alignment = 1
 
+[node name="PathSetting" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PathSetting"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PathSetting/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "歌单路径"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PathSetting/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 700
+
+[node name="PathLineEdit" type="LineEdit" parent="VBoxContainer/PathSetting/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "歌单路径..."
+
 [node name="SpeedSetting" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
@@ -112,6 +135,146 @@ layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
 
+[node name="ColumnSetting1" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColumnSetting1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ColumnSetting1/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "轨道一"
+
+[node name="OptionButton1" type="OptionButton" parent="VBoxContainer/ColumnSetting1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 8
+selected = 2
+popup/item_0/text = "A"
+popup/item_0/id = 0
+popup/item_1/text = "S"
+popup/item_1/id = 1
+popup/item_2/text = "D"
+popup/item_2/id = 2
+popup/item_3/text = "F"
+popup/item_3/id = 3
+popup/item_4/text = "J"
+popup/item_4/id = 4
+popup/item_5/text = "K"
+popup/item_5/id = 5
+popup/item_6/text = "L"
+popup/item_6/id = 6
+popup/item_7/text = ";"
+popup/item_7/id = 7
+
+[node name="ColumnSetting2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColumnSetting2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ColumnSetting2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "轨道二"
+
+[node name="OptionButton2" type="OptionButton" parent="VBoxContainer/ColumnSetting2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 8
+selected = 3
+popup/item_0/text = "A"
+popup/item_0/id = 0
+popup/item_1/text = "S"
+popup/item_1/id = 1
+popup/item_2/text = "D"
+popup/item_2/id = 2
+popup/item_3/text = "F"
+popup/item_3/id = 3
+popup/item_4/text = "J"
+popup/item_4/id = 4
+popup/item_5/text = "K"
+popup/item_5/id = 5
+popup/item_6/text = "L"
+popup/item_6/id = 6
+popup/item_7/text = ";"
+popup/item_7/id = 7
+
+[node name="ColumnSetting3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColumnSetting3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ColumnSetting3/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "轨道三"
+
+[node name="OptionButton3" type="OptionButton" parent="VBoxContainer/ColumnSetting3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 8
+selected = 4
+popup/item_0/text = "A"
+popup/item_0/id = 0
+popup/item_1/text = "S"
+popup/item_1/id = 1
+popup/item_2/text = "D"
+popup/item_2/id = 2
+popup/item_3/text = "F"
+popup/item_3/id = 3
+popup/item_4/text = "J"
+popup/item_4/id = 4
+popup/item_5/text = "K"
+popup/item_5/id = 5
+popup/item_6/text = "L"
+popup/item_6/id = 6
+popup/item_7/text = ";"
+popup/item_7/id = 7
+
+[node name="ColumnSetting4" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColumnSetting4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ColumnSetting4/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "轨道四"
+
+[node name="OptionButton4" type="OptionButton" parent="VBoxContainer/ColumnSetting4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 8
+selected = 5
+popup/item_0/text = "A"
+popup/item_0/id = 0
+popup/item_1/text = "S"
+popup/item_1/id = 1
+popup/item_2/text = "D"
+popup/item_2/id = 2
+popup/item_3/text = "F"
+popup/item_3/id = 3
+popup/item_4/text = "J"
+popup/item_4/id = 4
+popup/item_5/text = "K"
+popup/item_5/id = 5
+popup/item_6/text = "L"
+popup/item_6/id = 6
+popup/item_7/text = ";"
+popup/item_7/id = 7
+
 [node name="AutoPlaySetting" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
@@ -135,5 +298,10 @@ text = "ON/OFF"
 layout_mode = 2
 size_flags_horizontal = 8
 
+[connection signal="text_changed" from="VBoxContainer/PathSetting/HBoxContainer/PathLineEdit" to="." method="_on_path_line_edit_text_changed"]
 [connection signal="value_changed" from="VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedHSlider" to="." method="_on_speed_h_slider_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/ColumnSetting1/HBoxContainer/OptionButton1" to="." method="_on_option_button_1_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ColumnSetting2/HBoxContainer/OptionButton2" to="." method="_on_option_button_2_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ColumnSetting3/HBoxContainer/OptionButton3" to="." method="_on_option_button_3_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ColumnSetting4/HBoxContainer/OptionButton4" to="." method="_on_option_button_4_item_selected"]
 [connection signal="toggled" from="VBoxContainer/AutoPlaySetting/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]

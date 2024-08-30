@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://btx54tjnay7pk"]
+[gd_scene load_steps=14 format=3 uid="uid://btx54tjnay7pk"]
 
 [ext_resource type="Script" path="res://Script/Visual/play_scene.gd" id="1_5kuat"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="1_discp"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Script/Widget/keyboard_hit.gd" id="4_ethtw"]
 [ext_resource type="Texture2D" uid="uid://da2mk8cctwkyq" path="res://Resource/Img/DecisionLine.png" id="4_i0p33"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="4_mymca"]
-[ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Resource/Icons/gear-fill.svg" id="7_tg2r6"]
+[ext_resource type="Texture2D" uid="uid://couvegm2xw032" path="res://Resource/Icons/icon-LP.png" id="8_arsid"]
 [ext_resource type="PackedScene" uid="uid://ceeba0oqytaao" path="res://Scene/WidgetScene/generic.tscn" id="8_gwvle"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sfegf"]
@@ -21,11 +21,16 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="PlayScene" type="Node2D"]
-process_mode = 1
-script = ExtResource("1_5kuat")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qiaf"]
+bg_color = Color(0, 0, 0, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ykdjo"]
+color = Color(0.4, 0.8, 1, 1)
+thickness = 15
+
+[node name="PlayScene" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_5kuat")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.470588)
@@ -54,6 +59,68 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_discp")
 
+[node name="Count" type="VBoxContainer" parent="."]
+offset_left = -570.0
+offset_top = -212.0
+offset_right = -336.0
+offset_bottom = -82.0
+
+[node name="Perfect" type="HBoxContainer" parent="Count"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Label" type="Label" parent="Count/Perfect"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Perfect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Count/Perfect"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "123"
+
+[node name="Good" type="HBoxContainer" parent="Count"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Count/Good"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Good
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Count/Good"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "123"
+
+[node name="Miss" type="HBoxContainer" parent="Count"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Label" type="Label" parent="Count/Miss"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Miss
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Count/Miss"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "123"
+
 [node name="Panel" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -199.0
@@ -66,7 +133,7 @@ layout_mode = 0
 offset_right = 100.0
 offset_bottom = 589.0
 script = ExtResource("4_ethtw")
-KEY = "D"
+column = "1"
 
 [node name="Panel_2" type="Panel" parent="Panel"]
 layout_mode = 0
@@ -74,7 +141,7 @@ offset_left = 100.0
 offset_right = 200.0
 offset_bottom = 590.0
 script = ExtResource("4_ethtw")
-KEY = "F"
+column = "2"
 
 [node name="Panel_3" type="Panel" parent="Panel"]
 layout_mode = 0
@@ -82,7 +149,7 @@ offset_left = 200.0
 offset_right = 300.0
 offset_bottom = 589.0
 script = ExtResource("4_ethtw")
-KEY = "J"
+column = "3"
 
 [node name="Panel_4" type="Panel" parent="Panel"]
 layout_mode = 0
@@ -90,7 +157,7 @@ offset_left = 300.0
 offset_right = 400.0
 offset_bottom = 590.0
 script = ExtResource("4_ethtw")
-KEY = "K"
+column = "4"
 
 [node name="ExtraPanel" type="Panel" parent="Panel"]
 layout_mode = 0
@@ -134,6 +201,7 @@ width = 2.0
 default_color = Color(0.4, 0.8, 1, 1)
 
 [node name="Notes" type="Node2D" parent="."]
+process_mode = 1
 
 [node name="DecisionLine" type="Sprite2D" parent="."]
 position = Vector2(0, 230)
@@ -155,21 +223,20 @@ theme_override_constants/margin_right = 30
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_right = 5
 
-[node name="PauseButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer"]
+[node name="SettingButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer3"]
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("2_ckpc2")
 icon = ExtResource("4_mymca")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
 
 [node name="Info" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
@@ -187,41 +254,30 @@ text = " 洛之动脉"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 
-[node name="SettingButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer3"]
+[node name="PauseButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/icon_max_width = 30
-icon = ExtResource("7_tg2r6")
+theme_override_fonts/font = ExtResource("2_ckpc2")
+icon = ExtResource("8_arsid")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -640.0
+offset_top = 345.0
+offset_right = 640.0
+offset_bottom = 360.0
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_5qiaf")
+theme_override_styles/fill = SubResource("StyleBoxLine_ykdjo")
+show_percentage = false
 
 [node name="MscPlayer" type="AudioStreamPlayer2D" parent="."]
-volume_db = -20.0
-
-[node name="PausePanel" type="Panel" parent="."]
-process_mode = 3
-visible = false
-offset_left = -649.0
-offset_top = -380.0
-offset_right = 649.0
-offset_bottom = 380.0
-
-[node name="Resume" type="Button" parent="PausePanel"]
-layout_mode = 0
-offset_left = 246.0
-offset_top = 449.0
-offset_right = 335.0
-offset_bottom = 504.0
-text = "Resume"
-
-[node name="Button2" type="Button" parent="PausePanel"]
-layout_mode = 0
-offset_left = 947.0
-offset_top = 452.0
-offset_right = 1026.0
-offset_bottom = 495.0
-text = "?"
+process_mode = 1
+volume_db = -5.0
 
 [node name="SettingPanel" type="Panel" parent="."]
 process_mode = 3
@@ -249,18 +305,42 @@ layout_mode = 2
 [node name="Generic" parent="SettingPanel/MarginContainer/VBoxContainer" instance=ExtResource("8_gwvle")]
 layout_mode = 2
 size_flags_vertical = 3
+Path = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
+[node name="Back" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "返回歌单列表"
+
 [node name="SublimeButton" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 25
-text = "确认"
+text = "继续"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ResumeTimer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 3.0
+one_shot = true
+
+[node name="Label" type="Label" parent="ResumeTimer"]
+visible = false
+offset_left = -40.0
+offset_top = -90.0
+offset_right = 40.0
+offset_bottom = -48.0
+theme_override_font_sizes/font_size = 30
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer3/SettingButton" to="." method="_on_setting_button_pressed"]
-[connection signal="pressed" from="PausePanel/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer/SublimeButton" to="." method="_on_sublime_button_pressed"]

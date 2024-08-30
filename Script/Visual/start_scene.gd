@@ -15,6 +15,9 @@ func _ready():
 	# 开始时关闭游戏的暂停状态
 	get_tree().paused = false
 	
+	# 解析 config.json
+	get_user_config()
+	
 	dir = DirAccess.open(GlobalScene.root_msc_path)
 	
 	progress_bar.value = 0
@@ -32,9 +35,6 @@ func _ready():
 	print("自定义歌单: ", GlobalScene.individual_msc_list)
 	GlobalScene.msc_list = msc_list
 	
-	# 解析 config.json
-	get_user_config()
-	
 	state_label.text = "准备就绪. 欢迎!"
 	progress_bar.value = 100
 	await get_tree().create_timer(0.5).timeout
@@ -48,8 +48,10 @@ func get_user_config() -> void:
 	# 判空
 	if cfgFile != "":
 		var config: Dictionary = JSON.parse_string(cfgFile)
+		GlobalScene.root_msc_path = config.root_msc_path
 		GlobalScene.volume = config.volume
 		GlobalScene.bglight = config.bglight
 		GlobalScene.speed = config.speed
 		GlobalScene.user_name = config.user_name
 		GlobalScene.auto_play = config.auto_play
+		GlobalScene.key_map = config.key_map

@@ -5,6 +5,7 @@ extends Control
 
 @onready var tip_label : Label = $MainBody/MarginContainer/CentralPanel/PanelBody/VBoxContainer/UserName/MarginContainer/HBoxContainer/TipLabel
 
+
 func _ready():
 	user_name_editor.text = GlobalScene.user_name
 

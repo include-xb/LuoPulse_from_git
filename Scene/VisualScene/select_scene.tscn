@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bhjbbmt3cc4xk"]
+[gd_scene load_steps=21 format=3 uid="uid://bhjbbmt3cc4xk"]
 
 [ext_resource type="Script" path="res://Script/Visual/select_scene.gd" id="1_epcql"]
 [ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="2_eg1p0"]
@@ -19,6 +19,86 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_at20o"]
+resource_name = "move_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -60)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1280, -0.25, 0, 0.25, 0, 1280, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:size:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(58, -0.25, 0, 0.25, 0, 58, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_jqjn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1280, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:size:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(58, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hcbms"]
+_data = {
+"RESET": SubResource("Animation_jqjn1"),
+"move_up": SubResource("Animation_at20o")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vufjv"]
 shader = ExtResource("5_jukrg")
@@ -41,7 +121,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_05pjf"]
 resource_name = "move_left"
-length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -49,7 +128,7 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 105.5), Vector2(-350, 105.5)]
@@ -126,15 +205,14 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_hv187"]
 resource_name = "center"
-length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:size")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(918, 628), Vector2(1403, 854)]
@@ -143,10 +221,10 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(362, 92), Vector2(0, -43)]
@@ -158,7 +236,7 @@ tracks/2/path = NodePath("Info:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -170,7 +248,7 @@ tracks/3/path = NodePath("AudioPreplayer2D:volume_db")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 3.13834),
 "update": 0,
 "values": [0.0, -80.0]
@@ -182,7 +260,7 @@ tracks/4/path = NodePath("Info:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -233,7 +311,8 @@ texture = ExtResource("2_gn7a3")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 53.0
+offset_right = 1280.0
+offset_bottom = 58.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 20
@@ -283,6 +362,11 @@ theme_override_constants/margin_left = 5
 layout_mode = 2
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("6_xk3f3")
+
+[node name="MoveUp" type="AnimationPlayer" parent="Header"]
+libraries = {
+"": SubResource("AnimationLibrary_hcbms")
+}
 
 [node name="MscList" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -367,15 +451,15 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "作词/作曲/编曲 XXX
-演唱 洛天依"
+text = "作词/作曲/编曲 -
+演唱 -"
 vertical_alignment = 1
 
 [node name="CreatorLabel" type="Label" parent="Cover/Info/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "制谱 XXX
+text = "制谱 -
  "
 vertical_alignment = 1
 
