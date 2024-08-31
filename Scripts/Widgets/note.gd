@@ -39,7 +39,7 @@ var remove : bool = true
 
 func _ready():
 	velosity.z = RunningData.speed # 实际上, 音符速度 和 流速 之间是一个线性方程, 此处暂时省略, 直接赋值
-	position.y = 0.4 # y 坐标不变
+	position.y = 0.001 # y 坐标不变
 
 var temp = true
 
@@ -52,15 +52,15 @@ func _process(delta):
 	if add && running_timer >= -0.2:
 		add = false
 		RunningData.decision_area.push_back(self)
-		position.y = 0.2
 		#print(RunningData.decision_area.size())
 	elif remove && running_timer >= 0.2:
 		remove = false
-		position.y = 0.4
 		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 		
 		# TODO: MISSING 部分
 		RunningData.missing_count += 1
+		RunningData.cambo = 0
+		RunningData.rating = "miss"
 		queue_free()
 		#print(RunningData.decision_area.size())
 	
@@ -85,6 +85,9 @@ func auto_play():
 	if position.z >= 0 and temp:
 		velosity = Vector3.ZERO
 		RunningData.perfect_count += 1
+		RunningData.cambo += 1
+		RunningData.rating = "perfect"
+		RunningData.score += RunningData.single_note_score
 		kill()
 		temp = false
 

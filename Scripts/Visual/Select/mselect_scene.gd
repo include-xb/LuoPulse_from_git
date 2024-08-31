@@ -77,6 +77,8 @@ func _select(index: int) -> void:
 
 func _on_start_button_pressed() -> void:
 	RunningData.selected_msc = msc[selected_index]
+	RunningData.rating = ""
+	
 	get_tree().change_scene_to_file("res://Scenes/Visual/game_scene.tscn")
 
 

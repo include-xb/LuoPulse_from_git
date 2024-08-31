@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cfnbffqbgeu2"]
+[gd_scene load_steps=25 format=3 uid="uid://cfnbffqbgeu2"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/game_scene.gd" id="1_hc52r"]
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="2_nai6g"]
@@ -26,6 +26,9 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxnwg"]
+bg_color = Color(0.4, 0.8, 1, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_stnow"]
 sky_top_color = Color(0.4, 0.8, 1, 1)
@@ -58,7 +61,16 @@ albedo_color = Color(0.4, 0.8, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4uwe"]
 material = SubResource("StandardMaterial3D_8lni7")
-size = Vector2(8, 0.25)
+size = Vector2(8, 0.1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uxk5j"]
+size = Vector2(0.1, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yq31u"]
+size = Vector2(0.05, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_17ajn"]
+size = Vector2(0.1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n42nc"]
 size = Vector3(1.03882, 1, 1)
@@ -81,77 +93,14 @@ theme = ExtResource("2_nai6g")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 visible = false
-layout_mode = 0
-offset_right = 1548.0
-offset_bottom = 893.0
-texture = ExtResource("2_xa2pb")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -206.0
-offset_bottom = 185.0
-grow_horizontal = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 2
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="PerfectLabel" type="Label" parent="Control/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Perfect"
-
-[node name="PerfectCount" type="Label" parent="Control/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "1000000"
-
-[node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 2
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 15
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer2"]
-layout_mode = 2
-
-[node name="GoodLabel" type="Label" parent="Control/VBoxContainer/MarginContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Good"
-
-[node name="GoodCount" type="Label" parent="Control/VBoxContainer/MarginContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "1000000"
-
-[node name="MarginContainer3" type="MarginContainer" parent="Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 2
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer3"]
-layout_mode = 2
-
-[node name="MissingLabel" type="Label" parent="Control/VBoxContainer/MarginContainer3/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Missing"
-
-[node name="MissingCount" type="Label" parent="Control/VBoxContainer/MarginContainer3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "1000000"
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xa2pb")
+expand_mode = 1
 
 [node name="PauseButton" type="Button" parent="Control"]
 layout_mode = 0
@@ -163,6 +112,29 @@ scale = Vector2(2.10417, 2.08333)
 focus_mode = 0
 icon = ExtResource("4_uobv1")
 flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="ScoreLabel" type="Label" parent="Control/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="ACCLabel" type="Label" parent="Control/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
 
 [node name="Panel" type="Panel" parent="Control"]
 process_mode = 3
@@ -241,6 +213,41 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "AutoPlay"
 
+[node name="CamboVBC" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -60.0
+offset_right = 87.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CamboLabel" type="Label" parent="Control/CamboVBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RatingLabel" type="Label" parent="Control/CamboVBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_cxnwg")
+show_percentage = false
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kqrws")
 
@@ -249,7 +256,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 3.25, 2)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.25, 1)
 current = true
 far = 5000.0
 
@@ -268,24 +275,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33)
 shape = SubResource("BoxShape3D_vqku2")
 
 [node name="decision_line" type="MeshInstance3D" parent="track"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
 mesh = SubResource("PlaneMesh_g4uwe")
 
 [node name="track1" type="Node3D" parent="track"]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="track"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7, -4.54, -5)
+mesh = SubResource("PlaneMesh_uxk5j")
+
 [node name="track2" type="Node3D" parent="track"]
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="track"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -33)
+mesh = SubResource("PlaneMesh_yq31u")
+
 [node name="track3" type="Node3D" parent="track"]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="track"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7, -4.54, 0)
+mesh = SubResource("PlaneMesh_17ajn")
 
 [node name="track4" type="Node3D" parent="track"]
 
 [node name="touch_lines" type="Node3D" parent="track"]
+visible = false
 
 [node name="touch_line" parent="track/touch_lines" instance=ExtResource("4_2x7fw")]
 visible = false
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 

@@ -12,3 +12,4 @@ func count_clean() -> void:
 	RunningData.perfect_count = 0
 	RunningData.good_count = 0
 	RunningData.missing_count = 0
+	RunningData.score = 0

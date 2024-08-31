@@ -17,11 +17,14 @@ class_name GameScene
 @onready var track3 : Node3D = $track/track3
 @onready var track4 : Node3D = $track/track4
 
-@onready var perfect_count : Label = $Control/VBoxContainer/MarginContainer/HBoxContainer/PerfectCount
-@onready var good_count : Label = $Control/VBoxContainer/MarginContainer2/HBoxContainer/GoodCount
-@onready var missing_count : Label = $Control/VBoxContainer/MarginContainer3/HBoxContainer/MissingCount
 
 @onready var resume_panel : Panel = $Control/Panel
+@onready var cambo_label: Label = $Control/CamboVBC/CamboLabel
+@onready var rating_label: Label = $Control/CamboVBC/RatingLabel
+@onready var cambo_vbc: VBoxContainer = $Control/CamboVBC
+@onready var progress_bar: ProgressBar = $Control/ProgressBar
+@onready var score_label: Label = $Control/VBoxContainer/MarginContainer/ScoreLabel
+
 
 var packed_note : PackedScene = preload("res://Scenes/Widgets/note.tscn")
 
@@ -83,6 +86,9 @@ var note_duration_array : Array = [ ]
 
 # 多点触摸
 var touch_position : Array = [ ]
+
+# 歌曲长度
+var msc_length: float
 
 # 测试用 ######
 var json_contant = \
@@ -182,9 +188,6 @@ func _ready() -> void:
 
 	# 三个统计标签都初始为0
 	Utils.count_clean()
-	perfect_count.text = "0"
-	good_count.text = "0"
-	missing_count.text = "0"
 	
 	# 解析谱面
 	json_data = JSON.parse_string(
@@ -192,8 +195,12 @@ func _ready() -> void:
 	)
 	if json_data == null: # INFO: 谱面为空则使用 json_contant, 这只是方便运行调试
 		json_data = JSON.parse_string(json_contant)
+		
+	var audio_stream: AudioStream = load(path + "/audio.mp3")
+	
+	progress_bar.max_value = audio_stream.get_length()
 
-	audio_player.stream = load(path + "/audio.mp3")
+	audio_player.stream = audio_stream
 	audio_player.stop()
 	
 	"""
@@ -205,6 +212,8 @@ func _ready() -> void:
 	
 	total_note_num = json_data.HitObjects.size()
 	print("共有音符: ", total_note_num, "个")
+	
+	RunningData.single_note_score = 1000000 / total_note_num
 	
 	# 音符的各个信息写入列表
 	for i in json_data.HitObjects:
@@ -223,9 +232,11 @@ func _process(delta) -> void:
 	RunningData.current_audio_time = audio_player.get_playback_position() - AudioServer.get_time_to_next_mix() + AudioServer.get_time_since_last_mix()
 	loader_timer += delta
 	
-	missing_count.text = str(RunningData.missing_count)
-	perfect_count.text = str(RunningData.perfect_count)
-	good_count.text = str(RunningData.good_count)
+	cambo_label.text = str(RunningData.cambo)
+	rating_label.text = RunningData.rating
+	score_label.text = str(int(RunningData.score))
+	
+	progress_bar.value = audio_player.get_playback_position()
 	
 	if !is_loading_note:
 		return
@@ -337,16 +348,23 @@ func _input(event):
 		for i in RunningData.decision_area:
 			if i == null || !i.judge_note(result.position): # || 运算符具有短路性
 				return
-			if abs(i.appear_time - loader_timer) < 0.05: # 正负 50ms 判定为 perfect
+			elif abs(i.appear_time - loader_timer) < 0.05: # 正负 50ms 判定为 perfect
 				# TODO: perfect
 				RunningData.perfect_count += 1
+				RunningData.cambo += 1
+				RunningData.rating = "perfect"
+				RunningData.score += RunningData.single_note_score
 			else:
 				# TODO: good
 				RunningData.good_count += 1
+				RunningData.cambo += 1
+				RunningData.rating = "good"
+				RunningData.score += RunningData.single_note_score * 0.7
 
 # 暂停按钮
 func _on_pause_button_pressed():
 	resume_panel.visible = true
+	cambo_vbc.visible = false
 	get_tree().paused = true
 
 
@@ -361,4 +379,5 @@ func _on_home_button_pressed() -> void:
 func _on_resume_button_pressed() -> void:
 	print("resume")
 	resume_panel.visible = false
+	cambo_vbc.visible = true
 	get_tree().paused = false

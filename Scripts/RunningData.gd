@@ -26,6 +26,18 @@ var perfect_count : int = 0
 var good_count : int = 0
 var missing_count : int = 0
 
+# 连击数
+var cambo: int = 0
+
+# 评级
+var rating: String = ""
+
+# 分数
+var score: float
+
+# 单个音符分数
+var single_note_score: float
+
 # setting:
 
 var is_auto_play : bool = false
