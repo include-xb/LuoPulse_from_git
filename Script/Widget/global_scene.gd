@@ -112,11 +112,14 @@ var good_count : int = 0
 
 var miss_count : int = 0
 
+var key_scene
+
 
 func clear_count():
 	perfect_count = 0
 	good_count = 0
 	miss_count = 0
+	decision_area.clear()
 
 
 func save_cfg_data() -> void:

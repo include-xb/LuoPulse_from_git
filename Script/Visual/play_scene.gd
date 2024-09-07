@@ -81,10 +81,13 @@ func _ready():
 
 
 func _process(delta):
+	"""
 	timer = msc_player.get_playback_position() \
 		- AudioServer.get_time_to_next_mix() \
 		+ AudioServer.get_time_since_last_mix() \
 		+ GlobalScene.delay_time
+	"""
+	timer += delta
 	
 	if !GlobalScene.is_loading_note:
 		return
@@ -98,10 +101,11 @@ func _process(delta):
 				note_column_array[index], 
 				note_duration_array[index]
 			)
+			# print("偏正时间: ", -AudioServer.get_time_to_next_mix() + AudioServer.get_time_since_last_mix())
 			index += 1
 			if index >= total_note_num:
 				GlobalScene.is_loading_note = false
-				return
+				break
 	
 	if time_label.visible == true:
 		time_label.text = str(int(resume_timer.time_left) + 1)

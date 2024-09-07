@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxvyykp2r2v0y"]
+
+[ext_resource type="Script" path="res://Script/Widget/hold.gd" id="1_stkak"]
+[ext_resource type="Texture2D" uid="uid://d3ndnwvd6xeav" path="res://Resource/Img/NoteSingle.png" id="2_oqpgp"]
+
+[node name="Hold" type="Node2D"]
+script = ExtResource("1_stkak")
+
+[node name="Img" type="Sprite2D" parent="."]
+texture = ExtResource("2_oqpgp")
