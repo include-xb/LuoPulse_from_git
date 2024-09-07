@@ -213,6 +213,7 @@ func _ready() -> void:
 	total_note_num = json_data.HitObjects.size()
 	print("共有音符: ", total_note_num, "个")
 	
+	# 计算单个音符得分
 	RunningData.single_note_score = 1000000 / total_note_num
 	
 	# 音符的各个信息写入列表

@@ -13,3 +13,5 @@ func count_clean() -> void:
 	RunningData.good_count = 0
 	RunningData.missing_count = 0
 	RunningData.score = 0
+	RunningData.rating = ""
+	RunningData.cambo = 0

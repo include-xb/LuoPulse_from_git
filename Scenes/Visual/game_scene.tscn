@@ -118,23 +118,25 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
+offset_left = -439.0
+offset_bottom = 142.0
 grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
 
 [node name="ScoreLabel" type="Label" parent="Control/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "0"
+horizontal_alignment = 2
 
 [node name="ACCLabel" type="Label" parent="Control/VBoxContainer/MarginContainer"]
 visible = false
 layout_mode = 2
+horizontal_alignment = 2
 
 [node name="Panel" type="Panel" parent="Control"]
 process_mode = 3
@@ -229,13 +231,13 @@ grow_vertical = 2
 
 [node name="CamboLabel" type="Label" parent="Control/CamboVBC"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 90
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RatingLabel" type="Label" parent="Control/CamboVBC"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="Control"]
@@ -256,7 +258,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.25, 1)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.5, 1)
 current = true
 far = 5000.0
 
@@ -281,7 +283,7 @@ mesh = SubResource("PlaneMesh_g4uwe")
 [node name="track1" type="Node3D" parent="track"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="track"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7, -4.54, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, -4.54, -5)
 mesh = SubResource("PlaneMesh_uxk5j")
 
 [node name="track2" type="Node3D" parent="track"]
@@ -293,7 +295,7 @@ mesh = SubResource("PlaneMesh_yq31u")
 [node name="track3" type="Node3D" parent="track"]
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="track"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7, -4.54, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3, -4, -50)
 mesh = SubResource("PlaneMesh_17ajn")
 
 [node name="track4" type="Node3D" parent="track"]
