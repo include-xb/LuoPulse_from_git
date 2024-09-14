@@ -26,7 +26,6 @@ SceneChanger="*res://Scene/WidgetScene/scene_changer.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/resizable=false
 window/stretch/mode="canvas_items"
 
 [dotnet]
