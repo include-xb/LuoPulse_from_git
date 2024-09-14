@@ -1,14 +1,14 @@
+AnimationPlayer
+Control
+ScrollContainer
 VBoxContainer
 Button
 MarginContainer
 LineEdit
 AudioStreamPlayer2D
 HBoxContainer
-Control
 Label
 ProgressBar
 OptionButton
 Timer
-AnimationPlayer
 CheckButton
-SpinBox

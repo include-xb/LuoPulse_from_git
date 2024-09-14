@@ -7,36 +7,38 @@ extends MarginContainer
 @export var Volume : bool = true
 @export var AutoPlay : bool = true
 
-@onready var hesitate_body : MarginContainer = $VBoxContainer/HesitateSetting
-@onready var path_body : MarginContainer = $VBoxContainer/PathSetting
-@onready var speed_body : MarginContainer = $VBoxContainer/SpeedSetting
-@onready var bglight_body : MarginContainer = $VBoxContainer/BGLightSetting
-@onready var volume_body : MarginContainer = $VBoxContainer/VolumeSetting
-@onready var autoplay_body : MarginContainer = $VBoxContainer/AutoPlaySetting
+@onready var hesitate_body : MarginContainer = $ScrollContainer/VBoxContainer/HesitateSetting
+@onready var path_body : MarginContainer = $ScrollContainer/VBoxContainer/PathSetting
+@onready var speed_body : MarginContainer = $ScrollContainer/VBoxContainer/SpeedSetting
+@onready var bglight_body : MarginContainer = $ScrollContainer/VBoxContainer/BGLightSetting
+@onready var volume_body : MarginContainer = $ScrollContainer/VBoxContainer/VolumeSetting
+@onready var autoplay_body : MarginContainer = $ScrollContainer/VBoxContainer/AutoPlaySetting
 
 
-@onready var hesitate_spin_box : SpinBox = $VBoxContainer/HesitateSetting/HBoxContainer/SpinBox
+@onready var hesitate_spin_box : SpinBox = $ScrollContainer/VBoxContainer/HesitateSetting/HBoxContainer/SpinBox
 
-@onready var path_line_edit : LineEdit = $VBoxContainer/PathSetting/HBoxContainer/PathLineEdit
+@onready var path_line_edit : LineEdit = $ScrollContainer/VBoxContainer/PathSetting/HBoxContainer/PathLineEdit
 
 # -20 ~ 20
-@onready var speed_label : Label = $VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedLabel
+@onready var speed_label : Label = $ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedLabel
 
-@onready var speed_slider : HSlider = $VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedHSlider
+@onready var speed_slider : HSlider = $ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedHSlider
 
-@onready var bglight_slider : HSlider = $VBoxContainer/BGLightSetting/HBoxContainer/BglightHSlider
+@onready var bglight_slider : HSlider = $ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer/BglightHSlider
 
-@onready var volume_slider : HSlider = $VBoxContainer/VolumeSetting/HBoxContainer/VolumeHSlider
+@onready var volume_slider : HSlider = $ScrollContainer/VBoxContainer/VolumeSetting/HBoxContainer/VolumeHSlider
 
-@onready var auto_play_button : CheckButton = $VBoxContainer/AutoPlaySetting/HBoxContainer/CheckButton
+@onready var auto_play_button : CheckButton = $ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer/CheckButton
 
 # ON/OFF
-@onready var auto_play_label : Label = $VBoxContainer/AutoPlaySetting/HBoxContainer/TipLabel
+@onready var auto_play_label : Label = $ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer/TipLabel
 
-@onready var option_1 : OptionButton = $VBoxContainer/ColumnSetting1/HBoxContainer/OptionButton1
-@onready var option_2 : OptionButton = $VBoxContainer/ColumnSetting2/HBoxContainer/OptionButton2
-@onready var option_3 : OptionButton = $VBoxContainer/ColumnSetting3/HBoxContainer/OptionButton3
-@onready var option_4 : OptionButton = $VBoxContainer/ColumnSetting4/HBoxContainer/OptionButton4
+@onready var option_1 : OptionButton = $ScrollContainer/VBoxContainer/ColumnSetting1/HBoxContainer/OptionButton1
+@onready var option_2 : OptionButton = $ScrollContainer/VBoxContainer/ColumnSetting2/HBoxContainer/OptionButton2
+@onready var option_3 : OptionButton = $ScrollContainer/VBoxContainer/ColumnSetting3/HBoxContainer/OptionButton3
+@onready var option_4 : OptionButton = $ScrollContainer/VBoxContainer/ColumnSetting4/HBoxContainer/OptionButton4
+@onready var option_5 : OptionButton = $ScrollContainer/VBoxContainer/ColumnSetting5/HBoxContainer/OptionButton5
+@onready var option_6 : OptionButton = $ScrollContainer/VBoxContainer/ColumnSetting6/HBoxContainer/OptionButton6
 
 
 var index_map : Dictionary = {"A": 0, "S": 1, "D": 2, "F": 3, "J": 4, "K": 5, "L": 6, ";": 7}
@@ -63,6 +65,8 @@ func _ready():
 	option_2.select(index_map.get(GlobalScene.key_map["2"]))
 	option_3.select(index_map.get(GlobalScene.key_map["3"]))
 	option_4.select(index_map.get(GlobalScene.key_map["4"]))
+	option_5.select(index_map.get(GlobalScene.key_map["5"]))
+	option_6.select(index_map.get(GlobalScene.key_map["6"]))
 
 
 func _on_speed_h_slider_value_changed(value):
@@ -89,6 +93,14 @@ func _on_option_button_3_item_selected(index):
 
 func _on_option_button_4_item_selected(index):
 	GlobalScene.key_map["4"] = index_map.find_key(index)
+
+
+func _on_option_button_5_item_selected(index):
+	GlobalScene.key_map["5"] = index_map.find_key(index)
+
+
+func _on_option_button_6_item_selected(index):
+	GlobalScene.key_map["6"] = index_map.find_key(index)
 
 
 func _on_path_line_edit_text_changed(new_text):

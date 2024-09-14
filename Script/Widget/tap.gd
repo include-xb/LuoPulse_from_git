@@ -2,6 +2,8 @@ extends Node2D
 
 var packed_particle : PackedScene = preload("res://Scene/WidgetScene/gpu_particles_2d.tscn")
 
+var scene : PlayScene
+
 var type : String = "tap"
 
 var speed : float = 0
@@ -61,7 +63,8 @@ func judge(hit_time : float):
 func auto_play():
 	if timer >= GlobalScene.delay_time and not is_hit:
 		is_hit = true
-		get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 0.5)
+		# get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 0.5)
+		scene.panel_animation.get_node("../Panel_" + str(column)).modulate = Color(1, 1, 1, 0.5)
 		GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 		dead_particle()
 		GlobalScene.perfect_count += 1
@@ -69,7 +72,8 @@ func auto_play():
 		
 	if timer >= GlobalScene.delay_time + 0.1:
 		self.queue_free()
-		get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 1)
+		# get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 1)
+		scene.panel_animation.get_node("../Panel_" + str(column)).modulate = Color(1, 1, 1, 1)
 
 
 func dead_particle():
@@ -79,4 +83,9 @@ func dead_particle():
 	get_tree().current_scene.add_child(instanced_particle)
 	instanced_particle.global_position = self.global_position
 	instanced_particle.emitting = true
+	
+	if column == 5 or column == 1:
+		scene.panel_animation.play("shake_left")
+	elif column == 6 or column == 4:
+		scene.panel_animation.play("shake_right")
 	

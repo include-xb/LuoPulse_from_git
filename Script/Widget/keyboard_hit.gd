@@ -1,6 +1,6 @@
 extends Panel
 
-@export_enum("1", "2", "3", "4") var column : String
+@export_enum("1", "2", "3", "4", "5", "6") var column : String
 # @export_enum("A", "S", "D", "F", "J", "K", "L", ";") var KEY : String
 var KEY : String
 
@@ -30,17 +30,18 @@ func _input(event : InputEvent):
 	
 	if Input.is_action_just_released("PS_" + KEY):
 		if current_holding != null:
-			GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
-			current_holding.is_holding = false
-			current_holding = null
+			if current_holding in GlobalScene.decision_area:
+				GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(current_holding, 0))
+				current_holding.is_holding = false
+				current_holding = null
 			
 	
 	if Input.is_action_just_pressed("PS_" + KEY):
 		self.modulate = Color(1, 1, 1, 0.5)
 		
-		var column : int = int(GlobalScene.key_map.find_key(KEY))
+		# var column : int = int(GlobalScene.key_map.find_key(KEY))
 		for note in GlobalScene.decision_area:
-			if note.column == column && note.type == "tap":
+			if str(note.column) == column && note.type == "tap":
 				note.judge($"../..".timer)
 	else:
 		self.modulate = Color(1, 1, 1, 1)

@@ -13,7 +13,7 @@ var note_loader : NoteLoader = NoteLoader.new()
 
 @onready var msc_player : AudioStreamPlayer2D = $MscPlayer
 
-@onready var notes : Node2D = $Notes
+@onready var notes : Node2D = $Panel/Notes
 
 @onready var setting_panel : Panel = $SettingPanel
 
@@ -28,6 +28,8 @@ var note_loader : NoteLoader = NoteLoader.new()
 @onready var good_box : LineEdit = $Count/Good/LineEdit
 
 @onready var miss_box : LineEdit = $Count/Miss/LineEdit
+
+@onready var panel_animation : AnimationPlayer = $Panel/Animation
 
 
 var note_type_array : Array = [ ]
@@ -87,7 +89,8 @@ func _process(delta):
 		+ AudioServer.get_time_since_last_mix() \
 		+ GlobalScene.delay_time
 	"""
-	timer += delta
+	
+	timer += delta if get_tree().paused == false else 0
 	
 	if !GlobalScene.is_loading_note:
 		return

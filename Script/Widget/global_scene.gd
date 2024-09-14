@@ -11,7 +11,7 @@ extends Control
 
 
 # 版本
-var version : String = "pc3.2.0.8"
+var version : String = "pc3.3.0.0"
 
 
 # SETTING:
@@ -41,7 +41,9 @@ var key_map : Dictionary = {
 	"1": "D",
 	"2": "F",
 	"3": "J",
-	"4": "K"
+	"4": "K",
+	"5": "S",
+	"6": "L"
 }
 
 

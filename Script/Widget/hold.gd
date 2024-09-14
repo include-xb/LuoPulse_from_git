@@ -6,6 +6,8 @@ var packed_particle : PackedScene = preload("res://Scene/WidgetScene/gpu_particl
 
 var type : String = "hold"
 
+var scene : PlayScene
+
 var speed : float = 0
 
 var timer : float = 0
@@ -23,6 +25,8 @@ var remove : bool = false
 var is_holding : bool = false
 
 var can_released : bool = false
+
+var had_played_panel_animation : bool = false
 
 var holding_timer : float = 0
 
@@ -51,6 +55,9 @@ func _process(delta):
 		missing()
 	
 	if is_holding:
+		if not had_played_panel_animation:
+			scene.panel_animation.play("shake_down")
+			had_played_panel_animation = true
 		can_released = true
 		holding_timer += delta
 		
@@ -65,12 +72,16 @@ func _process(delta):
 	
 	if !is_holding && can_released:
 		can_released = false
+		
+		scene.panel_animation.play_backwards("shake_down")
+		
 		var score = holding_timer / duration
 		
 		if score >= 0.85:
 			GlobalScene.perfect_count += 1
 			GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 		elif 0.5 <= score and score < 0.85:
+			
 			GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 			GlobalScene.good_count += 1
 		else:
@@ -111,16 +122,26 @@ func judge(hit_time : float):
 # INFO: hold autoplay 未完
 func auto_play():
 	if timer >= GlobalScene.delay_time and not is_hit:
+		if not had_played_panel_animation:
+			had_played_panel_animation = true
+			scene.panel_animation.play("shake_down")
+			
 		is_hit = true
-		get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 0.5)
+		is_holding = true
+		# get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 0.5)
+		scene.panel_animation.get_node("../Panel_" + str(column)).modulate = Color(1, 1, 1, 0.5)
+		
 		GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 		dead_particle()
-		GlobalScene.perfect_count += 1
 		# self.visible = false
 		
 	if timer >= GlobalScene.delay_time + duration:
+		is_holding = false
+		scene.panel_animation.play_backwards("shake_down")
+		GlobalScene.perfect_count += 1
 		self.queue_free()
-		get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 1)
+		# get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 1)
+		scene.panel_animation.get_node("../Panel_" + str(column)).modulate = Color(1, 1, 1, 1)
 
 
 func dead_particle():

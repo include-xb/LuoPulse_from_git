@@ -14,81 +14,85 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 20
 script = ExtResource("1_x0msm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
 
-[node name="HesitateSetting" type="MarginContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HesitateSetting" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HesitateSetting"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HesitateSetting"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HesitateSetting/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HesitateSetting/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "延迟(ms)"
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HesitateSetting/HBoxContainer"]
+[node name="SpinBox" type="SpinBox" parent="ScrollContainer/VBoxContainer/HesitateSetting/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 min_value = -1000.0
 max_value = 1000.0
 
-[node name="TipLabel" type="Label" parent="VBoxContainer/HesitateSetting/HBoxContainer"]
+[node name="TipLabel" type="Label" parent="ScrollContainer/VBoxContainer/HesitateSetting/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "    ms"
 vertical_alignment = 1
 
-[node name="PathSetting" type="MarginContainer" parent="VBoxContainer"]
+[node name="PathSetting" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PathSetting"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/PathSetting"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/PathSetting/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/PathSetting/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 25
 text = "歌单路径"
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PathSetting/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/PathSetting/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_right = 700
 
-[node name="PathLineEdit" type="LineEdit" parent="VBoxContainer/PathSetting/HBoxContainer"]
+[node name="PathLineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/PathSetting/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "歌单路径..."
 
-[node name="SpeedSetting" type="MarginContainer" parent="VBoxContainer"]
+[node name="SpeedSetting" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SpeedSetting"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/SpeedSetting"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/SpeedSetting/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "音符流速"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/SpeedSetting/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="SpeedLabel" type="Label" parent="VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer"]
+[node name="SpeedLabel" type="Label" parent="ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SpeedHSlider" type="HSlider" parent="VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer"]
+[node name="SpeedHSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -96,59 +100,94 @@ size_flags_vertical = 1
 min_value = -20.0
 max_value = 20.0
 
-[node name="BGLightSetting" type="MarginContainer" parent="VBoxContainer"]
+[node name="BGLightSetting" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BGLightSetting"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/BGLightSetting"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/BGLightSetting/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "背景亮度
 "
 
-[node name="BglightHSlider" type="HSlider" parent="VBoxContainer/BGLightSetting/HBoxContainer"]
+[node name="BglightHSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
 
-[node name="VolumeSetting" type="MarginContainer" parent="VBoxContainer"]
+[node name="VolumeSetting" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VolumeSetting"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/VolumeSetting"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/VolumeSetting/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/VolumeSetting/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "音量"
 
-[node name="VolumeHSlider" type="HSlider" parent="VBoxContainer/VolumeSetting/HBoxContainer"]
+[node name="VolumeHSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/VolumeSetting/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
 
-[node name="ColumnSetting1" type="MarginContainer" parent="VBoxContainer"]
+[node name="ColumnSetting5" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColumnSetting1"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/ColumnSetting5"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ColumnSetting1/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/ColumnSetting5/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "轨道零"
+
+[node name="OptionButton5" type="OptionButton" parent="ScrollContainer/VBoxContainer/ColumnSetting5/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 8
+selected = 1
+popup/item_0/text = "A"
+popup/item_0/id = 0
+popup/item_1/text = "S"
+popup/item_1/id = 1
+popup/item_2/text = "D"
+popup/item_2/id = 2
+popup/item_3/text = "F"
+popup/item_3/id = 3
+popup/item_4/text = "J"
+popup/item_4/id = 4
+popup/item_5/text = "K"
+popup/item_5/id = 5
+popup/item_6/text = "L"
+popup/item_6/id = 6
+popup/item_7/text = ";"
+popup/item_7/id = 7
+
+[node name="ColumnSetting1" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/ColumnSetting1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/ColumnSetting1/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "轨道一"
 
-[node name="OptionButton1" type="OptionButton" parent="VBoxContainer/ColumnSetting1/HBoxContainer"]
+[node name="OptionButton1" type="OptionButton" parent="ScrollContainer/VBoxContainer/ColumnSetting1/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 item_count = 8
@@ -170,20 +209,20 @@ popup/item_6/id = 6
 popup/item_7/text = ";"
 popup/item_7/id = 7
 
-[node name="ColumnSetting2" type="MarginContainer" parent="VBoxContainer"]
+[node name="ColumnSetting2" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColumnSetting2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/ColumnSetting2"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ColumnSetting2/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/ColumnSetting2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "轨道二"
 
-[node name="OptionButton2" type="OptionButton" parent="VBoxContainer/ColumnSetting2/HBoxContainer"]
+[node name="OptionButton2" type="OptionButton" parent="ScrollContainer/VBoxContainer/ColumnSetting2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 item_count = 8
@@ -205,20 +244,20 @@ popup/item_6/id = 6
 popup/item_7/text = ";"
 popup/item_7/id = 7
 
-[node name="ColumnSetting3" type="MarginContainer" parent="VBoxContainer"]
+[node name="ColumnSetting3" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColumnSetting3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/ColumnSetting3"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ColumnSetting3/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/ColumnSetting3/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "轨道三"
 
-[node name="OptionButton3" type="OptionButton" parent="VBoxContainer/ColumnSetting3/HBoxContainer"]
+[node name="OptionButton3" type="OptionButton" parent="ScrollContainer/VBoxContainer/ColumnSetting3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 item_count = 8
@@ -240,20 +279,20 @@ popup/item_6/id = 6
 popup/item_7/text = ";"
 popup/item_7/id = 7
 
-[node name="ColumnSetting4" type="MarginContainer" parent="VBoxContainer"]
+[node name="ColumnSetting4" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColumnSetting4"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/ColumnSetting4"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ColumnSetting4/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/ColumnSetting4/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "轨道四"
 
-[node name="OptionButton4" type="OptionButton" parent="VBoxContainer/ColumnSetting4/HBoxContainer"]
+[node name="OptionButton4" type="OptionButton" parent="ScrollContainer/VBoxContainer/ColumnSetting4/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 item_count = 8
@@ -275,33 +314,70 @@ popup/item_6/id = 6
 popup/item_7/text = ";"
 popup/item_7/id = 7
 
-[node name="AutoPlaySetting" type="MarginContainer" parent="VBoxContainer"]
+[node name="ColumnSetting6" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/AutoPlaySetting"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/ColumnSetting6"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/AutoPlaySetting/HBoxContainer"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/ColumnSetting6/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "轨道五"
+
+[node name="OptionButton6" type="OptionButton" parent="ScrollContainer/VBoxContainer/ColumnSetting6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 8
+selected = 6
+popup/item_0/text = "A"
+popup/item_0/id = 0
+popup/item_1/text = "S"
+popup/item_1/id = 1
+popup/item_2/text = "D"
+popup/item_2/id = 2
+popup/item_3/text = "F"
+popup/item_3/id = 3
+popup/item_4/text = "J"
+popup/item_4/id = 4
+popup/item_5/text = "K"
+popup/item_5/id = 5
+popup/item_6/text = "L"
+popup/item_6/id = 6
+popup/item_7/text = ";"
+popup/item_7/id = 7
+
+[node name="AutoPlaySetting" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/AutoPlaySetting"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "自动点击"
 
-[node name="TipLabel" type="Label" parent="VBoxContainer/AutoPlaySetting/HBoxContainer"]
+[node name="TipLabel" type="Label" parent="ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 20
 text = "ON/OFF"
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/AutoPlaySetting/HBoxContainer"]
+[node name="CheckButton" type="CheckButton" parent="ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[connection signal="text_changed" from="VBoxContainer/PathSetting/HBoxContainer/PathLineEdit" to="." method="_on_path_line_edit_text_changed"]
-[connection signal="value_changed" from="VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedHSlider" to="." method="_on_speed_h_slider_value_changed"]
-[connection signal="item_selected" from="VBoxContainer/ColumnSetting1/HBoxContainer/OptionButton1" to="." method="_on_option_button_1_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/ColumnSetting2/HBoxContainer/OptionButton2" to="." method="_on_option_button_2_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/ColumnSetting3/HBoxContainer/OptionButton3" to="." method="_on_option_button_3_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/ColumnSetting4/HBoxContainer/OptionButton4" to="." method="_on_option_button_4_item_selected"]
-[connection signal="toggled" from="VBoxContainer/AutoPlaySetting/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/PathSetting/HBoxContainer/PathLineEdit" to="." method="_on_path_line_edit_text_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedHSlider" to="." method="_on_speed_h_slider_value_changed"]
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting5/HBoxContainer/OptionButton5" to="." method="_on_option_button_5_item_selected"]
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting1/HBoxContainer/OptionButton1" to="." method="_on_option_button_1_item_selected"]
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting2/HBoxContainer/OptionButton2" to="." method="_on_option_button_2_item_selected"]
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting3/HBoxContainer/OptionButton3" to="." method="_on_option_button_3_item_selected"]
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting4/HBoxContainer/OptionButton4" to="." method="_on_option_button_4_item_selected"]
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting6/HBoxContainer/OptionButton6" to="." method="_on_option_button_6_item_selected"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]

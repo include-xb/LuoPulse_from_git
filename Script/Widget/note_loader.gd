@@ -19,6 +19,7 @@ func load_note(
 		instanced_note = packed_tap.instantiate()
 	elif type == "hold":
 		instanced_note = packed_hold.instantiate()
+	instanced_note.scene = scene
 	instanced_note.position.x = 100 * column - 250
 	instanced_note.position.y = 230 - GlobalScene.speed * GlobalScene.delay_time
 	instanced_note.type = type

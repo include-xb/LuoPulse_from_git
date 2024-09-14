@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://btx54tjnay7pk"]
+[gd_scene load_steps=14 format=3 uid="uid://btx54tjnay7pk"]
 
 [ext_resource type="Script" path="res://Script/Visual/play_scene.gd" id="1_5kuat"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="1_discp"]
@@ -13,92 +13,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sfegf"]
 shader = ExtResource("2_hmmav")
 shader_parameter/lod = 2.0
-
-[sub_resource type="Animation" id="Animation_jwiqw"]
-resource_name = "shake_left"
-length = 0.12
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 4
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.08),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.0261799, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_acifi"]
-resource_name = "shake_right"
-length = 0.12
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 4
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0261799, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_alq7j"]
-resource_name = "shake_down"
-length = 0.12
-step = 0.12
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.12),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 25)]
-}
-
-[sub_resource type="Animation" id="Animation_h2vs0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hohq0"]
-_data = {
-"RESET": SubResource("Animation_h2vs0"),
-"shake_down": SubResource("Animation_alq7j"),
-"shake_left": SubResource("Animation_jwiqw"),
-"shake_right": SubResource("Animation_acifi")
-}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu5tb"]
 bg_color = Color(0, 0, 0, 0.470588)
@@ -144,147 +58,6 @@ offset_bottom = 446.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_discp")
-
-[node name="Panel" type="Control" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 3
-anchors_preset = 0
-
-[node name="Panel_1" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = -200.0
-offset_top = -679.0
-offset_right = -100.0
-offset_bottom = 230.0
-script = ExtResource("4_ethtw")
-column = "1"
-
-[node name="Panel_2" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = -100.0
-offset_top = -679.0
-offset_bottom = 230.0
-script = ExtResource("4_ethtw")
-column = "2"
-
-[node name="Panel_3" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_top = -679.0
-offset_right = 100.0
-offset_bottom = 230.0
-script = ExtResource("4_ethtw")
-column = "3"
-
-[node name="Panel_4" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = -679.0
-offset_right = 200.0
-offset_bottom = 230.0
-script = ExtResource("4_ethtw")
-column = "4"
-
-[node name="Panel_5" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = -300.0
-offset_top = -679.0
-offset_right = -200.0
-offset_bottom = 230.0
-script = ExtResource("4_ethtw")
-column = "5"
-
-[node name="Panel_6" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 200.0
-offset_top = -679.0
-offset_right = 300.0
-offset_bottom = 230.0
-script = ExtResource("4_ethtw")
-column = "6"
-
-[node name="ExtraPanel" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = -792.0
-offset_top = 230.0
-offset_right = 795.0
-offset_bottom = 666.0
-
-[node name="ExtraPanel2" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 300.0
-offset_top = -680.0
-offset_right = 797.0
-offset_bottom = 230.0
-
-[node name="ExtraPanel3" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = -792.0
-offset_top = -679.0
-offset_right = -300.0
-offset_bottom = 230.0
-
-[node name="Line2D" type="Line2D" parent="Panel"]
-position = Vector2(-198.75, 216)
-scale = Vector2(1.75, 0.157588)
-points = PackedVector2Array(-1, -2, -1, 105.357)
-width = 3.0
-default_color = Color(0.4, 0.8, 1, 1)
-
-[node name="Line2D7" type="Line2D" parent="Panel"]
-position = Vector2(-298.75, 216)
-scale = Vector2(1.75, 0.157588)
-points = PackedVector2Array(-1, -2, -1, 105.357)
-width = 3.0
-default_color = Color(0.4, 0.8, 1, 1)
-
-[node name="Line2D2" type="Line2D" parent="Panel"]
-position = Vector2(-98.75, 216)
-scale = Vector2(1.75, 0.157588)
-points = PackedVector2Array(-1, -2, -1, 105.357)
-width = 3.0
-default_color = Color(0.4, 0.8, 1, 1)
-
-[node name="Line2D3" type="Line2D" parent="Panel"]
-position = Vector2(1.25, 216)
-scale = Vector2(1.75, 0.157588)
-points = PackedVector2Array(-1, -2, -1, 105.357)
-width = 3.0
-default_color = Color(0.4, 0.8, 1, 1)
-
-[node name="Line2D4" type="Line2D" parent="Panel"]
-position = Vector2(101.25, 216)
-scale = Vector2(1.75, 0.157588)
-points = PackedVector2Array(-1, -2, -1, 105.357)
-width = 3.0
-default_color = Color(0.4, 0.8, 1, 1)
-
-[node name="Line2D5" type="Line2D" parent="Panel"]
-position = Vector2(201.25, 216)
-scale = Vector2(1.75, 0.157588)
-points = PackedVector2Array(-1, -2, -1, 105.357)
-width = 3.0
-default_color = Color(0.4, 0.8, 1, 1)
-
-[node name="Line2D6" type="Line2D" parent="Panel"]
-position = Vector2(301.25, 216)
-scale = Vector2(1.75, 0.157588)
-points = PackedVector2Array(-1, -2, -1, 105.357)
-width = 3.0
-default_color = Color(0.4, 0.8, 1, 1)
-
-[node name="Notes" type="Node2D" parent="Panel"]
-process_mode = 1
-position = Vector2(-1, 0)
-
-[node name="DecisionLine" type="Sprite2D" parent="Panel"]
-position = Vector2(1.00005, 230)
-scale = Vector2(1.5037, 0.4)
-texture = ExtResource("4_i0p33")
-
-[node name="Animation" type="AnimationPlayer" parent="Panel"]
-libraries = {
-"": SubResource("AnimationLibrary_hohq0")
-}
 
 [node name="Count" type="VBoxContainer" parent="."]
 offset_left = -570.0
@@ -347,6 +120,93 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 10
 text = "123"
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -199.0
+offset_top = -360.0
+offset_right = 204.0
+offset_bottom = 359.0
+
+[node name="Panel_1" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 589.0
+script = ExtResource("4_ethtw")
+column = "1"
+
+[node name="Panel_2" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 200.0
+offset_bottom = 590.0
+script = ExtResource("4_ethtw")
+column = "2"
+
+[node name="Panel_3" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 300.0
+offset_bottom = 589.0
+script = ExtResource("4_ethtw")
+column = "3"
+
+[node name="Panel_4" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 400.0
+offset_bottom = 590.0
+script = ExtResource("4_ethtw")
+column = "4"
+
+[node name="ExtraPanel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_top = 590.0
+offset_right = 400.0
+offset_bottom = 729.0
+
+[node name="Line2D" type="Line2D" parent="Panel"]
+position = Vector2(0.25, 1.19646)
+scale = Vector2(0.75, 1.29911)
+points = PackedVector2Array(-1, -2, -1, 559)
+width = 2.0
+default_color = Color(0.4, 0.8, 1, 1)
+
+[node name="Line2D2" type="Line2D" parent="Panel"]
+position = Vector2(101, 1.21062)
+scale = Vector2(1, 1.30265)
+points = PackedVector2Array(-1, -2, -1, 559)
+width = 2.0
+default_color = Color(0.4, 0.8, 1, 1)
+
+[node name="Line2D3" type="Line2D" parent="Panel"]
+position = Vector2(200, 1.21062)
+scale = Vector2(1, 1.30265)
+points = PackedVector2Array(-1, -2, -1, 559)
+width = 2.0
+default_color = Color(0.4, 0.8, 1, 1)
+
+[node name="Line2D4" type="Line2D" parent="Panel"]
+position = Vector2(301, 1.2177)
+scale = Vector2(1, 1.30442)
+points = PackedVector2Array(-1, -2, -1, 559)
+width = 2.0
+default_color = Color(0.4, 0.8, 1, 1)
+
+[node name="Line2D5" type="Line2D" parent="Panel"]
+position = Vector2(400, 1.18231)
+scale = Vector2(1, 1.29558)
+points = PackedVector2Array(-1, -2, -1, 559)
+width = 2.0
+default_color = Color(0.4, 0.8, 1, 1)
+
+[node name="Notes" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="DecisionLine" type="Sprite2D" parent="."]
+position = Vector2(0, 230)
+scale = Vector2(0.38, 0.4)
+texture = ExtResource("4_i0p33")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
