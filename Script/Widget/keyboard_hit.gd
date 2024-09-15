@@ -1,7 +1,7 @@
 extends Panel
 
 @export_enum("1", "2", "3", "4", "5", "6") var column : String
-# @export_enum("A", "S", "D", "F", "J", "K", "L", ";") var KEY : String
+
 var KEY : String
 
 # var is_holding : bool = false

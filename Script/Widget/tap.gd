@@ -6,6 +6,9 @@ var scene : PlayScene
 
 var type : String = "tap"
 
+# 每个音符的唯一标识符
+var id : int = -1
+
 var speed : float = 0
 
 var timer : float = 0
@@ -28,13 +31,13 @@ func _process(delta):
 	timer += delta
 	position.y += speed * delta
 	
-	# 判定区间: 正负 125ms
-	if !add && timer >= GlobalScene.delay_time -0.125:
+	# 判定区间: 负 120ms 正 120ms
+	if !add && timer >= GlobalScene.delay_time -0.12:
 		add = true
 		GlobalScene.decision_area.push_back(self)
 		self.modulate = Color(120, 120, 120)
 		
-	elif !remove && timer >= GlobalScene.delay_time + 0.125:
+	elif !remove && timer >= GlobalScene.delay_time + 0.12:
 		remove = true
 		GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 		

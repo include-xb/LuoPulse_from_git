@@ -478,5 +478,5 @@ libraries = {
 "": SubResource("AnimationLibrary_s3rgp")
 }
 
-[connection signal="button_down" from="Header/HBoxContainer/Home/HomeButton" to="." method="_on_home_button_button_down"]
+[connection signal="pressed" from="Header/HBoxContainer/Home/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="Cover/Info/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

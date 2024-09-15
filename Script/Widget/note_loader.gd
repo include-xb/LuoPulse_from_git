@@ -11,7 +11,8 @@ func load_note(
 		type : String, 
 		time : float, 
 		column : int, 
-		duration : float
+		duration : float,
+		index : int
 	) -> void:
 	
 	var instanced_note : Node2D
@@ -19,12 +20,16 @@ func load_note(
 		instanced_note = packed_tap.instantiate()
 	elif type == "hold":
 		instanced_note = packed_hold.instantiate()
+	
 	instanced_note.scene = scene
 	instanced_note.position.x = 100 * column - 250
-	instanced_note.position.y = 230 - GlobalScene.speed * GlobalScene.delay_time
+	# instanced_note.position.y = 230 - GlobalScene.speed * GlobalScene.delay_time
+	instanced_note.position.y = scene.decision_line.position.y - GlobalScene.speed * GlobalScene.delay_time
+	
 	instanced_note.type = type
 	instanced_note.column = column
 	instanced_note.duration = duration
+	instanced_note.id = index
 	
 	scene.notes.add_child(instanced_note)
 	

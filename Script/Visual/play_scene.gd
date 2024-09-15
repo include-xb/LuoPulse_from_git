@@ -15,6 +15,8 @@ var note_loader : NoteLoader = NoteLoader.new()
 
 @onready var notes : Node2D = $Panel/Notes
 
+@onready var decision_line : Sprite2D = $Panel/DecisionLine
+
 @onready var setting_panel : Panel = $SettingPanel
 
 @onready var resume_timer : Timer = $ResumeTimer
@@ -96,13 +98,14 @@ func _process(delta):
 		return
 	
 	for i in range(4):
-		if timer >= note_time_array[index]:
+		if timer >= note_time_array[index] :
 			note_loader.load_note(
 				self, 
 				note_type_array[index], 
 				note_time_array[index], 
 				note_column_array[index], 
-				note_duration_array[index]
+				note_duration_array[index],
+				index
 			)
 			# print("偏正时间: ", -AudioServer.get_time_to_next_mix() + AudioServer.get_time_since_last_mix())
 			index += 1

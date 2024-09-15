@@ -31,6 +31,8 @@ var hesitate_time : float = 0
 # 若 speed= 600, fps = 60, 则 delta = 1/60 秒, 每一帧位移为 10 像素
 var speed : float = 900
 
+var adjust : float = 0
+
 var volume : float = 0
 
 var bglight : int = 0
@@ -126,6 +128,7 @@ func clear_count():
 
 func save_cfg_data() -> void:
 	var config : Dictionary = {
+		"adjust": adjust,
 		"root_msc_path": root_msc_path,
 		"speed": speed,
 		"volume": volume,

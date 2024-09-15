@@ -10,10 +10,12 @@ res://Scene/VisualScene/user_scene.tscn
 res://Scene/VisualScene/hub_scene.tscn
 res://Scene/WidgetScene/generic.tscn
 res://Scene/WidgetScene/global_scene.tscn
-res://Script/Widget/keyboard_hit.gd
-res://Script/Widget/global_scene.gd
-res://Script/Widget/generic.gd
-res://Script/Visual/play_scene.gd
+res://Script/Visual/select_scene.gd
+res://Script/Visual/setting_scene.gd
+res://Script/Visual/user_scene.gd
+res://Script/Widget/hold.gd
 res://Script/Widget/tap.gd
 res://Script/Widget/note_loader.gd
-res://Script/Widget/hold.gd
+res://Script/Visual/play_scene.gd
+res://Script/Widget/keyboard_hit.gd
+res://Script/Widget/global_scene.gd

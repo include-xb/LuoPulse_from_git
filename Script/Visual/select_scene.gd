@@ -87,6 +87,8 @@ func set_demo_msc_cover(msc_title : String):
 
 
 func _ready():
+	get_tree().paused = false
+	
 	scroll.scroll_vertical = 1
 	
 	move_up_animation.play("RESET")
@@ -115,10 +117,13 @@ func _input(event : InputEvent):
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and scroll.scroll_vertical == scroll.get_v_scroll_bar().max_value - scroll_body.get_end().y:
 			var first_child = scroll_body.get_children()[0]
 			scroll_body.move_child(first_child, -1)
+	
+	if Input.is_action_just_pressed("Pause"):
+		_on_home_button_pressed()
 
 
 # 返回主菜单 按钮在左上角
-func _on_home_button_button_down():
+func _on_home_button_pressed():
 	SceneChanger.change_scene("res://Scene/VisualScene/start_scene.tscn")
 
 
@@ -131,3 +136,5 @@ func _on_button_pressed():
 	audio_preplayer.stop()
 	print("进入 play_scene")
 	SceneChanger.change_scene("res://Scene/VisualScene/play_scene.tscn")
+
+

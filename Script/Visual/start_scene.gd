@@ -48,10 +48,12 @@ func get_user_config() -> void:
 	# 判空
 	if cfgFile != "":
 		var config: Dictionary = JSON.parse_string(cfgFile)
-		GlobalScene.root_msc_path = config.root_msc_path
-		GlobalScene.volume = config.volume
-		GlobalScene.bglight = config.bglight
-		GlobalScene.speed = config.speed
-		GlobalScene.user_name = config.user_name
-		GlobalScene.auto_play = config.auto_play
-		GlobalScene.key_map = config.key_map
+		GlobalScene.root_msc_path = config.root_msc_path 	if config.has("root_msc_path") else ""
+		GlobalScene.adjust = config.adjust 					if config.has("adjust") else 0
+		GlobalScene.volume = config.volume 					if config.has("volume") else 0
+		GlobalScene.bglight = config.bglight 				if config.has("bglight") else 0
+		GlobalScene.speed = config.speed 					if config.has("speed") else -5
+		GlobalScene.user_name = config.user_name 			if config.has("user_name") else "user"
+		GlobalScene.auto_play = config.auto_play 			if config.has("auto_play") else false
+		GlobalScene.key_map = config.key_map 				if config.has("key_map") else { "1": "D", "2": "F", "3": "J", "4": "K", "5": "S", "6": "L" }
+		

@@ -10,12 +10,17 @@ func _ready():
 	user_name_editor.text = GlobalScene.user_name
 
 
+func _input(event):
+	if Input.is_action_just_pressed("Pause"):
+		_on_sublime_button_pressed()
+
+
 func _on_sublime_button_pressed():
 	if tip_label.visible:
 		return
 	GlobalScene.user_name = user_name_editor.text
 	GlobalScene.save_cfg_data()
-	SceneChanger.change_scene("res://Scene/VisualScene/hub_scene.tscn")
+	SceneChanger.change_scene("res://Scene/VisualScene/start_scene.tscn")
 	print("进入 hub_scene")
 
 
