@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/Visual/game_scene.gd" id="1_hc52r"]
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="2_nai6g"]
 [ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="2_xa2pb"]
-[ext_resource type="Script" path="res://Scripts/Widgets/track.gd" id="3_6u5d2"]
-[ext_resource type="PackedScene" uid="uid://dlnpjc60fp25e" path="res://Scenes/Widgets/touch_line.tscn" id="4_2x7fw"]
+[ext_resource type="Script" path="res://Scripts/Widgets/Game/track.gd" id="3_6u5d2"]
+[ext_resource type="PackedScene" uid="uid://dlnpjc60fp25e" path="res://Scenes/Widgets/Game/touch_line.tscn" id="4_2x7fw"]
 [ext_resource type="Texture2D" uid="uid://bq1ans1k2uhqj" path="res://Assets/Icons/pause.svg" id="4_uobv1"]
 [ext_resource type="Texture2D" uid="uid://clyg4t15sencw" path="res://Assets/Icons/play-fill-lowdpi.svg" id="5_21way"]
 [ext_resource type="Texture2D" uid="uid://ds7vq0u42tqmn" path="res://Assets/Icons/exit-to-app.svg" id="6_c0off"]
@@ -258,7 +258,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.5, 1)
+transform = Transform3D(1, 0, 0, 0, 0.681999, 0.731354, 0, -0.731354, 0.681999, 0, 3.5, 1)
 current = true
 far = 5000.0
 
@@ -295,7 +295,7 @@ mesh = SubResource("PlaneMesh_yq31u")
 [node name="track3" type="Node3D" parent="track"]
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="track"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3, -4, -50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3, -4, -40)
 mesh = SubResource("PlaneMesh_17ajn")
 
 [node name="track4" type="Node3D" parent="track"]

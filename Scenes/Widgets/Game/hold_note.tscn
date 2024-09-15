@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmkqkg5rp6b53"]
+
+[ext_resource type="Script" path="res://Scripts/Widgets/Game/hold_note.gd" id="1_rnqry"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_djk37"]
+size = Vector3(2, 0.001, 0.5)
+
+[node name="HoldNote" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_djk37")
+script = ExtResource("1_rnqry")
+
+[node name="HoldTimer" type="Timer" parent="."]
+one_shot = true

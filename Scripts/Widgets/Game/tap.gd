@@ -1,7 +1,5 @@
 extends MeshInstance3D
 
-
-
 """
 queue_free() 之前, 一定需要
 RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
@@ -9,7 +7,7 @@ RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 
 """
 
-class_name Note
+class_name Tap
 
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 

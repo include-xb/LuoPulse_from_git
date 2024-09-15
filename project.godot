@@ -29,6 +29,10 @@ window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true

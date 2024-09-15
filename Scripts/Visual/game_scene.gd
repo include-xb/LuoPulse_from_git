@@ -26,11 +26,11 @@ class_name GameScene
 @onready var score_label: Label = $Control/VBoxContainer/MarginContainer/ScoreLabel
 
 
-var packed_note : PackedScene = preload("res://Scenes/Widgets/note.tscn")
+var packed_tap_note : PackedScene = preload("res://Scenes/Widgets/Game/tap.tscn")
 
-var packed_hold_note : PackedScene = preload("res://Scenes/Widgets/hold_note.tscn")
+var packed_hold_note : PackedScene = preload("res://Scenes/Widgets/Game/hold_note.tscn")
 
-var packed_touch_line : PackedScene = preload("res://Scenes/Widgets/touch_line.tscn")
+var packed_touch_line : PackedScene = preload("res://Scenes/Widgets/Game/touch_line.tscn")
 
 var note_loader = NoteLoader.new()
 
@@ -214,7 +214,7 @@ func _ready() -> void:
 	print("共有音符: ", total_note_num, "个")
 	
 	# 计算单个音符得分
-	RunningData.single_note_score = 1000000 / total_note_num
+	RunningData.single_note_score = 1000000.0 / total_note_num
 	
 	# 音符的各个信息写入列表
 	for i in json_data.HitObjects:
