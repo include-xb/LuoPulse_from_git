@@ -11,7 +11,7 @@ extends Control
 
 
 # 版本
-var version : String = "pc3.3.0.0"
+var version : String = "pc3.3.1.0"
 
 
 # SETTING:
@@ -98,6 +98,8 @@ var selected_msc_cover : Texture
 
 # 音频
 var selected_stream : AudioStream
+
+var selected_demo_msc : DemoMsc
 
 var first_note_time : float = -1
 

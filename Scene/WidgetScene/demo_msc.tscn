@@ -30,7 +30,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_v28j6"]
-resource_name = "click_on"
+resource_name = "hover_on"
 length = 0.1
 step = 0.05
 tracks/0/type = "value"
@@ -40,10 +40,10 @@ tracks/0/path = NodePath(".:theme_override_colors/font_color")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.4, 0.8, 1, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(0.4, 0.8, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -52,16 +52,16 @@ tracks/1/path = NodePath(".:theme_override_font_sizes/font_size")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [20, 35, 20]
+"values": [20, 35]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n2rci"]
 _data = {
 "RESET": SubResource("Animation_s0m6h"),
-"click_on": SubResource("Animation_v28j6")
+"hover_on": SubResource("Animation_v28j6")
 }
 
 [node name="DemoMsc" type="MarginContainer"]
@@ -90,9 +90,11 @@ text = "DEMO_MSC"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ClickAnimation" type="AnimationPlayer" parent="MarginContainer/Label"]
+[node name="Animation" type="AnimationPlayer" parent="MarginContainer/Label"]
 libraries = {
 "": SubResource("AnimationLibrary_n2rci")
 }
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

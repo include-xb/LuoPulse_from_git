@@ -55,7 +55,9 @@ func _process(delta):
 		GlobalScene.decision_area.push_back(self)
 	
 	# 开头直接 miss
-	elif is_holding == false && self in GlobalScene.decision_area && !remove && timer >= GlobalScene.delay_time + 0.12:
+	elif is_holding == false && \
+			self in GlobalScene.decision_area && \
+			!remove && timer >= GlobalScene.delay_time + 0.12:
 		remove = true
 		missing()
 	

@@ -1,0 +1,53 @@
+{
+    "General": {
+        "Title": "test",
+        "Artist": "作词/作曲 COP \n演唱 洛天依",
+        "Creator": "-",
+        "Version": "1.0",
+        "BPM": 120
+    },
+    "TimingPoints": [
+        {
+            "time": 0,
+            "bpm": 120
+        },
+        {
+            "time": 0.5,
+            "bpm": 60
+        }
+    ],
+    "HitObjects": [
+        {
+            "type": "tap",
+            "time": 1,
+            "column": 1
+        },
+        {
+            "type": "tap",
+            "time": 1.5,
+            "column": 2
+        },
+        {
+            "type": "tap",
+            "time": 2,
+            "column": 3
+        },
+        {
+            "type": "tap",
+            "time": 2.5,
+            "column": 4
+        },
+        {
+            "type": "hold",
+            "time": 3,
+            "column": 1,
+            "duration": 1
+        },
+        {
+            "type": "hold",
+            "time": 4,
+            "column": 4,
+            "duration": 1
+        }
+    ]
+}

@@ -1,0 +1,81 @@
+{
+    "General": {
+        "Title": "test",
+        "Artist": "-",
+        "Creator": "-",
+        "Version": "1.0",
+        "BPM": 120
+    },
+    "TimingPoints": [
+        {
+            "time": 0,
+            "bpm": 120
+        },
+        {
+            "time": 0.5,
+            "bpm": 60
+        }
+    ],
+    "HitObjects": [
+        {
+            "type": "hold",
+            "time": 1,
+            "column": 2,
+            "duration": 2
+        },
+        {
+            "type": "hold",
+            "time": 3,
+            "column": 1,
+            "duration": 2
+        },
+        {
+            "type": "hold",
+            "time": 5,
+            "column": 3,
+            "duration": 2
+        },
+        {
+            "type": "hold",
+            "time": 7,
+            "column": 1,
+            "duration": 2
+        },
+        {
+            "type": "hold",
+            "time": 9,
+            "column": 3,
+            "duration": 2
+        },
+        {
+            "type": "hold",
+            "time": 11,
+            "column": 1,
+            "duration": 2
+        },
+        {
+            "type": "hold",
+            "time": 13,
+            "column": 3,
+            "duration": 2
+        },
+        {
+            "type": "hold",
+            "time": 15,
+            "column": 1,
+            "duration": 2
+        },
+        {
+            "type": "hold",
+            "time": 17,
+            "column": 3,
+            "duration": 2
+        },
+        {
+            "type": "hold",
+            "time": 19,
+            "column": 1,
+            "duration": 2
+        }
+    ]
+}

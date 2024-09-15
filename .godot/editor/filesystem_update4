@@ -19,3 +19,7 @@ res://Script/Widget/note_loader.gd
 res://Script/Visual/play_scene.gd
 res://Script/Widget/keyboard_hit.gd
 res://Script/Widget/global_scene.gd
+res://Script/Visual/hub_scene.gd
+res://Script/Widget/bili_user_info.gd
+res://Scene/WidgetScene/demo_msc.tscn
+res://Script/Widget/DemoMsc.gd

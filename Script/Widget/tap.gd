@@ -31,8 +31,12 @@ func _process(delta):
 	timer += delta
 	position.y += speed * delta
 	
+	if GlobalScene.auto_play:
+		auto_play()
+		return
+	
 	# 判定区间: 负 120ms 正 120ms
-	if !add && timer >= GlobalScene.delay_time -0.12:
+	if !add && timer >= GlobalScene.delay_time - 0.12:
 		add = true
 		GlobalScene.decision_area.push_back(self)
 		self.modulate = Color(120, 120, 120)
@@ -46,8 +50,7 @@ func _process(delta):
 		
 		self.queue_free()
 	
-	if GlobalScene.auto_play:
-		auto_play()
+	
 
 
 func judge(hit_time : float):

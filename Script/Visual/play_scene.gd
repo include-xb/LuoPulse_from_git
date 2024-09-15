@@ -98,7 +98,7 @@ func _process(delta):
 		return
 	
 	for i in range(4):
-		if timer >= note_time_array[index] :
+		if timer >= note_time_array[index] + GlobalScene.adjust:
 			note_loader.load_note(
 				self, 
 				note_type_array[index], 

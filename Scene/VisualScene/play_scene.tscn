@@ -310,6 +310,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 10
 text = "123"
+editable = false
 
 [node name="Good" type="HBoxContainer" parent="Count"]
 layout_mode = 2
@@ -329,6 +330,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 10
 text = "123"
+editable = false
 
 [node name="Miss" type="HBoxContainer" parent="Count"]
 layout_mode = 2
@@ -348,6 +350,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 10
 text = "123"
+editable = false
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
@@ -370,6 +373,7 @@ theme_override_constants/margin_right = 5
 
 [node name="SettingButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer3"]
 layout_mode = 2
+tooltip_text = "ESC键暂停"
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("4_mymca")
 

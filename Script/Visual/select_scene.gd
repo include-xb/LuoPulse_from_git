@@ -64,12 +64,14 @@ func set_demo_msc_cover(msc_title : String):
 		print("文件 <" + audio_path + "> 不存在")
 		# artist_label.text = "文件 <" + audio_path + "> 不存在"
 	else:
-		var audio_file = FileAccess.open(audio_path, FileAccess.READ)
-		var sound = AudioStreamMP3.new()
-		sound.data = audio_file.get_buffer(audio_file.get_length())
-		audio_preplayer.stream = sound
+		audio_preplayer.stream = load(audio_path)
+		if audio_preplayer.stream == null:
+			var audio_file = FileAccess.open(audio_path, FileAccess.READ)
+			var sound = AudioStreamMP3.new()
+			sound.data = audio_file.get_buffer(audio_file.get_length())
+			audio_preplayer.stream = sound
 		
-		GlobalScene.selected_stream = sound
+		GlobalScene.selected_stream = audio_preplayer.stream
 		audio_preplayer.stream = GlobalScene.selected_stream
 		audio_preplayer.play()
 	
@@ -110,6 +112,9 @@ func _ready():
 
 
 func _input(event : InputEvent):
+	if GlobalScene.selected_demo_msc != null:
+		GlobalScene.selected_demo_msc.modulate = Color("66ccff")
+	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and scroll.scroll_vertical <= 0:
 			var last_child = scroll_body.get_children()[-1]
@@ -124,7 +129,7 @@ func _input(event : InputEvent):
 
 # 返回主菜单 按钮在左上角
 func _on_home_button_pressed():
-	SceneChanger.change_scene("res://Scene/VisualScene/start_scene.tscn")
+	SceneChanger.change_scene("res://Scene/VisualScene/hub_scene.tscn")
 
 
 func _on_button_pressed():
