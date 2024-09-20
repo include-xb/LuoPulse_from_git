@@ -16,15 +16,16 @@ func _ready():
 	print(column, ": ", KEY)
 
 
+@warning_ignore("unused_parameter")
 func _input(event : InputEvent):
 	KEY = GlobalScene.key_map[column]
 	if GlobalScene.auto_play:
 		return
 	
 	if Input.is_action_pressed("PS_" + KEY):
-		var column : int = int(GlobalScene.key_map.find_key(KEY))
+		var col : int = int(GlobalScene.key_map.find_key(KEY))
 		for note in GlobalScene.decision_area:
-			if note.column == column and note.type == "hold":
+			if note.column == col and note.type == "hold":
 				current_holding = note
 				note.is_holding = true
 	
@@ -42,6 +43,6 @@ func _input(event : InputEvent):
 		# var column : int = int(GlobalScene.key_map.find_key(KEY))
 		for note in GlobalScene.decision_area:
 			if str(note.column) == column && note.type == "tap":
-				note.judge($"../..".timer)
+				note.judge()
 	else:
 		self.modulate = Color(1, 1, 1, 1)

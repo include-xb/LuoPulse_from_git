@@ -55,6 +55,9 @@ var index : int = 0
 
 func _ready():
 	GlobalScene.clear_count()
+	notes.process_mode = Node.PROCESS_MODE_PAUSABLE
+	msc_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+	# timer = -GlobalScene.dea
 	
 	time_label.visible = false
 	setting_panel.visible = false
@@ -79,20 +82,25 @@ func _ready():
 		note_column_array.push_back(note.column)
 		note_duration_array.push_back(note.duration if note.has("duration") else 0)
 	
-	await get_tree().create_timer(GlobalScene.delay_time).timeout
+	panel_animation.play("slide_up")
+	await panel_animation.animation_finished
+	
+	# await get_tree().create_timer(GlobalScene.delay_time).timeout
 	
 	msc_player.play()
 
 
+@warning_ignore("unused_parameter")
 func _process(delta):
-	"""
-	timer = msc_player.get_playback_position() \
-		- AudioServer.get_time_to_next_mix() \
-		+ AudioServer.get_time_since_last_mix() \
-		+ GlobalScene.delay_time
-	"""
 	
-	timer += delta if get_tree().paused == false else 0
+	# timer += delta if get_tree().paused == false else 0
+	if timer <= GlobalScene.delay_time:
+		timer += delta if get_tree().paused == false else 0
+	else:
+		timer = msc_player.get_playback_position() \
+			- AudioServer.get_time_to_next_mix() \
+			+ AudioServer.get_time_since_last_mix() \
+			+ GlobalScene.delay_time
 	
 	if !GlobalScene.is_loading_note:
 		return
@@ -123,26 +131,31 @@ func _process(delta):
 	miss_box.text = str(GlobalScene.miss_count)
 	
 	var clicked_note_num : float = GlobalScene.perfect_count + GlobalScene.good_count + GlobalScene.miss_count
-	var score : float = 100 * GlobalScene.perfect_count + 50 * GlobalScene.good_count
+	# var score : float = 100 * GlobalScene.perfect_count + 50 * GlobalScene.good_count
 	if clicked_note_num != 0:
-		var score_percent : float = score / clicked_note_num
+		# var score_percent : float = score / clicked_note_num
 		var finish_percent : float = clicked_note_num / total_note_num
 		finish_progress.value = finish_percent * 100
 		# print("目前音符: ", clicked_note_num, "/", total_note_num)
 		# print("完成度: ", clicked_note_num / total_note_num * 100 , "%")
 
+@warning_ignore("unused_parameter")
 func _input(event):
 	if Input.is_action_pressed("Pause") and setting_panel.visible == false:
 		_on_setting_button_pressed()
 	if Input.is_action_pressed("Resume") and setting_panel.visible == true:
 		_on_sublime_button_pressed()
+	
+	if Input.is_key_pressed(KEY_Q):
+		_on_msc_player_finished()
 
 
 # 左上角按钮
 func _on_setting_button_pressed():
-	if time_label.visible == true:
+	if notes.process_mode == Node.PROCESS_MODE_DISABLED:
 		return
-	get_tree().paused = true
+	notes.process_mode = Node.PROCESS_MODE_DISABLED
+	msc_player.process_mode = Node.PROCESS_MODE_DISABLED
 	setting_panel.visible = true
 
 
@@ -153,11 +166,21 @@ func _on_sublime_button_pressed():
 	time_label.visible = true
 	resume_timer.start(3)
 	await resume_timer.timeout
-	get_tree().paused = false
+	notes.process_mode = Node.PROCESS_MODE_PAUSABLE
+	msc_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 
 
 # 返回歌单列表
 func _on_back_pressed():
-	get_tree().paused = false
+	# notes.process_mode = Node.PROCESS_MODE_DISABLED
 	msc_player.stop()
 	SceneChanger.change_scene("res://Scene/VisualScene/select_scene.tscn")
+
+
+func _on_msc_player_finished():
+	panel_animation.play("finish_adjust")
+	await panel_animation.animation_finished
+	panel_animation.play_backwards("slide_up")
+	await panel_animation.animation_finished
+	
+	print("结束")

@@ -89,6 +89,8 @@ theme_override_font_sizes/font_size = 20
 text = "DEMO_MSC"
 horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
 
 [node name="Animation" type="AnimationPlayer" parent="MarginContainer/Label"]
 libraries = {

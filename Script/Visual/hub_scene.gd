@@ -14,6 +14,7 @@ extends Control
 # 修改后: https://XXX.XXX/XXX/XXX.jpg
 
 # 彩蛋在此!!!
+"""
 var producer_img : Dictionary = {
 	"ilem" : preload("res://Resource/Img/producer_img/ilem.jpg"),
 	"COPY": preload("res://Resource/Img/producer_img/COP.jpg"),
@@ -23,6 +24,7 @@ var producer_img : Dictionary = {
 	"litterzy": preload("res://Resource/Img/producer_img/litterzy.jpg"),
 	"JUSF周存": preload("res://Resource/Img/producer_img/zc.jpg")
 }
+"""
 
 var producer_img_link : Dictionary = {
 	"ilem" : "https://i1.hdslb.com/bfs/face/2e25812e0ba75174c07fe9b61e68e20c66e89499.jpg",
@@ -33,7 +35,7 @@ var producer_img_link : Dictionary = {
 	"litterzy": "https://i1.hdslb.com/bfs/face/a9d5957e39815c03f4bf859fc8a28d3e9abdb895.jpg",
 	"JUSF周存": "https://i1.hdslb.com/bfs/face/f8be673ab57ac98085fafb2bc36d03d59a94bd36.jpg"
 }
-var http_request = HTTPRequest.new()
+
 
 func  _ready():
 	#if producer_img.has(GlobalScene.user_name):
@@ -43,10 +45,12 @@ func  _ready():
 		#GlobalScene.user_img = preload("res://Resource/Img/user.jpeg")
 	# user_img.texture = GlobalScene.user_img
 	
+	
 	if producer_img_link.has(GlobalScene.user_name):
+		var http_request = HTTPRequest.new()
 		add_child(http_request)
 		http_request.connect("request_completed", _on_image_request_completed)
-		var error = http_request.request(producer_img_link[GlobalScene.user_name])
+		http_request.request(producer_img_link[GlobalScene.user_name])
 	
 	user_name_label.text = GlobalScene.user_name
 	version_label.text = GlobalScene.version
@@ -55,6 +59,7 @@ func  _ready():
 	user_name_label.visible_characters = GlobalScene.max_user_name_length
 
 
+@warning_ignore("unused_parameter")
 func _on_image_request_completed(result, response_code, headers, body : PackedByteArray):
 	if response_code == 200:
 		var image = Image.new()
@@ -80,8 +85,8 @@ func _on_texture_rect_gui_input(event : InputEvent):
 
 
 func _on_start_button_pressed():
-	SceneChanger.change_scene("res://Scene/VisualScene/select_scene.tscn")
-	print("进入 select_scene")
+	SceneChanger.change_scene("res://Scene/VisualScene/package_scene.tscn")
+	print("进入 package_scene")
 
 
 func _on_setting_button_pressed():

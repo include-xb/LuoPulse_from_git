@@ -11,7 +11,7 @@ extends Control
 
 
 # 版本
-var version : String = "pc3.3.1.0"
+var version : String = "pc3.4.0.0"
 
 
 # SETTING:
@@ -52,11 +52,19 @@ var key_map : Dictionary = {
 # 曲包目录
 var root_msc_path : String = "res://MscList/"
 
+# 可选歌单路径
+var selectable_msc_path : String = ""
+
+var selected_packed_name : String = ""
+
 # 自定义曲包目录
 var individual_msc_path : String = ""
 
-# 歌单列表
+# 曲包列表
 var msc_list : Array[String] = [ ]
+
+# 可选歌单列表
+var selectable_list : Array[String] = [ ]
 
 # 自定义歌单列表
 var individual_msc_list : Array[String] = [ ]
@@ -104,7 +112,7 @@ var selected_demo_msc : DemoMsc
 var first_note_time : float = -1
 
 # 开始 (进入 play_scene) 后的延迟
-var delay_time : float = 2.0
+var delay_time : float = 1.0
 
 # 是否正在加载音符
 var is_loading_note : bool = true

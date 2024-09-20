@@ -1,6 +1,5 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgdu41dxvx813"]
+[gd_scene load_steps=14 format=3 uid="uid://cgdu41dxvx813"]
 
-[ext_resource type="Script" path="res://Script/Widget/bili_user_info.gd" id="1_ng4bd"]
 [ext_resource type="Script" path="res://Script/Visual/hub_scene.gd" id="2_7knkj"]
 [ext_resource type="Texture2D" uid="uid://ba83wknv4e7bb" path="res://Resource/Img/user.jpeg" id="3_2hkyl"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="3_imp0h"]
@@ -158,9 +157,6 @@ theme_override_constants/icon_max_width = 50
 theme_override_font_sizes/font_size = 35
 text = "退出"
 icon = ExtResource("10_gyodw")
-
-[node name="UserInfo" type="HTTPRequest" parent="."]
-script = ExtResource("1_ng4bd")
 
 [connection signal="gui_input" from="Header/HBoxContainer/UserInfo/TextureRect" to="." method="_on_texture_rect_gui_input"]
 [connection signal="gui_input" from="Header/HBoxContainer/UserInfo/Label" to="." method="_on_texture_rect_gui_input"]

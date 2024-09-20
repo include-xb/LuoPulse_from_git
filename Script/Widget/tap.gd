@@ -53,7 +53,7 @@ func _process(delta):
 	
 
 
-func judge(hit_time : float):
+func judge():
 	GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 	var adjust_time : float = abs(timer - GlobalScene.delay_time)
 	# perfect: 正负 50ms
@@ -71,7 +71,8 @@ func auto_play():
 		is_hit = true
 		# get_node("../../Panel/Panel_" + str(column)).modulate = Color(1, 1, 1, 0.5)
 		scene.panel_animation.get_node("../Panel_" + str(column)).modulate = Color(1, 1, 1, 0.5)
-		GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
+		if self in GlobalScene.decision_area:
+			GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 		dead_particle()
 		GlobalScene.perfect_count += 1
 		self.visible = false

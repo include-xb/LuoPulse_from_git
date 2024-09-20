@@ -5,6 +5,7 @@ extends MarginContainer
 @export var Speed : bool = true
 @export var BGLight : bool = true
 @export var Volume : bool = true
+@export var Track : bool = true
 @export var AutoPlay : bool = true
 
 @onready var hesitate_body : MarginContainer = $ScrollContainer/VBoxContainer/HesitateSetting
@@ -13,7 +14,12 @@ extends MarginContainer
 @onready var bglight_body : MarginContainer = $ScrollContainer/VBoxContainer/BGLightSetting
 @onready var volume_body : MarginContainer = $ScrollContainer/VBoxContainer/VolumeSetting
 @onready var autoplay_body : MarginContainer = $ScrollContainer/VBoxContainer/AutoPlaySetting
-
+@onready var track_5 : MarginContainer = $ScrollContainer/VBoxContainer/ColumnSetting5
+@onready var track_1 : MarginContainer = $ScrollContainer/VBoxContainer/ColumnSetting1
+@onready var track_2 : MarginContainer = $ScrollContainer/VBoxContainer/ColumnSetting2
+@onready var track_3 : MarginContainer = $ScrollContainer/VBoxContainer/ColumnSetting3
+@onready var track_4 : MarginContainer = $ScrollContainer/VBoxContainer/ColumnSetting4
+@onready var track_6 : MarginContainer = $ScrollContainer/VBoxContainer/ColumnSetting6
 
 @onready var hesitate_spin_box : SpinBox = $ScrollContainer/VBoxContainer/HesitateSetting/HBoxContainer/SpinBox
 
@@ -50,6 +56,12 @@ func _ready():
 	bglight_body.visible = BGLight
 	volume_body.visible = Volume
 	autoplay_body.visible = AutoPlay
+	track_1.visible = Track
+	track_2.visible = Track
+	track_3.visible = Track
+	track_4.visible = Track
+	track_5.visible = Track
+	track_6.visible = Track
 	
 	hesitate_spin_box.value = GlobalScene.hesitate_time
 	

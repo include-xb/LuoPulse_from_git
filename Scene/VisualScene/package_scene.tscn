@@ -1,17 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://bhjbbmt3cc4xk"]
+[gd_scene load_steps=21 format=3 uid="uid://k6l7aj70ivym"]
 
-[ext_resource type="Script" path="res://Script/Visual/select_scene.gd" id="1_epcql"]
-[ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="2_eg1p0"]
-[ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_gn7a3"]
-[ext_resource type="PackedScene" uid="uid://d2dskmnmwub7o" path="res://Scene/WidgetScene/demo_msc.tscn" id="3_c5uxo"]
-[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="4_fbpn5"]
-[ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="5_jukrg"]
-[ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Resource/Icons/gear-fill.svg" id="6_xk3f3"]
-[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="8_6l4y1"]
-[ext_resource type="PackedScene" uid="uid://ceeba0oqytaao" path="res://Scene/WidgetScene/generic.tscn" id="9_obd7g"]
+[ext_resource type="Script" path="res://Script/Visual/package_scene.gd" id="1_r2wre"]
+[ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_kqk6g"]
+[ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="3_bf2xh"]
+[ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="4_w8uhq"]
+[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="5_6iwqa"]
+[ext_resource type="Texture2D" uid="uid://couvegm2xw032" path="res://Resource/Icons/icon-LP.png" id="6_k7y0d"]
+[ext_resource type="PackedScene" uid="uid://d2dskmnmwub7o" path="res://Scene/WidgetScene/demo_msc.tscn" id="7_eqwq2"]
+[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="8_fw5ms"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_djvg2"]
-shader = ExtResource("5_jukrg")
+shader = ExtResource("3_bf2xh")
 shader_parameter/lod = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrj3i"]
@@ -102,7 +101,7 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vufjv"]
-shader = ExtResource("5_jukrg")
+shader = ExtResource("3_bf2xh")
 shader_parameter/lod = 0.5
 
 [sub_resource type="Animation" id="Animation_fxwyw"]
@@ -273,7 +272,7 @@ _data = {
 "center": SubResource("Animation_hv187")
 }
 
-[node name="SelectScene" type="Control"]
+[node name="PackageScene" type="Control"]
 process_mode = 3
 clip_contents = true
 layout_mode = 3
@@ -284,7 +283,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_epcql")
+script = ExtResource("1_r2wre")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.470588)
@@ -295,7 +294,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_gn7a3")
+texture = ExtResource("2_kqk6g")
 expand_mode = 5
 
 [node name="Mushy" type="TextureRect" parent="."]
@@ -306,7 +305,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_gn7a3")
+texture = ExtResource("2_kqk6g")
 
 [node name="Header" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -330,8 +329,8 @@ theme_override_constants/margin_right = 5
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("2_eg1p0")
-icon = ExtResource("4_fbpn5")
+theme_override_fonts/font = ExtResource("4_w8uhq")
+icon = ExtResource("5_6iwqa")
 
 [node name="Center" type="MarginContainer" parent="Header/HBoxContainer"]
 layout_mode = 2
@@ -359,10 +358,10 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/margin_left = 5
 
-[node name="SettingButton" type="Button" parent="Header/HBoxContainer/Setting"]
+[node name="Button" type="Button" parent="Header/HBoxContainer/Setting"]
 layout_mode = 2
 theme_override_constants/icon_max_width = 30
-icon = ExtResource("6_xk3f3")
+icon = ExtResource("6_k7y0d")
 
 [node name="MoveUp" type="AnimationPlayer" parent="Header"]
 libraries = {
@@ -400,7 +399,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DemoMsc" parent="MscList/ScrollContainer/Body" instance=ExtResource("3_c5uxo")]
+[node name="DemoMsc" parent="MscList/ScrollContainer/Body" instance=ExtResource("7_eqwq2")]
 visible = false
 layout_mode = 2
 
@@ -430,7 +429,7 @@ theme_override_constants/margin_bottom = 90
 
 [node name="TextureRect" type="TextureRect" parent="Cover"]
 layout_mode = 2
-texture = ExtResource("2_gn7a3")
+texture = ExtResource("2_kqk6g")
 expand_mode = 1
 stretch_mode = 6
 
@@ -449,18 +448,20 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 
 [node name="ArtistLabel" type="Label" parent="Cover/Info/MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "作词/作曲/编曲 -
-演唱 -"
+text = "曲包信息 -"
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Cover/Info/MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="IllustratorLabel" type="Label" parent="Cover/Info/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -468,6 +469,7 @@ text = "曲绘/PV -"
 vertical_alignment = 1
 
 [node name="CreatorLabel" type="Label" parent="Cover/Info/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -479,8 +481,8 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/icon_max_width = 40
 theme_override_font_sizes/font_size = 25
-text = "开始 "
-icon = ExtResource("8_6l4y1")
+text = "打开曲包 "
+icon = ExtResource("8_fw5ms")
 
 [node name="AudioPreplayer2D" type="AudioStreamPlayer2D" parent="Cover"]
 position = Vector2(-362, -92)
@@ -490,61 +492,5 @@ libraries = {
 "": SubResource("AnimationLibrary_s3rgp")
 }
 
-[node name="SettingPanel" type="Panel" parent="."]
-process_mode = 3
-self_modulate = Color(0.690196, 0.690196, 0.690196, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Mushy" type="TextureRect" parent="SettingPanel"]
-material = SubResource("ShaderMaterial_djvg2")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -134.0
-offset_top = -86.5
-offset_right = 134.0
-offset_bottom = 86.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_gn7a3")
-
-[node name="MarginContainer" type="MarginContainer" parent="SettingPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 90
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="Generic" parent="SettingPanel/MarginContainer/VBoxContainer" instance=ExtResource("9_obd7g")]
-layout_mode = 2
-size_flags_vertical = 3
-Path = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="SublimeButton" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_font_sizes/font_size = 25
-text = "继续"
-
 [connection signal="pressed" from="Header/HBoxContainer/Home/HomeButton" to="." method="_on_home_button_pressed"]
-[connection signal="pressed" from="Header/HBoxContainer/Setting/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="Cover/Info/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer/SublimeButton" to="." method="_on_sublime_button_pressed"]

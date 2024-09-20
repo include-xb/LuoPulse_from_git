@@ -14,15 +14,19 @@ func _ready():
 	pass
 
 
+@warning_ignore("unused_parameter")
 func _process(delta):
 	if GlobalScene.selected_demo_msc != self:
 		self.modulate = Color(1, 1, 1, 1)
 
 
-func set_demo_msc(msc_title : String):
+func set_demo_msc(msc_title : String, app = false):
+	if !app:
+		GlobalScene.selected_packed_name = msc_title
 	title_label.text = msc_title
 
 
+@warning_ignore("unused_parameter")
 func _on_gui_input(event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		GlobalScene.selected_demo_msc = self
