@@ -13,6 +13,8 @@ var note_loader : NoteLoader = NoteLoader.new()
 
 @onready var msc_player : AudioStreamPlayer2D = $MscPlayer
 
+@onready var video_player : VideoStreamPlayer = $VideoStreamPlayer
+
 @onready var notes : Node2D = $Panel/Notes
 
 @onready var decision_line : Sprite2D = $Panel/DecisionLine
@@ -30,6 +32,8 @@ var note_loader : NoteLoader = NoteLoader.new()
 @onready var good_box : LineEdit = $Count/Good/LineEdit
 
 @onready var miss_box : LineEdit = $Count/Miss/LineEdit
+
+@onready var combe_box : LineEdit = $Count/Combe/LineEdit
 
 @onready var panel_animation : AnimationPlayer = $Panel/Animation
 
@@ -57,6 +61,7 @@ func _ready():
 	GlobalScene.clear_count()
 	notes.process_mode = Node.PROCESS_MODE_PAUSABLE
 	msc_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+	video_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	get_tree().paused = false
 	# timer = -GlobalScene.dea
 	
@@ -66,6 +71,7 @@ func _ready():
 	perfect_box.text = "0"
 	good_box.text = "0"
 	miss_box.text = "0"
+	combe_box.text = "0"
 	
 	for i in range(1, 4 + 1):
 		get_node("Panel/Panel_" + str(i)).KEY = GlobalScene.key_map[str(i)]
@@ -73,6 +79,7 @@ func _ready():
 	title_label.text = GlobalScene.selected_msc_title
 	background.texture = GlobalScene.selected_msc_cover
 	msc_player.stream = GlobalScene.selected_stream
+	video_player.stream = GlobalScene.selected_video_stream
 	
 	notes_array = GlobalScene.parsed_json.HitObjects
 	total_note_num = notes_array.size()
@@ -89,6 +96,7 @@ func _ready():
 	# await get_tree().create_timer(GlobalScene.delay_time).timeout
 	
 	msc_player.play()
+	video_player.play()
 
 
 @warning_ignore("unused_parameter")
@@ -130,6 +138,10 @@ func _process(delta):
 	perfect_box.text = str(GlobalScene.perfect_count)
 	good_box.text = str(GlobalScene.good_count)
 	miss_box.text = str(GlobalScene.miss_count)
+	combe_box.text = str(GlobalScene.combe)
+	
+	if GlobalScene.combe > GlobalScene.max_combe:
+		GlobalScene.max_combe = GlobalScene.combe
 	
 	var clicked_note_num : float = GlobalScene.perfect_count + GlobalScene.good_count + GlobalScene.miss_count
 	# var score : float = 100 * GlobalScene.perfect_count + 50 * GlobalScene.good_count
@@ -157,6 +169,7 @@ func _on_setting_button_pressed():
 		return
 	notes.process_mode = Node.PROCESS_MODE_DISABLED
 	msc_player.process_mode = Node.PROCESS_MODE_DISABLED
+	video_player.process_mode = Node.PROCESS_MODE_DISABLED
 	setting_panel.visible = true
 
 
@@ -169,17 +182,18 @@ func _on_sublime_button_pressed():
 	await resume_timer.timeout
 	notes.process_mode = Node.PROCESS_MODE_PAUSABLE
 	msc_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+	video_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 
 
-# 返回歌单列表
+# 结束
 func _on_back_pressed():
 	# notes.process_mode = Node.PROCESS_MODE_DISABLED
 	msc_player.stop()
-	SceneChanger.change_scene("res://Scene/VisualScene/select_scene.tscn")
+	video_player.stop()
+	SceneChanger.change_scene("res://Scene/VisualScene/finish_scene.tscn")
 
 
 func _on_msc_player_finished():
+	_on_back_pressed()
 	panel_animation.play_backwards("slide_up")
-	await panel_animation.animation_finished
-	
 	print("结束")

@@ -16,3 +16,7 @@ res://Script/Visual/hub_scene.gd
 res://Script/Widget/DemoMsc.gd
 res://Script/Visual/play_scene.gd
 res://Script/Widget/tap.gd
+res://Scene/VisualScene/finish_scene.tscn
+res://Script/Visual/finish_scene.gd
+res://Script/Widget/hold.gd
+res://Script/Visual/select_scene.gd

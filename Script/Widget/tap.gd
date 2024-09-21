@@ -47,6 +47,7 @@ func _process(delta):
 		
 		# INFO: missing
 		GlobalScene.miss_count += 1
+		GlobalScene.combe = 0
 		
 		self.queue_free()
 	
@@ -56,12 +57,14 @@ func _process(delta):
 func judge():
 	GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 	var adjust_time : float = abs(timer - GlobalScene.delay_time)
+	
 	# perfect: 正负 50ms
 	if adjust_time <= 0.05:
 		GlobalScene.perfect_count += 1
 	else:
 		GlobalScene.good_count += 1
 	
+	GlobalScene.combe += 1
 	dead_particle()
 	self.queue_free()
 
@@ -74,7 +77,10 @@ func auto_play():
 		if self in GlobalScene.decision_area:
 			GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 		dead_particle()
+		
 		GlobalScene.perfect_count += 1
+		GlobalScene.combe += 1
+		
 		self.visible = false
 		
 	if timer >= GlobalScene.delay_time + 0.1:
@@ -91,7 +97,6 @@ func dead_particle():
 	instanced_particle.global_position = self.global_position
 	instanced_particle.emitting = true
 	
-	return
 	if column == 5 or column == 1:
 		scene.panel_animation.play("shake_left")
 	elif column == 6 or column == 4:

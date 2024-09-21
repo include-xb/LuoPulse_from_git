@@ -96,14 +96,17 @@ func _process(delta):
 		
 		# 摁住 85% 为 perfect
 		if score >= 0.85:
-			GlobalScene.perfect_count += 1
 			if self in GlobalScene.decision_area:
 				GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
+			GlobalScene.perfect_count += 1
+			GlobalScene.combe += 1
+		
 		# 摁住 50% - 85% 为 good
 		elif 0.5 <= score and score < 0.85:
 			if self in GlobalScene.decision_area:
 				GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 			GlobalScene.good_count += 1
+			GlobalScene.combe += 1
 		else:
 			# print("中间 miss")
 			missing()
@@ -117,6 +120,7 @@ func missing():
 	
 	# INFO: missing
 	GlobalScene.miss_count += 1
+	GlobalScene.combe = 0
 	
 	GlobalScene.key_scene.current_holding = null
 	is_holding = false
@@ -141,7 +145,10 @@ func auto_play():
 	if timer >= GlobalScene.delay_time + duration:
 		is_holding = false
 		scene.panel_animation.play_backwards("shake_down")
+		
 		GlobalScene.perfect_count += 1
+		GlobalScene.combe += 1
+		
 		self.queue_free()
 		scene.panel_animation.get_node("../Panel_" + str(column)).modulate = Color(1, 1, 1, 1)
 

@@ -90,6 +90,22 @@ func set_demo_msc_cover(msc_title : String):
 		audio_preplayer.stream = GlobalScene.selected_stream
 		audio_preplayer.play()
 	
+	
+	var video_path : String = path + "video.ogv"
+	if not FileAccess.file_exists(audio_path):
+		# print("文件 <" + audio_path + "> 不存在")
+		# artist_label.text = "文件 <" + audio_path + "> 不存在"
+		pass
+	else:
+		# var video_file = FileAccess.open(audio_path, FileAccess.READ)
+		var video = VideoStreamTheora.new()
+		video.file = video_path
+		GlobalScene.selected_video_stream = video
+		if GlobalScene.selected_video_stream == null:
+			GlobalScene.selected_video_stream = load(audio_path)
+		
+	
+	
 	GlobalScene.json_path = path + "chart.json"
 	if not FileAccess.file_exists(GlobalScene.json_path):
 		# print("文件 <" + GlobalScene.json_path + "> 不存在")

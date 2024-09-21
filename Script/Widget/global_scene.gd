@@ -11,7 +11,7 @@ extends Control
 
 
 # 版本
-var version : String = "pc3.4.0.0"
+var version : String = "pc3.5.0.0"
 
 
 # SETTING:
@@ -108,6 +108,8 @@ var selected_msc_cover : Texture
 # 音频
 var selected_stream : AudioStream
 
+var selected_video_stream : VideoStreamTheora
+
 var selected_demo_msc : DemoMsc
 
 var first_note_time : float = -1
@@ -127,6 +129,10 @@ var good_count : int = 0
 
 var miss_count : int = 0
 
+var combe : int = 0
+
+var max_combe : int = 0
+
 var key_scene
 
 
@@ -134,6 +140,8 @@ func clear_count():
 	perfect_count = 0
 	good_count = 0
 	miss_count = 0
+	combe = 0
+	max_combe = 0
 	decision_area.clear()
 
 

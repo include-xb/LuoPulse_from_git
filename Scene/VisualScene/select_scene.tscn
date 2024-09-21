@@ -150,10 +150,10 @@ tracks/0/path = NodePath(".:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Vector2(918, 628)]
+"values": []
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -182,7 +182,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AudioPreplayer2D:volume_db")
+tracks/3/path = NodePath("LastAudio:volume_db")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -190,18 +190,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Info:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_hv187"]
@@ -245,7 +233,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AudioPreplayer2D:volume_db")
+tracks/3/path = NodePath("LastAudio:volume_db")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -253,18 +241,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 3.13834),
 "update": 0,
 "values": [0.0, -80.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Info:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s3rgp"]
@@ -418,8 +394,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 362.0
 offset_top = 92.0
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_right = 1714.56
+offset_bottom = 922.496
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -492,6 +468,7 @@ libraries = {
 
 [node name="SettingPanel" type="Panel" parent="."]
 process_mode = 3
+visible = false
 self_modulate = Color(0.690196, 0.690196, 0.690196, 1)
 layout_mode = 1
 anchors_preset = 15
