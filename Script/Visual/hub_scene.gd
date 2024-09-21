@@ -76,14 +76,6 @@ func _on_image_request_completed(result, response_code, headers, body : PackedBy
 		print("图像请求失败")
 
 
-
-
-func _on_texture_rect_gui_input(event : InputEvent):
-	if event.is_pressed():
-		SceneChanger.change_scene("res://Scene/VisualScene/user_scene.tscn")
-		print("进入 user_scene")
-
-
 func _on_start_button_pressed():
 	SceneChanger.change_scene("res://Scene/VisualScene/package_scene.tscn")
 	print("进入 package_scene")

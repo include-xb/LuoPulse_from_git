@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://btx54tjnay7pk"]
+[gd_scene load_steps=20 format=3 uid="uid://btx54tjnay7pk"]
 
 [ext_resource type="Script" path="res://Script/Visual/play_scene.gd" id="1_5kuat"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="1_discp"]
@@ -41,27 +41,10 @@ tracks/1/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_pvejy"]
-resource_name = "finish_adjust"
-length = 0.05
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.05),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 30)]
-}
-
 [sub_resource type="Animation" id="Animation_alq7j"]
 resource_name = "shake_down"
 length = 0.12
-step = 0.12
+step = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -77,7 +60,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_jwiqw"]
 resource_name = "shake_left"
-length = 0.12
+length = 0.16
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -86,15 +69,15 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 4
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.12),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, -0.0436332]
+"values": [0.0, -0.0436332, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_acifi"]
 resource_name = "shake_right"
-length = 0.12
+length = 0.16
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -103,10 +86,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 4
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.12),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0436332]
+"values": [0.0, 0.0436332, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_epd1c"]
@@ -128,7 +111,6 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hohq0"]
 _data = {
 "RESET": SubResource("Animation_h2vs0"),
-"finish_adjust": SubResource("Animation_pvejy"),
 "shake_down": SubResource("Animation_alq7j"),
 "shake_left": SubResource("Animation_jwiqw"),
 "shake_right": SubResource("Animation_acifi"),
@@ -155,6 +137,7 @@ script = ExtResource("1_5kuat")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.470588)
+clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -169,6 +152,7 @@ expand_mode = 5
 
 [node name="Mushy" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_sfegf")
+clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -259,49 +243,51 @@ offset_top = -679.0
 offset_right = -300.0
 offset_bottom = 230.0
 
-[node name="Line2D" type="Line2D" parent="Panel"]
+[node name="Lines" type="Node2D" parent="Panel"]
+
+[node name="Line2D" type="Line2D" parent="Panel/Lines"]
 position = Vector2(-198.75, 216)
 scale = Vector2(1.75, 0.157588)
 points = PackedVector2Array(-1, -2, -1, 105.357)
 width = 3.0
 default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D7" type="Line2D" parent="Panel"]
+[node name="Line2D7" type="Line2D" parent="Panel/Lines"]
 position = Vector2(-298.75, 216)
 scale = Vector2(1.75, 0.157588)
 points = PackedVector2Array(-1, -2, -1, 105.357)
 width = 3.0
 default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D2" type="Line2D" parent="Panel"]
+[node name="Line2D2" type="Line2D" parent="Panel/Lines"]
 position = Vector2(-98.75, 216)
 scale = Vector2(1.75, 0.157588)
 points = PackedVector2Array(-1, -2, -1, 105.357)
 width = 3.0
 default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D3" type="Line2D" parent="Panel"]
-position = Vector2(1.25, 216)
+[node name="Line2D3" type="Line2D" parent="Panel/Lines"]
+position = Vector2(1.24998, 216)
 scale = Vector2(1.75, 0.157588)
 points = PackedVector2Array(-1, -2, -1, 105.357)
 width = 3.0
 default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D4" type="Line2D" parent="Panel"]
+[node name="Line2D4" type="Line2D" parent="Panel/Lines"]
 position = Vector2(101.25, 216)
 scale = Vector2(1.75, 0.157588)
 points = PackedVector2Array(-1, -2, -1, 105.357)
 width = 3.0
 default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D5" type="Line2D" parent="Panel"]
+[node name="Line2D5" type="Line2D" parent="Panel/Lines"]
 position = Vector2(201.25, 216)
 scale = Vector2(1.75, 0.157588)
 points = PackedVector2Array(-1, -2, -1, 105.357)
 width = 3.0
 default_color = Color(0.4, 0.8, 1, 1)
 
-[node name="Line2D6" type="Line2D" parent="Panel"]
+[node name="Line2D6" type="Line2D" parent="Panel/Lines"]
 position = Vector2(301.25, 216)
 scale = Vector2(1.75, 0.157588)
 points = PackedVector2Array(-1, -2, -1, 105.357)
@@ -461,6 +447,7 @@ volume_db = -5.0
 
 [node name="SettingPanel" type="Panel" parent="."]
 process_mode = 3
+visible = false
 offset_left = -650.0
 offset_top = -378.0
 offset_right = 652.0

@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1ekyysnxf51k"]
+
+[ext_resource type="Script" path="res://Script/Widget/user.gd" id="1_0xg0t"]
+
+[node name="User" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("1_0xg0t")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UserName" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer/UserName"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/UserName/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/UserName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "昵称: "
+vertical_alignment = 1
+
+[node name="TipLabel" type="Label" parent="ScrollContainer/VBoxContainer/UserName/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.686275, 0, 0, 1)
+text = "用户名过长"
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/UserName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "luoty712"
+placeholder_text = "输入你的昵称..."
+
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/UserName/MarginContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]

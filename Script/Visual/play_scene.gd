@@ -57,6 +57,7 @@ func _ready():
 	GlobalScene.clear_count()
 	notes.process_mode = Node.PROCESS_MODE_PAUSABLE
 	msc_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+	get_tree().paused = false
 	# timer = -GlobalScene.dea
 	
 	time_label.visible = false
@@ -178,8 +179,6 @@ func _on_back_pressed():
 
 
 func _on_msc_player_finished():
-	panel_animation.play("finish_adjust")
-	await panel_animation.animation_finished
 	panel_animation.play_backwards("slide_up")
 	await panel_animation.animation_finished
 	

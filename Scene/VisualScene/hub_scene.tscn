@@ -158,8 +158,6 @@ theme_override_font_sizes/font_size = 35
 text = "退出"
 icon = ExtResource("10_gyodw")
 
-[connection signal="gui_input" from="Header/HBoxContainer/UserInfo/TextureRect" to="." method="_on_texture_rect_gui_input"]
-[connection signal="gui_input" from="Header/HBoxContainer/UserInfo/Label" to="." method="_on_texture_rect_gui_input"]
 [connection signal="pressed" from="Header/HBoxContainer/Buttons/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,3 +1,4 @@
+Node2D
 HTTPRequest
 AnimationPlayer
 Control
@@ -12,4 +13,3 @@ Label
 ProgressBar
 OptionButton
 Timer
-CheckButton

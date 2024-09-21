@@ -79,6 +79,7 @@ var parsed_json : Dictionary = {
 	"General": {
 		"Title": "-",
 		"Artist": "-",
+		"Illustrator": "-",
 		"Creator": "-",
 		"Version": "1.0",
 		"BPM": 120

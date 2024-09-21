@@ -91,6 +91,7 @@ func dead_particle():
 	instanced_particle.global_position = self.global_position
 	instanced_particle.emitting = true
 	
+	return
 	if column == 5 or column == 1:
 		scene.panel_animation.play("shake_left")
 	elif column == 6 or column == 4:
