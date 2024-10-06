@@ -15,7 +15,11 @@ var note_loader : NoteLoader = NoteLoader.new()
 
 @onready var video_player : VideoStreamPlayer = $VideoStreamPlayer
 
+@onready var bglight_panel : Panel = $BGlight
+
 @onready var notes : Node2D = $Panel/Notes
+
+@onready var track_panel : Control = $Panel
 
 @onready var decision_line : Sprite2D = $Panel/DecisionLine
 
@@ -27,15 +31,21 @@ var note_loader : NoteLoader = NoteLoader.new()
 
 @onready var finish_progress : ProgressBar = $ProgressBar
 
+
+@onready var perfect_plus_box : LineEdit = $"Count/Perfect+/LineEdit"
 @onready var perfect_box : LineEdit = $Count/Perfect/LineEdit
-
+@onready var great_box : LineEdit = $Count/Great/LineEdit
 @onready var good_box : LineEdit = $Count/Good/LineEdit
-
+@onready var bad_box : LineEdit = $Count/Bad/LineEdit
 @onready var miss_box : LineEdit = $Count/Miss/LineEdit
-
-@onready var combe_box : LineEdit = $Count/Combe/LineEdit
+@onready var acc_box : Label = $Acc/Acc
+@onready var combo_box : Label = $Combo/Combo
 
 @onready var panel_animation : AnimationPlayer = $Panel/Animation
+
+@onready var autoplay_label : Label = $Info/Info/Auto
+
+@onready var user_label : Label = $Info/Info/User
 
 
 var note_type_array : Array = [ ]
@@ -51,27 +61,53 @@ var notes_array : Array = [ ]
 
 var total_note_num : float = 0
 
+var audio_length : float = 0
+
 var timer : float = 0
 
 var index : int = 0
 
 
 
-func _ready():
-	GlobalScene.clear_count()
+func pause_by_mode():
+	notes.process_mode = Node.PROCESS_MODE_DISABLED
+	msc_player.process_mode = Node.PROCESS_MODE_DISABLED
+	video_player.process_mode = Node.PROCESS_MODE_DISABLED
+	track_panel.process_mode = Node.PROCESS_MODE_DISABLED
+	
+
+func resume_by_mode():
+	track_panel.process_mode = Node.PROCESS_MODE_PAUSABLE
 	notes.process_mode = Node.PROCESS_MODE_PAUSABLE
 	msc_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	video_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+
+
+
+func _ready():
+	GlobalScene.clear_count()
+	resume_by_mode()
 	get_tree().paused = false
 	# timer = -GlobalScene.dea
+	GlobalScene.play_scene = self
+	
+	var c : float = (100 - GlobalScene.bglight) / 80
+	bglight_panel.self_modulate = Color(1, 1, 1, c)
+	
+	autoplay_label.visible = GlobalScene.auto_play
+	user_label.text = GlobalScene.user_name
 	
 	time_label.visible = false
 	setting_panel.visible = false
 	
+	perfect_plus_box.text = "0"
 	perfect_box.text = "0"
+	great_box.text = "0"
 	good_box.text = "0"
+	bad_box.text = "0"
 	miss_box.text = "0"
-	combe_box.text = "0"
+	acc_box.text = "0"
+	combo_box.text = "0"
 	
 	for i in range(1, 4 + 1):
 		get_node("Panel/Panel_" + str(i)).KEY = GlobalScene.key_map[str(i)]
@@ -97,6 +133,11 @@ func _ready():
 	
 	msc_player.play()
 	video_player.play()
+	
+	audio_length = GlobalScene.selected_stream.get_length()
+	
+	print(GlobalScene.parsed_json.General)
+	print(get_tree().paused)
 
 
 @warning_ignore("unused_parameter")
@@ -135,22 +176,23 @@ func _process(delta):
 		if resume_timer.time_left <= 0:
 			time_label.visible = false
 	
+	perfect_plus_box.text = str(GlobalScene.perfect_plus_count)
 	perfect_box.text = str(GlobalScene.perfect_count)
+	great_box.text = str(GlobalScene.great_count)
 	good_box.text = str(GlobalScene.good_count)
+	bad_box.text = str(GlobalScene.bad_count)
 	miss_box.text = str(GlobalScene.miss_count)
-	combe_box.text = str(GlobalScene.combe)
+	combo_box.text = str(GlobalScene.combo)
 	
-	if GlobalScene.combe > GlobalScene.max_combe:
-		GlobalScene.max_combe = GlobalScene.combe
+	GlobalScene.average_acc = round(GlobalScene.average_acc * 10000) / 10000
+	acc_box.text = str(GlobalScene.average_acc)
 	
-	var clicked_note_num : float = GlobalScene.perfect_count + GlobalScene.good_count + GlobalScene.miss_count
-	# var score : float = 100 * GlobalScene.perfect_count + 50 * GlobalScene.good_count
-	if clicked_note_num != 0:
-		# var score_percent : float = score / clicked_note_num
-		var finish_percent : float = clicked_note_num / total_note_num
+	if GlobalScene.combo > GlobalScene.max_combo:
+		GlobalScene.max_combo = GlobalScene.combo
+	
+	if timer >= 0:
+		var finish_percent : float = timer / audio_length
 		finish_progress.value = finish_percent * 100
-		# print("目前音符: ", clicked_note_num, "/", total_note_num)
-		# print("完成度: ", clicked_note_num / total_note_num * 100 , "%")
 
 @warning_ignore("unused_parameter")
 func _input(event):
@@ -167,9 +209,7 @@ func _input(event):
 func _on_setting_button_pressed():
 	if notes.process_mode == Node.PROCESS_MODE_DISABLED:
 		return
-	notes.process_mode = Node.PROCESS_MODE_DISABLED
-	msc_player.process_mode = Node.PROCESS_MODE_DISABLED
-	video_player.process_mode = Node.PROCESS_MODE_DISABLED
+	pause_by_mode()
 	setting_panel.visible = true
 
 
@@ -180,20 +220,25 @@ func _on_sublime_button_pressed():
 	time_label.visible = true
 	resume_timer.start(3)
 	await resume_timer.timeout
-	notes.process_mode = Node.PROCESS_MODE_PAUSABLE
-	msc_player.process_mode = Node.PROCESS_MODE_PAUSABLE
-	video_player.process_mode = Node.PROCESS_MODE_PAUSABLE
+	
+	resume_by_mode()
 
 
 # 结束
 func _on_back_pressed():
 	# notes.process_mode = Node.PROCESS_MODE_DISABLED
-	msc_player.stop()
-	video_player.stop()
-	SceneChanger.change_scene("res://Scene/VisualScene/finish_scene.tscn")
+	pause_by_mode()
+	SceneChanger.change_scene("res://Scene/VisualScene/play_scene.tscn")
 
 
 func _on_msc_player_finished():
-	_on_back_pressed()
+	pause_by_mode()
+	SceneChanger.change_scene("res://Scene/VisualScene/finish_scene.tscn")
+	
 	panel_animation.play_backwards("slide_up")
 	print("结束")
+
+
+func _on_quit_pressed():
+	pause_by_mode()
+	SceneChanger.change_scene("res://Scene/VisualScene/select_scene.tscn")

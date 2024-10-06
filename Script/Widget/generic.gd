@@ -30,9 +30,11 @@ extends MarginContainer
 
 @onready var speed_slider : HSlider = $ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedHSlider
 
-@onready var bglight_slider : HSlider = $ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer/BglightHSlider
+@onready var bglight_label : Label = $ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer/VBoxContainer/BglightLabel
 
-@onready var volume_slider : HSlider = $ScrollContainer/VBoxContainer/VolumeSetting/HBoxContainer/VolumeHSlider
+@onready var bglight_slider : HSlider = $ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer/VBoxContainer/BglightHSlider
+
+@onready var volume_slider : HSlider = $ScrollContainer/VBoxContainer/VolumeSetting/HBoxContainer/VBoxContainer/VolumeHSlider
 
 @onready var auto_play_button : CheckButton = $ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer/CheckButton
 
@@ -120,3 +122,14 @@ func _on_path_line_edit_text_changed(new_text):
 	if new_text[-1] != "/" and new_text[-1] != "\\":
 		new_text += "/"
 	GlobalScene.root_msc_path = new_text
+
+
+func _on_bglight_h_slider_value_changed(value):
+	bglight_label.text = str(value) + "%"
+	GlobalScene.bglight = value
+	
+	if GlobalScene.play_scene == null:
+		return
+	var c : float = (100 - GlobalScene.bglight) / 80
+	GlobalScene.play_scene.bglight_panel.self_modulate = Color(1, 1, 1, c)
+	print(c)

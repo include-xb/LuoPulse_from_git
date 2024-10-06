@@ -35,7 +35,7 @@ var adjust : float = 0
 
 var volume : float = 0
 
-var bglight : int = 0
+var bglight : float = 100.0
 
 var auto_play : bool = true
 
@@ -123,25 +123,42 @@ var is_loading_note : bool = true
 # 处于判定区间范围内的音符
 var decision_area : Array = [ ]
 
+
+var perfect_plus_count : int = 0
+
 var perfect_count : int = 0
+
+var great_count : int = 0
 
 var good_count : int = 0
 
+var bad_count : int = 0
+
 var miss_count : int = 0
 
-var combe : int = 0
+var combo : int = 0
 
-var max_combe : int = 0
+var max_combo : int = 0
 
-var key_scene
+var average_acc : float = 0.0
+
+# var current_acc : float = 0.0
+var key_scene = null
+
+var play_scene = null
 
 
 func clear_count():
+	perfect_plus_count = 0
 	perfect_count = 0
+	great_count = 0
 	good_count = 0
+	bad_count = 0
 	miss_count = 0
-	combe = 0
-	max_combe = 0
+	average_acc = 0
+	combo = 0
+	max_combo = 0
+	play_scene = null
 	decision_area.clear()
 
 

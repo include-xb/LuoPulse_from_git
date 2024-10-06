@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_kqk6g"]
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="3_bf2xh"]
 [ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="4_w8uhq"]
-[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="5_6iwqa"]
+[ext_resource type="Texture2D" uid="uid://b4r52yocesxrp" path="res://Resource/Icons/backward.svg" id="5_eamp7"]
 [ext_resource type="Texture2D" uid="uid://couvegm2xw032" path="res://Resource/Icons/icon-LP.png" id="6_k7y0d"]
 [ext_resource type="PackedScene" uid="uid://d2dskmnmwub7o" path="res://Scene/WidgetScene/demo_msc.tscn" id="7_eqwq2"]
-[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="8_fw5ms"]
+[ext_resource type="Texture2D" uid="uid://bgmc1ryv4i1r4" path="res://Resource/Icons/forward.svg" id="8_uwhet"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_djvg2"]
 shader = ExtResource("3_bf2xh")
@@ -330,7 +330,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/icon_max_width = 30
 theme_override_fonts/font = ExtResource("4_w8uhq")
-icon = ExtResource("5_6iwqa")
+icon = ExtResource("5_eamp7")
 
 [node name="Center" type="MarginContainer" parent="Header/HBoxContainer"]
 layout_mode = 2
@@ -482,7 +482,7 @@ size_flags_horizontal = 10
 theme_override_constants/icon_max_width = 40
 theme_override_font_sizes/font_size = 25
 text = "打开曲包 "
-icon = ExtResource("8_fw5ms")
+icon = ExtResource("8_uwhet")
 
 [node name="AudioPreplayer2D" type="AudioStreamPlayer2D" parent="Cover"]
 position = Vector2(-362, -92)

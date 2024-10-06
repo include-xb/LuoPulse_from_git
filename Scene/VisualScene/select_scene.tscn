@@ -4,10 +4,10 @@
 [ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="2_eg1p0"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="2_gn7a3"]
 [ext_resource type="PackedScene" uid="uid://d2dskmnmwub7o" path="res://Scene/WidgetScene/demo_msc.tscn" id="3_c5uxo"]
-[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="4_fbpn5"]
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="5_jukrg"]
-[ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Resource/Icons/gear-fill.svg" id="6_xk3f3"]
-[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="8_6l4y1"]
+[ext_resource type="Texture2D" uid="uid://b4r52yocesxrp" path="res://Resource/Icons/backward.svg" id="5_xgnld"]
+[ext_resource type="Texture2D" uid="uid://uv80p1w6vieq" path="res://Resource/Icons/gear.svg" id="6_yf261"]
+[ext_resource type="Texture2D" uid="uid://bgmc1ryv4i1r4" path="res://Resource/Icons/forward.svg" id="8_aftty"]
 [ext_resource type="PackedScene" uid="uid://ceeba0oqytaao" path="res://Scene/WidgetScene/generic.tscn" id="9_obd7g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_djvg2"]
@@ -307,7 +307,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/icon_max_width = 30
 theme_override_fonts/font = ExtResource("2_eg1p0")
-icon = ExtResource("4_fbpn5")
+icon = ExtResource("5_xgnld")
 
 [node name="Center" type="MarginContainer" parent="Header/HBoxContainer"]
 layout_mode = 2
@@ -338,7 +338,7 @@ theme_override_constants/margin_left = 5
 [node name="SettingButton" type="Button" parent="Header/HBoxContainer/Setting"]
 layout_mode = 2
 theme_override_constants/icon_max_width = 30
-icon = ExtResource("6_xk3f3")
+icon = ExtResource("6_yf261")
 
 [node name="MoveUp" type="AnimationPlayer" parent="Header"]
 libraries = {
@@ -394,8 +394,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 362.0
 offset_top = 92.0
-offset_right = 1714.56
-offset_bottom = 922.496
+offset_right = 1280.0
+offset_bottom = 720.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -456,7 +456,7 @@ size_flags_horizontal = 10
 theme_override_constants/icon_max_width = 40
 theme_override_font_sizes/font_size = 25
 text = "开始 "
-icon = ExtResource("8_6l4y1")
+icon = ExtResource("8_aftty")
 
 [node name="AudioPreplayer2D" type="AudioStreamPlayer2D" parent="Cover"]
 position = Vector2(-362, -92)

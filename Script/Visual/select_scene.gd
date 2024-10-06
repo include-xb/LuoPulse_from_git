@@ -74,9 +74,11 @@ func set_demo_msc_cover(msc_title : String):
 	
 	var audio_path : String = path + "audio.mp3"
 	if not FileAccess.file_exists(audio_path):
-		# print("文件 <" + audio_path + "> 不存在")
-		# artist_label.text = "文件 <" + audio_path + "> 不存在"
+		audio_path = path + "audio.ogg"
+	
+	if not FileAccess.file_exists(audio_path):
 		pass
+	
 	else:
 		var audio_file = FileAccess.open(audio_path, FileAccess.READ)
 		var sound = AudioStreamMP3.new()
@@ -103,7 +105,6 @@ func set_demo_msc_cover(msc_title : String):
 		GlobalScene.selected_video_stream = video
 		if GlobalScene.selected_video_stream == null:
 			GlobalScene.selected_video_stream = load(audio_path)
-		
 	
 	
 	GlobalScene.json_path = path + "chart.json"
@@ -116,9 +117,9 @@ func set_demo_msc_cover(msc_title : String):
 		GlobalScene.json_string = json_file.get_as_text()
 		GlobalScene.parsed_json = JSON.parse_string(GlobalScene.json_string)
 	
-		artist_label.text = GlobalScene.parsed_json.General.Artist
-		creator_label.text = "制谱 " + GlobalScene.parsed_json.General.Creator
-		illustrator_label.text = "曲绘/PV " + GlobalScene.parsed_json.General.Illustrator
+		artist_label.text = GlobalScene.parsed_json.General.Artist if GlobalScene.parsed_json.General.has("Artist") else "-"
+		creator_label.text = "制谱 " + GlobalScene.parsed_json.General.Creator if GlobalScene.parsed_json.General.has("Creator") else "-"
+		illustrator_label.text = "曲绘/PV " + GlobalScene.parsed_json.General.Illustrator if GlobalScene.parsed_json.General.has("Illustrator") else "-"
 
 
 func _ready():

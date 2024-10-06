@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://ba83wknv4e7bb" path="res://Resource/Img/user.jpeg" id="3_2hkyl"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="3_imp0h"]
 [ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="3_n05rd"]
-[ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Resource/Icons/gear-fill.svg" id="3_voi8l"]
 [ext_resource type="Shader" path="res://Shader/radius.gdshader" id="5_3bvb8"]
 [ext_resource type="Texture2D" uid="uid://dc6dyer52ocv3" path="res://Resource/Img/char.png" id="5_tec6b"]
-[ext_resource type="Texture2D" uid="uid://cyhro8uyb54ie" path="res://Resource/Icons/message.svg" id="7_emvp2"]
-[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="10_gyodw"]
-[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="10_ysuws"]
+[ext_resource type="Texture2D" uid="uid://btnnqo7j0opwh" path="res://Resource/Icons/chat.svg" id="6_ncmh4"]
+[ext_resource type="Texture2D" uid="uid://uv80p1w6vieq" path="res://Resource/Icons/gear.svg" id="7_u7vao"]
+[ext_resource type="Texture2D" uid="uid://bgmc1ryv4i1r4" path="res://Resource/Icons/forward.svg" id="9_ri2a5"]
+[ext_resource type="Texture2D" uid="uid://8553y7vfk8ve" path="res://Resource/Icons/exit.svg" id="10_7mv5e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_matop"]
 shader = ExtResource("3_n05rd")
@@ -116,14 +116,14 @@ layout_mode = 2
 size_flags_vertical = 8
 tooltip_text = "消息"
 theme_override_constants/icon_max_width = 30
-icon = ExtResource("7_emvp2")
+icon = ExtResource("6_ncmh4")
 
 [node name="SettingButton" type="Button" parent="Header/HBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_vertical = 8
 tooltip_text = "设置"
 theme_override_constants/icon_max_width = 30
-icon = ExtResource("3_voi8l")
+icon = ExtResource("7_u7vao")
 
 [node name="Char" type="TextureRect" parent="."]
 clip_contents = true
@@ -145,10 +145,10 @@ offset_bottom = 599.0
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_constants/icon_max_width = 45
+theme_override_constants/icon_max_width = 50
 theme_override_font_sizes/font_size = 35
 text = "开始"
-icon = ExtResource("10_ysuws")
+icon = ExtResource("9_ri2a5")
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -156,7 +156,7 @@ size_flags_vertical = 10
 theme_override_constants/icon_max_width = 50
 theme_override_font_sizes/font_size = 35
 text = "退出"
-icon = ExtResource("10_gyodw")
+icon = ExtResource("10_7mv5e")
 
 [connection signal="pressed" from="Header/HBoxContainer/Buttons/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

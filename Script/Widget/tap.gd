@@ -35,36 +35,56 @@ func _process(delta):
 		auto_play()
 		return
 	
-	# 判定区间: 负 120ms 正 120ms
-	if !add && timer >= GlobalScene.delay_time - 0.12:
+	# 判定区间: 负 200ms 正 200ms
+	if !add && timer >= GlobalScene.delay_time - 0.2:
 		add = true
 		GlobalScene.decision_area.push_back(self)
 		self.modulate = Color(120, 120, 120)
 		
-	elif !remove && timer >= GlobalScene.delay_time + 0.12:
+	elif !remove && timer >= GlobalScene.delay_time + 0.2:
 		remove = true
 		GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 		
 		# INFO: missing
 		GlobalScene.miss_count += 1
-		GlobalScene.combe = 0
+		GlobalScene.combo = 0
+		GlobalScene.average_acc = (id * GlobalScene.average_acc + 0) / (id + 1)
 		
 		self.queue_free()
-	
-	
 
 
 func judge():
 	GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
-	var adjust_time : float = abs(timer - GlobalScene.delay_time)
+	var diff : float = timer - GlobalScene.delay_time
+	var adjust_time : float = abs(diff) * 1000
+	var acc : float = 0.0
 	
-	# perfect: 正负 50ms
-	if adjust_time <= 0.05:
+	if adjust_time <= 30:
+		GlobalScene.perfect_plus_count += 1
+		acc = 100
+	
+	elif adjust_time <= 60:
 		GlobalScene.perfect_count += 1
-	else:
+		# acc = 100 - 0.2778 * adjust_time
+		acc = 100
+		
+	elif adjust_time <= 90:
+		GlobalScene.great_count += 1
+		# acc = 122 - 0.8333 * adjust_time
+		acc = 50
+		
+	elif adjust_time <= 120:
 		GlobalScene.good_count += 1
+		# acc = 167 - 1.3889 * adjust_time
+		acc = 25
+		
+	else:
+		GlobalScene.bad_count += 1
+		acc = 0
+
+	GlobalScene.combo += 1
+	GlobalScene.average_acc = (id * GlobalScene.average_acc + acc) / (id + 1)
 	
-	GlobalScene.combe += 1
 	dead_particle()
 	self.queue_free()
 
@@ -78,8 +98,9 @@ func auto_play():
 			GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 		dead_particle()
 		
-		GlobalScene.perfect_count += 1
-		GlobalScene.combe += 1
+		GlobalScene.perfect_plus_count += 1
+		GlobalScene.average_acc = 100
+		GlobalScene.combo += 1
 		
 		self.visible = false
 		

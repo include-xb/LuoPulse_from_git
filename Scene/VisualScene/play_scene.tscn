@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://btx54tjnay7pk"]
+[gd_scene load_steps=23 format=3 uid="uid://btx54tjnay7pk"]
 
 [ext_resource type="Script" path="res://Script/Visual/play_scene.gd" id="1_5kuat"]
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="1_discp"]
@@ -6,9 +6,12 @@
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="2_hmmav"]
 [ext_resource type="Script" path="res://Script/Widget/keyboard_hit.gd" id="4_ethtw"]
 [ext_resource type="Texture2D" uid="uid://da2mk8cctwkyq" path="res://Resource/Img/DecisionLine.png" id="4_i0p33"]
-[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="4_mymca"]
+[ext_resource type="Texture2D" uid="uid://cevy488woib2i" path="res://Resource/Icons/pause.svg" id="6_1tmn5"]
 [ext_resource type="Texture2D" uid="uid://couvegm2xw032" path="res://Resource/Icons/icon-LP.png" id="8_arsid"]
 [ext_resource type="PackedScene" uid="uid://ceeba0oqytaao" path="res://Scene/WidgetScene/generic.tscn" id="8_gwvle"]
+[ext_resource type="Texture2D" uid="uid://br8jdqcmxl0xy" path="res://Resource/Icons/redo.svg" id="10_w5by5"]
+[ext_resource type="Texture2D" uid="uid://8553y7vfk8ve" path="res://Resource/Icons/exit.svg" id="11_j5d65"]
+[ext_resource type="Texture2D" uid="uid://b5ce327rmqckf" path="res://Resource/Icons/start.svg" id="12_3h3ld"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sfegf"]
 shader = ExtResource("2_hmmav")
@@ -194,6 +197,27 @@ offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
 
+[node name="Acc" type="HBoxContainer" parent="."]
+offset_left = -638.0
+offset_top = -288.0
+offset_right = 640.0
+offset_bottom = -185.0
+metadata/_edit_group_ = true
+
+[node name="Acc" type="Label" parent="Acc"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 75
+text = "00000000"
+
+[node name="BGlight" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -639.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
 [node name="Panel" type="Control" parent="."]
 process_mode = 1
 self_modulate = Color(1, 1, 1, 0)
@@ -342,9 +366,28 @@ libraries = {
 
 [node name="Count" type="VBoxContainer" parent="."]
 offset_left = -571.0
-offset_top = -184.0
-offset_right = -353.0
-offset_bottom = 2.0
+offset_top = -155.0
+offset_right = -335.0
+offset_bottom = 92.0
+
+[node name="Perfect+" type="HBoxContainer" parent="Count"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Label" type="Label" parent="Count/Perfect+"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Perfect+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Count/Perfect+"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "123"
+editable = false
 
 [node name="Perfect" type="HBoxContainer" parent="Count"]
 layout_mode = 2
@@ -361,7 +404,26 @@ vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Count/Perfect"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+text = "123"
+editable = false
+
+[node name="Great" type="HBoxContainer" parent="Count"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Label" type="Label" parent="Count/Great"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Great"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Count/Great"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "123"
 editable = false
 
@@ -381,7 +443,26 @@ vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Count/Good"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+text = "123"
+editable = false
+
+[node name="Bad" type="HBoxContainer" parent="Count"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Count/Bad"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Bad"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Count/Bad"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "123"
 editable = false
 
@@ -401,29 +482,77 @@ vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Count/Miss"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
 text = "123"
 editable = false
 
-[node name="Combe" type="HBoxContainer" parent="Count"]
+[node name="Acc" type="HBoxContainer" parent="Count"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Label" type="Label" parent="Count/Combe"]
+[node name="Label" type="Label" parent="Count/Acc"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 20
-text = "Combe
+text = "Accuracy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Count/Acc"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "123"
+editable = false
+
+[node name="Combo" type="HBoxContainer" parent="Count"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Label" type="Label" parent="Count/Combo"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Combo
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Count/Combe"]
+[node name="LineEdit" type="LineEdit" parent="Count/Combo"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
 text = "123"
 editable = false
+
+[node name="Combo" type="VBoxContainer" parent="."]
+offset_left = 342.0
+offset_top = -91.0
+offset_right = 557.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+metadata/_edit_group_ = true
+
+[node name="Combo" type="Label" parent="Combo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.501961, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.843137, 0.843137, 0.843137, 1)
+theme_override_font_sizes/font_size = 60
+text = "123"
+horizontal_alignment = 1
+
+[node name="ComboLabel" type="Label" parent="Combo"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.501961, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.843137, 0.843137, 0.843137, 1)
+theme_override_font_sizes/font_size = 25
+text = "Combo"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
@@ -448,7 +577,7 @@ theme_override_constants/margin_right = 5
 layout_mode = 2
 tooltip_text = "ESC键暂停"
 theme_override_constants/icon_max_width = 30
-icon = ExtResource("4_mymca")
+icon = ExtResource("6_1tmn5")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -483,6 +612,32 @@ theme_override_constants/icon_max_width = 30
 theme_override_fonts/font = ExtResource("2_ckpc2")
 icon = ExtResource("8_arsid")
 
+[node name="Info" type="MarginContainer" parent="."]
+offset_left = -640.0
+offset_top = 304.0
+offset_right = 640.0
+offset_bottom = 344.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Info" type="HBoxContainer" parent="Info"]
+layout_mode = 2
+
+[node name="Auto" type="Label" parent="Info/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Autoplay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="User" type="Label" parent="Info/Info"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 20
+text = "User"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -640.0
 offset_top = 345.0
@@ -491,15 +646,16 @@ offset_bottom = 360.0
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_5qiaf")
 theme_override_styles/fill = SubResource("StyleBoxLine_ykdjo")
+value = 20.0
 show_percentage = false
 
 [node name="MscPlayer" type="AudioStreamPlayer2D" parent="."]
 process_mode = 1
-volume_db = -5.0
 
 [node name="SettingPanel" type="Panel" parent="."]
 process_mode = 3
 visible = false
+self_modulate = Color(0.423529, 0.423529, 0.423529, 1)
 offset_left = -650.0
 offset_top = -378.0
 offset_right = 652.0
@@ -527,20 +683,37 @@ Path = false
 Track = false
 AutoPlay = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SettingPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingPanel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Back" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Back" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/icon_max_width = 50
 theme_override_font_sizes/font_size = 25
-text = "结束"
+icon = ExtResource("10_w5by5")
 
-[node name="SublimeButton" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Quit" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/icon_max_width = 50
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("11_j5d65")
+
+[node name="SublimeButton" type="Button" parent="SettingPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+theme_override_constants/icon_max_width = 50
 theme_override_font_sizes/font_size = 25
-text = "继续"
+icon = ExtResource("12_3h3ld")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -563,5 +736,6 @@ vertical_alignment = 1
 [connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer3/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="finished" from="MscPlayer" to="." method="_on_msc_player_finished"]
-[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/HBoxContainer/SublimeButton" to="." method="_on_sublime_button_pressed"]
+[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="SettingPanel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/SublimeButton" to="." method="_on_sublime_button_pressed"]

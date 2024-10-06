@@ -13,15 +13,26 @@ extends Control
 
 @onready var title_label : Label = $Header/HBoxContainer/Center/Info/HBoxContainer/Name
 
-@onready var perfect_label : Label = $Cover/Info/MarginContainer/HBoxContainer/Count/PG/Perfect
 
-@onready var good_label : Label = $Cover/Info/MarginContainer/HBoxContainer/Count/PG/Good
+@onready var perfect_plus_label : Label = $"Cover/CoverBody/DOWN/MarginContainer/Count/PPG/Perfect+"
 
-@onready var miss_label : Label = $Cover/Info/MarginContainer/HBoxContainer/Count/MC/Miss
+@onready var perfect_label : Label = $Cover/CoverBody/DOWN/MarginContainer/Count/PPG/Perfect
 
-@onready var combe_label : Label = $Cover/Info/MarginContainer/HBoxContainer/Count/MC/Combe
+@onready var great_label : Label = $Cover/CoverBody/DOWN/MarginContainer/Count/PPG/Great
+
+@onready var good_label : Label = $Cover/CoverBody/DOWN/MarginContainer/Count/GBM/Good
+
+@onready var bad_label : Label = $Cover/CoverBody/DOWN/MarginContainer/Count/GBM/Bad
+
+@onready var miss_label : Label = $Cover/CoverBody/DOWN/MarginContainer/Count/GBM/Miss
+
+@onready var acc_i_label : Label = $"Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc/Acc-i"
+@onready var acc_f_label : Label = $"Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc/VBoxContainer2/Acc-f"
+
+@onready var combo_label : Label = $Cover/CoverBody/DOWN/MarginContainer/Count/Combo/Combo
 
 
+@onready var tip : Label = $Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc/Tip
 
 
 func set_demo_msc_cover(msc_title : String):
@@ -69,11 +80,43 @@ func set_demo_msc_cover(msc_title : String):
 		last_audio.stream = GlobalScene.selected_stream
 		last_audio.play()
 	
-	perfect_label.text = "perfect " + str(GlobalScene.perfect_count)
-	good_label.text = "good " + str(GlobalScene.good_count)
-	miss_label.text = "miss " + str(GlobalScene.miss_count)
-	combe_label.text = "max combe " + str(GlobalScene.max_combe)
-
+	perfect_plus_label.text = "Perfect+ " 	+ str(GlobalScene.perfect_plus_count)
+	perfect_label.text 		= "Perfect " 	+ str(GlobalScene.perfect_count)
+	great_label.text 		= "Great " 		+ str(GlobalScene.great_count)
+	good_label.text 		= "Good " 		+ str(GlobalScene.good_count)
+	bad_label.text 			= "Bad " 		+ str(GlobalScene.bad_count)
+	miss_label.text 		= "Miss " 		+ str(GlobalScene.miss_count)
+	combo_label.text 		= str(GlobalScene.max_combo)
+	
+	GlobalScene.average_acc = round(GlobalScene.average_acc * 10000) / 10000
+	var acc_i : float = round(GlobalScene.average_acc)
+	var acc_f : float = GlobalScene.average_acc - acc_i
+	var acc_f_str : String = ""
+	if str(acc_f).length() < 4:
+		acc_f_str = str(acc_f)
+		for i in range(4 - str(acc_f).length()):
+			acc_f_str += "0"
+	
+	acc_i_label.text = str(acc_i)
+	acc_f_label.text = acc_f_str
+	
+	var acc = GlobalScene.average_acc
+	if acc == 100:
+		tip.text = "∞"
+		tip.self_modulate = Color("66ccff")
+	elif acc >= 98:
+		tip.text = "S+"
+	elif acc >= 95:
+		tip.text = "S"
+	elif acc >= 92:
+		tip.text = "A"
+	elif acc >= 85:
+		tip.text = "B"
+	elif acc >= 70:
+		tip.text = "C"
+	else:
+		tip.text = "D"
+		tip.self_modulate = Color("acacac")
 
 func _ready():
 	set_demo_msc_cover(GlobalScene.selected_msc_title)

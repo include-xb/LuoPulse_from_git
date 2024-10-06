@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxq6ti2fkyxix"
-path="res://.godot/imported/allmj.jpg-dd8102c7801608d6a8f3ef30a7d8b069.ctex"
+uid="uid://br8jdqcmxl0xy"
+path="res://.godot/imported/redo.svg-9543a9599b21879bddbe19de3c61b482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resource/Img/producer_img/allmj.jpg"
-dest_files=["res://.godot/imported/allmj.jpg-dd8102c7801608d6a8f3ef30a7d8b069.ctex"]
+source_file="res://Resource/Icons/redo.svg"
+dest_files=["res://.godot/imported/redo.svg-9543a9599b21879bddbe19de3c61b482.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

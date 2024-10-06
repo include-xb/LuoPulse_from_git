@@ -1,12 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dh8diae1duac0"]
+[gd_scene load_steps=14 format=3 uid="uid://dh8diae1duac0"]
 
 [ext_resource type="Texture2D" uid="uid://dsofcewjgvur5" path="res://Resource/Img/hub_bg.jpg" id="1_cwfnl"]
 [ext_resource type="Script" path="res://Script/Visual/finish_scene.gd" id="1_nhfnu"]
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="2_wx3ej"]
-[ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="3_78cmx"]
-[ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Resource/Icons/chevron-left.svg" id="4_wg4vo"]
-[ext_resource type="Texture2D" uid="uid://bil0hsnon1iek" path="res://icon-LP.png" id="5_mblqr"]
-[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Resource/Icons/play-fill.svg" id="6_bnu5s"]
+[ext_resource type="Texture2D" uid="uid://br8jdqcmxl0xy" path="res://Resource/Icons/redo.svg" id="4_yw3s4"]
+[ext_resource type="Texture2D" uid="uid://bgmc1ryv4i1r4" path="res://Resource/Icons/forward.svg" id="5_j3v7w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_484hx"]
 shader = ExtResource("2_wx3ej")
@@ -99,58 +97,6 @@ _data = {
 "move_up": SubResource("Animation_at20o")
 }
 
-[sub_resource type="Animation" id="Animation_by3f5"]
-resource_name = "center"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1116, 579), Vector2(1539, 781)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(82, 92), Vector2(-130, -30)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Info:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("LastAudio:volume_db")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -40.0]
-}
-
 [sub_resource type="Animation" id="Animation_88l4e"]
 length = 0.001
 tracks/0/type = "value"
@@ -180,7 +126,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Info:modulate")
+tracks/2/path = NodePath("CoverBody/UP/Info:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -200,6 +146,58 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_by3f5"]
+resource_name = "center"
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1116, 579), Vector2(1539, 781)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(82, 92), Vector2(-130, -30)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CoverBody/UP/Info:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LastAudio:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -40.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ue6ss"]
@@ -258,12 +256,12 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/margin_right = 5
 
-[node name="BackButton" type="Button" parent="Header/HBoxContainer/Back"]
+[node name="RetryButton" type="Button" parent="Header/HBoxContainer/Back"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_vertical = 4
 theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("3_78cmx")
-icon = ExtResource("4_wg4vo")
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("4_yw3s4")
 
 [node name="Center" type="MarginContainer" parent="Header/HBoxContainer"]
 layout_mode = 2
@@ -291,10 +289,13 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/margin_left = 5
 
-[node name="SettingButton" type="Button" parent="Header/HBoxContainer/Setting"]
+[node name="HomeButton" type="Button" parent="Header/HBoxContainer/Setting"]
 layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
 theme_override_constants/icon_max_width = 30
-icon = ExtResource("5_mblqr")
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("5_j3v7w")
 
 [node name="MoveUp" type="AnimationPlayer" parent="Header"]
 libraries = {
@@ -317,7 +318,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 130
-theme_override_constants/margin_top = 30
+theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 130
 theme_override_constants/margin_bottom = 30
 
@@ -327,94 +328,170 @@ texture = ExtResource("1_cwfnl")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Info" type="PanelContainer" parent="Cover"]
+[node name="CoverBody" type="VBoxContainer" parent="Cover"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="UP" type="MarginContainer" parent="Cover/CoverBody"]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Info" type="PanelContainer" parent="Cover/CoverBody/UP"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Cover/CoverBody/UP/Info"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Cover/CoverBody/UP/Info/MarginContainer"]
+layout_mode = 2
+
+[node name="Acc" type="HBoxContainer" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Acc-i" type="Label" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 75
+text = "000"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc"]
+layout_mode = 2
+
+[node name="Acc-f" type="Label" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_colors/font_shadow_color = Color(0.67451, 0.67451, 0.67451, 1)
+theme_override_font_sizes/font_size = 35
+text = "0000"
+horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Cover/Info"]
+[node name="feiwu" type="MarginContainer" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc/VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_top = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Cover/Info/MarginContainer"]
+[node name="feiwu" type="MarginContainer" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc"]
 layout_mode = 2
 
-[node name="Count" type="HBoxContainer" parent="Cover/Info/MarginContainer/HBoxContainer"]
+[node name="AccLabel" type="Label" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="PG" type="VBoxContainer" parent="Cover/Info/MarginContainer/HBoxContainer/Count"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="Perfect" type="Label" parent="Cover/Info/MarginContainer/HBoxContainer/Count/PG"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+size_flags_vertical = 10
+theme_override_colors/font_shadow_color = Color(0.67451, 0.67451, 0.67451, 1)
 theme_override_font_sizes/font_size = 20
-text = "perfect -"
+text = "Accuracy"
+horizontal_alignment = 1
+
+[node name="feiwu" type="MarginContainer" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 17
+
+[node name="Tip" type="Label" parent="Cover/CoverBody/UP/Info/MarginContainer/HBoxContainer/Acc"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 75
+text = "A"
+
+[node name="DOWN" type="MarginContainer" parent="Cover/CoverBody"]
+layout_mode = 2
+size_flags_vertical = 10
+metadata/_edit_group_ = true
+
+[node name="Panel" type="PanelContainer" parent="Cover/CoverBody/DOWN"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Cover/CoverBody/DOWN"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 10
+
+[node name="Count" type="HBoxContainer" parent="Cover/CoverBody/DOWN/MarginContainer"]
+layout_mode = 2
+
+[node name="PPG" type="VBoxContainer" parent="Cover/CoverBody/DOWN/MarginContainer/Count"]
+layout_mode = 2
+
+[node name="Perfect+" type="Label" parent="Cover/CoverBody/DOWN/MarginContainer/Count/PPG"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.67451, 0.67451, 0.67451, 1)
+theme_override_font_sizes/font_size = 23
+text = "Perfect+ -"
 vertical_alignment = 1
 
-[node name="Good" type="Label" parent="Cover/Info/MarginContainer/HBoxContainer/Count/PG"]
+[node name="Perfect" type="Label" parent="Cover/CoverBody/DOWN/MarginContainer/Count/PPG"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 1, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0.67451, 0.67451, 0.67451, 1)
+theme_override_font_sizes/font_size = 23
+text = "Perfect -"
+vertical_alignment = 1
+
+[node name="Great" type="Label" parent="Cover/CoverBody/DOWN/MarginContainer/Count/PPG"]
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "good -"
+theme_override_colors/font_shadow_color = Color(0.67451, 0.67451, 0.67451, 1)
+theme_override_font_sizes/font_size = 23
+text = "Great -"
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Cover/Info/MarginContainer/HBoxContainer/Count"]
+[node name="feiwu" type="MarginContainer" parent="Cover/CoverBody/DOWN/MarginContainer/Count"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 
-[node name="MC" type="VBoxContainer" parent="Cover/Info/MarginContainer/HBoxContainer/Count"]
+[node name="GBM" type="VBoxContainer" parent="Cover/CoverBody/DOWN/MarginContainer/Count"]
 layout_mode = 2
-size_flags_horizontal = 10
 
-[node name="Miss" type="Label" parent="Cover/Info/MarginContainer/HBoxContainer/Count/MC"]
+[node name="Good" type="Label" parent="Cover/CoverBody/DOWN/MarginContainer/Count/GBM"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.721569, 0.721569, 0.721569, 1)
-theme_override_font_sizes/font_size = 20
-text = "miss -"
+theme_override_colors/font_color = Color(0.933333, 0.509804, 0.933333, 1)
+theme_override_colors/font_shadow_color = Color(0.67451, 0.67451, 0.67451, 1)
+theme_override_font_sizes/font_size = 23
+text = "Good -"
+
+[node name="Bad" type="Label" parent="Cover/CoverBody/DOWN/MarginContainer/Count/GBM"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.67451, 0.67451, 0.67451, 1)
+theme_override_font_sizes/font_size = 23
+text = "Bad -"
+
+[node name="Miss" type="Label" parent="Cover/CoverBody/DOWN/MarginContainer/Count/GBM"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.4, 0.4, 1)
+theme_override_colors/font_shadow_color = Color(0.67451, 0.67451, 0.67451, 1)
+theme_override_font_sizes/font_size = 23
+text = "Miss -"
 vertical_alignment = 1
 
-[node name="Combe" type="Label" parent="Cover/Info/MarginContainer/HBoxContainer/Count/MC"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 20
-text = "max combo -"
-vertical_alignment = 1
-
-[node name="Buttons" type="HBoxContainer" parent="Cover/Info/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="RetryButton" type="Button" parent="Cover/Info/MarginContainer/HBoxContainer/Buttons"]
+[node name="Combo" type="VBoxContainer" parent="Cover/CoverBody/DOWN/MarginContainer/Count"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_constants/icon_max_width = 40
-theme_override_font_sizes/font_size = 25
-text = "重试  "
-icon = ExtResource("6_bnu5s")
+size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="Cover/Info/MarginContainer/HBoxContainer/Buttons"]
+[node name="Combo" type="Label" parent="Cover/CoverBody/DOWN/MarginContainer/Count/Combo"]
 layout_mode = 2
-theme_override_constants/margin_left = 50
+theme_override_colors/font_color = Color(0, 0.501961, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.843137, 0.843137, 0.843137, 1)
+theme_override_font_sizes/font_size = 45
+text = "123"
+horizontal_alignment = 1
 
-[node name="HomeButton" type="Button" parent="Cover/Info/MarginContainer/HBoxContainer/Buttons"]
+[node name="ComboLabel" type="Label" parent="Cover/CoverBody/DOWN/MarginContainer/Count/Combo"]
 layout_mode = 2
-size_flags_horizontal = 2
-theme_override_constants/icon_max_width = 40
-theme_override_font_sizes/font_size = 25
-text = "返回  "
-icon = ExtResource("4_wg4vo")
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0, 0.501961, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.843137, 0.843137, 0.843137, 1)
+theme_override_font_sizes/font_size = 20
+text = "Max Combo"
+vertical_alignment = 1
 
 [node name="LastAudio" type="AudioStreamPlayer2D" parent="Cover"]
 position = Vector2(-362, -92)
@@ -424,5 +501,5 @@ libraries = {
 "": SubResource("AnimationLibrary_ue6ss")
 }
 
-[connection signal="pressed" from="Cover/Info/MarginContainer/HBoxContainer/Buttons/RetryButton" to="." method="_on_retry_button_pressed"]
-[connection signal="pressed" from="Cover/Info/MarginContainer/HBoxContainer/Buttons/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="Header/HBoxContainer/Back/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Header/HBoxContainer/Setting/HomeButton" to="." method="_on_home_button_pressed"]

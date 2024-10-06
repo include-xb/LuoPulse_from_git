@@ -93,23 +93,29 @@ func _process(delta):
 		scene.panel_animation.play_backwards("shake_down")
 		
 		var score = holding_timer / duration
+		var acc :float = 0.0
 		
 		# 摁住 85% 为 perfect
 		if score >= 0.85:
 			if self in GlobalScene.decision_area:
 				GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 			GlobalScene.perfect_count += 1
-			GlobalScene.combe += 1
+			GlobalScene.combo += 1
+			acc = score * 100
 		
 		# 摁住 50% - 85% 为 good
 		elif 0.5 <= score and score < 0.85:
 			if self in GlobalScene.decision_area:
 				GlobalScene.decision_area.remove_at(GlobalScene.decision_area.find(self, 0))
 			GlobalScene.good_count += 1
-			GlobalScene.combe += 1
+			GlobalScene.combo += 1
+			acc = score * 100
 		else:
 			# print("中间 miss")
+			acc = 0
 			missing()
+		
+		GlobalScene.average_acc = (id * GlobalScene.average_acc + acc) / (id + 1)
 	
 	if GlobalScene.auto_play:
 		auto_play()
@@ -120,7 +126,7 @@ func missing():
 	
 	# INFO: missing
 	GlobalScene.miss_count += 1
-	GlobalScene.combe = 0
+	GlobalScene.combo = 0
 	
 	GlobalScene.key_scene.current_holding = null
 	is_holding = false
@@ -146,8 +152,9 @@ func auto_play():
 		is_holding = false
 		scene.panel_animation.play_backwards("shake_down")
 		
-		GlobalScene.perfect_count += 1
-		GlobalScene.combe += 1
+		GlobalScene.perfect_plus_count += 1
+		GlobalScene.average_acc = 100
+		GlobalScene.combo += 1
 		
 		self.queue_free()
 		scene.panel_animation.get_node("../Panel_" + str(column)).modulate = Color(1, 1, 1, 1)

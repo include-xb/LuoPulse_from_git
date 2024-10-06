@@ -56,7 +56,6 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/PathSetting/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 25
 text = "歌单路径"
 
@@ -114,11 +113,23 @@ theme_override_font_sizes/font_size = 25
 text = "背景亮度
 "
 
-[node name="BglightHSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="BglightLabel" type="Label" parent="ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BglightHSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
+min_value = 20.0
+value = 100.0
 
 [node name="VolumeSetting" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -133,7 +144,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "音量"
 
-[node name="VolumeHSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/VolumeSetting/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/VolumeSetting/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="VolumeLabel" type="Label" parent="ScrollContainer/VBoxContainer/VolumeSetting/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VolumeHSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/VolumeSetting/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -374,6 +395,7 @@ size_flags_horizontal = 8
 
 [connection signal="text_changed" from="ScrollContainer/VBoxContainer/PathSetting/HBoxContainer/PathLineEdit" to="." method="_on_path_line_edit_text_changed"]
 [connection signal="value_changed" from="ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedHSlider" to="." method="_on_speed_h_slider_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer/VBoxContainer/BglightHSlider" to="." method="_on_bglight_h_slider_value_changed"]
 [connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting5/HBoxContainer/OptionButton5" to="." method="_on_option_button_5_item_selected"]
 [connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting1/HBoxContainer/OptionButton1" to="." method="_on_option_button_1_item_selected"]
 [connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting2/HBoxContainer/OptionButton2" to="." method="_on_option_button_2_item_selected"]
