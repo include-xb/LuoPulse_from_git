@@ -197,6 +197,63 @@ offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
 
+[node name="KeyTip" type="MarginContainer" parent="."]
+offset_left = -299.0
+offset_top = 263.0
+offset_right = 304.0
+offset_bottom = 332.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KeyTip"]
+layout_mode = 2
+
+[node name="Label0" type="Label" parent="KeyTip/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label1" type="Label" parent="KeyTip/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="KeyTip/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "F"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="KeyTip/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "J"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="KeyTip/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "K"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="KeyTip/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "L"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Acc" type="HBoxContainer" parent="."]
 offset_left = -638.0
 offset_top = -288.0
@@ -365,6 +422,7 @@ libraries = {
 }
 
 [node name="Count" type="VBoxContainer" parent="."]
+visible = false
 offset_left = -571.0
 offset_top = -155.0
 offset_right = -335.0
@@ -528,10 +586,10 @@ text = "123"
 editable = false
 
 [node name="Combo" type="VBoxContainer" parent="."]
-offset_left = 342.0
-offset_top = -91.0
-offset_right = 557.0
-offset_bottom = 31.0
+offset_left = 389.0
+offset_top = -233.0
+offset_right = 604.0
+offset_bottom = -111.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 metadata/_edit_group_ = true
@@ -646,7 +704,6 @@ offset_bottom = 360.0
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_5qiaf")
 theme_override_styles/fill = SubResource("StyleBoxLine_ykdjo")
-value = 20.0
 show_percentage = false
 
 [node name="MscPlayer" type="AudioStreamPlayer2D" parent="."]

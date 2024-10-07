@@ -1,7 +1,7 @@
-MarginContainer
-VBoxContainer
 HBoxContainer
 Label
+MarginContainer
+VBoxContainer
 Panel
 PanelContainer
 Button

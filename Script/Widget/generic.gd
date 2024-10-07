@@ -38,8 +38,12 @@ extends MarginContainer
 
 @onready var auto_play_button : CheckButton = $ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer/CheckButton
 
+@onready var display_button : CheckButton = $ScrollContainer/VBoxContainer/DisplayKeySetting/HBoxContainer/DKCheckButton
+
 # ON/OFF
 @onready var auto_play_label : Label = $ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer/TipLabel
+
+@onready var display_label : Label = $ScrollContainer/VBoxContainer/DisplayKeySetting/HBoxContainer/TipLabel
 
 @onready var option_1 : OptionButton = $ScrollContainer/VBoxContainer/ColumnSetting1/HBoxContainer/OptionButton1
 @onready var option_2 : OptionButton = $ScrollContainer/VBoxContainer/ColumnSetting2/HBoxContainer/OptionButton2
@@ -72,7 +76,10 @@ func _ready():
 	bglight_slider.value = GlobalScene.bglight
 	volume_slider.value = GlobalScene.volume
 	auto_play_label.text = "ON" if GlobalScene.auto_play else "OFF"
+	display_label.text = "ON" if GlobalScene.display_key_tip else "OFF"
 	auto_play_button.button_pressed = GlobalScene.auto_play
+	display_button.button_pressed = GlobalScene.display_key_tip
+	
 	
 	
 	option_1.select(index_map.get(GlobalScene.key_map["1"]))
@@ -133,3 +140,8 @@ func _on_bglight_h_slider_value_changed(value):
 	var c : float = (100 - GlobalScene.bglight) / 80
 	GlobalScene.play_scene.bglight_panel.self_modulate = Color(1, 1, 1, c)
 	print(c)
+
+
+func _on_dk_check_button_toggled(toggled_on):
+	display_label.text = "ON" if toggled_on else "OFF"
+	GlobalScene.display_key_tip = toggled_on

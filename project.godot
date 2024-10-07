@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="LouPulse"
+config/name="LuoPulse"
 config/description="洛天依音游: LuoPulse 洛之动脉"
 run/main_scene="res://Scene/VisualScene/start_scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")

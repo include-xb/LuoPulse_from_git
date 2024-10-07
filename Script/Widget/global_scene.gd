@@ -11,7 +11,7 @@ extends Control
 
 
 # 版本
-var version : String = "pc3.5.0.0"
+var version : String = "pc3.5.1.0"
 
 
 # SETTING:
@@ -38,6 +38,8 @@ var volume : float = 0
 var bglight : float = 100.0
 
 var auto_play : bool = true
+
+var display_key_tip : bool = true
 
 var key_map : Dictionary = {
 	"1": "D",
@@ -172,6 +174,7 @@ func save_cfg_data() -> void:
 		"user_name": user_name,
 		"auto_play": auto_play,
 		"key_map": key_map,
+		"display_key_tip": display_key_tip
 	}
 	var cfgFile : FileAccess = FileAccess.open("user://config.json", FileAccess.WRITE)
 	cfgFile.store_string(JSON.stringify(config))

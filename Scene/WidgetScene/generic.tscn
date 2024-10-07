@@ -336,6 +336,7 @@ popup/item_7/text = ";"
 popup/item_7/id = 7
 
 [node name="ColumnSetting6" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
@@ -393,6 +394,29 @@ text = "ON/OFF"
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="DisplayKeySetting" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/DisplayKeySetting"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/DisplayKeySetting/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "显示轨道对应键位"
+
+[node name="TipLabel" type="Label" parent="ScrollContainer/VBoxContainer/DisplayKeySetting/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 20
+text = "ON/OFF"
+
+[node name="DKCheckButton" type="CheckButton" parent="ScrollContainer/VBoxContainer/DisplayKeySetting/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
 [connection signal="text_changed" from="ScrollContainer/VBoxContainer/PathSetting/HBoxContainer/PathLineEdit" to="." method="_on_path_line_edit_text_changed"]
 [connection signal="value_changed" from="ScrollContainer/VBoxContainer/SpeedSetting/HBoxContainer/VBoxContainer/SpeedHSlider" to="." method="_on_speed_h_slider_value_changed"]
 [connection signal="value_changed" from="ScrollContainer/VBoxContainer/BGLightSetting/HBoxContainer/VBoxContainer/BglightHSlider" to="." method="_on_bglight_h_slider_value_changed"]
@@ -403,3 +427,4 @@ size_flags_horizontal = 8
 [connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting4/HBoxContainer/OptionButton4" to="." method="_on_option_button_4_item_selected"]
 [connection signal="item_selected" from="ScrollContainer/VBoxContainer/ColumnSetting6/HBoxContainer/OptionButton6" to="." method="_on_option_button_6_item_selected"]
 [connection signal="toggled" from="ScrollContainer/VBoxContainer/AutoPlaySetting/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/DisplayKeySetting/HBoxContainer/DKCheckButton" to="." method="_on_dk_check_button_toggled"]

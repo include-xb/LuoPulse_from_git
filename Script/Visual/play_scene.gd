@@ -47,6 +47,13 @@ var note_loader : NoteLoader = NoteLoader.new()
 
 @onready var user_label : Label = $Info/Info/User
 
+@onready var label_0 : Label = $KeyTip/HBoxContainer/Label0
+@onready var label_1 : Label = $KeyTip/HBoxContainer/Label1
+@onready var label_2 : Label = $KeyTip/HBoxContainer/Label2
+@onready var label_3 : Label = $KeyTip/HBoxContainer/Label3
+@onready var label_4 : Label = $KeyTip/HBoxContainer/Label4
+@onready var label_5 : Label = $KeyTip/HBoxContainer/Label5
+
 
 var note_type_array : Array = [ ]
 
@@ -108,6 +115,21 @@ func _ready():
 	miss_box.text = "0"
 	acc_box.text = "0"
 	combo_box.text = "0"
+	
+	# shisha, 要改
+	label_0.visible = GlobalScene.display_key_tip
+	label_1.visible = GlobalScene.display_key_tip
+	label_2.visible = GlobalScene.display_key_tip
+	label_3.visible = GlobalScene.display_key_tip
+	label_4.visible = GlobalScene.display_key_tip
+	label_5.visible = GlobalScene.display_key_tip
+	
+	label_0.text = GlobalScene.key_map["5"]
+	label_1.text = GlobalScene.key_map["1"]
+	label_2.text = GlobalScene.key_map["2"]
+	label_3.text = GlobalScene.key_map["3"]
+	label_4.text = GlobalScene.key_map["4"]
+	label_5.text = GlobalScene.key_map["6"]
 	
 	for i in range(1, 4 + 1):
 		get_node("Panel/Panel_" + str(i)).KEY = GlobalScene.key_map[str(i)]

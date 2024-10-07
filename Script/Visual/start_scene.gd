@@ -56,4 +56,4 @@ func get_user_config() -> void:
 		GlobalScene.user_name = config.user_name 			if config.has("user_name") else "user"
 		GlobalScene.auto_play = config.auto_play 			if config.has("auto_play") else false
 		GlobalScene.key_map = config.key_map 				if config.has("key_map") else { "1": "D", "2": "F", "3": "J", "4": "K", "5": "S", "6": "L" }
-		
+		GlobalScene.display_key_tip = config.display_key_tip if config.has("display_key_tip") else false
