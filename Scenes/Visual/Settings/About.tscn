@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://chdtj3o3nad8p"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/Settings/About.gd" id="1_yt0cq"]
-[ext_resource type="Texture2D" uid="uid://ddcgovtkkrg08" path="res://Assets/Icons/icon-LP.png" id="2_ndvu1"]
+[ext_resource type="Texture2D" uid="uid://bhuved7qh6mjh" path="res://Assets/Icons/icon.png" id="2_xdfrp"]
 [ext_resource type="FontFile" uid="uid://c80ol0dpd1c3y" path="res://Assets/Forts/汉仪洛天依体简.ttf" id="3_a1lrh"]
 
 [node name="About" type="MarginContainer"]
@@ -23,7 +23,8 @@ size_flags_stretch_ratio = 0.4
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-texture = ExtResource("2_ndvu1")
+texture = ExtResource("2_xdfrp")
+expand_mode = 1
 
 [node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
 layout_mode = 2

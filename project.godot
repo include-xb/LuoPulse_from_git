@@ -13,7 +13,7 @@ config_version=5
 config/name="LuoPulse"
 run/main_scene="res://Scenes/Visual/start_scene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://Assets/Icons/icon-LP.png"
+config/icon="res://Assets/Icons/icon.png"
 
 [autoload]
 
