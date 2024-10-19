@@ -10,7 +10,7 @@ func _ready():
 	# 头像自动设置
 	if Constant.PRODUCTORS_HEAD_PORTRAIT.has(RunningData.user_name):
 		print("hit")
-		$UserInfo/HBoxContainer/HeadPortrait.texture = Constant.PRODUCTORS_HEAD_PORTRAIT[RunningData.user_name]
+		$UserInfo/HBoxContainer/HeadPortrait.texture = load(Constant.PRODUCTORS_HEAD_PORTRAIT[RunningData.user_name])
 
 func _process(_delta):
 	var time_dict: Dictionary = Time.get_time_dict_from_system()

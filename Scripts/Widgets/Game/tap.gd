@@ -31,6 +31,8 @@ var running_timer : float = RunningData.delay_time
 var add : bool = true
 var remove : bool = true
 
+var column: int
+
 # 引用 game_scene_scene 场景, 这个引用在 note_loader 中被初始化
 #var placed_scene : GameScene
 
@@ -50,7 +52,6 @@ func _process(delta):
 	if add && running_timer >= -0.2:
 		add = false
 		RunningData.decision_area.push_back(self)
-		#print(RunningData.decision_area.size())
 	elif remove && running_timer >= 0.2:
 		remove = false
 		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
@@ -60,7 +61,6 @@ func _process(delta):
 		RunningData.cambo = 0
 		RunningData.rating = "miss"
 		queue_free()
-		#print(RunningData.decision_area.size())
 	
 	if RunningData.is_auto_play:
 		auto_play()
@@ -93,8 +93,6 @@ func auto_play():
 func kill():
 	audio_player.play()
 	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
-	# TODO: 点击效果...
-	# $MeshInstance3D.mesh.material.albedo_color = Color(102, 204, 255)
 	queue_free()
 
 
