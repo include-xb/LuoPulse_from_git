@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Widgets/Select/PackItem.gd" id="1_4cwpc"]
 [ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="2_fvney"]
-[ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="2_t60hm"]
+[ext_resource type="Shader" path="res://Shader/fuzzy.gdshader" id="2_t60hm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqwmv"]
 bg_color = Color(0, 0, 0, 0.360784)

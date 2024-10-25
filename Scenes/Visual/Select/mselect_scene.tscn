@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_hjn3g"]
 [ext_resource type="Script" path="res://Scripts/Visual/Select/mselect_scene.gd" id="2_h12np"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="3_k2kfh"]
-[ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="3_vq6i3"]
+[ext_resource type="Shader" path="res://Shader/fuzzy.gdshader" id="3_vq6i3"]
 [ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="4_muhx1"]
 [ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Assets/Icons/play-fill.svg" id="5_qrx4f"]
 

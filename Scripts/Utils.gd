@@ -6,6 +6,13 @@ func get_short_artists_list(path: String) -> String:
 	var info: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path + "/chart.json"))
 	return info["General"]["ShortArtistsList"]
 
+func get_staff_list(path: String) -> String:
+	var info: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path + "/chart.json"))
+	return info["General"]["Artist"]
+
+func get_chart_maker(path: String) -> String:
+	var info: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path + "/chart.json"))
+	return info["General"]["Creator"]
 
 # 清除计数
 func count_clean() -> void:

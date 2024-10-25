@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Visual/hub_scene.gd" id="2_q14h0"]
 [ext_resource type="Texture2D" uid="uid://bkckomqfbkekj" path="res://Assets/Images/user.jpeg" id="3_2hkyl"]
 [ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="3_imp0h"]
-[ext_resource type="Shader" path="res://Shader/hub_scene_bg.gdshader" id="3_n05rd"]
+[ext_resource type="Shader" path="res://Shader/fuzzy.gdshader" id="3_n05rd"]
 [ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Assets/Icons/gear-fill.svg" id="3_voi8l"]
 [ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Assets/Icons/play-fill.svg" id="4_v357t"]
 [ext_resource type="Shader" path="res://Shader/radius.gdshader" id="5_3bvb8"]
@@ -67,6 +67,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_imp0h")
 expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
 
 [node name="UserInfo" type="MarginContainer" parent="."]
 layout_mode = 0

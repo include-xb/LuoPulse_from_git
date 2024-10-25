@@ -5,8 +5,8 @@ class_name GameScene
 # 音乐播放器
 @onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
 
-# 封面
-@onready var cover : TextureRect = $Background/TextureRect
+# 加载页节点
+@onready var loading_panel: Control = $Loading
 
 @onready var palse_panel : Panel = $Palse
 @onready var cambo_label: Label = $CamboVBC/CamboLabel
@@ -148,15 +148,23 @@ var json_data : Dictionary = \
 var temp : bool = true
 
 func _ready() -> void:
+	
 	print("loader_timer: ", loader_timer)
 	print("runningdata.delay_time:", RunningData.delay_time)
 
 	var path: String = RunningData.selected_msc["path"]
+	var msc_name: String = RunningData.selected_msc["name"]
+	var cover_img: Texture2D = load(path + "/cover.png")
+	
+	$Loading/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer/TextureRect.texture = cover_img
+	$Loading/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer/TextureRect/PanelContainer/MarginContainer/NameLabel.text = msc_name
+	$Loading/TextureRect.texture = cover_img
+	$Loading/VBoxContainer/HBoxContainer/CenterContainer2/VBoxContainer/StaffListLabel.text = Utils.get_staff_list(path)
+	$Loading/VBoxContainer/HBoxContainer/CenterContainer2/VBoxContainer/ChartMakerLabel.text = "谱面：" + Utils.get_chart_maker(path)
+	
+	$Info/HBoxContainer/VBoxContainer/MscName.text = msc_name
+	$Background/TextureRect.texture = cover_img
 
-	$Info/HBoxContainer/VBoxContainer/MscName.text = RunningData.selected_msc["name"]
-	
-	cover.texture = load(path + "/cover.png")
-	
 	$Info/HBoxContainer/VBoxContainer/ArName.text = Utils.get_short_artists_list(path)
 
 	# 三个统计标签都初始为0
@@ -188,6 +196,10 @@ func _ready() -> void:
 		note_time_array.push_back(i.time)
 		note_column_array.push_back(i.column)
 		note_duration_array.push_back(i.duration if i.has("duration") else 0)
+		
+	# 2s伪加载
+	await get_tree().create_timer(2.0).timeout
+	loading_panel.visible = false
 	
 	$Timer.start(RunningData.delay_time)
 	
