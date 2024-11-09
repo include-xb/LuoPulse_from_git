@@ -150,6 +150,30 @@ var key_scene = null
 var play_scene = null
 
 
+var editing_chart : Dictionary = {
+	"General": {
+		"Title": "",		# 标题
+		"Producer": "",		# P主
+		"Illustrator": "",	# 曲绘
+		"Creator": "",		# 谱师
+		"Version": "",		# 版本
+		"BPM": 0
+	},
+	
+	"HitObjects": [
+		{
+			"type": "tap",
+			"time": 0,
+			"column": 1
+		},
+	]
+}
+
+var start_saving_chart = false
+
+var current_state : String = "tap"
+
+
 func clear_count():
 	perfect_plus_count = 0
 	perfect_count = 0

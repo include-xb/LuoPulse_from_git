@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgdu41dxvx813"]
+[gd_scene load_steps=15 format=3 uid="uid://cgdu41dxvx813"]
 
 [ext_resource type="Script" path="res://Script/Visual/hub_scene.gd" id="2_7knkj"]
 [ext_resource type="Texture2D" uid="uid://ba83wknv4e7bb" path="res://Resource/Img/user.jpeg" id="3_2hkyl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://Shader/radius.gdshader" id="5_3bvb8"]
 [ext_resource type="Texture2D" uid="uid://dc6dyer52ocv3" path="res://Resource/Img/char.png" id="5_tec6b"]
 [ext_resource type="Texture2D" uid="uid://btnnqo7j0opwh" path="res://Resource/Icons/chat.svg" id="6_ncmh4"]
+[ext_resource type="Texture2D" uid="uid://q8xvkd58yvr1" path="res://Resource/Icons/MynauiPlusHexagon.svg" id="7_d5ufq"]
 [ext_resource type="Texture2D" uid="uid://uv80p1w6vieq" path="res://Resource/Icons/gear.svg" id="7_u7vao"]
 [ext_resource type="Texture2D" uid="uid://bgmc1ryv4i1r4" path="res://Resource/Icons/forward.svg" id="9_ri2a5"]
 [ext_resource type="Texture2D" uid="uid://8553y7vfk8ve" path="res://Resource/Icons/exit.svg" id="10_7mv5e"]
@@ -110,17 +111,25 @@ text = "pc3.1.0"
 [node name="Buttons" type="HBoxContainer" parent="Header/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_constants/separation = 5
 
 [node name="MessageButton" type="Button" parent="Header/HBoxContainer/Buttons"]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 4
 tooltip_text = "消息"
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("6_ncmh4")
 
+[node name="NewButton" type="Button" parent="Header/HBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "新建谱面"
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("7_d5ufq")
+
 [node name="SettingButton" type="Button" parent="Header/HBoxContainer/Buttons"]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 4
 tooltip_text = "设置"
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("7_u7vao")

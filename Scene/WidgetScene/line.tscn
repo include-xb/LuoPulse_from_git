@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfxwx7gnmr33m"]
+
+[ext_resource type="Script" path="res://Script/Widget/Line.gd" id="1_0ygf8"]
+[ext_resource type="PackedScene" uid="uid://bsjeflpvurkxa" path="res://Scene/WidgetScene/track_note.tscn" id="2_qfsa0"]
+
+[node name="Line" type="VBoxContainer"]
+offset_right = 476.0
+offset_bottom = 208.0
+theme_override_constants/separation = -1
+script = ExtResource("1_0ygf8")
+
+[node name="Body" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -1
+
+[node name="d" type="MarginContainer" parent="Body"]
+layout_mode = 2
+theme_override_constants/margin_top = 200
+
+[node name="VSeparator" type="VSeparator" parent="Body"]
+layout_mode = 2
+
+[node name="Track1" parent="Body" instance=ExtResource("2_qfsa0")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Body"]
+layout_mode = 2
+
+[node name="Track2" parent="Body" instance=ExtResource("2_qfsa0")]
+layout_mode = 2
+size_flags_vertical = 1
+column = 2
+
+[node name="VSeparator3" type="VSeparator" parent="Body"]
+layout_mode = 2
+
+[node name="Track3" parent="Body" instance=ExtResource("2_qfsa0")]
+layout_mode = 2
+size_flags_vertical = 1
+column = 3
+
+[node name="VSeparator4" type="VSeparator" parent="Body"]
+layout_mode = 2
+
+[node name="Track4" parent="Body" instance=ExtResource("2_qfsa0")]
+layout_mode = 2
+size_flags_vertical = 1
+column = 4
+
+[node name="VSeparator5" type="VSeparator" parent="Body"]
+layout_mode = 2
+
+[node name="HSeparatorD" type="HSeparator" parent="."]
+modulate = Color(0.780392, 0, 0.866667, 1)
+layout_mode = 2
+
+[node name="HSeparatorB" type="HSeparator" parent="."]
+modulate = Color(0.321569, 0.843137, 0.854902, 1)
+layout_mode = 2

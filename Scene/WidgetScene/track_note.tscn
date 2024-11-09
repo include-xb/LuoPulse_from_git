@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsjeflpvurkxa"]
+
+[ext_resource type="Script" path="res://Script/Widget/track_note.gd" id="1_p8xl7"]
+
+[node name="Track1" type="MarginContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 8
+script = ExtResource("1_p8xl7")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

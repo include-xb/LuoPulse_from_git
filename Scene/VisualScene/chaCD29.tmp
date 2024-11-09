@@ -1,0 +1,145 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0mohnokrafxe"]
+
+[ext_resource type="Script" path="res://Script/Widget/EditorBody.gd" id="1_aqxq5"]
+[ext_resource type="Texture2D" uid="uid://cpgsf8udt415i" path="res://Resource/Img/17.png" id="1_hq58c"]
+[ext_resource type="Script" path="res://Script/Visual/chart_editor_scene.gd" id="1_kol7k"]
+[ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="2_0257a"]
+[ext_resource type="Script" path="res://Script/Widget/Line.gd" id="2_hdbi1"]
+[ext_resource type="PackedScene" uid="uid://bsjeflpvurkxa" path="res://Scene/WidgetScene/track_note.tscn" id="5_700ws"]
+[ext_resource type="PackedScene" uid="uid://cv3a23gp56d2r" path="res://Scene/WidgetScene/state.tscn" id="7_sw10v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p32m4"]
+shader = ExtResource("2_0257a")
+shader_parameter/lod = 2.0
+
+[node name="ChartEditor" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kol7k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hq58c")
+expand_mode = 5
+
+[node name="Mushy" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_p32m4")
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -774.0
+offset_top = -446.5
+offset_right = 774.0
+offset_bottom = 446.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hq58c")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_right = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 2
+
+[node name="EditorBody" type="VBoxContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = -1
+script = ExtResource("1_aqxq5")
+
+[node name="Line" type="VBoxContainer" parent="Scroll/EditorBody"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = -1
+script = ExtResource("2_hdbi1")
+
+[node name="Body" type="HBoxContainer" parent="Scroll/EditorBody/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -1
+
+[node name="d" type="MarginContainer" parent="Scroll/EditorBody/Line/Body"]
+layout_mode = 2
+theme_override_constants/margin_top = 200
+
+[node name="VSeparator" type="VSeparator" parent="Scroll/EditorBody/Line/Body"]
+layout_mode = 2
+
+[node name="Track1" parent="Scroll/EditorBody/Line/Body" instance=ExtResource("5_700ws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Scroll/EditorBody/Line/Body"]
+layout_mode = 2
+
+[node name="Track2" parent="Scroll/EditorBody/Line/Body" instance=ExtResource("5_700ws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="VSeparator3" type="VSeparator" parent="Scroll/EditorBody/Line/Body"]
+layout_mode = 2
+
+[node name="Track3" parent="Scroll/EditorBody/Line/Body" instance=ExtResource("5_700ws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="VSeparator4" type="VSeparator" parent="Scroll/EditorBody/Line/Body"]
+layout_mode = 2
+
+[node name="Track4" parent="Scroll/EditorBody/Line/Body" instance=ExtResource("5_700ws")]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="VSeparator5" type="VSeparator" parent="Scroll/EditorBody/Line/Body"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Scroll/EditorBody/Line"]
+modulate = Color(0.780392, 0, 0.866667, 1)
+layout_mode = 2
+
+[node name="Tool" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1092.0
+offset_top = 103.0
+offset_right = 1244.0
+offset_bottom = 315.0
+
+[node name="tap" parent="Tool" instance=ExtResource("7_sw10v")]
+layout_mode = 2
+
+[node name="hold" parent="Tool" instance=ExtResource("7_sw10v")]
+layout_mode = 2
+state_name = "hold"
+
+[node name="eraser" parent="Tool" instance=ExtResource("7_sw10v")]
+visible = false
+layout_mode = 2
+state_name = "eraser"

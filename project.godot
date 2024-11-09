@@ -15,7 +15,7 @@ config/description="洛天依音游: LuoPulse 洛之动脉"
 run/main_scene="res://Scene/VisualScene/start_scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
-config/icon="res://icon-LP.png"
+config/icon="res://Resource/Img/ico-genetation3-2-circle.png"
 
 [autoload]
 

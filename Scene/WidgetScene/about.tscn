@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://chdtj3o3nad8p"]
 
-[ext_resource type="Texture2D" uid="uid://couvegm2xw032" path="res://Resource/Icons/icon-LP.png" id="2_ndvu1"]
+[ext_resource type="Texture2D" uid="uid://3063crmrfxv0" path="res://Resource/Img/ico-genetation3-2-circle.png" id="1_25pah"]
 
 [node name="About" type="MarginContainer"]
 anchors_preset = 15
@@ -20,7 +20,8 @@ size_flags_stretch_ratio = 0.4
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-texture = ExtResource("2_ndvu1")
+texture = ExtResource("1_25pah")
+expand_mode = 5
 
 [node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
 layout_mode = 2
