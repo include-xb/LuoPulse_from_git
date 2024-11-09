@@ -1,40 +1,23 @@
 extends MeshInstance3D
 
-"""
-queue_free() 之前, 一定需要
-RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
-将对象移除判定区间
-
-"""
-
 class_name Tap
 
-@onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
-
-# 已弃用 shared_class_name 判定音符独特标志
-var shared_class_name : String = "Note"
-
-# 每个音符特有标志, (后续可能会用到)
-var id : int = -1
-
-# 音符种类: tap / hold, 这个变量在 note_loader 中被初始化
-var type : StringName
+var type : String = "tap"
 
 var velosity : Vector3 = Vector3.ZERO
 
-# 音符到达判定线的时间, 这个变量在 note_loader 中被初始化
-var appear_time : float = 0
+var id: int
 
 # 音符从被放置就开始计时
-var running_timer : float = RunningData.delay_time
+var timer : float = RunningData.delay_time
 
-var add : bool = true
-var remove : bool = true
+var add : bool = false
+
+var remove : bool = false
 
 var column: int
 
-# 引用 game_scene_scene 场景, 这个引用在 note_loader 中被初始化
-#var placed_scene : GameScene
+var appear_time: float
 
 
 func _ready():
@@ -46,52 +29,73 @@ var temp = true
 func _process(delta):
 	position += velosity * delta
 	
-	running_timer += delta
-	
-	# INFO: 音符判定区间: 负0.2秒 - 正0.08秒
-	if add && running_timer >= -0.2:
-		add = false
-		RunningData.decision_area.push_back(self)
-	elif remove && running_timer >= 0.2:
-		remove = false
-		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
-		
-		# TODO: MISSING 部分
-		RunningData.missing_count += 1
-		RunningData.cambo = 0
-		RunningData.rating = "miss"
-		queue_free()
+	timer += delta
 	
 	if RunningData.is_auto_play:
 		auto_play()
+	elif !add && timer >= -0.2:
+		add = true
+		RunningData.decision_area.push_back(self)
+	# miss
+	elif !remove && timer >= 0.2:
+		remove = true
+		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
+		
+		RunningData.missing_count += 1
+		RunningData.combo = 0
+		RunningData.rating = "MISS"
+		self.queue_free()
 
 
-func judge_note(touch_position : Vector3) -> bool:
-	var z = abs(position.z - touch_position.z)
-	var x = abs(position.x - touch_position.x)
+func judge():
+	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
+	var diff : float = appear_time - RunningData.world_timer
+		
+	if diff <= 0.03:
+		RunningData.pure_count += 1
+		RunningData.combo += 1
+		RunningData.score += RunningData.single_note_score
+		RunningData.rating = "PURE"
 	
-	if z <= 1 and x <= 1.25:
+	elif diff <= 0.06:
+		RunningData.perfect_count += 1
+		RunningData.combo += 1
+		RunningData.score += RunningData.single_note_score * 0.9
+		RunningData.rating = "PERFECT"
 		
-		# TODO: 计分
+	elif diff <= 0.09:
+		RunningData.great_count += 1
+		RunningData.combo += 1
+		RunningData.score += RunningData.single_note_score * 0.7
+		RunningData.rating = "GREAT"
 		
-		kill()
-		return true
-	return false
+	elif diff <= 0.12:
+		RunningData.good_count += 1
+		RunningData.combo += 1
+		RunningData.score += RunningData.single_note_score * 0.5
+		RunningData.rating = "GOOD"
+		
+	else:
+		RunningData.missing_count += 1
+		RunningData.combo = 0
+		RunningData.rating = "MISS"
+
+	
+	self.queue_free()
 
 
 func auto_play():
 	if position.z >= 0 and temp:
 		velosity = Vector3.ZERO
-		RunningData.perfect_count += 1
-		RunningData.cambo += 1
-		RunningData.rating = "perfect"
+		RunningData.pure_count += 1
+		RunningData.combo += 1
+		RunningData.rating = "PURE"
 		RunningData.score += RunningData.single_note_score
 		kill()
 		temp = false
 
 
 func kill():
-	audio_player.play()
 	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 	queue_free()
 

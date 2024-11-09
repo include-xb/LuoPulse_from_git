@@ -2,7 +2,7 @@ extends Control
 
 
 func _ready():
-	pass
+	$Background.texture = load(RunningData.random_cover_path)
 
 func _on_back_button_pressed():
 	_safe_cfg_data()

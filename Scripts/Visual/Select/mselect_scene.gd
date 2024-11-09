@@ -2,7 +2,7 @@ extends Control
 
 @onready var msc_list_view: VBoxContainer = $VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/ScrollContainer/List
 @onready var texture_rect: TextureRect = $VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/CenterContainer/TextureRect
-@onready var bg_texture_rect: TextureRect = $TextureRect
+@onready var bg_texture_rect: TextureRect = $Background
 @onready var player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var auto_play_setting_button: Button = $ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer/AutoPlaySettingButton
 @onready var mod_panel: Panel = $ModSetting
@@ -79,7 +79,7 @@ func _on_start_button_pressed() -> void:
 	RunningData.selected_msc = msc[selected_index]
 	RunningData.rating = ""
 	
-	get_tree().change_scene_to_file("res://Scenes/Visual/game_scene.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Visual/Game/game_scene.tscn")
 
 
 func _on_auto_play_setting_button_pressed() -> void:

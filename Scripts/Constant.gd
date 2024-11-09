@@ -3,7 +3,7 @@ extends Node
 # 曲包根目录
 const ROOT_PATH: String = "res://MscList"
 # 版本名
-const VERSION_NAME: String = "1.5.2beta"
+const VERSION_NAME: String = "1.6.0dev"
 #GitHub仓库地址
 const GITHUB_URL: String = "https://github.com/include-xb/LuoPulse_from_git"
 # P主头像列表

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4rqqnplbbrpa"]
+[gd_scene load_steps=16 format=3 uid="uid://b4rqqnplbbrpa"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_hjn3g"]
 [ext_resource type="Script" path="res://Scripts/Visual/Select/mselect_scene.gd" id="2_h12np"]
@@ -9,12 +9,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_15r1n"]
 shader = ExtResource("3_vq6i3")
-
-[sub_resource type="Gradient" id="Gradient_ur731"]
-colors = PackedColorArray(0.4, 0.8, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nhjyq"]
-gradient = SubResource("Gradient_ur731")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1c7i"]
 bg_color = Color(0, 0, 0, 0.388235)
@@ -80,7 +74,7 @@ grow_vertical = 2
 theme = ExtResource("1_hjn3g")
 script = ExtResource("2_h12np")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_15r1n")
 layout_mode = 1
 anchors_preset = 15
@@ -88,7 +82,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_nhjyq")
 expand_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -159,6 +152,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 50
 
@@ -218,6 +212,7 @@ theme_override_font_sizes/font_size = 33
 text = "无分数记录"
 
 [node name="AccLabel" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/CenterContainer/TextureRect/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "ACC  N/A"
@@ -226,8 +221,8 @@ text = "ACC  N/A"
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.13
-theme_override_constants/margin_left = 55
-theme_override_constants/margin_right = 58
+theme_override_constants/margin_left = 110
+theme_override_constants/margin_right = 110
 theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer"]

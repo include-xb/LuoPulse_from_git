@@ -19,6 +19,10 @@ func count_clean() -> void:
 	RunningData.perfect_count = 0
 	RunningData.good_count = 0
 	RunningData.missing_count = 0
+	RunningData.pure_count = 0
+	RunningData.great_count = 0
 	RunningData.score = 0
 	RunningData.rating = ""
-	RunningData.cambo = 0
+	RunningData.combo = 0
+	RunningData.world_timer = 0
+	RunningData.decision_area.clear()

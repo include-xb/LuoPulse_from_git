@@ -2,13 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_4mvj3"]
 [ext_resource type="Script" path="res://Scripts/Visual/Select/pselect_scene.gd" id="2_3b114"]
+[ext_resource type="Shader" path="res://Shader/fuzzy.gdshader" id="3_8gasy"]
 [ext_resource type="Texture2D" uid="uid://ckkwgw4dhbns" path="res://Assets/Icons/chevron-left.svg" id="3_w27f0"]
 
-[sub_resource type="Gradient" id="Gradient_gvixw"]
-colors = PackedColorArray(0.4, 0.8, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jje5m"]
-gradient = SubResource("Gradient_gvixw")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gtuvp"]
+shader = ExtResource("3_8gasy")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2p3q"]
 bg_color = Color(0, 0, 0, 0.388235)
@@ -55,14 +53,15 @@ grow_vertical = 2
 theme = ExtResource("1_4mvj3")
 script = ExtResource("2_3b114")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_gtuvp")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_jje5m")
+expand_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -71,7 +70,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.313726)
+color = Color(0, 0, 0, 0.415686)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

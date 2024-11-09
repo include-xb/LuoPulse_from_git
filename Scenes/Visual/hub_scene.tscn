@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgdu41dxvx813"]
+[gd_scene load_steps=15 format=3 uid="uid://cgdu41dxvx813"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="1_i8mrh"]
 [ext_resource type="Script" path="res://Scripts/Visual/hub_scene.gd" id="2_q14h0"]
@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="3_imp0h"]
 [ext_resource type="Shader" path="res://Shader/fuzzy.gdshader" id="3_n05rd"]
 [ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Assets/Icons/gear-fill.svg" id="3_voi8l"]
-[ext_resource type="Texture2D" uid="uid://dw0h812nhvfmj" path="res://Assets/Icons/play-fill.svg" id="4_v357t"]
 [ext_resource type="Shader" path="res://Shader/radius.gdshader" id="5_3bvb8"]
-[ext_resource type="Texture2D" uid="uid://rxksjryk1vy8" path="res://Assets/Images/char.png" id="5_tec6b"]
-[ext_resource type="Texture2D" uid="uid://cyhro8uyb54ie" path="res://Assets/Icons/message.svg" id="8_vqhgq"]
+[ext_resource type="FontFile" uid="uid://c80ol0dpd1c3y" path="res://Assets/Forts/汉仪洛天依体简.ttf" id="5_caiec"]
+[ext_resource type="FontFile" uid="uid://dim24rvst274r" path="res://Assets/Forts/SourceHanSansSC-Normal-2.otf" id="6_7jvcl"]
+[ext_resource type="Texture2D" uid="uid://deb5rfnjkgq52" path="res://Assets/Icons/pulse.svg" id="10_1jvn2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_matop"]
 shader = ExtResource("3_n05rd")
@@ -19,24 +19,12 @@ shader = ExtResource("5_3bvb8")
 shader_parameter/texture_size = Vector2(200, 200)
 shader_parameter/radius = 100.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5pgr"]
-bg_color = Color(0, 0, 0, 0.607843)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu6sc"]
-content_margin_left = 40.0
-content_margin_right = 20.0
-bg_color = Color(0, 0, 0, 0.607843)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmluv"]
 content_margin_left = 40.0
 content_margin_right = 20.0
 bg_color = Color(0, 0, 0, 0.607843)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spwvd"]
 content_margin_left = 20.0
@@ -57,7 +45,7 @@ grow_vertical = 2
 theme = ExtResource("1_i8mrh")
 script = ExtResource("2_q14h0")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_matop")
 layout_mode = 1
 anchors_preset = 15
@@ -75,17 +63,50 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.6)
+color = Color(0, 0, 0, 0.364706)
 
-[node name="UserInfo" type="MarginContainer" parent="."]
+[node name="Title" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 298.0
-offset_bottom = 115.0
+offset_right = 40.0
+offset_bottom = 40.0
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Title"]
+layout_mode = 2
+
+[node name="AppName" type="Label" parent="Title/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_caiec")
+theme_override_font_sizes/font_size = 46
+text = "洛之动脉"
+
+[node name="VerName" type="Label" parent="Title/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_7jvcl")
+text = "V 0.0.0"
+
+[node name="UserInfo" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -350.0
+offset_bottom = 170.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 60
+
 [node name="HBoxContainer" type="HBoxContainer" parent="UserInfo"]
 layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="UserNameLabel" type="Label" parent="UserInfo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "游客"
+horizontal_alignment = 2
 
 [node name="HeadPortrait" type="TextureRect" parent="UserInfo/HBoxContainer"]
 material = SubResource("ShaderMaterial_k3c71")
@@ -94,53 +115,6 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.8
 texture = ExtResource("3_2hkyl")
 expand_mode = 4
-
-[node name="UserNameLabel" type="Label" parent="UserInfo/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 40
-text = "游客"
-
-[node name="AppTile" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -736.0
-offset_bottom = 151.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 30
-
-[node name="PanelContainer" type="PanelContainer" parent="AppTile"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_k5pgr")
-
-[node name="MarginContainer" type="MarginContainer" parent="AppTile"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="AppTile/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="AppTile/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "AppTile"
-
-[node name="TimeLabel" type="Label" parent="AppTile/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "00:00:00"
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 2
-offset_left = -25.0
-offset_top = 212.0
-offset_right = 674.0
-offset_bottom = 1163.0
-texture = ExtResource("5_tec6b")
-expand_mode = 1
 
 [node name="BtnGroup" type="MarginContainer" parent="."]
 clip_contents = true
@@ -165,21 +139,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 27.0
+offset_left = 221.0
 offset_top = -103.0
-offset_right = 476.0
+offset_right = 467.0
 grow_vertical = 0
-
-[node name="NoticeBtn" type="Button" parent="BtnGroup/Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_yu6sc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yu6sc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yu6sc")
-theme_override_styles/focus = SubResource("StyleBoxFlat_yu6sc")
-text = "消息"
-icon = ExtResource("8_vqhgq")
 
 [node name="SettingsBtn" type="Button" parent="BtnGroup/Control/HBoxContainer"]
 layout_mode = 2
@@ -199,8 +162,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -227.0
-offset_top = -220.0
+offset_left = -237.0
+offset_top = -230.0
 grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
@@ -209,11 +172,11 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_spwvd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_spwvd")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_spwvd")
 theme_override_styles/focus = SubResource("StyleBoxFlat_spwvd")
-text = "开始"
-icon = ExtResource("4_v357t")
+text = "演奏"
+icon = ExtResource("10_1jvn2")
 icon_alignment = 2
 vertical_icon_alignment = 2
+expand_icon = true
 
-[connection signal="pressed" from="BtnGroup/Control/HBoxContainer/NoticeBtn" to="." method="_on_notice_btn_pressed"]
 [connection signal="pressed" from="BtnGroup/Control/HBoxContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="BtnGroup/Control/StartButton" to="." method="_on_start_button_pressed"]

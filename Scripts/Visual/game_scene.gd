@@ -22,25 +22,18 @@ var packed_hold_note : PackedScene = preload("res://Scenes/Widgets/Game/hold_not
 
 var note_loader = NoteLoader.new()
 
-# 触摸距离
-const ray_length : int = 100
-
-# 触摸接触坐标
-var touch_position_2d : Vector2 = Vector2.ZERO
-
 # 音符总数
 var total_note_num : int = -1
 
 # 是否正在加载音符
 var is_loading_note : bool = true
 
-# 当前加载个数 / 已经加载了多少音符
-var current_load_num : int = 0
-
 # 开始后的延时
 var loader_timer : float = RunningData.delay_time #-delay_time + advanced_time
 
 var note_time_array : Array = [ ]
+
+var current_load_num: int = 0
 
 #  note_time_arrat 的索引
 var index : int = 0
@@ -54,129 +47,35 @@ var note_column_array : Array = [ ]
 # 存储所有音符的持续时间
 var note_duration_array : Array = [ ]
 
-# 多点触摸
-var touch_position : Array = [ ]
-
 # 歌曲长度
 var msc_length: float
 
-# 测试用 ######
-var json_contant = \
-"""
-{ 
-	"General": { 
-		"Title": "test", 
-		"Artist": "xxx", 
-		"Creator": "yyy", 
-		"Version": "1.0", 
-		"BPM": 120, 
-		"AudioFile": "../../.." 
-	}, 
-	"TimingPoints": [
-		{ 
-			"time": 0, 
-			"bpm": 120 
-		}, 
-		{ 
-			"time": 0.5, 
-			"bpm": 60 
-		}
-	], 
-	"HitObjects": [
-		{ 
-			"type": "tap", 
-			"time": 1, 
-			"column": 1 
-		}, 
-		{ 
-			"type": "tap", 
-			"time": 1.5, 
-			"column": 2 
-		}, 
-		{ 
-			"type": "tap", 
-			"time": 2, 
-			"column": 3 
-		}, 
-		{ 
-			"type": "tap", 
-			"time": 2.5, 
-			"column": 4 
-		}, 
-		{ 
-			"type": "hold", 
-			"time": 3, 
-			"column": 1, 
-			"duration": 1 
-		}, 
-		{ 
-			"type": "hold", 
-			"time": 4, 
-			"column": 4, 
-			"duration": 1 
-		}
-	] 
-}
-"""
-
-var json_data : Dictionary = \
-{ 
-	"General": { 
-		"Title": String(), 
-		"Artist": String(), 
-		"Creator": String(), 
-		"Version": int(), 
-		"BPM": int(), 
-		"AudioFile": String()
-	}, 
-	"TimingPoints": [
-		{
-			"time": int(),
-			"bpm": int()
-		},
-	],
-	"HitObjects": [
-		{
-			"type": String(),
-			"time": int(),
-			"column": int(),
-			"duration": int()
-		},
-	]
-}
+var json_data : Dictionary
 
 var temp : bool = true
 
 func _ready() -> void:
-	
-	print("loader_timer: ", loader_timer)
-	print("runningdata.delay_time:", RunningData.delay_time)
 
 	var path: String = RunningData.selected_msc["path"]
 	var msc_name: String = RunningData.selected_msc["name"]
 	var cover_img: Texture2D = load(path + "/cover.png")
 	
-	$Loading/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer/TextureRect.texture = cover_img
-	$Loading/VBoxContainer/HBoxContainer/CenterContainer/MarginContainer/TextureRect/PanelContainer/MarginContainer/NameLabel.text = msc_name
-	$Loading/TextureRect.texture = cover_img
-	$Loading/VBoxContainer/HBoxContainer/CenterContainer2/VBoxContainer/StaffListLabel.text = Utils.get_staff_list(path)
-	$Loading/VBoxContainer/HBoxContainer/CenterContainer2/VBoxContainer/ChartMakerLabel.text = "谱面：" + Utils.get_chart_maker(path)
-	
+	$Loading/Info/VBoxContainer/ChartNameLabel.text = msc_name
+	$Loading/Background.texture = cover_img
+	$Loading/Info/VBoxContainer/StaffListLabel.text = Utils.get_staff_list(path) + "\n" + "谱面：" + Utils.get_chart_maker(path)
+		
 	$Info/HBoxContainer/VBoxContainer/MscName.text = msc_name
 	$Background/TextureRect.texture = cover_img
 
 	$Info/HBoxContainer/VBoxContainer/ArName.text = Utils.get_short_artists_list(path)
 
-	# 三个统计标签都初始为0
 	Utils.count_clean()
 	
 	# 解析谱面
 	json_data = JSON.parse_string(
 		FileAccess.get_file_as_string(path + "/chart.json")
 	)
-	if json_data == null: # INFO: 谱面为空则使用 json_contant, 这只是方便运行调试
-		json_data = JSON.parse_string(json_contant)
-		
+
 	var audio_stream: AudioStream = load(path + "/audio.mp3")
 	
 	progress_bar.max_value = audio_stream.get_length()
@@ -199,8 +98,9 @@ func _ready() -> void:
 		
 	# 2s伪加载
 	await get_tree().create_timer(2.0).timeout
-	loading_panel.visible = false
+	loading_panel.queue_free()
 	
+	await get_tree().create_timer(2.0).timeout
 	$Timer.start(RunningData.delay_time)
 	
 
@@ -209,11 +109,13 @@ func _process(delta) -> void:
 	RunningData.current_audio_time = audio_player.get_playback_position() - AudioServer.get_time_to_next_mix() + AudioServer.get_time_since_last_mix()
 	loader_timer += delta
 	
-	cambo_label.text = str(RunningData.cambo)
+	cambo_label.text = str(RunningData.combo)
 	rating_label.text = RunningData.rating
 	score_label.text = str(int(RunningData.score))
 	
 	progress_bar.value = audio_player.get_playback_position()
+	
+	RunningData.world_timer = loader_timer
 	
 	if !is_loading_note:
 		return
@@ -262,21 +164,12 @@ func _on_resume_button_pressed() -> void:
 
 # 判定
 func _judge(track: int):
+	print(RunningData.decision_area)
 	if !RunningData.is_auto_play:
 		for note in RunningData.decision_area:
 			if note.column == track:
-				if abs(note.appear_time - loader_timer) < 0.05: # 正负 50ms 判定为 perfect
-					# TODO: perfect
-					RunningData.perfect_count += 1
-					RunningData.cambo += 1
-					RunningData.rating = "perfect"
-					RunningData.score += RunningData.single_note_score
-				else:
-					# TODO: good
-					RunningData.good_count += 1
-					RunningData.cambo += 1
-					RunningData.rating = "good"
-					RunningData.score += RunningData.single_note_score * 0.7
+				if note.type == "tap":
+					note.judge()
 
 
 
