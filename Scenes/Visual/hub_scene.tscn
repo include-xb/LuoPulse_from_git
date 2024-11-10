@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cigaawdldng31" path="res://Assets/Icons/gear-fill.svg" id="3_voi8l"]
 [ext_resource type="Shader" path="res://Shader/radius.gdshader" id="5_3bvb8"]
 [ext_resource type="FontFile" uid="uid://c80ol0dpd1c3y" path="res://Assets/Forts/汉仪洛天依体简.ttf" id="5_caiec"]
-[ext_resource type="FontFile" uid="uid://dim24rvst274r" path="res://Assets/Forts/SourceHanSansSC-Normal-2.otf" id="6_7jvcl"]
+[ext_resource type="FontFile" uid="uid://dbswnd0kb400d" path="res://Assets/Forts/HarmonyOS_Sans_SC_Regular.ttf" id="6_u7tdu"]
 [ext_resource type="Texture2D" uid="uid://deb5rfnjkgq52" path="res://Assets/Icons/pulse.svg" id="10_1jvn2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_matop"]
@@ -83,7 +83,7 @@ text = "洛之动脉"
 
 [node name="VerName" type="Label" parent="Title/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_7jvcl")
+theme_override_fonts/font = ExtResource("6_u7tdu")
 text = "V 0.0.0"
 
 [node name="UserInfo" type="MarginContainer" parent="."]

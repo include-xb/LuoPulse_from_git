@@ -23,7 +23,4 @@ func load_note(scene : GameScene, type : String, time : float, column : int, dur
 			instanced_hold.position.z = RunningData.speed * (RunningData.delay_time + duration / 2)#- RunningData.speed * time / 1000
 			instanced_hold.column = column
 			instanced_hold.id = scene.current_load_num
-			#instanced_hold.appear_time = time
 			instanced_hold.duration = duration
-			#instanced_hold.note_length = RunningData.speed * duration
-			instanced_hold.position.z -= RunningData.speed * duration

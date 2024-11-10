@@ -68,5 +68,4 @@ func _set_random_background_cover() -> void:
 	var random_index: int = randi_range(0, len(chart_list) - 1)
 	var random_chart_name: String = chart_list[random_index]
 	var random_cover_path: String = Constant.ROOT_PATH + random_chart_name + "/cover.png"
-	print("random cover path: " + random_cover_path)
 	RunningData.random_cover_path = random_cover_path

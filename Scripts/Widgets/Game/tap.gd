@@ -41,7 +41,7 @@ func _process(delta):
 		remove = true
 		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 		
-		RunningData.missing_count += 1
+		RunningData.miss_count += 1
 		RunningData.combo = 0
 		RunningData.rating = "MISS"
 		self.queue_free()
@@ -76,7 +76,7 @@ func judge():
 		RunningData.rating = "GOOD"
 		
 	else:
-		RunningData.missing_count += 1
+		RunningData.miss_count += 1
 		RunningData.combo = 0
 		RunningData.rating = "MISS"
 

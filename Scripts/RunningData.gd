@@ -1,5 +1,6 @@
 extends Node
 
+# 曲包列表
 var pack_list: Dictionary
 
 # 随机背景图路径
@@ -29,7 +30,7 @@ var pure_count: int = 0
 var perfect_count : int = 0
 var great_count: int = 0
 var good_count : int = 0
-var missing_count : int = 0
+var miss_count : int = 0
 
 # 连击数
 var combo: int = 0
@@ -46,7 +47,6 @@ var score: float
 var single_note_score: float
 
 # setting:
-
 var is_auto_play : bool = false
 
 # 音符流速, 玩家可调, 默认 10

@@ -89,6 +89,7 @@ max_value = 20.0
 value = 10.0
 
 [node name="HesitateSetting" type="PanelContainer" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
@@ -118,6 +119,7 @@ layout_mode = 2
 text = "ms"
 
 [node name="BGLightSetting" type="PanelContainer" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")
@@ -142,6 +144,7 @@ size_flags_horizontal = 10
 size_flags_vertical = 1
 
 [node name="VolumeSetting" type="PanelContainer" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5b6lv")

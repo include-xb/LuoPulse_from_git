@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://dpqwtujhvraxl"]
+[gd_scene load_steps=28 format=3 uid="uid://dpqwtujhvraxl"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/game_scene.gd" id="2_2e42w"]
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="2_nai6g"]
 [ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="2_xa2pb"]
 [ext_resource type="Texture2D" uid="uid://bq1ans1k2uhqj" path="res://Assets/Icons/pause.svg" id="4_uobv1"]
 [ext_resource type="Texture2D" uid="uid://clyg4t15sencw" path="res://Assets/Icons/play-fill-lowdpi.svg" id="5_21way"]
+[ext_resource type="FontFile" uid="uid://crcr0g58tg5m2" path="res://Assets/Forts/HarmonyOS_Sans_SC_Light.ttf" id="5_nka67"]
 [ext_resource type="Texture2D" uid="uid://ds7vq0u42tqmn" path="res://Assets/Icons/exit-to-app.svg" id="6_c0off"]
 [ext_resource type="Shader" path="res://Shader/fuzzy.gdshader" id="7_guee1"]
 
@@ -195,7 +196,7 @@ theme_override_constants/margin_top = 24
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Info"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 16
 
 [node name="PauseButton" type="Button" parent="Info/HBoxContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -227,7 +228,7 @@ anchor_right = 1.0
 offset_left = -439.0
 offset_bottom = 117.0
 grow_horizontal = 0
-theme_override_constants/margin_top = 36
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Score"]
@@ -244,7 +245,7 @@ visible = false
 layout_mode = 2
 horizontal_alignment = 2
 
-[node name="CamboVBC" type="VBoxContainer" parent="."]
+[node name="ComboVBC" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -257,15 +258,21 @@ offset_right = 87.0
 offset_bottom = 151.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 30
 
-[node name="CamboLabel" type="Label" parent="CamboVBC"]
+[node name="ComboLabel" type="Label" parent="ComboVBC"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_fonts/font = ExtResource("5_nka67")
 theme_override_font_sizes/font_size = 90
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RatingLabel" type="Label" parent="CamboVBC"]
+[node name="RatingLabel" type="Label" parent="ComboVBC"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_fonts/font = ExtResource("5_nka67")
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 
@@ -373,7 +380,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_xa2pb")
 expand_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="Loading"]
