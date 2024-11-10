@@ -42,12 +42,12 @@ func _ready():
 	speed = RunningData.speed
 	
 	note_length = duration * speed
-	scale.y = note_length / 20
-	position.y -= note_length / 2
+	scale.z = note_length / 20
+	position.z -= note_length / 2
 
 func _process(delta):
 	timer += delta
-	position.y += speed * delta
+	position.z += speed * delta
 	
 	# 判定区间: 负 120ms 正 120ms
 	if !add && timer >= RunningData.delay_time - 0.12:
@@ -68,8 +68,8 @@ func _process(delta):
 			
 			# 吸附判定线
 			var adjust : float = (timer - RunningData.delay_time) * speed
-			scale.y = (note_length - adjust) / 20
-			position.y -= adjust / 2
+			scale.z = (note_length - adjust) / 20
+			position.z -= adjust / 2
 			
 		can_released = true
 		holding_timer += delta
@@ -79,8 +79,8 @@ func _process(delta):
 			visible = false
 			is_holding = false
 		
-		scale.y -= speed * delta / 20
-		position.y -= speed * delta / 2
+		scale.z -= speed * delta / 20
+		position.z -= speed * delta / 2
 		
 	
 	# 松开
