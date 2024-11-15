@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lo4cpexkkire"
-path="res://.godot/imported/cover.jpg-18edbf45a9f4b9d732580c510258b74b.ctex"
+uid="uid://6cvxd83sapif"
+path="res://.godot/imported/arrow-right.svg-c769bf30dd1a5a6c76e989455e94e01b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MscList/妄想症Paranoia/cover.jpg"
-dest_files=["res://.godot/imported/cover.jpg-18edbf45a9f4b9d732580c510258b74b.ctex"]
+source_file="res://Assets/Icons/arrow-right.svg"
+dest_files=["res://.godot/imported/arrow-right.svg-c769bf30dd1a5a6c76e989455e94e01b.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=2.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

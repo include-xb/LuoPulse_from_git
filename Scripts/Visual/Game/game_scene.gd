@@ -3,7 +3,7 @@ extends Control
 class_name GameScene
 
 # 音乐播放器
-@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 # 加载页节点
 @onready var loading_panel: Control = $Loading
@@ -35,7 +35,7 @@ var note_time_array: Array = [ ]
 
 var current_load_num: int = 0
 
-#  note_time_arrat 的索引
+#  note_time_array 的索引
 var index: int = 0
 
 # 存储所有音符的种类
@@ -108,11 +108,11 @@ func _process(delta) -> void:
 					note_column_array[index], 
 					note_duration_array[index]
 				)
-				index += 1
-				
 				if index >= total_note_num:
 					is_loading_note = false
 					return
+				index += 1
+				
 
 
 # 设置场景
@@ -190,7 +190,7 @@ func _judge(track: int) -> void:
 				print("判定: ", note.type)
 				if note.type == "tap":
 					note.judge()
-
+ 
 
 func _on_track_1_btn_pressed() -> void:
 	_judge(1)
@@ -206,3 +206,8 @@ func _on_track_3_btn_pressed() -> void:
 
 func _on_track_4_btn_pressed() -> void:
 	_judge(4)
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	await get_tree().create_timer(2.0).timeout
+	SceneChanger.change_scene("res://Scenes/Visual/Game/result_scene.tscn")

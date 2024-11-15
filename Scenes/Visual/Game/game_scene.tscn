@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://dpqwtujhvraxl"]
 
-[ext_resource type="Script" path="res://Scripts/Visual/game_scene.gd" id="2_2e42w"]
+[ext_resource type="Script" path="res://Scripts/Visual/Game/game_scene.gd" id="2_2e42w"]
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="2_nai6g"]
 [ext_resource type="Texture2D" uid="uid://ofyhusdxnjfs" path="res://Assets/Images/hub_bg.jpg" id="2_xa2pb"]
 [ext_resource type="Texture2D" uid="uid://bq1ans1k2uhqj" path="res://Assets/Icons/pause.svg" id="4_uobv1"]
@@ -433,7 +433,7 @@ text = "Loading..."
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="pressed" from="Info/HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="TrackBtn/Track1Btn" to="." method="_on_track_1_btn_pressed"]
@@ -442,3 +442,4 @@ one_shot = true
 [connection signal="pressed" from="TrackBtn/Track4Btn" to="." method="_on_track_4_btn_pressed"]
 [connection signal="pressed" from="Palse/HBoxContainer/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Palse/HBoxContainer/CenterContainer/VBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
