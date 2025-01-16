@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2ed1uob84r64"]
+[gd_scene load_steps=7 format=3 uid="uid://d2ed1uob84r64"]
+
+[ext_resource type="Script" path="res://Script/Widget/gpu_particles_2d.gd" id="1_0q62i"]
 
 [sub_resource type="Gradient" id="Gradient_26a68"]
 offsets = PackedFloat32Array(0, 0.00534759, 0.272727, 0.973262, 1)
@@ -29,8 +31,9 @@ color_ramp = SubResource("GradientTexture1D_ro42t")
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
 emitting = false
-amount = 75
+amount = 25
 process_material = SubResource("ParticleProcessMaterial_vb2fx")
-lifetime = 0.5
+lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
+script = ExtResource("1_0q62i")

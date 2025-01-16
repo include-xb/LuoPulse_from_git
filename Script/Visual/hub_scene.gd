@@ -88,3 +88,8 @@ func _on_setting_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+
+# 新建谱面按钮
+func _on_new_button_pressed():
+	SceneChanger.change_scene("res://Scene/VisualScene/chart_editor_scene.tscn")

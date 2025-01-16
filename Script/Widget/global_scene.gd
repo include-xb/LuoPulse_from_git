@@ -171,6 +171,7 @@ var editing_chart : Dictionary = {
 
 var start_saving_chart = false
 
+# 对于制谱器, 这个变量表示当前光标状态机, 存在"tap" "hold" "eraser"等
 var current_state : String = "tap"
 
 

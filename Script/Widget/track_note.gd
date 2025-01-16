@@ -54,4 +54,4 @@ func put():
 func eraser():
 	is_put = false
 	if track.get_children() != []:
-		instance.queue_free()
+		instance.free()

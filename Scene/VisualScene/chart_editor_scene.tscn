@@ -1,14 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0mohnokrafxe"]
+[gd_scene load_steps=11 format=3 uid="uid://b0mohnokrafxe"]
 
 [ext_resource type="Script" path="res://Script/Widget/EditorBody.gd" id="1_aqxq5"]
 [ext_resource type="Texture2D" uid="uid://cpgsf8udt415i" path="res://Resource/Img/17.png" id="1_hq58c"]
 [ext_resource type="Script" path="res://Script/Visual/chart_editor_scene.gd" id="1_kol7k"]
 [ext_resource type="Shader" path="res://Shader/mushy_texture.gdshader" id="2_0257a"]
+[ext_resource type="FontFile" uid="uid://du5po75t5by2" path="res://Resource/Font/汉仪洛天依体简.ttf" id="4_jt6f6"]
+[ext_resource type="Texture2D" uid="uid://b4r52yocesxrp" path="res://Resource/Icons/backward.svg" id="5_12web"]
+[ext_resource type="Texture2D" uid="uid://couvegm2xw032" path="res://Resource/Icons/icon-LP.png" id="6_jf2ly"]
 [ext_resource type="PackedScene" uid="uid://cv3a23gp56d2r" path="res://Scene/WidgetScene/state.tscn" id="7_sw10v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p32m4"]
 shader = ExtResource("2_0257a")
 shader_parameter/lod = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6o8yc"]
+bg_color = Color(0, 0, 0, 0.470588)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="ChartEditor" type="Control"]
 clip_contents = true
@@ -53,6 +63,61 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Header" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
+layout_mode = 2
+
+[node name="Home" type="MarginContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 5
+
+[node name="HomeButton" type="Button" parent="Header/HBoxContainer/Home"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/icon_max_width = 30
+theme_override_fonts/font = ExtResource("4_jt6f6")
+icon = ExtResource("5_12web")
+
+[node name="Center" type="MarginContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Info" type="PanelContainer" parent="Header/HBoxContainer/Center"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6o8yc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header/HBoxContainer/Center/Info"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Header/HBoxContainer/Center/Info/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = " 洛之动脉"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Logo" type="MarginContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="LogoButton" type="Button" parent="Header/HBoxContainer/Logo"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("6_jf2ly")
+
 [node name="Scroll" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 13
@@ -91,3 +156,5 @@ state_name = "hold"
 [node name="eraser" parent="Tool" instance=ExtResource("7_sw10v")]
 layout_mode = 2
 state_name = "eraser"
+
+[connection signal="pressed" from="Header/HBoxContainer/Home/HomeButton" to="." method="_on_home_button_pressed"]
