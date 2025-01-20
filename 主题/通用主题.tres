@@ -1,0 +1,59 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cbp070bdnvxi0"]
+
+[ext_resource type="FontFile" uid="uid://cr0we1h5qhsfw" path="res://素材/字体/YuPearl-Light-2.ttf" id="1_e6g56"]
+[ext_resource type="StyleBox" uid="uid://bkaxcbxd375mi" path="res://主题/按钮focus.tres" id="1_yo2ly"]
+[ext_resource type="StyleBox" uid="uid://cw3ijj1qpck5l" path="res://主题/按钮hover.tres" id="2_2yx0l"]
+[ext_resource type="StyleBox" uid="uid://chjiq1il2yr4h" path="res://主题/按钮normal.tres" id="3_xrnly"]
+[ext_resource type="StyleBox" uid="uid://bekqin6dl4uy2" path="res://主题/按钮press.tres" id="4_aq78a"]
+
+[sub_resource type="FontFile" id="FontFile_3glfj"]
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51tob"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jt74k"]
+bg_color = Color(0.89059, 0.89059, 0.89059, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm8fy"]
+bg_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[resource]
+default_font = ExtResource("1_e6g56")
+default_font_size = 30
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 30
+Button/fonts/font = SubResource("FontFile_3glfj")
+Button/styles/focus = ExtResource("1_yo2ly")
+Button/styles/hover = ExtResource("2_2yx0l")
+Button/styles/normal = ExtResource("3_xrnly")
+Button/styles/pressed = ExtResource("4_aq78a")
+Label/font_sizes/font_size = 30
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_51tob")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_jt74k")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_cm8fy")

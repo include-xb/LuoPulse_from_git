@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://mev4l86guanw"]
+
+[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://主题/通用主题.tres" id="1_h3rhn"]
+
+[node name="启动页" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_h3rhn")
+
+[node name="背景图片" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_h3rhn")
+
+[node name="状态" type="Label" parent="."]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 449.0
+offset_right = 253.0
+offset_bottom = 504.0
+theme_override_font_sizes/font_size = 40
+text = "状态
+"
+
+[node name="洛之动脉" type="Label" parent="."]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 101.0
+offset_right = 221.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 50
+text = "洛之动脉"
+
+[node name="进度条" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 164.0
+offset_top = -151.0
+offset_right = -153.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 20.0
+show_percentage = false

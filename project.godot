@@ -11,16 +11,9 @@ config_version=5
 [application]
 
 config/name="LuoPulse"
-run/main_scene="res://Scenes/Visual/start_scene.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://Assets/Icons/icon.png"
-
-[autoload]
-
-RunningData="*res://Scripts/RunningData.gd"
-Utils="*res://Scripts/Utils.gd"
-Constant="*res://Scripts/Constant.gd"
-SceneChanger="*res://Scenes/Widgets/scene_changer.tscn"
+run/main_scene="res://场景/主体场景/启动页.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://素材/图标/icon.png"
 
 [display]
 
@@ -28,6 +21,36 @@ window/size/viewport_width=1440
 window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://场景/主体场景/": "yellow",
+"res://场景/主体场景/Game/": "green",
+"res://场景/主体场景/Select/": "green",
+"res://场景/主体场景/设置/": "green",
+"res://场景/组建/": "yellow",
+"res://场景/组建/Game/": "green",
+"res://场景/组建/Select/": "green",
+"res://曲包/奇爱人生Love Elegia/": "yellow",
+"res://曲包/奇爱人生Love Elegia/春风来/": "green",
+"res://曲包/奇爱人生Love Elegia/绝体绝命/": "green",
+"res://曲包/未命名乐章/": "yellow",
+"res://曲包/未命名乐章/权御天下/": "green",
+"res://素材/图标/": "yellow",
+"res://素材/图片/": "yellow",
+"res://素材/图片/P主头像/": "green",
+"res://素材/字体/": "yellow",
+"res://素材/扩展/": "yellow",
+"res://素材/音频/": "yellow",
+"res://脚本/主体脚本/": "yellow",
+"res://脚本/主体脚本/Game/": "green",
+"res://脚本/主体脚本/Select/": "green",
+"res://脚本/主体脚本/Settings/": "green",
+"res://脚本/组建/": "yellow",
+"res://脚本/组建/Game/": "green",
+"res://脚本/组建/Select/": "green"
+}
 
 [filesystem]
 

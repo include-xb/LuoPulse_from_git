@@ -1,0 +1,205 @@
+[gd_scene load_steps=10 format=3 uid="uid://dh0mvsr52v38g"]
+
+[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://主题/通用主题.tres" id="1_i8mrh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apmk7"]
+bg_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t17hj"]
+bg_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nq2af"]
+bg_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fihc0"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lws7k"]
+bg_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1ytj"]
+bg_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38pxp"]
+bg_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n63o2"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_left = 15.0
+expand_margin_top = 15.0
+expand_margin_right = 15.0
+expand_margin_bottom = 15.0
+
+[node name="大厅" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_i8mrh")
+
+[node name="背景图片" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="洛之动脉" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 200.0
+offset_bottom = 81.0
+text = "洛之动脉"
+
+[node name="版本号" type="Label" parent="."]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 107.0
+offset_right = 208.0
+offset_bottom = 148.0
+text = "1.0union"
+
+[node name="消息" type="Button" parent="."]
+layout_mode = 2
+offset_left = 82.0
+offset_top = 224.0
+offset_right = 146.0
+offset_bottom = 288.0
+size_flags_vertical = 2
+
+[node name="设置" type="Button" parent="."]
+layout_mode = 2
+offset_left = 82.0
+offset_top = 502.0
+offset_right = 146.0
+offset_bottom = 566.0
+size_flags_vertical = 10
+
+[node name="演奏" type="Button" parent="."]
+layout_mode = 2
+offset_left = 767.0
+offset_top = 432.0
+offset_right = 977.0
+offset_bottom = 642.0
+size_flags_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_apmk7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t17hj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nq2af")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fihc0")
+text = "演奏"
+icon_alignment = 2
+expand_icon = true
+
+[node name="WORLD" type="Button" parent="."]
+layout_mode = 2
+offset_left = 1062.0
+offset_top = 310.0
+offset_right = 1247.0
+offset_bottom = 495.0
+size_flags_vertical = 10
+theme_override_styles/focus = SubResource("StyleBoxFlat_lws7k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v1ytj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_38pxp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n63o2")
+text = "WORLD"
+
+[node name="用户信息" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 953.0
+offset_top = 62.0
+offset_right = 1316.0
+offset_bottom = 208.0
+
+[node name="用户信息" type="VBoxContainer" parent="用户信息"]
+layout_mode = 2
+
+[node name="用户名" type="Label" parent="用户信息/用户信息"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "小小洛"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="共鸣值" type="HBoxContainer" parent="用户信息/用户信息"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="共鸣值" type="Label" parent="用户信息/用户信息/共鸣值"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "共鸣值"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="数值" type="Label" parent="用户信息/用户信息/共鸣值"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1.14"
+vertical_alignment = 1
