@@ -15,6 +15,12 @@ run/main_scene="res://场景/主体场景/启动页.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://素材/图标/icon.png"
 
+[autoload]
+
+RunningData="*res://脚本/RunningData.gd"
+Constant="*res://脚本/Constant.gd"
+SceneChanger="*res://场景/组建/SceneChanger.tscn"
+
 [display]
 
 window/size/viewport_width=1440

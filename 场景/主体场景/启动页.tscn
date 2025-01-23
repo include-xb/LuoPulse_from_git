@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://mev4l86guanw"]
+[gd_scene load_steps=3 format=3 uid="uid://mev4l86guanw"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://主题/通用主题.tres" id="1_h3rhn"]
+[ext_resource type="Script" path="res://脚本/主体脚本/启动页.gd" id="2_qjopp"]
 
 [node name="启动页" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_h3rhn")
+script = ExtResource("2_qjopp")
 
 [node name="背景图片" type="TextureRect" parent="."]
 layout_mode = 1
@@ -51,5 +53,5 @@ offset_right = -153.0
 offset_bottom = -137.0
 grow_horizontal = 2
 grow_vertical = 0
-value = 20.0
+value = 2.0
 show_percentage = false

@@ -1,6 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dh0mvsr52v38g"]
+[gd_scene load_steps=13 format=3 uid="uid://dh0mvsr52v38g"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://主题/通用主题.tres" id="1_i8mrh"]
+[ext_resource type="Script" path="res://脚本/主体脚本/大厅.gd" id="2_ld6oa"]
+[ext_resource type="Texture2D" uid="uid://d1lmnfi3nder6" path="res://素材/图标/TablerMessage.svg" id="3_8y6pp"]
+[ext_resource type="Texture2D" uid="uid://bp08ckits31mc" path="res://素材/图标/MaterialSymbolsSettings.svg" id="4_478a6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apmk7"]
 bg_color = Color(0.4, 0.8, 1, 1)
@@ -100,6 +103,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_i8mrh")
+script = ExtResource("2_ld6oa")
 
 [node name="背景图片" type="TextureRect" parent="."]
 layout_mode = 1
@@ -109,37 +113,50 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="洛之动脉" type="Label" parent="."]
+[node name="左上角标题" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 40.0
-offset_right = 200.0
-offset_bottom = 81.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 50
+
+[node name="纵向容器" type="VBoxContainer" parent="左上角标题"]
+layout_mode = 2
+
+[node name="洛之动脉" type="Label" parent="左上角标题/纵向容器"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "洛之动脉"
 
-[node name="版本号" type="Label" parent="."]
-layout_mode = 0
-offset_left = 85.0
-offset_top = 107.0
-offset_right = 208.0
-offset_bottom = 148.0
+[node name="版本号" type="Label" parent="左上角标题/纵向容器"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "1.0union"
 
-[node name="消息" type="Button" parent="."]
-layout_mode = 2
-offset_left = 82.0
-offset_top = 224.0
-offset_right = 146.0
-offset_bottom = 288.0
-size_flags_vertical = 2
+[node name="左侧按钮" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_top = 243.0
+offset_right = 144.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_bottom = 110
 
-[node name="设置" type="Button" parent="."]
+[node name="纵向容器" type="VBoxContainer" parent="左侧按钮"]
 layout_mode = 2
-offset_left = 82.0
-offset_top = 502.0
-offset_right = 146.0
-offset_bottom = 566.0
+
+[node name="消息" type="Button" parent="左侧按钮/纵向容器"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/icon_max_width = 64
+icon = ExtResource("3_8y6pp")
+icon_alignment = 1
+
+[node name="设置" type="Button" parent="左侧按钮/纵向容器"]
+layout_mode = 2
 size_flags_vertical = 10
+theme_override_constants/icon_max_width = 64
+icon = ExtResource("4_478a6")
+icon_alignment = 1
 
 [node name="演奏" type="Button" parent="."]
 layout_mode = 2
