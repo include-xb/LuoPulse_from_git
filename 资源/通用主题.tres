@@ -1,0 +1,60 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cbp070bdnvxi0"]
+
+[ext_resource type="FontFile" uid="uid://dbswnd0kb400d" path="res://资源/字体/HarmonyOS_Sans_SC_Regular.ttf" id="1_nmf46"]
+[ext_resource type="FontFile" uid="uid://cr0we1h5qhsfw" path="res://资源/字体/YuPearl-Light-2.ttf" id="2_8lsyt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf0hg"]
+bg_color = Color(0.964706, 0.960784, 0.941176, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(1, 0.996078, 0.980392, 1)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvbpw"]
+bg_color = Color(0.964706, 0.960784, 0.941176, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(1, 0.996078, 0.980392, 1)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmc8r"]
+bg_color = Color(0.964706, 0.960784, 0.941176, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(1, 0.996078, 0.980392, 1)
+shadow_size = 12
+
+[resource]
+default_font = ExtResource("2_8lsyt")
+default_font_size = 30
+Button/colors/font_color = Color(0.384314, 0.384314, 0.376471, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_nmf46")
+Button/styles/hover = SubResource("StyleBoxFlat_qf0hg")
+Button/styles/normal = SubResource("StyleBoxFlat_bvbpw")
+Button/styles/pressed = SubResource("StyleBoxFlat_lmc8r")
+Label/colors/font_color = Color(0.384314, 0.384314, 0.376471, 1)
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_nmf46")

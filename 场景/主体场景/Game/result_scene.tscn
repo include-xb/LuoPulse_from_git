@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://c7lbv1dbpdio4"]
 
-[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://主题/通用主题.tres" id="1_tt2ej"]
+[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://资源/通用主题.tres" id="1_tt2ej"]
 [ext_resource type="Script" path="res://Scripts/Visual/Game/result_scene.gd" id="2_383ra"]
 [ext_resource type="Shader" path="res://着色器/fuzzy.gdshader" id="2_w747w"]
-[ext_resource type="Texture2D" uid="uid://cqg8mpnoau3ex" path="res://素材/图标/refresh.svg" id="4_2j4xl"]
-[ext_resource type="Texture2D" uid="uid://6cvxd83sapif" path="res://素材/图标/arrow-right.svg" id="5_llpeo"]
+[ext_resource type="Texture2D" uid="uid://cqg8mpnoau3ex" path="res://资源/图标/refresh.svg" id="4_2j4xl"]
+[ext_resource type="Texture2D" uid="uid://6cvxd83sapif" path="res://资源/图标/arrow-right.svg" id="5_llpeo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iw7i5"]
 shader = ExtResource("2_w747w")

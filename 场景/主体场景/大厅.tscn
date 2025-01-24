@@ -1,101 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://dh0mvsr52v38g"]
+[gd_scene load_steps=8 format=3 uid="uid://dh0mvsr52v38g"]
 
-[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://主题/通用主题.tres" id="1_i8mrh"]
+[ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://资源/通用主题.tres" id="1_i8mrh"]
 [ext_resource type="Script" path="res://脚本/主体脚本/大厅.gd" id="2_ld6oa"]
-[ext_resource type="Texture2D" uid="uid://d1lmnfi3nder6" path="res://素材/图标/TablerMessage.svg" id="3_8y6pp"]
-[ext_resource type="Texture2D" uid="uid://bp08ckits31mc" path="res://素材/图标/MaterialSymbolsSettings.svg" id="4_478a6"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apmk7"]
-bg_color = Color(0.4, 0.8, 1, 1)
-corner_radius_top_left = 200
-corner_radius_top_right = 200
-corner_radius_bottom_right = 200
-corner_radius_bottom_left = 200
-expand_margin_left = 15.0
-expand_margin_top = 15.0
-expand_margin_right = 15.0
-expand_margin_bottom = 15.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t17hj"]
-bg_color = Color(0.4, 0.8, 1, 1)
-corner_radius_top_left = 200
-corner_radius_top_right = 200
-corner_radius_bottom_right = 200
-corner_radius_bottom_left = 200
-expand_margin_left = 15.0
-expand_margin_top = 15.0
-expand_margin_right = 15.0
-expand_margin_bottom = 15.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nq2af"]
-bg_color = Color(0.4, 0.8, 1, 1)
-corner_radius_top_left = 200
-corner_radius_top_right = 200
-corner_radius_bottom_right = 200
-corner_radius_bottom_left = 200
-expand_margin_left = 15.0
-expand_margin_top = 15.0
-expand_margin_right = 15.0
-expand_margin_bottom = 15.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fihc0"]
-bg_color = Color(1, 1, 1, 1)
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 200
-corner_radius_top_right = 200
-corner_radius_bottom_right = 200
-corner_radius_bottom_left = 200
-expand_margin_left = 15.0
-expand_margin_top = 15.0
-expand_margin_right = 15.0
-expand_margin_bottom = 15.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lws7k"]
-bg_color = Color(0.4, 0.8, 1, 1)
-corner_radius_top_left = 200
-corner_radius_top_right = 200
-corner_radius_bottom_right = 200
-corner_radius_bottom_left = 200
-expand_margin_left = 15.0
-expand_margin_top = 15.0
-expand_margin_right = 15.0
-expand_margin_bottom = 15.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1ytj"]
-bg_color = Color(0.4, 0.8, 1, 1)
-corner_radius_top_left = 200
-corner_radius_top_right = 200
-corner_radius_bottom_right = 200
-corner_radius_bottom_left = 200
-expand_margin_left = 15.0
-expand_margin_top = 15.0
-expand_margin_right = 15.0
-expand_margin_bottom = 15.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38pxp"]
-bg_color = Color(0.4, 0.8, 1, 1)
-corner_radius_top_left = 200
-corner_radius_top_right = 200
-corner_radius_bottom_right = 200
-corner_radius_bottom_left = 200
-expand_margin_left = 15.0
-expand_margin_top = 15.0
-expand_margin_right = 15.0
-expand_margin_bottom = 15.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n63o2"]
-bg_color = Color(1, 1, 1, 1)
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 200
-corner_radius_top_right = 200
-corner_radius_bottom_right = 200
-corner_radius_bottom_left = 200
-expand_margin_left = 15.0
-expand_margin_top = 15.0
-expand_margin_right = 15.0
-expand_margin_bottom = 15.0
+[ext_resource type="Texture2D" uid="uid://dux7m3e7a5gtp" path="res://资源/图片/插画/hub.png" id="3_bxr1n"]
+[ext_resource type="FontFile" uid="uid://c80ol0dpd1c3y" path="res://资源/字体/汉仪洛天依体简.ttf" id="4_kvbv5"]
+[ext_resource type="FontFile" uid="uid://crcr0g58tg5m2" path="res://资源/字体/HarmonyOS_Sans_SC_Light.ttf" id="5_61orn"]
+[ext_resource type="Texture2D" uid="uid://67xjy6j1bs5n" path="res://资源/图标/邮件.png" id="6_smp6b"]
+[ext_resource type="Texture2D" uid="uid://ijcesqwtqwtb" path="res://资源/图标/设置.png" id="7_74rmr"]
 
 [node name="大厅" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,111 +26,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_bxr1n")
 
-[node name="左上角标题" type="MarginContainer" parent="."]
+[node name="标题" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 80.0
+offset_top = 35.0
+offset_right = 409.0
+offset_bottom = 179.0
+
+[node name="洛之动脉" type="Label" parent="标题"]
 layout_mode = 0
+offset_top = 19.0
 offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 50
-
-[node name="纵向容器" type="VBoxContainer" parent="左上角标题"]
-layout_mode = 2
-
-[node name="洛之动脉" type="Label" parent="左上角标题/纵向容器"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("4_kvbv5")
+theme_override_font_sizes/font_size = 48
 text = "洛之动脉"
 
-[node name="版本号" type="Label" parent="左上角标题/纵向容器"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "1.0union"
-
-[node name="左侧按钮" type="MarginContainer" parent="."]
+[node name="版本号" type="Label" parent="标题"]
 layout_mode = 0
-offset_top = 243.0
-offset_right = 144.0
-offset_bottom = 720.0
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_bottom = 110
+offset_top = 93.0
+offset_right = 40.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("5_61orn")
+text = "2.0.union"
 
-[node name="纵向容器" type="VBoxContainer" parent="左侧按钮"]
-layout_mode = 2
+[node name="侧边按钮" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 80.0
+offset_top = 198.0
+offset_right = 256.0
+offset_bottom = 621.0
 
-[node name="消息" type="Button" parent="左侧按钮/纵向容器"]
-layout_mode = 2
-size_flags_vertical = 2
-theme_override_constants/icon_max_width = 64
-icon = ExtResource("3_8y6pp")
+[node name="信箱" type="Button" parent="侧边按钮"]
+layout_mode = 0
+offset_top = 101.0
+offset_right = 64.0
+offset_bottom = 165.0
+icon = ExtResource("6_smp6b")
 icon_alignment = 1
 
-[node name="设置" type="Button" parent="左侧按钮/纵向容器"]
-layout_mode = 2
-size_flags_vertical = 10
-theme_override_constants/icon_max_width = 64
-icon = ExtResource("4_478a6")
+[node name="设置" type="Button" parent="侧边按钮"]
+layout_mode = 0
+offset_top = 198.0
+offset_right = 64.0
+offset_bottom = 262.0
+icon = ExtResource("7_74rmr")
 icon_alignment = 1
 
-[node name="演奏" type="Button" parent="."]
-layout_mode = 2
-offset_left = 767.0
-offset_top = 432.0
-offset_right = 977.0
-offset_bottom = 642.0
-size_flags_vertical = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_apmk7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_t17hj")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_nq2af")
-theme_override_styles/normal = SubResource("StyleBoxFlat_fihc0")
-text = "演奏"
-icon_alignment = 2
-expand_icon = true
+[node name="按钮组" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="WORLD" type="Button" parent="."]
-layout_mode = 2
-offset_left = 1062.0
-offset_top = 310.0
-offset_right = 1247.0
-offset_bottom = 495.0
-size_flags_vertical = 10
-theme_override_styles/focus = SubResource("StyleBoxFlat_lws7k")
-theme_override_styles/hover = SubResource("StyleBoxFlat_v1ytj")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_38pxp")
-theme_override_styles/normal = SubResource("StyleBoxFlat_n63o2")
-text = "WORLD"
-
-[node name="用户信息" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 953.0
-offset_top = 62.0
-offset_right = 1316.0
-offset_bottom = 208.0
-
-[node name="用户信息" type="VBoxContainer" parent="用户信息"]
-layout_mode = 2
-
-[node name="用户名" type="Label" parent="用户信息/用户信息"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "小小洛"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="共鸣值" type="HBoxContainer" parent="用户信息/用户信息"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="共鸣值" type="Label" parent="用户信息/用户信息/共鸣值"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "共鸣值"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="数值" type="Label" parent="用户信息/用户信息/共鸣值"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "1.14"
-vertical_alignment = 1
+[node name="用户信息" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

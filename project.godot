@@ -13,17 +13,17 @@ config_version=5
 config/name="LuoPulse"
 run/main_scene="res://场景/主体场景/启动页.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://素材/图标/icon.png"
+config/icon="res://icon.png"
 
 [autoload]
 
-RunningData="*res://脚本/RunningData.gd"
-Constant="*res://脚本/Constant.gd"
-SceneChanger="*res://场景/组建/SceneChanger.tscn"
+RunningData="*res://脚本/运行时数据.gd"
+Constants="*res://脚本/常量.gd"
+SceneChanger="*res://场景/组件/SceneChanger.tscn"
 
 [display]
 
-window/size/viewport_width=1440
+window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="canvas_items"
@@ -35,27 +35,27 @@ folder_colors={
 "res://场景/主体场景/Game/": "green",
 "res://场景/主体场景/Select/": "green",
 "res://场景/主体场景/设置/": "green",
-"res://场景/组建/": "yellow",
+"res://场景/组件/": "yellow",
 "res://场景/组建/Game/": "green",
 "res://场景/组建/Select/": "green",
-"res://曲包/奇爱人生Love Elegia/": "yellow",
 "res://曲包/奇爱人生Love Elegia/春风来/": "green",
 "res://曲包/奇爱人生Love Elegia/绝体绝命/": "green",
-"res://曲包/未命名乐章/": "yellow",
 "res://曲包/未命名乐章/权御天下/": "green",
-"res://素材/图标/": "yellow",
-"res://素材/图片/": "yellow",
-"res://素材/图片/P主头像/": "green",
-"res://素材/字体/": "yellow",
-"res://素材/扩展/": "yellow",
-"res://素材/音频/": "yellow",
 "res://脚本/主体脚本/": "yellow",
 "res://脚本/主体脚本/Game/": "green",
 "res://脚本/主体脚本/Select/": "green",
 "res://脚本/主体脚本/Settings/": "green",
-"res://脚本/组建/": "yellow",
+"res://脚本/组件/": "yellow",
 "res://脚本/组建/Game/": "green",
-"res://脚本/组建/Select/": "green"
+"res://脚本/组建/Select/": "green",
+"res://资源/图标/": "yellow",
+"res://资源/图片/": "yellow",
+"res://资源/图片/P主头像/": "green",
+"res://资源/字体/": "yellow",
+"res://资源/扩展/": "yellow",
+"res://资源/曲包/奇爱人生Love Elegia/": "yellow",
+"res://资源/曲包/未命名乐章/": "yellow",
+"res://资源/音频/": "yellow"
 }
 
 [filesystem]
