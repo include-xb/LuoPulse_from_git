@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gtuvp"]
 shader = ExtResource("3_8gasy")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2p3q"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xlua"]
 bg_color = Color(0, 0, 0, 0.388235)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -29,7 +29,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xlua"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2p3q"]
 bg_color = Color(0, 0, 0, 0.388235)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -91,10 +91,10 @@ theme_override_constants/margin_top = 20
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_u2p3q")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2xlua")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hr0rf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0fwsa")
-theme_override_styles/focus = SubResource("StyleBoxFlat_2xlua")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u2p3q")
 icon = ExtResource("3_w27f0")
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]

@@ -100,6 +100,7 @@ func _process(delta) -> void:
 			temp = false
 		
 		for i in range(4):
+			if index >= total_note_num: continue
 			if loader_timer >= note_time_array[index] + RunningData.delay_time:
 				note_loader.load_note(
 					self, 
@@ -182,6 +183,9 @@ func _on_resume_button_pressed() -> void:
 	get_tree().paused = false
 
 
+
+var current_holding: Hold = null
+
 # 判定
 func _judge(track: int) -> void:
 	if !RunningData.is_auto_play:
@@ -190,6 +194,9 @@ func _judge(track: int) -> void:
 				print("判定: ", note.type)
 				if note.type == "tap":
 					note.judge()
+				if note.type == "hold":
+					current_holding = note
+					note.is_holding = true
  
 
 func _on_track_1_btn_pressed() -> void:
@@ -206,6 +213,35 @@ func _on_track_3_btn_pressed() -> void:
 
 func _on_track_4_btn_pressed() -> void:
 	_judge(4)
+
+
+func _on_track_1_btn_released() -> void:
+	if current_holding == null:
+		return
+	if current_holding.column == 1:
+		current_holding.is_holding = false
+
+
+func _on_track_2_btn_released() -> void:
+	if current_holding == null:
+		return
+	if current_holding.column == 2:
+		current_holding.is_holding = false
+
+
+func _on_track_3_btn_released() -> void:
+	if current_holding == null:
+		return
+	if current_holding.column == 3:
+		current_holding.is_holding = false
+
+
+func _on_track_4_btn_released() -> void:
+	if current_holding == null:
+		return
+	if current_holding.column == 4:
+		current_holding.is_holding = false
+
 
 
 func _on_audio_stream_player_2d_finished() -> void:

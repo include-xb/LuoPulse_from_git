@@ -49,6 +49,8 @@ var single_note_score: float
 # setting:
 var is_auto_play : bool = false
 
+# var is_pressed: bool = false
+
 # 音符流速, 玩家可调, 默认 10
 var speed : int = 10
 

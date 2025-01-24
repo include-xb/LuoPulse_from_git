@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bc6unlyohpa2w"
+path="res://.godot/imported/audio.mp3-c353f49fba1c318723a7ff6c52e51b75.mp3str"
+
+[deps]
+
+source_file="res://MscList/未命名乐章/new folder/audio.mp3"
+dest_files=["res://.godot/imported/audio.mp3-c353f49fba1c318723a7ff6c52e51b75.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

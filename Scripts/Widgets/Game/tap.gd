@@ -96,8 +96,6 @@ func auto_play():
 
 
 func kill():
-	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
+	if self in RunningData.decision_area:
+		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 	queue_free()
-
-
-

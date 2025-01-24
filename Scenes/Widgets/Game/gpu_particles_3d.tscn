@@ -17,7 +17,9 @@ gravity = Vector3(0, 0, 0)
 size = Vector2(0.1, 0.1)
 
 [node name="GPUParticles3D" type="GPUParticles3D"]
-lifetime = 2.0
+emitting = false
+amount = 20
+one_shot = true
 preprocess = 0.5
 speed_scale = 5.0
 explosiveness = 1.0

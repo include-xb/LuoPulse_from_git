@@ -344,10 +344,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_7l6ey")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7l6ey")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7l6ey")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7l6ey")
-theme_override_styles/focus = SubResource("StyleBoxFlat_7l6ey")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7l6ey")
 text = "继续"
 icon = ExtResource("5_21way")
 
@@ -357,10 +357,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_inrk2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_inrk2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_inrk2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_inrk2")
-theme_override_styles/focus = SubResource("StyleBoxFlat_inrk2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_inrk2")
 text = "退出"
 icon = ExtResource("6_c0off")
 
@@ -437,9 +437,13 @@ one_shot = true
 
 [connection signal="pressed" from="Info/HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="TrackBtn/Track1Btn" to="." method="_on_track_1_btn_pressed"]
+[connection signal="released" from="TrackBtn/Track1Btn" to="." method="_on_track_1_btn_released"]
 [connection signal="pressed" from="TrackBtn/Track2Btn" to="." method="_on_track_2_btn_pressed"]
+[connection signal="released" from="TrackBtn/Track2Btn" to="." method="_on_track_2_btn_released"]
 [connection signal="pressed" from="TrackBtn/Track3Btn" to="." method="_on_track_3_btn_pressed"]
+[connection signal="released" from="TrackBtn/Track3Btn" to="." method="_on_track_3_btn_released"]
 [connection signal="pressed" from="TrackBtn/Track4Btn" to="." method="_on_track_4_btn_pressed"]
+[connection signal="released" from="TrackBtn/Track4Btn" to="." method="_on_track_4_btn_released"]
 [connection signal="pressed" from="Palse/HBoxContainer/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Palse/HBoxContainer/CenterContainer/VBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

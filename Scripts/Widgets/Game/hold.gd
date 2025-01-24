@@ -11,15 +11,15 @@ var type : String = "hold"
 # 每个音符的唯一标识符
 var id : int = -1
 
-var speed : float = 0
+var speed : float = 0.0
 
-var timer : float = 0
+var timer : float = 0.0
 
 var column : int = 0
 
-var duration : float = 0
+var duration : float = 0.0
 
-var note_length : float = 0
+var note_length : float = 0.0
 
 var add : bool = false
 
@@ -38,14 +38,29 @@ var holding_timer : float = 0
 # 用于 autoplay
 var is_hit : bool = false
 
+
+# 更改长条不现实问题
+var is_put: bool = false
+
+var appear_time: float = 0.0
+
 func _ready():
 	speed = RunningData.speed
-	position.y = 0.001 
-	note_length = duration * speed
-	scale.z = note_length / 20
-	position.z -= note_length / 2
+	position.y = 0.001 #0.001
 
 func _process(delta):
+	
+	if !is_put:
+		note_length = duration * speed
+		# print("note_length: ", note_length)
+	
+		scale.z = note_length / 0.5
+		position.z -= note_length / 2
+		# print("scale.z: ", scale.z)
+		
+		is_put = true
+	
+	
 	timer += delta
 	position.z += speed * delta
 	
@@ -63,14 +78,16 @@ func _process(delta):
 	
 	# 摁住
 	if is_holding:
-		if not had_played_panel_animation:
-			had_played_panel_animation = true
+		#if not had_played_panel_animation:
+			#had_played_panel_animation = true
+			#
+			## 吸附判定线
+			#var adjust : float = (timer - RunningData.delay_time) * speed
+			#scale.z = (note_length - adjust) / 20
+			#position.z -= adjust / 2
 			
-			# 吸附判定线
-			var adjust : float = (timer - RunningData.delay_time) * speed
-			scale.z = (note_length - adjust) / 20
-			position.z -= adjust / 2
-			
+		print("is_holding...")
+		
 		can_released = true
 		holding_timer += delta
 		
@@ -104,7 +121,6 @@ func _process(delta):
 			RunningData.combo += 1
 		else:
 			miss()
-		
 	
 	if RunningData.is_auto_play:
 		auto_play()
@@ -123,12 +139,9 @@ func miss():
 
 func auto_play():
 	if timer >= RunningData.delay_time and not is_hit:
-		if not had_played_panel_animation:
-			had_played_panel_animation = true
-			
 		is_hit = true
-		is_holding = true		
-		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
+		is_holding = true
+		# RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 
 	if timer >= RunningData.delay_time + duration:
 		is_holding = false

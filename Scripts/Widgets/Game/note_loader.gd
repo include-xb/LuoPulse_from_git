@@ -24,3 +24,4 @@ func load_note(scene : GameScene, type : String, time : float, column : int, dur
 			instanced_hold.column = column
 			instanced_hold.id = scene.current_load_num
 			instanced_hold.duration = duration
+			instanced_hold.appear_time = time - (duration / 2)
