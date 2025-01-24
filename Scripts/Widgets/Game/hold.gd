@@ -87,7 +87,7 @@ func _process(delta):
 			#scale.z = (note_length - adjust) / 20
 			#position.z -= adjust / 2
 			
-		print("is_holding...")
+		# print("is_holding...")
 		
 		can_released = true
 		holding_timer += delta
@@ -128,6 +128,8 @@ func _process(delta):
 
 
 func miss():
+	if RunningData.is_auto_play:
+		return
 	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 	
 	# INFO: miss
@@ -142,11 +144,14 @@ func auto_play():
 	if timer >= -duration / 2 and not is_hit:
 		is_hit = true
 		is_holding = true
+		GlobalScene.hit_audio_player.play()
+		get_node("../../track_panel" + str(column)).mesh.material.albedo_color = Color("333333d2")
 		# RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 
 	if timer >= duration / 2:
 		is_holding = false
-		
+		get_node("../../track_panel" + str(column)).mesh.material.albedo_color = Color("000000d2")
 		RunningData.pure_count += 1
 		RunningData.combo += 1
+		RunningData.rating = "PURE"
 		self.queue_free()

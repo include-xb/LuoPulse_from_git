@@ -128,6 +128,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_xa2pb")
 expand_mode = 1
+stretch_mode = 6
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 layout_mode = 1
@@ -405,6 +406,7 @@ text = "退出"
 icon = ExtResource("6_c0off")
 
 [node name="Loading" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -421,6 +423,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
+stretch_mode = 6
 
 [node name="ColorRect" type="ColorRect" parent="Loading"]
 layout_mode = 1

@@ -2,7 +2,6 @@ extends Control
 
 
 @onready var bgmplayer_title: Label = $BGMPlayer/PanelContainer/VBoxContainer/title/msctitle
-@onready var bgmplayer_button: Button = $BGMPlayer/PanelContainer/VBoxContainer/playing/HBoxContainer/pause
 
 
 func _ready():
@@ -19,6 +18,7 @@ func _ready():
 		$UserInfo/HBoxContainer/HeadPortrait.texture = load(Constant.PRODUCTORS_HEAD_PORTRAIT[RunningData.user_name])
 	
 	$Title/VBoxContainer/VerName.text = Constant.VERSION_NAME
+	
 
 func _on_start_button_pressed():
 	SceneChanger.change_scene("res://Scenes/Visual/Select/pselect_scene.tscn")
@@ -26,12 +26,6 @@ func _on_start_button_pressed():
 
 func _on_settings_btn_pressed():
 	SceneChanger.change_scene("res://Scenes/Visual/Settings/settings_scene.tscn")
-
-
-func _on_pause_pressed() -> void:
-	var is_pause: bool = GlobalScene.bgm_player.stream_paused
-	GlobalScene.bgm_player.stream_paused = !is_pause
-	bgmplayer_button.icon = load("res://Assets/Icons/pause.svg") if is_pause else load("res://Assets/Icons/play-fill-lowdpi.svg")
 
 
 func _on_change_pressed() -> void:
