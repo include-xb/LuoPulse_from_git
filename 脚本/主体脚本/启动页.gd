@@ -1,7 +1,7 @@
 extends Control
 
-@onready var status_label: Label = $"状态"
-@onready var progressbar: ProgressBar = $"进度条"
+@onready var status_label: Label = $"加载/状态"
+@onready var progressbar: ProgressBar = $"加载/进度条"
 
 func _ready() -> void:
 	status_label.text = "正在加载资源..."
@@ -27,7 +27,7 @@ func _ready() -> void:
 """
 # 读曲包
 func get_package_list() -> void:
-	var dir: DirAccess = DirAccess.open(Constant.ROOT_PATH)
+	var dir: DirAccess = DirAccess.open(Constants.ROOT_PATH)
 	var pack_list: Dictionary = { }
 	var zip_reader: ZIPReader = ZIPReader.new()
 	
@@ -54,7 +54,7 @@ func get_package_list() -> void:
 		var msc_name: String = pack_dir.get_next()
 		while msc_name != "":
 			if msc_name.ends_with(".lpz"):
-				var current_zip_path: String = Constant.ROOT_PATH + "/" + dir_name + "/" + msc_name
+				var current_zip_path: String = Constants.ROOT_PATH + "/" + dir_name + "/" + msc_name
 				var err = zip_reader.open(current_zip_path)
 				if err != OK:
 					print("读取文件 " + current_zip_path + " 失败")
