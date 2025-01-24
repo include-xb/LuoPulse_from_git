@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw7agdwoajr0y"
-path="res://.godot/imported/cover.png-82fe1c9d6c1c162993fe169edc8510f7.ctex"
+uid="uid://v07qurb8nh6v"
+path="res://.godot/imported/PhShuffleSimpleBold.svg-c9f70a642fdafabef5075c8f267a3330.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MscList/未命名乐章/new folder/cover.png"
-dest_files=["res://.godot/imported/cover.png-82fe1c9d6c1c162993fe169edc8510f7.ctex"]
+source_file="res://Assets/Icons/PhShuffleSimpleBold.svg"
+dest_files=["res://.godot/imported/PhShuffleSimpleBold.svg-c9f70a642fdafabef5075c8f267a3330.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

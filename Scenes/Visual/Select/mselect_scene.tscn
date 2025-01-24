@@ -10,7 +10,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_15r1n"]
 shader = ExtResource("3_vq6i3")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1c7i"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnrkh"]
 bg_color = Color(0, 0, 0, 0.388235)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -31,7 +31,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnrkh"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1c7i"]
 bg_color = Color(0, 0, 0, 0.388235)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -83,6 +83,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
+stretch_mode = 6
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -112,10 +113,10 @@ theme_override_constants/margin_top = 20
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_e1c7i")
+theme_override_styles/focus = SubResource("StyleBoxFlat_cnrkh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_b0n1f")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nuycu")
-theme_override_styles/focus = SubResource("StyleBoxFlat_cnrkh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_e1c7i")
 icon = ExtResource("3_k2kfh")
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
@@ -182,6 +183,7 @@ custom_minimum_size = Vector2(750, 450)
 layout_mode = 2
 texture = ExtResource("4_muhx1")
 expand_mode = 1
+stretch_mode = 6
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/CenterContainer/TextureRect"]
 custom_minimum_size = Vector2(0, 100)
@@ -243,10 +245,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.8
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_kl1ce")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kl1ce")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kl1ce")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kl1ce")
-theme_override_styles/focus = SubResource("StyleBoxFlat_kl1ce")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kl1ce")
 text = "START"
 icon = ExtResource("5_qrx4f")
 expand_icon = true
@@ -280,10 +282,10 @@ theme_override_constants/margin_top = 20
 
 [node name="ModCloseButton" type="Button" parent="ModSetting/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_e1c7i")
+theme_override_styles/focus = SubResource("StyleBoxFlat_cnrkh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_b0n1f")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nuycu")
-theme_override_styles/focus = SubResource("StyleBoxFlat_cnrkh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_e1c7i")
 icon = ExtResource("3_k2kfh")
 
 [node name="MarginContainer2" type="MarginContainer" parent="ModSetting/VBoxContainer/HBoxContainer"]

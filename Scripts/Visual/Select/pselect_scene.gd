@@ -4,6 +4,9 @@ extends Control
 
 func _ready() -> void:
 	$Background.texture = load(RunningData.random_cover_path)
+	if GlobalScene.bgm_player.stream_paused == true:
+		GlobalScene.bgm_player.stream_paused = false
+	
 	for i in RunningData.pack_list.keys():
 		var item: Node = preload("res://Scenes/Widgets/Select/PackItem.tscn").instantiate()
 		item.set_up(i)

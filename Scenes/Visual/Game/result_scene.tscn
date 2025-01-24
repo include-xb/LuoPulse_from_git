@@ -9,8 +9,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iw7i5"]
 shader = ExtResource("2_w747w")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utaas"]
-content_margin_left = 30.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eru51"]
+content_margin_left = 20.0
 content_margin_right = 30.0
 bg_color = Color(0, 0, 0, 0.501961)
 corner_radius_top_left = 5
@@ -36,8 +36,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eru51"]
-content_margin_left = 20.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utaas"]
+content_margin_left = 30.0
 content_margin_right = 30.0
 bg_color = Color(0, 0, 0, 0.501961)
 corner_radius_top_left = 5
@@ -45,9 +45,9 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xd7ed"]
-content_margin_left = 50.0
-content_margin_right = 70.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7e6a"]
+content_margin_left = 20.0
+content_margin_right = 30.0
 bg_color = Color(0.4, 0.8, 1, 0.666667)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
@@ -72,9 +72,9 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7e6a"]
-content_margin_left = 20.0
-content_margin_right = 30.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xd7ed"]
+content_margin_left = 50.0
+content_margin_right = 70.0
 bg_color = Color(0.4, 0.8, 1, 0.666667)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
@@ -200,20 +200,20 @@ theme_override_constants/separation = 20
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_utaas")
+theme_override_styles/focus = SubResource("StyleBoxFlat_eru51")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bcuvx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ojtru")
-theme_override_styles/focus = SubResource("StyleBoxFlat_eru51")
+theme_override_styles/normal = SubResource("StyleBoxFlat_utaas")
 text = "重试"
 icon = ExtResource("4_2j4xl")
 
 [node name="NextButton" type="Button" parent="ButtonGroup/HBoxContainer"]
 custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_xd7ed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_m7e6a")
 theme_override_styles/hover = SubResource("StyleBoxFlat_v7m07")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7ijtb")
-theme_override_styles/focus = SubResource("StyleBoxFlat_m7e6a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd7ed")
 text = "继续"
 icon = ExtResource("5_llpeo")
 

@@ -54,6 +54,7 @@ var json_data: Dictionary
 
 var temp: bool = true
 
+
 func _ready() -> void:
 
 	var path: String = RunningData.selected_msc["path"]
@@ -70,10 +71,9 @@ func _ready() -> void:
 	RunningData.single_note_score = 1000000.0 / total_note_num
 	
 	# 2s伪加载
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	loading_panel.queue_free()
-	
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 
 	is_loading_note = false
 
@@ -115,6 +115,20 @@ func _process(delta) -> void:
 				index += 1
 				
 
+func _input(event: InputEvent) -> void:
+	if Input.is_key_pressed(KEY_D):
+		track_pressed(1)
+	if Input.is_key_pressed(KEY_F):
+		track_pressed(2)
+	if Input.is_key_pressed(KEY_J):
+		track_pressed(3)
+	if Input.is_key_pressed(KEY_K):
+		track_pressed(4)
+	
+	# INFO: 测试用: 跳过游戏, 进入结算界面
+	if Input.is_key_pressed(KEY_Q):
+		_on_audio_stream_player_2d_finished()
+
 
 # 设置场景
 func _set_up_info(msc_name: String, cover_img: Texture2D, path: String) -> void:
@@ -130,7 +144,6 @@ func _set_up_info(msc_name: String, cover_img: Texture2D, path: String) -> void:
 	audio_player.stop()
 
 	progress_bar.max_value = audio_stream.get_length()
-
 
 
 # 清除运行时数据
@@ -162,7 +175,6 @@ func _parse_chart(path: String) -> void:
 		note_time_array.push_back(i.time)
 		note_column_array.push_back(i.column)
 		note_duration_array.push_back(i.duration if i.has("duration") else 0)
-	
 
 
 # 暂停按钮
@@ -183,67 +195,71 @@ func _on_resume_button_pressed() -> void:
 	get_tree().paused = false
 
 
-
-var current_holding: Hold = null
-
-# 判定
-func _judge(track: int) -> void:
-	if !RunningData.is_auto_play:
-		for note in RunningData.decision_area:
-			if note.column == track:
-				print("判定: ", note.type)
-				if note.type == "tap":
-					note.judge()
-				if note.type == "hold":
-					current_holding = note
-					note.is_holding = true
+# 某个轨道被点击
+func track_pressed(track: int) -> void:
+	if RunningData.is_auto_play:
+		return
+	
+	GlobalScene.hit_audio_player.play()
+	get_node("Track3D/SubViewport/track/track_panel" + str(track)).mesh.material.albedo_color = Color("333333d2")
+	
+	for note in RunningData.decision_area:
+		if note.column == track:
+			if note.type == "tap":
+				note.judge()
+			if note.type == "hold":
+				note.is_holding = true
+				print("holding...from track pressed")
  
 
+# 某个轨道被松开
+func track_released(track: int) -> void:
+	if RunningData.is_auto_play:
+		return
+	if get_node("Track3D/SubViewport/track/track_panel" + str(track)) == null: return
+	get_node("Track3D/SubViewport/track/track_panel" + str(track)).mesh.material.albedo_color = Color("000000d2")
+	
+	for note in RunningData.decision_area:
+		if note.column == track:
+			if note.type == "hold":
+				note.is_holding = false
+
+
+# 按下
 func _on_track_1_btn_pressed() -> void:
-	_judge(1)
+	track_pressed(1)
 	
 
 func _on_track_2_btn_pressed() -> void:
-	_judge(2)
+	track_pressed(2)
 
 
 func _on_track_3_btn_pressed() -> void:
-	_judge(3)
+	track_pressed(3)
 
-
+# 放开
 func _on_track_4_btn_pressed() -> void:
-	_judge(4)
+	track_pressed(4)
+
 
 
 func _on_track_1_btn_released() -> void:
-	if current_holding == null:
-		return
-	if current_holding.column == 1:
-		current_holding.is_holding = false
+	track_released(1)
 
 
 func _on_track_2_btn_released() -> void:
-	if current_holding == null:
-		return
-	if current_holding.column == 2:
-		current_holding.is_holding = false
+	track_released(2)
 
 
 func _on_track_3_btn_released() -> void:
-	if current_holding == null:
-		return
-	if current_holding.column == 3:
-		current_holding.is_holding = false
+	track_released(3)
 
 
 func _on_track_4_btn_released() -> void:
-	if current_holding == null:
-		return
-	if current_holding.column == 4:
-		current_holding.is_holding = false
+	track_released(4)
 
 
-
+# 结束
 func _on_audio_stream_player_2d_finished() -> void:
 	await get_tree().create_timer(2.0).timeout
 	SceneChanger.change_scene("res://Scenes/Visual/Game/result_scene.tscn")

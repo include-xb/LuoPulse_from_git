@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://camp12ig7icoo"
-path="res://.godot/imported/cover.jpg-04bcc6b22bfb978388e46dcb82bd20f0.ctex"
+uid="uid://bfm4xnu0mnns0"
+path="res://.godot/imported/cover.png-2d3a7bc393f4062d8a7e7f37951fed45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MscList/未命名乐章/cover.jpg"
-dest_files=["res://.godot/imported/cover.jpg-04bcc6b22bfb978388e46dcb82bd20f0.ctex"]
+source_file="res://MscList/妄想症Paranonia/四重罪孽/cover.png"
+dest_files=["res://.godot/imported/cover.png-2d3a7bc393f4062d8a7e7f37951fed45.ctex"]
 
 [params]
 

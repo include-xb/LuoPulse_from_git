@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://g4fx54t7ipd3"
-path="res://.godot/imported/soft-hitfinish.wav-e8fb5b244d4344e566ce303690a70fa3.sample"
+path="res://.godot/imported/打击音效.wav-2f6278c09e51ac3b2154972911898145.sample"
 
 [deps]
 
-source_file="res://Assets/audio/soft-hitfinish.wav"
-dest_files=["res://.godot/imported/soft-hitfinish.wav-e8fb5b244d4344e566ce303690a70fa3.sample"]
+source_file="res://Assets/audio/打击音效.wav"
+dest_files=["res://.godot/imported/打击音效.wav-2f6278c09e51ac3b2154972911898145.sample"]
 
 [params]
 

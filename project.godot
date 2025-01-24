@@ -21,6 +21,7 @@ RunningData="*res://Scripts/RunningData.gd"
 Utils="*res://Scripts/Utils.gd"
 Constant="*res://Scripts/Constant.gd"
 SceneChanger="*res://Scenes/Widgets/scene_changer.tscn"
+GlobalScene="*res://Scenes/Widgets/global_scene.tscn"
 
 [display]
 

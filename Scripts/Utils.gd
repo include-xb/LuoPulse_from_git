@@ -17,4 +17,3 @@ func get_staff_list(path: String) -> String:
 func get_chart_maker(path: String) -> String:
 	var info: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path + "/chart.json"))
 	return info["General"]["Creator"]
-

@@ -13,7 +13,7 @@ var id : int = -1
 
 var speed : float = 0.0
 
-var timer : float = 0.0
+var timer : float = RunningData.delay_time
 
 var column : int = 0
 
@@ -64,10 +64,11 @@ func _process(delta):
 	timer += delta
 	position.z += speed * delta
 	
-	# 判定区间: 负 120ms 正 120ms
-	if !add && timer >= RunningData.delay_time - 0.12:
+	# 判定区间: 负 150ms 正 150ms
+	if !add && timer >= -0.15:
 		add = true
 		RunningData.decision_area.push_back(self)
+		# print("hold 进入判断区")
 	
 	# 开头直接 miss
 	elif is_holding == false && \
@@ -96,14 +97,14 @@ func _process(delta):
 			visible = false
 			is_holding = false
 		
-		scale.z -= speed * delta / 20
+		scale.z -= speed * delta / 0.5
 		position.z -= speed * delta / 2
 		
 	
 	# 松开
 	if !is_holding && can_released:
 		can_released = false
-				
+		
 		var score = holding_timer / duration
 		
 		# 摁住 85% 为 perfect
@@ -138,15 +139,14 @@ func miss():
 	
 
 func auto_play():
-	if timer >= RunningData.delay_time and not is_hit:
+	if timer >= -duration / 2 and not is_hit:
 		is_hit = true
 		is_holding = true
 		# RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 
-	if timer >= RunningData.delay_time + duration:
+	if timer >= duration / 2:
 		is_holding = false
 		
 		RunningData.pure_count += 1
 		RunningData.combo += 1
-		
 		self.queue_free()

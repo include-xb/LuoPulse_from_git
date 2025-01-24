@@ -85,14 +85,24 @@ func judge():
 
 
 func auto_play():
-	if position.z >= 0 and temp:
+	if timer >= 0 and temp:
+		GlobalScene.hit_audio_player.play()
+		get_node("../../track_panel" + str(column)).mesh.material.albedo_color = Color("333333d2")
+		
+		
 		velosity = Vector3.ZERO
 		RunningData.pure_count += 1
 		RunningData.combo += 1
 		RunningData.rating = "PURE"
 		RunningData.score += RunningData.single_note_score
-		kill()
+		# kill()
+		self.visible = false
 		temp = false
+		# get_node("../../track_panel" + str(column)).mesh.material.albedo_color = Color("000000d2")
+	#
+	if timer >= 0.1:
+		get_node("../../track_panel" + str(column)).mesh.material.albedo_color = Color("000000d2")
+		kill()
 
 
 func kill():

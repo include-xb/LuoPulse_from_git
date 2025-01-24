@@ -3,13 +3,14 @@ extends Control
 @onready var statusLabel: Label = $VBoxContainer/MarginContainer/Label3
 @onready var progressBar: ProgressBar = $VBoxContainer/ProgressBar
 
+
 func _ready():
 	statusLabel.text = "正在加载资源"
 	_get_chart_list()
 	progressBar.value = 50
 	statusLabel.text = "正在加载配置"
 	_get_user_config()
-	_set_random_background_cover()
+	GlobalScene._set_random_msc()
 	progressBar.value = 100
 	statusLabel.text = "准备就绪。欢迎！"
 	SceneChanger.change_scene("res://Scenes/Visual/hub_scene.tscn")
@@ -58,14 +59,3 @@ func _get_user_config() -> void:
 		RunningData.bglight = config.bglight
 		RunningData.speed = config.speed
 		RunningData.user_name = config["user_name"]
-
-# 随机背景图
-func _set_random_background_cover() -> void:
-	var chart_list: Array
-	for i in RunningData.pack_list:
-		for j in RunningData.pack_list[i]:
-			chart_list.append("/" + i + "/" + j)
-	var random_index: int = randi_range(0, len(chart_list) - 1)
-	var random_chart_name: String = chart_list[random_index]
-	var random_cover_path: String = Constant.ROOT_PATH + random_chart_name + "/cover.png"
-	RunningData.random_cover_path = random_cover_path

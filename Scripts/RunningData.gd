@@ -5,6 +5,10 @@ var pack_list: Dictionary
 
 # 随机背景图路径
 var random_cover_path: String
+# 随机歌曲音频路径
+var random_audio_path: String
+
+var random_chart_name: String
 
 # 选中曲包名
 var selected_pack_name: String

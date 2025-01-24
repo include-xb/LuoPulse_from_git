@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dpqwtujhvraxl"]
+[gd_scene load_steps=31 format=3 uid="uid://dpqwtujhvraxl"]
 
 [ext_resource type="Script" path="res://Scripts/Visual/Game/game_scene.gd" id="2_2e42w"]
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://Assets/ui_theme.tres" id="2_nai6g"]
@@ -24,16 +24,8 @@ tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3b6o"]
-transparency = 1
-albedo_color = Color(0, 0, 0, 0.823529)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_g2iv2"]
-material = SubResource("StandardMaterial3D_n3b6o")
-size = Vector2(8, 70)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3l5hx"]
-size = Vector3(8, 0.25, 70)
+[sub_resource type="PlaneMesh" id="PlaneMesh_pcsty"]
+size = Vector2(0.05, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8lni7"]
 albedo_color = Color(0.4, 0.8, 1, 1)
@@ -42,14 +34,37 @@ albedo_color = Color(0.4, 0.8, 1, 1)
 material = SubResource("StandardMaterial3D_8lni7")
 size = Vector2(8, 0.1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_18215"]
-size = Vector2(0.1, 100)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gjgs"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.823529)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_pcsty"]
-size = Vector2(0.05, 100)
+[sub_resource type="PlaneMesh" id="PlaneMesh_txp5y"]
+material = SubResource("StandardMaterial3D_5gjgs")
+size = Vector2(2, 70)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_1qewj"]
-size = Vector2(0.1, 100)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxbym"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.823529)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_556q1"]
+material = SubResource("StandardMaterial3D_sxbym")
+size = Vector2(2, 70)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfrbp"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.823529)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gy3c8"]
+material = SubResource("StandardMaterial3D_nfrbp")
+size = Vector2(2, 70)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfmua"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.823529)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nl2tx"]
+material = SubResource("StandardMaterial3D_wfmua")
+size = Vector2(2, 70)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3fm81"]
 bg_color = Color(0.4, 0.8, 1, 1)
@@ -152,38 +167,63 @@ far = 5000.0
 
 [node name="track" type="Node3D" parent="Track3D/SubViewport"]
 
-[node name="track_body" type="StaticBody3D" parent="Track3D/SubViewport/track"]
+[node name="line" type="Node3D" parent="Track3D/SubViewport/track"]
 
-[node name="track_panel" type="MeshInstance3D" parent="Track3D/SubViewport/track/track_body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33)
-mesh = SubResource("PlaneMesh_g2iv2")
-skeleton = NodePath("../../..")
+[node name="mid" type="MeshInstance3D" parent="Track3D/SubViewport/track/line"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -33)
+mesh = SubResource("PlaneMesh_pcsty")
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Track3D/SubViewport/track/track_body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33)
-shape = SubResource("BoxShape3D_3l5hx")
+[node name="r1" type="MeshInstance3D" parent="Track3D/SubViewport/track/line"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -41.509)
+mesh = SubResource("PlaneMesh_pcsty")
+skeleton = NodePath("../..")
 
-[node name="decision_line" type="MeshInstance3D" parent="Track3D/SubViewport/track"]
+[node name="r2" type="MeshInstance3D" parent="Track3D/SubViewport/track/line"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.975, 0, -41.509)
+mesh = SubResource("PlaneMesh_pcsty")
+skeleton = NodePath("../..")
+
+[node name="l1" type="MeshInstance3D" parent="Track3D/SubViewport/track/line"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -41.509)
+mesh = SubResource("PlaneMesh_pcsty")
+skeleton = NodePath("../..")
+
+[node name="l2" type="MeshInstance3D" parent="Track3D/SubViewport/track/line"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.975, 0, -41.509)
+mesh = SubResource("PlaneMesh_pcsty")
+skeleton = NodePath("../..")
+
+[node name="decision_line" type="MeshInstance3D" parent="Track3D/SubViewport/track/line"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
 mesh = SubResource("PlaneMesh_ib0nd")
+skeleton = NodePath("../..")
+
+[node name="track_panel1" type="MeshInstance3D" parent="Track3D/SubViewport/track"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -33)
+mesh = SubResource("PlaneMesh_txp5y")
+skeleton = NodePath("../..")
+
+[node name="track_panel2" type="MeshInstance3D" parent="Track3D/SubViewport/track"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -33)
+mesh = SubResource("PlaneMesh_556q1")
+skeleton = NodePath("../..")
+
+[node name="track_panel3" type="MeshInstance3D" parent="Track3D/SubViewport/track"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -33)
+mesh = SubResource("PlaneMesh_gy3c8")
+skeleton = NodePath("../..")
+
+[node name="track_panel4" type="MeshInstance3D" parent="Track3D/SubViewport/track"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -33)
+mesh = SubResource("PlaneMesh_nl2tx")
+skeleton = NodePath("../..")
 
 [node name="track1" type="Node3D" parent="Track3D/SubViewport/track"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Track3D/SubViewport/track"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, -4.54, -5)
-mesh = SubResource("PlaneMesh_18215")
-
 [node name="track2" type="Node3D" parent="Track3D/SubViewport/track"]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Track3D/SubViewport/track"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -33)
-mesh = SubResource("PlaneMesh_pcsty")
-
 [node name="track3" type="Node3D" parent="Track3D/SubViewport/track"]
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Track3D/SubViewport/track"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3, -4, -40)
-mesh = SubResource("PlaneMesh_1qewj")
 
 [node name="track4" type="Node3D" parent="Track3D/SubViewport/track"]
 

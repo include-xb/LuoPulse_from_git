@@ -3,7 +3,10 @@ extends Control
 @onready var msc_list_view: VBoxContainer = $VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/ScrollContainer/List
 @onready var texture_rect: TextureRect = $VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/CenterContainer/TextureRect
 @onready var bg_texture_rect: TextureRect = $Background
+
 @onready var player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+# @onready var player: AudioStreamPlayer = GlobalScene.bgm_player
+
 @onready var auto_play_setting_button: Button = $ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer/AutoPlaySettingButton
 @onready var mod_panel: Panel = $ModSetting
 
@@ -18,6 +21,8 @@ var selected_index: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# 暂停背景音乐
+	GlobalScene.bgm_player.stream_paused = true
 	# 当前曲包名
 	var pack_name = RunningData.selected_pack_name
 	msc_list_path = Constant.ROOT_PATH + "/" + pack_name
