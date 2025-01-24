@@ -45,7 +45,7 @@ func get_package_list() -> void:
 		
 		# 读取曲包内的歌曲列表
 		var msc_list: Array[String] = []
-		var pack_dir: DirAccess = DirAccess.open(Constant.ROOT_PATH + "/" + dir_name)
+		var pack_dir: DirAccess = DirAccess.open(Constants.ROOT_PATH + "/" + dir_name)
 		
 		if !pack_dir:
 			print("读取曲包内单曲失败")
