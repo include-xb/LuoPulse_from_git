@@ -37,6 +37,8 @@ var had_played_panel_animation : bool = false
 # 摁住之后计时
 var holding_timer : float = 0
 
+var acc: int = 0
+
 # 用于 autoplay
 var is_hit : bool = false
 
@@ -45,6 +47,7 @@ var is_hit : bool = false
 var is_put: bool = false
 
 var appear_time: float = 0.0
+
 
 func _ready() -> void:
 	speed = RunningData.speed
@@ -106,14 +109,23 @@ func _process(delta: float) -> void:
 		
 		var score = holding_timer / duration
 		
-		# 摁住 85% 以上为 pure
-		if score >= 0.85:
+		# 摁住 95% 以上为 pure
+		if score >= 0.95:
 			if self in RunningData.decision_area:
 				RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 			RunningData.rating = "PURE"
 			RunningData.pure_count += 1
 			RunningData.combo += 1
-			RunningData.score += RunningData.single_note_score
+			acc = 110
+		
+		# 摁住 85% - 95% 以上为 perfect
+		if score >= 0.85:
+			if self in RunningData.decision_area:
+				RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
+			RunningData.rating = "PERFECT"
+			RunningData.perfect_count += 1
+			RunningData.combo += 1
+			acc = 100
 		
 		# 摁住 50% - 85% 为 great
 		elif 0.5 <= score and score < 0.85:
@@ -122,9 +134,12 @@ func _process(delta: float) -> void:
 			RunningData.rating = "GREAT"
 			RunningData.great_count += 1
 			RunningData.combo += 1
-			RunningData.score += RunningData.single_note_score * 0.7
+			acc = 50
+		
 		else:
 			miss()
+		
+		RunningData.accuracy = (id * RunningData.accuracy + acc) / (id + 1)
 	
 	if RunningData.is_auto_play:
 		auto_play()
@@ -139,8 +154,8 @@ func miss():
 	RunningData.miss_count += 1
 	RunningData.combo = 0
 	RunningData.rating = "MISS"
-	
-	#RunningData.key_scene.current_holding = null
+	acc = 0
+	RunningData.accuracy = (id * RunningData.accuracy + acc) / (id + 1)
 	is_holding = false
 	
 
@@ -150,9 +165,9 @@ func auto_play():
 		is_holding = true
 		GlobalScene.hit_audio_player.play()
 		get_node("../../track_panel" + str(column)).mesh.material.albedo_color = Color("333333d2")
-		# RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 
 	if timer >= duration:
+		acc = 110
 		is_holding = false
 		get_node("../../track_panel" + str(column)).mesh.material.albedo_color = Color("000000d2")
 		RunningData.pure_count += 1

@@ -19,6 +19,8 @@ var column: int
 
 var appear_time: float
 
+var acc: int = 0
+
 
 func _ready():
 	velosity.z = RunningData.speed # 实际上, 音符速度 和 流速 之间是一个线性方程, 此处暂时省略, 直接赋值
@@ -33,57 +35,50 @@ func _process(delta):
 	
 	if RunningData.is_auto_play:
 		auto_play()
-	elif !add && timer >= -0.2:
+	elif !add && timer >= -0.12:
 		add = true
 		RunningData.decision_area.push_back(self)
 	# miss
-	elif !remove && timer >= 0.2:
+	elif !remove && timer >= 0.12:
 		remove = true
 		RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 		
 		RunningData.miss_count += 1
 		RunningData.combo = 0
 		RunningData.rating = "MISS"
+		acc = 0
+		RunningData.accuracy = (id * RunningData.accuracy + acc) / (id + 1)
 		self.queue_free()
 
 
 func judge():
 	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
-	var diff : float = appear_time - RunningData.world_timer
-		
-	if diff <= 0.03:
-		GlobalScene.hit_audio_player.play()
-		RunningData.pure_count += 1
-		RunningData.combo += 1
-		RunningData.score += RunningData.single_note_score
-		RunningData.rating = "PURE"
+	GlobalScene.hit_audio_player.play()
 	
-	elif diff <= 0.06:
-		GlobalScene.hit_audio_player.play()
+	RunningData.combo += 1
+	
+	var diff: float = abs(timer)
+	
+	if diff <= 30:
+		RunningData.pure_count += 1
+		RunningData.rating = "PURE"
+		acc = 110
+	elif diff <= 60:
 		RunningData.perfect_count += 1
-		RunningData.combo += 1
-		RunningData.score += RunningData.single_note_score * 0.9
 		RunningData.rating = "PERFECT"
-		
-	elif diff <= 0.09:
-		GlobalScene.hit_audio_player.play()
+		acc = 100
+	elif diff <= 90:
 		RunningData.great_count += 1
-		RunningData.combo += 1
-		RunningData.score += RunningData.single_note_score * 0.7
 		RunningData.rating = "GREAT"
-		
-	elif diff <= 0.12:
-		GlobalScene.hit_audio_player.play()
+		acc = 50
+	elif diff <= 120:
 		RunningData.good_count += 1
-		RunningData.combo += 1
-		RunningData.score += RunningData.single_note_score * 0.5
 		RunningData.rating = "GOOD"
-		
+		acc = 25
 	else:
-		RunningData.miss_count += 1
-		RunningData.combo = 0
-		RunningData.rating = "MISS"
-
+		acc = 0
+	
+	RunningData.accuracy = (id * RunningData.accuracy + acc) / (id + 1)
 	
 	self.queue_free()
 
@@ -98,7 +93,7 @@ func auto_play():
 		RunningData.pure_count += 1
 		RunningData.combo += 1
 		RunningData.rating = "PURE"
-		RunningData.score += RunningData.single_note_score
+		RunningData.accuracy = 110
 		# kill()
 		self.visible = false
 		temp = false

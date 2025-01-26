@@ -13,7 +13,7 @@ class_name GameScene
 @onready var rating_label: Label = $ComboVBC/RatingLabel
 @onready var combo_vbc: VBoxContainer = $ComboVBC
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var score_label: Label = $Score/VBoxContainer/ScoreLabel
+@onready var acc_label: Label = $Score/VBoxContainer/AccLabel
 
 # 倒计时
 @onready var countdown: Label = $Countdown
@@ -91,12 +91,14 @@ func _process(delta) -> void:
 
 		RunningData.current_audio_time = audio_player.get_playback_position() - AudioServer.get_time_to_next_mix() + AudioServer.get_time_since_last_mix()
 		loader_timer += delta
-
 		RunningData.world_timer = loader_timer
+		
+		RunningData.accuracy = float(int(RunningData.accuracy * 10000)) / 10000
 		
 		combo_label.text = str(RunningData.combo)
 		rating_label.text = RunningData.rating
-		score_label.text = str(int(RunningData.score))
+		
+		acc_label.text = str(RunningData.accuracy)
 		
 		progress_bar.value = audio_player.get_playback_position()
 		
@@ -161,7 +163,7 @@ func _cleanup_running_data() -> void:
 	RunningData.miss_count = 0
 	RunningData.pure_count = 0
 	RunningData.great_count = 0
-	RunningData.score = 0
+	RunningData.accuracy = 0
 	RunningData.rating = ""
 	RunningData.combo = 0
 	RunningData.world_timer = 0

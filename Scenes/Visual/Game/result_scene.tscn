@@ -147,7 +147,7 @@ theme_override_constants/margin_bottom = 60
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ScoreLabel" type="Label" parent="Score/VBoxContainer"]
+[node name="AccLabel" type="Label" parent="Score/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 90
 text = "0000000"
