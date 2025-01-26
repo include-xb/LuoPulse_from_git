@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://rtm32ibpi8j2"
+path="res://.godot/imported/audio.mp3-8984a2de102a7867c0a26c248edaba4e.mp3str"
+
+[deps]
+
+source_file="res://MscList/洛之动脉LuoPulse/Time to Shine/audio.mp3"
+dest_files=["res://.godot/imported/audio.mp3-8984a2de102a7867c0a26c248edaba4e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

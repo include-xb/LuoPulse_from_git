@@ -352,7 +352,7 @@ size_flags_vertical = 4
 focus_mode = 0
 text = "关"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/MarginContainer/HBoxContainer/ModButton" to="." method="_on_mod_button_pressed"]

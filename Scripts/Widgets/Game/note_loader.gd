@@ -20,7 +20,7 @@ func load_note(scene : GameScene, type : String, time : float, column : int, dur
 			var instanced_hold : Hold = scene.packed_hold_note.instantiate()
 			scene.get_node("Track3D/SubViewport/track/track" + str(column)).add_child(instanced_hold)
 			instanced_hold.position.x = 2 * column - 5
-			instanced_hold.position.z = RunningData.speed * (RunningData.delay_time + duration / 2)#- RunningData.speed * time / 1000
+			instanced_hold.position.z = RunningData.speed * RunningData.delay_time # - duration / 2)#- RunningData.speed * time / 1000
 			instanced_hold.column = column
 			instanced_hold.id = scene.current_load_num
 			instanced_hold.duration = duration

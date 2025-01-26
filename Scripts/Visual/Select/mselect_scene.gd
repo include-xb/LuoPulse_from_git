@@ -4,7 +4,7 @@ extends Control
 @onready var texture_rect: TextureRect = $VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/CenterContainer/TextureRect
 @onready var bg_texture_rect: TextureRect = $Background
 
-@onready var player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var player: AudioStreamPlayer = $AudioStreamPlayer
 # @onready var player: AudioStreamPlayer = GlobalScene.bgm_player
 
 @onready var auto_play_setting_button: Button = $ModSetting/VBoxContainer/MarginContainer/VBoxContainer/AutoplaySetting/MarginContainer/HBoxContainer/AutoPlaySettingButton

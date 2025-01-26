@@ -3,7 +3,7 @@ extends Control
 class_name GameScene
 
 # 音乐播放器
-@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 # 加载页节点
 @onready var loading_panel: Control = $Loading
@@ -14,6 +14,9 @@ class_name GameScene
 @onready var combo_vbc: VBoxContainer = $ComboVBC
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var score_label: Label = $Score/VBoxContainer/ScoreLabel
+
+# 倒计时
+@onready var countdown: Label = $Countdown
 
 
 var packed_tap_note: PackedScene = preload("res://Scenes/Widgets/Game/tap.tscn")
@@ -56,6 +59,7 @@ var temp: bool = true
 
 
 func _ready() -> void:
+	countdown.visible = false
 
 	var path: String = RunningData.selected_msc["path"]
 	var msc_name: String = RunningData.selected_msc["name"]
@@ -71,13 +75,14 @@ func _ready() -> void:
 	RunningData.single_note_score = 1000000.0 / total_note_num
 	
 	# 2s伪加载
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	loading_panel.queue_free()
-	await get_tree().create_timer(1.0).timeout
 
 	is_loading_note = false
 
 	$Timer.start(RunningData.delay_time)
+	
+	countdown.start()
 	
 
 func _process(delta) -> void:
@@ -124,6 +129,9 @@ func _input(event: InputEvent) -> void:
 		track_pressed(3)
 	if Input.is_key_pressed(KEY_K):
 		track_pressed(4)
+		
+	if Input.is_key_pressed(KEY_ESCAPE):
+		_on_pause_button_pressed()
 	
 	# INFO: 测试用: 跳过游戏, 进入结算界面
 	if Input.is_key_pressed(KEY_Q):
@@ -182,17 +190,20 @@ func _on_pause_button_pressed() -> void:
 	palse_panel.visible = true
 	get_tree().paused = true
 
-
+# 暂停菜单中的退出
 func _on_home_button_pressed() -> void:
 	palse_panel.visible = false
 	audio_player.stop()
+	
 	get_tree().paused = false
+	
 	get_tree().change_scene_to_file("res://Scenes/Visual/Select/mselect_scene.tscn")
 
-
+# 暂停菜单中的继续
 func _on_resume_button_pressed() -> void:
 	palse_panel.visible = false
-	get_tree().paused = false
+	# get_tree().paused = false
+	countdown.start()
 
 
 # 某个轨道被点击
@@ -200,7 +211,7 @@ func track_pressed(track: int) -> void:
 	if RunningData.is_auto_play:
 		return
 	
-	GlobalScene.hit_audio_player.play()
+	
 	get_node("Track3D/SubViewport/track/track_panel" + str(track)).mesh.material.albedo_color = Color("333333d2")
 	
 	for note in RunningData.decision_area:
@@ -209,7 +220,6 @@ func track_pressed(track: int) -> void:
 				note.judge()
 			if note.type == "hold":
 				note.is_holding = true
-				print("holding...from track pressed")
  
 
 # 某个轨道被松开

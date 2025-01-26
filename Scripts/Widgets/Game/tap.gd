@@ -22,7 +22,7 @@ var appear_time: float
 
 func _ready():
 	velosity.z = RunningData.speed # 实际上, 音符速度 和 流速 之间是一个线性方程, 此处暂时省略, 直接赋值
-	position.y = 0.001 # y 坐标不变
+	position.y = 0.02 # y 坐标不变
 
 var temp = true
 
@@ -52,24 +52,28 @@ func judge():
 	var diff : float = appear_time - RunningData.world_timer
 		
 	if diff <= 0.03:
+		GlobalScene.hit_audio_player.play()
 		RunningData.pure_count += 1
 		RunningData.combo += 1
 		RunningData.score += RunningData.single_note_score
 		RunningData.rating = "PURE"
 	
 	elif diff <= 0.06:
+		GlobalScene.hit_audio_player.play()
 		RunningData.perfect_count += 1
 		RunningData.combo += 1
 		RunningData.score += RunningData.single_note_score * 0.9
 		RunningData.rating = "PERFECT"
 		
 	elif diff <= 0.09:
+		GlobalScene.hit_audio_player.play()
 		RunningData.great_count += 1
 		RunningData.combo += 1
 		RunningData.score += RunningData.single_note_score * 0.7
 		RunningData.rating = "GREAT"
 		
 	elif diff <= 0.12:
+		GlobalScene.hit_audio_player.play()
 		RunningData.good_count += 1
 		RunningData.combo += 1
 		RunningData.score += RunningData.single_note_score * 0.5

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjds2wwktly7c"
-path="res://.godot/imported/cover.png-d317db1b35fd032a86256bf7d42aae15.ctex"
+uid="uid://cri8ongklt1rm"
+path="res://.godot/imported/cover.png-f2bb5e5fa7cedb17bc72646b8afa3087.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MscList/未命名乐章/权御天下/cover.png"
-dest_files=["res://.godot/imported/cover.png-d317db1b35fd032a86256bf7d42aae15.ctex"]
+source_file="res://MscList/洛之动脉LuoPulse/Time to Shine/cover.png"
+dest_files=["res://.godot/imported/cover.png-f2bb5e5fa7cedb17bc72646b8afa3087.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://camp12ig7icoo"
-path="res://.godot/imported/cover.jpg-04bcc6b22bfb978388e46dcb82bd20f0.ctex"
+uid="uid://bjds2wwktly7c"
+path="res://.godot/imported/cover.png-fcc4226f31e0b563ce1a589837e4a745.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MscList/未命名乐章/cover.jpg"
-dest_files=["res://.godot/imported/cover.jpg-04bcc6b22bfb978388e46dcb82bd20f0.ctex"]
+source_file="res://MscList/洛之动脉LuoPulse/test/cover.png"
+dest_files=["res://.godot/imported/cover.png-fcc4226f31e0b563ce1a589837e4a745.ctex"]
 
 [params]
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bspog0syusb0p"]
+[gd_scene load_steps=4 format=3 uid="uid://bspog0syusb0p"]
 
+[ext_resource type="Material" uid="uid://wrclef06neta" path="res://Assets/note_theme.tres" id="1_bl7mp"]
 [ext_resource type="Script" path="res://Scripts/Widgets/Game/tap.gd" id="1_li1gf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2c2ol"]
-size = Vector3(2, 0.001, 0.5)
+material = ExtResource("1_bl7mp")
+size = Vector3(1.9, 0.001, 0.5)
 
 [node name="Tap" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_2c2ol")

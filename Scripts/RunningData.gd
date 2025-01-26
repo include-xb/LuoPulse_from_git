@@ -47,6 +47,9 @@ var rating: String = ""
 # 分数
 var score: float
 
+# 准度
+var accuracy: float = 0.0
+
 # 单个音符分数
 var single_note_score: float
 

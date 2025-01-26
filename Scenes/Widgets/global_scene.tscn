@@ -12,3 +12,4 @@ stream = ExtResource("1_msgp4")
 [node name="UI音效" type="AudioStreamPlayer" parent="."]
 
 [node name="背景音乐" type="AudioStreamPlayer" parent="."]
+process_mode = 3

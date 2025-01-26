@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjm5ls76iay0b"]
+[gd_scene load_steps=4 format=3 uid="uid://bjm5ls76iay0b"]
 
 [ext_resource type="Script" path="res://Scripts/Widgets/Game/hold.gd" id="1_jfcly"]
+[ext_resource type="Material" uid="uid://wrclef06neta" path="res://Assets/note_theme.tres" id="1_um5u5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2c2ol"]
-size = Vector3(2, 0.001, 0.5)
+material = ExtResource("1_um5u5")
+size = Vector3(1.9, 0.001, 0.5)
 
 [node name="Hold" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_2c2ol")

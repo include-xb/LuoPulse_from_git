@@ -124,7 +124,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.8
 texture = ExtResource("3_2hkyl")
-expand_mode = 4
+expand_mode = 2
 
 [node name="BtnGroup" type="MarginContainer" parent="."]
 clip_contents = true
