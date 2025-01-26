@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://yiq18ky2jbmx"]
+
+[ext_resource type="Script" path="res://脚本/组件/转场.gd" id="1_uljcw"]
+[ext_resource type="FontFile" uid="uid://c80ol0dpd1c3y" path="res://资源/字体/汉仪洛天依体简.ttf" id="3_ojyw2"]
+
+[sub_resource type="Gradient" id="Gradient_h6j7u"]
+offsets = PackedFloat32Array(0, 0.015, 1)
+colors = PackedColorArray(0.4, 0.8, 1, 1, 0.4, 0.8, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_koa0h"]
+gradient = SubResource("Gradient_h6j7u")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_uf3xl"]
+resource_name = "黑场"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect/Label:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [100, 72]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gvisl"]
+resource_name = "渐出"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect/Label:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [72, 100]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ng77d"]
+_data = {
+"渐入": SubResource("Animation_uf3xl"),
+"渐出": SubResource("Animation_gvisl")
+}
+
+[node name="转场" type="CanvasLayer"]
+script = ExtResource("1_uljcw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_koa0h")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -48.0
+offset_right = 144.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.384314, 0.384314, 0.376471, 1)
+theme_override_fonts/font = ExtResource("3_ojyw2")
+theme_override_font_sizes/font_size = 72
+text = "洛之动脉"
+
+[node name="动画" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ng77d")
+}

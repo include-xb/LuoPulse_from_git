@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 """
-- 曲包:				<--- Constant.ROOT_PATH, dir打开
+- 曲包:				<--- Constant.ROOT_RES_PATH, dir打开
 	- 奇爱人生:			<--- dir_name, pack_dir打开
 		- 春风来.lpz			<--- msc_name, zip_reader打开
 		- 绝体绝命.lpz		<--- msc_name
@@ -27,7 +27,7 @@ func _ready() -> void:
 """
 # 读曲包
 func get_package_list() -> void:
-	var dir: DirAccess = DirAccess.open(Constants.ROOT_PATH)
+	var dir: DirAccess = DirAccess.open(Constants.ROOT_RES_PATH)
 	var pack_list: Dictionary = { }
 	var zip_reader: ZIPReader = ZIPReader.new()
 	
@@ -45,7 +45,7 @@ func get_package_list() -> void:
 		
 		# 读取曲包内的歌曲列表
 		var msc_list: Array[String] = []
-		var pack_dir: DirAccess = DirAccess.open(Constants.ROOT_PATH + "/" + dir_name)
+		var pack_dir: DirAccess = DirAccess.open(Constants.ROOT_RES_PATH + "/" + dir_name)
 		
 		if !pack_dir:
 			print("读取曲包内单曲失败")
@@ -54,7 +54,7 @@ func get_package_list() -> void:
 		var msc_name: String = pack_dir.get_next()
 		while msc_name != "":
 			if msc_name.ends_with(".lpz"):
-				var current_zip_path: String = Constants.ROOT_PATH + "/" + dir_name + "/" + msc_name
+				var current_zip_path: String = Constants.ROOT_RES_PATH + "/" + dir_name + "/" + msc_name
 				var err = zip_reader.open(current_zip_path)
 				if err != OK:
 					print("读取文件 " + current_zip_path + " 失败")
@@ -66,7 +66,7 @@ func get_package_list() -> void:
 		)
 		dir_name = dir.get_next()
 	
-	RunningData.pack_list = pack_list
+	RuntimeData.pack_list = pack_list
 	# 可通过 pack_list 获取歌曲路径
 
 # 读配置
@@ -75,8 +75,8 @@ func get_user_config() -> void:
 	# 判空
 	if cfgFile:
 		var config: Dictionary = JSON.parse_string(cfgFile)
-		RunningData.ui_volume = config.ui_volume
-		RunningData.audio_volume = config.audio_volume
-		RunningData.bglight = config.bglight
-		RunningData.speed = config.speed
-		RunningData.user_name = config["user_name"]
+		RuntimeData.ui_volume = config.ui_volume
+		RuntimeData.audio_volume = config.audio_volume
+		RuntimeData.bglight = config.bglight
+		RuntimeData.speed = config.speed
+		RuntimeData.user_name = config["user_name"]

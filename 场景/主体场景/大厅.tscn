@@ -77,8 +77,10 @@ icon_alignment = 1
 
 [node name="按钮组" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 877.0
+offset_top = 54.0
+offset_right = 1206.0
+offset_bottom = 183.0
 
 [node name="用户信息" type="Control" parent="."]
 anchors_preset = 0

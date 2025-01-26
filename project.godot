@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="LuoPulse"
+config/version="2.0.0.dev"
 run/main_scene="res://场景/主体场景/启动页.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/show_image=false
@@ -18,9 +19,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-RunningData="*res://脚本/运行时数据.gd"
+RuntimeData="*res://脚本/运行时数据.gd"
 Constants="*res://脚本/常量.gd"
-SceneChanger="*res://场景/组件/SceneChanger.tscn"
+SceneChanger="*res://场景/组件/转场.tscn"
 
 [display]
 
@@ -33,7 +34,6 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://场景/主体场景/": "yellow",
-"res://场景/主体场景/Game/": "green",
 "res://场景/主体场景/Select/": "green",
 "res://场景/主体场景/设置/": "green",
 "res://场景/组件/": "yellow",

@@ -1,7 +1,7 @@
 extends Node
 
 # 曲包根目录
-const ROOT_PATH: String = "res://资源/曲包/"
+const ROOT_RES_PATH: String = "res://资源/曲包/"
 # 版本名
 const VERSION_NAME: String = "2.0.union"
 #GitHub仓库地址
