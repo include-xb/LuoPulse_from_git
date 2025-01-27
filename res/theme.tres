@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://kj1lcqq687dd"]
+
+[ext_resource type="FontFile" uid="uid://dbswnd0kb400d" path="res://res/fonts/HarmonyOS_Sans_SC_Regular.ttf" id="1_hc50h"]
+
+[resource]
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_hc50h")

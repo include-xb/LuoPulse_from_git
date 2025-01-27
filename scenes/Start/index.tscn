@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://d347q54ywmiph"]
+
+[ext_resource type="Theme" uid="uid://kj1lcqq687dd" path="res://res/theme.tres" id="1_nmos4"]
+[ext_resource type="Texture2D" uid="uid://dtjc6881df1sx" path="res://res/images/abc-123.jpg" id="2_6wu4m"]
+[ext_resource type="FontFile" uid="uid://dmxu3lbmpib3w" path="res://res/fonts/HarmonyOS_Sans_SC_Light.ttf" id="2_ecve5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31wvc"]
+bg_color = Color(0.4, 0.8, 1, 1)
+
+[node name="StartScene" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nmos4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6wu4m")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 564.0
+offset_bottom = 141.0
+theme_override_constants/margin_left = 72
+theme_override_constants/margin_top = 42
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ecve5")
+theme_override_font_sizes/font_size = 74
+text = "LuoPulse Creator"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ecve5")
+theme_override_font_sizes/font_size = 36
+text = "2025.01 editon"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_31wvc")
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 579.0
+offset_right = 265.0
+offset_bottom = 630.0
+text = "正在索引文件......"
