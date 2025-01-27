@@ -2,7 +2,7 @@ extends MeshInstance3D
 
 class_name Hold
 
-const original_z: float = 0.5
+const original_z: float = 0.2
 
 var packed_particle : PackedScene = preload("res://Scenes/Widgets/Game/gpu_particles_3d.tscn")
 
@@ -78,6 +78,9 @@ func _process(delta: float) -> void:
 		remove = true
 		miss()
 	
+	if RunningData.is_auto_play:
+		auto_play()
+	
 	# 摁住
 	if is_holding:
 		
@@ -90,7 +93,9 @@ func _process(delta: float) -> void:
 			# 吸附判定线
 			var adjust: float = timer * speed
 			position.z -= adjust
-			position.z += 0.65 # INFO: 0.65 为偏移量
+			# position.z += 0.65 # INFO: 0.65 为偏移量
+			scale.z -= adjust / original_z
+			timer = 0.0
 			
 		can_released = true
 		holding_timer += delta
@@ -111,17 +116,13 @@ func _process(delta: float) -> void:
 		
 		# 摁住 95% 以上为 pure
 		if score >= 0.95:
-			if self in RunningData.decision_area:
-				RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 			RunningData.rating = "PURE"
 			RunningData.pure_count += 1
 			RunningData.combo += 1
 			acc = 110
 		
 		# 摁住 85% - 95% 以上为 perfect
-		if score >= 0.85:
-			if self in RunningData.decision_area:
-				RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
+		elif score >= 0.85:
 			RunningData.rating = "PERFECT"
 			RunningData.perfect_count += 1
 			RunningData.combo += 1
@@ -129,8 +130,6 @@ func _process(delta: float) -> void:
 		
 		# 摁住 50% - 85% 为 great
 		elif 0.5 <= score and score < 0.85:
-			if self in RunningData.decision_area:
-				RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 			RunningData.rating = "GREAT"
 			RunningData.great_count += 1
 			RunningData.combo += 1
@@ -138,16 +137,12 @@ func _process(delta: float) -> void:
 		
 		else:
 			miss()
+			return
 		
-		RunningData.accuracy = (id * RunningData.accuracy + acc) / (id + 1)
-	
-	if RunningData.is_auto_play:
-		auto_play()
+		RunningData.accuracy = ((id - 1) * RunningData.accuracy + acc) / id
 
 
 func miss():
-	if RunningData.is_auto_play:
-		return
 	RunningData.decision_area.remove_at(RunningData.decision_area.find(self, 0))
 	
 	# INFO: miss
@@ -155,22 +150,17 @@ func miss():
 	RunningData.combo = 0
 	RunningData.rating = "MISS"
 	acc = 0
-	RunningData.accuracy = (id * RunningData.accuracy + acc) / (id + 1)
+	RunningData.accuracy = (id * RunningData.accuracy + 0) / (id + 1)
 	is_holding = false
 	
 
 func auto_play():
-	if timer >= 0 and not is_hit:
+	if timer >= -0.01 and not is_hit:
 		is_hit = true
 		is_holding = true
 		GlobalScene.hit_audio_player.play()
 		get_node("../../track_panel" + str(column)).mesh.material.albedo_color = Color("333333d2")
-
 	if timer >= duration:
-		acc = 110
 		is_holding = false
 		get_node("../../track_panel" + str(column)).mesh.material.albedo_color = Color("000000d2")
-		RunningData.pure_count += 1
-		RunningData.combo += 1
-		RunningData.rating = "PURE"
 		self.queue_free()

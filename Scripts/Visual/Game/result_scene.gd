@@ -9,7 +9,7 @@ func _ready() -> void:
 	var float_part_acc_str: String = str(RunningData.accuracy - int(RunningData.accuracy)).trim_prefix("0.")
 	var int_part_diff: int = 2 - int_part_acc_str.length()
 	var float_part_diff: int = 4 - float_part_acc_str.length()
-	if int_part_diff != 0:
+	if int_part_diff != 0 && int_part_diff != -1:
 		int_part_acc_str = "0" + int_part_acc_str
 	if float_part_diff != 0:
 		var adjust_str: String = ""

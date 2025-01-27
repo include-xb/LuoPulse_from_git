@@ -1,11 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjm5ls76iay0b"]
 
 [ext_resource type="Script" path="res://Scripts/Widgets/Game/hold.gd" id="1_jfcly"]
-[ext_resource type="Material" uid="uid://wrclef06neta" path="res://Assets/note_theme.tres" id="1_um5u5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dw8l7"]
+albedo_color = Color(0.4, 0.8, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2c2ol"]
-material = ExtResource("1_um5u5")
-size = Vector3(1.9, 0.001, 0.5)
+material = SubResource("StandardMaterial3D_dw8l7")
+size = Vector3(1.9, 0.001, 0.2)
 
 [node name="Hold" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_2c2ol")
