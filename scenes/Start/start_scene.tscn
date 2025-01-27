@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d347q54ywmiph"]
+[gd_scene load_steps=6 format=3 uid="uid://d347q54ywmiph"]
 
-[ext_resource type="Theme" uid="uid://kj1lcqq687dd" path="res://res/theme.tres" id="1_nmos4"]
-[ext_resource type="Texture2D" uid="uid://dtjc6881df1sx" path="res://res/images/abc-123.jpg" id="2_6wu4m"]
-[ext_resource type="FontFile" uid="uid://dmxu3lbmpib3w" path="res://res/fonts/HarmonyOS_Sans_SC_Light.ttf" id="2_ecve5"]
+[ext_resource type="Theme" uid="uid://kj1lcqq687dd" path="res://res/theme.tres" id="1_686kv"]
+[ext_resource type="Script" path="res://scripts/start_scene.gd" id="2_m4edh"]
+[ext_resource type="Texture2D" uid="uid://dtjc6881df1sx" path="res://res/images/abc-123.jpg" id="2_qgybk"]
+[ext_resource type="FontFile" uid="uid://dmxu3lbmpib3w" path="res://res/fonts/HarmonyOS_Sans_SC_Light.ttf" id="3_18yqa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31wvc"]
 bg_color = Color(0.4, 0.8, 1, 1)
@@ -15,7 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_nmos4")
+theme = ExtResource("1_686kv")
+script = ExtResource("2_m4edh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -24,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_6wu4m")
+texture = ExtResource("2_qgybk")
 expand_mode = 1
 stretch_mode = 6
 
@@ -41,13 +43,13 @@ theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ecve5")
+theme_override_fonts/font = ExtResource("3_18yqa")
 theme_override_font_sizes/font_size = 74
 text = "LuoPulse Creator"
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ecve5")
+theme_override_fonts/font = ExtResource("3_18yqa")
 theme_override_font_sizes/font_size = 36
 text = "2025.01 editon"
 

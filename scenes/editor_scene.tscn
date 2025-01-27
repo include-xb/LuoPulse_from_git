@@ -1,0 +1,264 @@
+[gd_scene load_steps=19 format=3 uid="uid://bnkwa6bhj6txe"]
+
+[ext_resource type="Script" path="res://scripts/editor_scene.gd" id="1_31k60"]
+[ext_resource type="Texture2D" uid="uid://dtjc6881df1sx" path="res://res/images/abc-123.jpg" id="2_wgpf7"]
+[ext_resource type="Shader" path="res://shaders/misty.gdshader" id="3_cqnf5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhy6b"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xqjh"]
+shader = ExtResource("3_cqnf5")
+shader_parameter/lod = 3.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wvpv"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 0.784314)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bymue"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 0.784314)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hestb"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrbir"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2akq"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abvg4"]
+bg_color = Color(0.913725, 0.254902, 0, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eg1dn"]
+bg_color = Color(0.913725, 0.254902, 0, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g00jw"]
+bg_color = Color(0.913725, 0.254902, 0, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7htc"]
+bg_color = Color(0.91306, 0.455348, 0, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyqfk"]
+bg_color = Color(0, 0.862745, 0.101961, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xb2jm"]
+bg_color = Color(0, 0.862745, 0.101961, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qummk"]
+bg_color = Color(0, 0.862745, 0.101961, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7478h"]
+bg_color = Color(0.334546, 0.701664, 0.146474, 0.862745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="EditorScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_31k60")
+
+[node name="MainBody" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dhy6b")
+
+[node name="Select" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Select"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wgpf7")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Misty" type="TextureRect" parent="Select"]
+material = SubResource("ShaderMaterial_4xqjh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1344.0
+offset_top = -876.0
+offset_right = 2456.0
+offset_bottom = 1484.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wgpf7")
+
+[node name="Panel" type="PanelContainer" parent="Select"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -216.0
+offset_right = 270.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2wvpv")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Select/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 90
+theme_override_constants/margin_bottom = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Select/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Select/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "请拖入音频文件"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Select/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "支持的格式: .mp3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Path" type="PanelContainer" parent="Select"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = 67.5
+offset_right = 270.0
+offset_bottom = 122.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bymue")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Select/Path"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Select/Path/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_hestb")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_mrbir")
+theme_override_styles/normal = SubResource("StyleBoxFlat_p2akq")
+caret_blink = true
+caret_force_displayed = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Select"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = 136.0
+offset_right = 270.0
+offset_bottom = 197.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Select/MarginContainer"]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="Select/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxFlat_abvg4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eg1dn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g00jw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_f7htc")
+text = "取消"
+
+[node name="Okay" type="Button" parent="Select/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxFlat_gyqfk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xb2jm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qummk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7478h")
+text = "确认"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="Select/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Select/MarginContainer/HBoxContainer/Okay" to="." method="_on_okay_pressed"]
