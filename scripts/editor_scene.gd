@@ -11,6 +11,9 @@ extends Control
 
 
 func _ready() -> void:
+	var window: Window = get_window()
+	window.borderless = false
+	window.size = Vector2i(1920, 1080)
 	select_panel.visible = true
 	get_viewport().files_dropped.connect(_on_files_dropped)
 
@@ -48,5 +51,5 @@ func _on_cancel_pressed() -> void:
 
 func _on_okay_pressed() -> void:
 	audio_player.stop()
-	RunningData.selected_audio_stream = audio_player.stream
+	RuntimeData.selected_audio_stream = audio_player.stream
 	select_panel.visible = false

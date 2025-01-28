@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://0ikks83mh42l"]
+
+[ext_resource type="Theme" uid="uid://kj1lcqq687dd" path="res://res/theme.tres" id="1_njvq8"]
+[ext_resource type="Script" path="res://scripts/project_list_scene.gd" id="2_fa4yl"]
+[ext_resource type="Script" path="res://scripts/new_project.gd" id="3_0l4rd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfalj"]
+bg_color = Color(0.501961, 0.501961, 0.501961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="ProjectListScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_njvq8")
+script = ExtResource("2_fa4yl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "LuoPulse Creator"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+text = "创建"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+text = "打开"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 840)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pfalj")
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+auto_height = true
+same_column_width = true
+
+[node name="Popup" type="Popup" parent="."]
+
+[node name="NewProject" type="Control" parent="Popup"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_0l4rd")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/Button" to="." method="_on_create_button_pressed"]

@@ -3,5 +3,7 @@
 [ext_resource type="FontFile" uid="uid://dbswnd0kb400d" path="res://res/fonts/HarmonyOS_Sans_SC_Regular.ttf" id="1_hc50h"]
 
 [resource]
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_hc50h")
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_hc50h")

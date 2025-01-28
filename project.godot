@@ -12,15 +12,24 @@ config_version=5
 
 config/name="LuoPulse Creator"
 config/version="2025.01"
-run/main_scene="res://scenes/Start/start_scene.tscn"
+run/main_scene="res://scenes/start_scene.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
-RunningData="*res://scripts/RunningData.gd"
+RuntimeData="*res://scripts/runtime_data.gd"
+Constants="*res://scripts/constants.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/resizable=false
+window/subwindows/embed_subwindows=false
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
