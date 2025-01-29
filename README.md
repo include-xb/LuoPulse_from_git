@@ -1,13 +1,15 @@
 # LuoPulse
 
-PC端，请到[sdm](https://github.com/include-xb/LuoPulse_from_git/tree/sdm)分支
+PC端，请到[pc_main](https://github.com/include-xb/LuoPulse_from_git/tree/pc_main)分支
 
-移动端，请到[current_main](https://github.com/include-xb/LuoPulse_from_git/tree/current_main)分支
+移动端V1，请到[mobile_main](https://github.com/include-xb/LuoPulse_from_git/tree/mobile_main)分支
+
+移动端V2，请到[mobile_main_v2](https://github.com/include-xb/LuoPulse_from_git/tree/mobile_main_v2)
 
 ## 基本信息
 
 洛天依音游 洛之动脉 LuoPulse
-引擎: Godot 4.1
+引擎: Godot 4.3
 美术资源: 来自网络
 音乐资源: 
 
@@ -24,7 +26,7 @@ PC端，请到[sdm](https://github.com/include-xb/LuoPulse_from_git/tree/sdm)分
 
 [配置教程](https://www.bilibili.com/video/BV15r421M71y/?share_source=copy_web&vd_source=2209f3963a4e14b09226220545354335)
 
-## 制做谱面
+## 制作谱面
 
 [制谱教程](https://www.bilibili.com/video/BV1N4421U7RA/?share_source=copy_web&vd_source=2209f3963a4e14b09226220545354335)
 
