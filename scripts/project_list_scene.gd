@@ -13,4 +13,8 @@ func _ready() -> void:
 
 
 func _on_create_button_pressed() -> void:
-	$Popup.popup_centered((1920,1080))
+	$Window.popup_centered()
+
+
+func _on_window_close_requested() -> void:
+	$Window.hide()

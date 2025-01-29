@@ -1,9 +1,49 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://kj1lcqq687dd"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://kj1lcqq687dd"]
 
 [ext_resource type="FontFile" uid="uid://dbswnd0kb400d" path="res://res/fonts/HarmonyOS_Sans_SC_Regular.ttf" id="1_hc50h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_113mf"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lad5o"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cjpj"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h245q"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m14y7"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [resource]
 Button/font_sizes/font_size = 24
 Button/fonts/font = ExtResource("1_hc50h")
+Button/styles/disabled = SubResource("StyleBoxFlat_113mf")
+Button/styles/focus = SubResource("StyleBoxFlat_lad5o")
+Button/styles/hover = SubResource("StyleBoxFlat_7cjpj")
+Button/styles/normal = SubResource("StyleBoxFlat_h245q")
+Button/styles/pressed = SubResource("StyleBoxFlat_m14y7")
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_hc50h")

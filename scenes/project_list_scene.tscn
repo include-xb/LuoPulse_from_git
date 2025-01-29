@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://0ikks83mh42l"]
+[gd_scene load_steps=6 format=3 uid="uid://0ikks83mh42l"]
 
 [ext_resource type="Theme" uid="uid://kj1lcqq687dd" path="res://res/theme.tres" id="1_njvq8"]
 [ext_resource type="Script" path="res://scripts/project_list_scene.gd" id="2_fa4yl"]
 [ext_resource type="Script" path="res://scripts/new_project.gd" id="3_0l4rd"]
+[ext_resource type="FontFile" uid="uid://dbswnd0kb400d" path="res://res/fonts/HarmonyOS_Sans_SC_Regular.ttf" id="4_ampru"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfalj"]
 bg_color = Color(0.501961, 0.501961, 0.501961, 1)
@@ -79,13 +80,209 @@ layout_mode = 2
 auto_height = true
 same_column_width = true
 
-[node name="Popup" type="Popup" parent="."]
+[node name="Window" type="Window" parent="."]
+position = Vector2i(0, 36)
+size = Vector2i(1920, 1080)
 
-[node name="NewProject" type="Control" parent="Popup"]
+[node name="NewProject" type="Control" parent="Window"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3_0l4rd")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/NewProject"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Window/NewProject/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ampru")
+theme_override_font_sizes/font_size = 42
+text = "     创建工程"
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/NewProject/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ChartName" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/ChartName"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "谱面名称"
+
+[node name="TextEdit" type="TextEdit" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/ChartName"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="AudioPosition" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AudioPosition"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "音频"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AudioPosition"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextEdit" type="TextEdit" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AudioPosition/HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.9
+
+[node name="Button" type="Button" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AudioPosition/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+text = "选择..."
+
+[node name="s" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/s"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "音频"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/s"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextEdit" type="TextEdit" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/s/HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.9
+
+[node name="Button" type="Button" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/s/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+text = "选择..."
+
+[node name="AuthorList" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "作者信息(若无请留空)"
+
+[node name="GridContainer" type="GridContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "作曲"
+
+[node name="TextEdit" type="TextEdit" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "作词"
+
+[node name="TextEdit" type="TextEdit" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer3"]
+layout_mode = 2
+text = "调校"
+
+[node name="TextEdit" type="TextEdit" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer4"]
+layout_mode = 2
+text = "混音"
+
+[node name="TextEdit" type="TextEdit" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer5"]
+layout_mode = 2
+text = "谱面"
+
+[node name="TextEdit" type="TextEdit" parent="Window/NewProject/VBoxContainer/MarginContainer/VBoxContainer/AuthorList/GridContainer/VBoxContainer5"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/NewProject"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 48
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/NewProject/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="Close" type="Button" parent="Window/NewProject/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+text = "取消"
+
+[node name="Next" type="Button" parent="Window/NewProject/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "下一步
+"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/Button" to="." method="_on_create_button_pressed"]
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
