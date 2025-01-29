@@ -2,9 +2,9 @@
 
 PC端，请到[pc_main](https://github.com/include-xb/LuoPulse_from_git/tree/pc_main)分支
 
-移动端V1，请到[mobile_main](https://github.com/include-xb/LuoPulse_from_git/tree/mobile_main)分支
+移动端V1，请到[moblie_main](https://github.com/include-xb/LuoPulse_from_git/tree/moblie_main)分支
 
-移动端V2，请到[mobile_main_v2](https://github.com/include-xb/LuoPulse_from_git/tree/mobile_main_v2)
+移动端V2，请到[moblie_main_v2](https://github.com/include-xb/LuoPulse_from_git/tree/moblie_main_v2)分支
 
 ## 基本信息
 
