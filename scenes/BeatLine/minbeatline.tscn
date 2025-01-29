@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmrd31y3kgd6p"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fokj7"]
+color = Color(0.2, 0.4, 0.466667, 1)
+
+[node name="minbeatline" type="HSeparator"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_fokj7")

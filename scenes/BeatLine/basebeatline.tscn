@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf5cm32bql1if"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_juyf0"]
+color = Color(1, 1, 1, 1)
+
+[node name="basebeatline" type="HSeparator"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_juyf0")
