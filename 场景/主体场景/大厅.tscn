@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh0mvsr52v38g"]
+[gd_scene load_steps=11 format=3 uid="uid://dh0mvsr52v38g"]
 
 [ext_resource type="Theme" uid="uid://cbp070bdnvxi0" path="res://资源/通用主题.tres" id="1_i8mrh"]
 [ext_resource type="Script" path="res://脚本/主体脚本/大厅.gd" id="2_ld6oa"]
@@ -7,6 +7,9 @@
 [ext_resource type="FontFile" uid="uid://crcr0g58tg5m2" path="res://资源/字体/HarmonyOS_Sans_SC_Light.ttf" id="5_61orn"]
 [ext_resource type="Texture2D" uid="uid://67xjy6j1bs5n" path="res://资源/图标/邮件.png" id="6_smp6b"]
 [ext_resource type="Texture2D" uid="uid://ijcesqwtqwtb" path="res://资源/图标/设置.png" id="7_74rmr"]
+[ext_resource type="Texture2D" uid="uid://b8gbeiqvytmxi" path="res://资源/图标/surface content.png" id="8_8dq5n"]
+[ext_resource type="Texture2D" uid="uid://bgoj8jcwy8bdc" path="res://资源/图标/演奏.png" id="9_hi217"]
+[ext_resource type="Texture2D" uid="uid://rqec81mikfrq" path="res://资源/图标/WORLD.png" id="10_gwxx5"]
 
 [node name="大厅" type="Control"]
 clip_contents = true
@@ -54,35 +57,77 @@ text = "2.0.union"
 
 [node name="侧边按钮" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 80.0
+offset_left = 70.0
 offset_top = 198.0
-offset_right = 256.0
+offset_right = 246.0
 offset_bottom = 621.0
 
 [node name="信箱" type="Button" parent="侧边按钮"]
 layout_mode = 0
 offset_top = 101.0
-offset_right = 64.0
-offset_bottom = 165.0
+offset_right = 96.0
+offset_bottom = 197.0
 icon = ExtResource("6_smp6b")
 icon_alignment = 1
 
 [node name="设置" type="Button" parent="侧边按钮"]
 layout_mode = 0
 offset_top = 198.0
-offset_right = 64.0
-offset_bottom = 262.0
+offset_right = 96.0
+offset_bottom = 294.0
 icon = ExtResource("7_74rmr")
 icon_alignment = 1
 
-[node name="按钮组" type="Control" parent="."]
+[node name="用户信息" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 877.0
 offset_top = 54.0
-offset_right = 1206.0
+offset_right = 1242.0
 offset_bottom = 183.0
 
-[node name="用户信息" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="TextureRect" type="TextureRect" parent="用户信息"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_8dq5n")
+
+[node name="用户名" type="Label" parent="用户信息"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 25.0
+offset_right = 308.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 34
+text = "小小洛"
+vertical_alignment = 1
+
+[node name="共鸣值" type="Label" parent="用户信息"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 77.0
+offset_right = 193.0
+offset_bottom = 106.0
+text = "共鸣值  1.14"
+
+[node name="演奏" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 811.0
+offset_top = 456.0
+offset_right = 1021.0
+offset_bottom = 666.0
+texture_normal = ExtResource("9_hi217")
+texture_pressed = ExtResource("9_hi217")
+texture_hover = ExtResource("9_hi217")
+
+[node name="WORLD" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1021.0
+offset_top = 271.0
+offset_right = 1206.0
+offset_bottom = 456.0
+texture_normal = ExtResource("10_gwxx5")
+texture_pressed = ExtResource("10_gwxx5")
+texture_hover = ExtResource("10_gwxx5")

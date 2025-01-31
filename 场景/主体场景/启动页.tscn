@@ -44,10 +44,10 @@ texture = ExtResource("3_axxke")
 
 [node name="洛之动脉" type="Label" parent="."]
 layout_mode = 0
-offset_left = 78.0
+offset_left = 80.0
 offset_top = 80.0
-offset_right = 278.0
-offset_bottom = 140.0
+offset_right = 280.0
+offset_bottom = 144.0
 theme_override_fonts/font = ExtResource("4_0scq3")
 theme_override_font_sizes/font_size = 48
 text = "洛之动脉"
