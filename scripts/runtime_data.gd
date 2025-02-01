@@ -23,3 +23,24 @@ var separate_num: int = 8
 
 # 相邻两线之间的距离 px
 var line_distance: float = spb / separate_num * speed
+
+enum STATUS { 
+	TAP,
+	DRUG = 1,
+	RELEASE,
+	HEART,
+	ERASE,
+	POINTER
+}
+
+# 当前状态
+var current_status: int = STATUS.POINTER
+
+var contain: Dictionary = {
+	"track1": [],
+	"track2": [],
+	"track3": [],
+	"track4": [],
+}
+
+var can_put_note: bool = true

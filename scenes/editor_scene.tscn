@@ -1,14 +1,68 @@
-[gd_scene load_steps=24 format=3 uid="uid://bnkwa6bhj6txe"]
+[gd_scene load_steps=38 format=3 uid="uid://bnkwa6bhj6txe"]
 
 [ext_resource type="Script" path="res://scripts/editor_scene.gd" id="1_31k60"]
 [ext_resource type="Script" path="res://scripts/main_body.gd" id="2_nyq0k"]
 [ext_resource type="Texture2D" uid="uid://dtjc6881df1sx" path="res://res/images/abc-123.jpg" id="2_wgpf7"]
 [ext_resource type="PackedScene" uid="uid://bf5cm32bql1if" path="res://scenes/BeatLine/basebeatline.tscn" id="3_ahxm6"]
+[ext_resource type="Texture2D" uid="uid://cp7uoph0c4ee7" path="res://res/images/tap.svg" id="3_ckwtk"]
 [ext_resource type="Shader" path="res://shaders/misty.gdshader" id="3_cqnf5"]
 [ext_resource type="Script" path="res://scripts/track.gd" id="3_fd671"]
-[ext_resource type="Texture2D" uid="uid://34yvs32tn5ur" path="res://res/images/white.png" id="4_1qus2"]
 [ext_resource type="PackedScene" uid="uid://dmrd31y3kgd6p" path="res://scenes/BeatLine/minbeatline.tscn" id="4_ceubg"]
+[ext_resource type="Texture2D" uid="uid://cg0upfywrivn8" path="res://res/images/drug.svg" id="4_weuk8"]
+[ext_resource type="Texture2D" uid="uid://c4unuo3xnlx4v" path="res://res/images/release.svg" id="5_1fixe"]
+[ext_resource type="Texture2D" uid="uid://b7fseijkd6bu6" path="res://res/images/RiEraserFill.svg" id="5_pxfch"]
+[ext_resource type="Texture2D" uid="uid://dna646iejgr3q" path="res://res/images/MdiCursorDefaultOutline.svg" id="6_2cci0"]
+[ext_resource type="Texture2D" uid="uid://8y1mup7yjrs4" path="res://res/images/heart.svg" id="6_aqkbi"]
 [ext_resource type="PackedScene" uid="uid://7da8efnt04in" path="res://scenes/BeatLine/minbeatline_od.tscn" id="7_qhdmp"]
+[ext_resource type="Texture2D" uid="uid://bjvq7wfhllty2" path="res://res/images/PhExportBold.svg" id="8_2ykb4"]
+[ext_resource type="Texture2D" uid="uid://d0ccgprci0p4y" path="res://res/images/MaterialSymbolsSettings.svg" id="10_ntbrp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl4ph"]
+bg_color = Color(1, 1, 1, 0.156863)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0d3tg"]
+bg_color = Color(1, 1, 1, 0.156863)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t28qh"]
+bg_color = Color(1, 1, 1, 0.0196078)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kteit"]
+bg_color = Color(1, 1, 1, 0.196078)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mb07f"]
+color = Color(0.589096, 0.589096, 0.589096, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_qs0uv"]
+color = Color(0.588235, 0.588235, 0.588235, 1)
+thickness = 2
+vertical = true
+
+[sub_resource type="Theme" id="Theme_nijtm"]
+Button/styles/focus = SubResource("StyleBoxFlat_wl4ph")
+Button/styles/hover = SubResource("StyleBoxFlat_0d3tg")
+Button/styles/normal = SubResource("StyleBoxFlat_t28qh")
+Button/styles/pressed = SubResource("StyleBoxFlat_kteit")
+HSeparator/constants/separation = 0
+HSeparator/styles/separator = SubResource("StyleBoxLine_mb07f")
+VSeparator/constants/separation = 0
+VSeparator/styles/separator = SubResource("StyleBoxLine_qs0uv")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4xqjh"]
 shader = ExtResource("3_cqnf5")
@@ -113,6 +167,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_nijtm")
 script = ExtResource("1_31k60")
 
 [node name="MainBody" type="Panel" parent="."]
@@ -123,7 +178,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_nyq0k")
-speed = 1000.0
+speed = 800.0
 exprot_separate_num = 1
 
 [node name="ColorRect" type="ColorRect" parent="MainBody"]
@@ -136,6 +191,7 @@ grow_vertical = 2
 color = Color(0.0901961, 0.0901961, 0.0901961, 1)
 
 [node name="Camera2D" type="Camera2D" parent="MainBody/ColorRect"]
+visible = false
 position = Vector2(576, 324)
 
 [node name="Separators" type="Control" parent="MainBody/ColorRect"]
@@ -146,44 +202,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="l2" type="VSeparator" parent="MainBody/ColorRect/Separators"]
+[node name="right2" type="VSeparator" parent="MainBody/ColorRect/Separators"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 773.0
-offset_right = 777.0
+offset_left = 774.0
+offset_right = 778.0
 grow_vertical = 2
 
-[node name="l1" type="VSeparator" parent="MainBody/ColorRect/Separators"]
+[node name="right1" type="VSeparator" parent="MainBody/ColorRect/Separators"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 673.0
-offset_right = 677.0
+offset_left = 674.0
+offset_right = 678.0
 grow_vertical = 2
 
 [node name="mid" type="VSeparator" parent="MainBody/ColorRect/Separators"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 573.0
-offset_right = 577.0
+offset_left = 574.0
+offset_right = 578.0
 grow_vertical = 2
 
-[node name="r1" type="VSeparator" parent="MainBody/ColorRect/Separators"]
+[node name="left1" type="VSeparator" parent="MainBody/ColorRect/Separators"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 473.0
-offset_right = 477.0
+offset_left = 474.0
+offset_right = 478.0
 grow_vertical = 2
 
-[node name="r2" type="VSeparator" parent="MainBody/ColorRect/Separators"]
+[node name="left2" type="VSeparator" parent="MainBody/ColorRect/Separators"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 373.0
-offset_right = 377.0
+offset_left = 374.0
+offset_right = 378.0
 grow_vertical = 2
 
 [node name="dec" type="HSeparator" parent="MainBody/ColorRect/Separators"]
@@ -200,6 +256,108 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Tools" type="Control" parent="MainBody/ColorRect"]
+top_level = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -324.0
+offset_bottom = 324.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainBody/ColorRect/Tools"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainBody/ColorRect/Tools/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="tap" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Tap"
+theme_override_constants/icon_max_width = 35
+icon = ExtResource("3_ckwtk")
+icon_alignment = 1
+expand_icon = true
+
+[node name="drug" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Drug"
+theme_override_constants/icon_max_width = 35
+icon = ExtResource("4_weuk8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="release" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Release"
+theme_override_constants/icon_max_width = 35
+icon = ExtResource("5_1fixe")
+icon_alignment = 1
+expand_icon = true
+
+[node name="heart" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Release"
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("6_aqkbi")
+icon_alignment = 1
+expand_icon = true
+
+[node name="eraser" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Eraser"
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("5_pxfch")
+icon_alignment = 1
+expand_icon = true
+
+[node name="poniter" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Pointer"
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("6_2cci0")
+icon_alignment = 1
+expand_icon = true
+
+[node name="export" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Export"
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("8_2ykb4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="export2" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Export"
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("10_ntbrp")
+icon_alignment = 1
+expand_icon = true
+
 [node name="Tracks" type="Control" parent="MainBody"]
 layout_mode = 1
 anchors_preset = 15
@@ -214,19 +372,6 @@ offset_left = 376.0
 offset_right = 476.0
 offset_bottom = 646.0
 script = ExtResource("3_fd671")
-
-[node name="TextureRect" type="TextureRect" parent="MainBody/Tracks/track0"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -13.0
-offset_bottom = 7.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_1qus2")
-expand_mode = 1
 
 [node name="track1" type="Control" parent="MainBody/Tracks"]
 anchors_preset = 0
@@ -467,5 +612,12 @@ text = "确认"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/tap" to="MainBody" method="_on_tap_pressed"]
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/drug" to="MainBody" method="_on_drug_pressed"]
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/release" to="MainBody" method="_on_release_pressed"]
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/heart" to="MainBody" method="_on_heart_pressed"]
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/eraser" to="MainBody" method="_on_eraser_pressed"]
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/poniter" to="MainBody" method="_on_poniter_pressed"]
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/export" to="MainBody" method="_on_export_pressed"]
 [connection signal="pressed" from="Select/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="Select/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Okay" to="." method="_on_okay_pressed"]

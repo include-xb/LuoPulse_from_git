@@ -1,0 +1,16 @@
+res://scenes/editor_scene.tscn
+res://res/theme.tres
+res://shaders/misty.gdshader
+res://scripts/track.gd
+res://scenes/start_scene.tscn
+res://scenes/project_list_scene.tscn
+res://scenes/BeatLine/basebeatline.tscn
+res://scenes/BeatLine/minbeatline.tscn
+res://scenes/BeatLine/minbeatline_od.tscn
+res://scripts/main_body.gd
+res://scripts/runtime_data.gd
+res://scenes/Notes/tap.tscn
+res://scenes/Notes/note.tscn
+res://scripts/note.gd
+res://scripts/editor_scene.gd
+res://res/LPbinary.txt

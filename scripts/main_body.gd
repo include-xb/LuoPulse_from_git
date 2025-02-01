@@ -6,10 +6,9 @@ extends Panel
 # INFO: 场景中的一个音符用于参照移动
 # TODO: 解析音频文件的 bpm
 # TODO: 鼠标滚轮移动
-# TODO: 点击放置音符
-# TODO: 不同音符 (状态机)
 # TODO: 写入谱面
 # TODO: 谱面播放
+# TODO: 橡皮功能
 # ...
 
 
@@ -19,9 +18,11 @@ extends Panel
 
 @onready var minbeatline_od: PackedScene = load("res://scenes/BeatLine/minbeatline_od.tscn")
 
-@onready var canvas: ColorRect = $ColorRect
+@onready var canvas: Control = $Tracks
 
 @onready var lines: Control = $Tracks/beatline
+
+@onready var decision_line: HSeparator = $ColorRect/Separators/dec
 
 
 # 每分钟拍数 (从音频获取)
@@ -47,6 +48,15 @@ var separate_num: int = 0
 # 相邻两线之间的距离 px
 var line_distance: float = 0.0
 
+# 正在演示
+var is_playing: bool = false
+
+var current_y: float = 0.0
+
+var window_height: int = 648
+
+var free_buffer_height: int = 100
+
 
 """
 
@@ -54,6 +64,8 @@ var line_distance: float = 0.0
 | 376 ~ 476 | 476 ~ 576 | 576 ~ 676 | 676 ~ 776 |
 
 """
+
+
 func _ready() -> void:
 	separate_num = 2 ** (exprot_separate_num + 2)
 	line_distance = spb / separate_num * speed
@@ -61,25 +73,93 @@ func _ready() -> void:
 	RuntimeData.separate_num = separate_num
 	RuntimeData.line_distance = line_distance
 	
-	var current_y: float = RuntimeData.decision_y
-	# 每拍
-	for beat in range(5):
+	# 从 current_y 处开始绘制节拍线
+	current_y = 520 - window_height + 1 # 1 为偏移量
+	print("从 y = ", current_y, " 处开始绘制节拍线")
+	print("line_distance: ", line_distance)
+	
+	set_line(2)
+
+
+func _process(delta: float) -> void:
+	var canvas_top_y: int = canvas.position.y
+	var canvas_bottom_y: int = canvas.position.y + window_height
+	var canvas_decision_line_y: int = canvas.position.y + decision_y
+	
+	if Input.is_key_pressed(KEY_F):
+		print("top: ", canvas_top_y)
+		print("bottom: ", canvas_bottom_y)
+		print("line: ", canvas_decision_line_y)
+	
+	if is_playing:
+		canvas.global_position.y -= speed * delta
+	
+	if Input.is_key_pressed(KEY_UP):
+		canvas.position.y += speed * delta
+	if Input.is_key_pressed(KEY_DOWN):
+		canvas.position.y -= speed * delta
+	
+	if Input.is_key_pressed(KEY_SPACE):
+		is_playing = !is_playing
+	
+	if canvas.position.y <= -window_height:
+		set_line(1)
+	
+	#if Input.get_mouse_button_mask() == MOUSE_BUTTON_WHEEL_UP:
+		#canvas.position.y -= speed * delta
+	#if Input.get_mouse_button_mask() == MOUSE_BUTTON_WHEEL_DOWN:
+		#canvas.position.y += speed * delta
+	
+
+# 从下向上放置
+func set_line(beat: int) -> void:
+	# 一拍
+	for b in range(beat):
 		var instance_base: HSeparator = basebeatline.instantiate()
-		instance_base.global_position.y = current_y
+		instance_base.position.y = current_y
 		lines.add_child(instance_base)
 		
 		# 每拍内分
 		for div in range(separate_num - 1):
 			current_y -= line_distance
 			var instance: HSeparator = minbeatline.instantiate() if div % 2 == 0 else minbeatline_od.instantiate()
-			instance.global_position.y = current_y
+			instance.position.y = current_y
 			lines.add_child(instance)
 		
 		current_y -= line_distance
 
 
-func _process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_UP):
-		canvas.position.y -= RuntimeData.speed * delta
-	if Input.is_key_pressed(KEY_DOWN):
-		canvas.position.y += RuntimeData.speed * delta
+func _on_tap_pressed() -> void:
+	print("切换状态, 当前状态: Tap (from main_body.gd)")
+	RuntimeData.current_status = RuntimeData.STATUS.TAP
+
+
+func _on_drug_pressed() -> void:
+	print("切换状态, 当前状态: Drug (from main_body.gd)")
+	RuntimeData.current_status = RuntimeData.STATUS.DRUG
+
+
+func _on_heart_pressed() -> void:
+	print("切换状态, 当前状态: Heart (from main_body.gd)")
+	RuntimeData.current_status = RuntimeData.STATUS.HEART
+
+
+
+func _on_release_pressed() -> void:
+	print("切换状态, 当前状态: Release (from main_body.gd)")
+	RuntimeData.current_status = RuntimeData.STATUS.RELEASE
+
+
+func _on_eraser_pressed() -> void:
+	print("切换状态, 当前状态: Eraser (from main_body.gd)")
+	RuntimeData.current_status = RuntimeData.STATUS.ERASE
+
+
+func _on_poniter_pressed() -> void:
+	print("切换状态, 当前状态: Pointer (from main_body.gd)")
+	RuntimeData.current_status = RuntimeData.STATUS.POINTER
+
+
+# 导出
+func _on_export_pressed() -> void:
+	pass # Replace with function body.
