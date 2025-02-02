@@ -178,7 +178,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_nyq0k")
-speed = 800.0
+speed = 400.0
 exprot_separate_num = 1
 
 [node name="ColorRect" type="ColorRect" parent="MainBody"]

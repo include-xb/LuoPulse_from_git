@@ -5,6 +5,7 @@ extends Panel
 # INFO: 暂时通过 上下键 控制移动
 # INFO: 场景中的一个音符用于参照移动
 # TODO: 解析音频文件的 bpm
+# TODO: 吸附节拍线
 # TODO: 鼠标滚轮移动
 # TODO: 写入谱面
 # TODO: 谱面播放
@@ -54,9 +55,9 @@ var is_playing: bool = false
 
 var current_y: float = 0.0
 
-var window_height: int = 648
+var window_height: float = 648.0
 
-var free_buffer_height: int = 100
+var free_buffer_height: float = 100.0
 
 
 """
@@ -78,21 +79,14 @@ func _ready() -> void:
 	current_y = 520 - window_height + 1 # 1 为偏移量
 	RuntimeData.beatline_positions.append(current_y)
 	
-	print("从 y = ", current_y, " 处开始绘制节拍线")
-	print("line_distance: ", line_distance)
-	
-	set_line(2)
+	canvas.position.y += line_distance * (2 ** (exprot_separate_num + 2))
+	#set_line(2)
 
 
 func _process(delta: float) -> void:
-	var canvas_top_y: int = canvas.position.y
-	var canvas_bottom_y: int = canvas.position.y + window_height
-	var canvas_decision_line_y: int = canvas.position.y + decision_y
-	
-	if Input.is_key_pressed(KEY_F):
-		print("top: ", canvas_top_y)
-		print("bottom: ", canvas_bottom_y)
-		print("line: ", canvas_decision_line_y)
+	var canvas_top_y: float = canvas.position.y
+	var canvas_bottom_y: float = canvas.position.y + window_height
+	var canvas_decision_line_y: float = canvas.position.y + decision_y
 	
 	if is_playing:
 		canvas.global_position.y += speed * delta
@@ -101,6 +95,14 @@ func _process(delta: float) -> void:
 		canvas.position.y += speed * delta
 	if Input.is_key_pressed(KEY_DOWN):
 		canvas.position.y -= speed * delta
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_WHEEL_DOWN):
+		canvas.position.y -= speed * delta
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_WHEEL_UP):
+		canvas.position.y += speed * delta
+	#if Input.is_action_pressed("wheel_up"):
+		#canvas.position.y += speed * delta
+	#if Input.is_action_pressed("wheel_down"):
+		#canvas.position.y -= speed * delta
 	
 	if Input.is_key_pressed(KEY_SPACE):
 		is_playing = !is_playing
@@ -124,10 +126,11 @@ func set_line(beat: int) -> void:
 		# 每拍内分
 		for div in range(separate_num - 1):
 			current_y -= line_distance
-			RuntimeData.beatline_positions.append(current_y)
+			# RuntimeData.beatline_positions.append(current_y)
 			var instance: HSeparator = minbeatline.instantiate() if div % 2 == 0 else minbeatline_od.instantiate()
 			instance.position.y = current_y
 			lines.add_child(instance)
+			RuntimeData.beatline_positions.append(current_y)
 		
 		current_y -= line_distance
 		RuntimeData.beatline_positions.append(current_y)

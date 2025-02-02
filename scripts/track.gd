@@ -13,16 +13,16 @@ extends Control
 
 @export_enum("0", "1", "2", "3") var column: int = 0
 
-var mouse_x: int = 0
-var mouse_y: int = 0
+var mouse_x: float = 0.0
+var mouse_y: float = 0.0
 
 # 此轨道的左右边界
-var l_boundary: int = 0
-var r_boundary: int = 0
+var l_boundary: float = 0.0
+var r_boundary: float = 0.0
 
 var status: PackedScene = null
 
-var pos_x: int = 0
+# var pos_x: float = 0
 
 var is_note_placed: bool = false
 
@@ -88,21 +88,23 @@ func put_note() -> void:
 	note.position.x = -self.position.x + l_boundary + 3 	# 2 为偏移量
 	
 	# 吸附节拍线
-	var mouse_to_position_y: int = -self.global_position.y + mouse_y - (648 / 2) # 648 为屏幕高度
+	var mouse_to_position_y: float = -self.global_position.y + mouse_y - (648 / 2) # 648 为屏幕高度
 	# 离点击处最近的距离
-	var min_distance: int = abs(RuntimeData.beatline_positions[0] - mouse_to_position_y)
+	var min_distance: float = abs(RuntimeData.beatline_positions[0] - mouse_to_position_y)
 	# 离点击出最近的节拍线在列表中的索引
 	var min_item_index: int = 0
 	for index in range(len(RuntimeData.beatline_positions)):
-		var distance: int = abs(RuntimeData.beatline_positions[index] - mouse_to_position_y)
+		var distance: float = abs(RuntimeData.beatline_positions[index] - mouse_to_position_y)
 		if distance <= min_distance:
 			min_distance = distance
 			min_item_index = index
 	print("节拍线y坐标: ", RuntimeData.beatline_positions)
 	print("最近节拍线y坐标: ", RuntimeData.beatline_positions[min_item_index])
 	
-	note.position.y = -self.global_position.y + mouse_y - (648 / 2) # 648 为屏幕高度
-	print("note放置, 坐标: ", note.position)
+	note.position.y = RuntimeData.beatline_positions[min_item_index] + 16
+	# note.position.y = -self.global_position.y + mouse_y - (648 / 2) # 648 为屏幕高度
+	
+	print("note放置, 坐标: ", note.global_position)
 	self.add_child(note)
 
 
@@ -113,12 +115,12 @@ func erase_note() -> void:
 		if child is TextureRect:
 			print("音符y坐标: ", child.position.y)
 			# note的锚点在左上角, 下面的坐标计算的是note中心的坐标
-			var note_x: int = child.position.x + 50 # 50 为音符宽度的一半
-			var note_y: int = child.position.y + 5  # 5  为音符高度的一半
+			# var note_x: float = child.position.x + 50 # 50 为音符宽度的一半
+			var note_y: float = child.position.y + 5  # 5  为音符高度的一半
 			
-			var mouse_world_x: int = -self.position.x + l_boundary + 3 	# 2 为偏移量
-			var mouse_world_y: int = -self.global_position.y + mouse_y - (648 / 2) # 648 为屏幕高度
+			# var mouse_world_x: float = -self.position.x + l_boundary + 3 	# 3 为偏移量
+			var mouse_world_y: float = -self.global_position.y + mouse_y
 			# 检查音符是否在鼠标点击范围内
-			if abs(note_y - mouse_y) <= 5:
+			if abs(note_y - mouse_world_y) <= 5:
 				child.queue_free()
 				print("音符被删除")
