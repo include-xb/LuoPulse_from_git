@@ -11,12 +11,17 @@ extends Control
 
 @onready var select_panel: Control = $Select
 
+@onready var tools: Control = $MainBody/ColorRect/Tools
+
 
 func _ready() -> void:
 	#var window: Window = get_window()
 	#window.borderless = false
 	#window.size = Vector2i(1920, 1080)
-	# select_panel.visible = true
+	
+	#select_panel.visible = true
+	#tools.visible = false
+	
 	get_viewport().files_dropped.connect(_on_files_dropped)
 
 
@@ -57,3 +62,4 @@ func _on_okay_pressed() -> void:
 	audio_player.stop()
 	RuntimeData.selected_audio_stream = audio_player.stream
 	select_panel.visible = false
+	tools.visible = true

@@ -8,7 +8,6 @@ extends Panel
 # TODO: 鼠标滚轮移动
 # TODO: 写入谱面
 # TODO: 谱面播放
-# TODO: 橡皮功能
 # ...
 
 
@@ -17,6 +16,8 @@ extends Panel
 @onready var minbeatline: PackedScene = load("res://scenes/BeatLine/minbeatline.tscn")
 
 @onready var minbeatline_od: PackedScene = load("res://scenes/BeatLine/minbeatline_od.tscn")
+
+@onready var audio_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 @onready var canvas: Control = $Tracks
 
@@ -75,6 +76,8 @@ func _ready() -> void:
 	
 	# 从 current_y 处开始绘制节拍线
 	current_y = 520 - window_height + 1 # 1 为偏移量
+	RuntimeData.beatline_positions.append(current_y)
+	
 	print("从 y = ", current_y, " 处开始绘制节拍线")
 	print("line_distance: ", line_distance)
 	
@@ -92,7 +95,7 @@ func _process(delta: float) -> void:
 		print("line: ", canvas_decision_line_y)
 	
 	if is_playing:
-		canvas.global_position.y -= speed * delta
+		canvas.global_position.y += speed * delta
 	
 	if Input.is_key_pressed(KEY_UP):
 		canvas.position.y += speed * delta
@@ -101,14 +104,13 @@ func _process(delta: float) -> void:
 	
 	if Input.is_key_pressed(KEY_SPACE):
 		is_playing = !is_playing
+		if audio_player.stream != null:
+			audio_player.stream_paused = !audio_player.stream_paused
 	
-	if canvas.position.y <= -window_height:
+	# 如果向上滚动到边界就再向上放置一节拍的节拍线
+	if -current_y <= canvas.position.y + window_height:
+		print("delta_y: ", canvas.position.y - current_y)
 		set_line(1)
-	
-	#if Input.get_mouse_button_mask() == MOUSE_BUTTON_WHEEL_UP:
-		#canvas.position.y -= speed * delta
-	#if Input.get_mouse_button_mask() == MOUSE_BUTTON_WHEEL_DOWN:
-		#canvas.position.y += speed * delta
 	
 
 # 从下向上放置
@@ -122,11 +124,13 @@ func set_line(beat: int) -> void:
 		# 每拍内分
 		for div in range(separate_num - 1):
 			current_y -= line_distance
+			RuntimeData.beatline_positions.append(current_y)
 			var instance: HSeparator = minbeatline.instantiate() if div % 2 == 0 else minbeatline_od.instantiate()
 			instance.position.y = current_y
 			lines.add_child(instance)
 		
 		current_y -= line_distance
+		RuntimeData.beatline_positions.append(current_y)
 
 
 func _on_tap_pressed() -> void:

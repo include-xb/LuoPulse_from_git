@@ -44,3 +44,5 @@ var contain: Dictionary = {
 }
 
 var can_put_note: bool = true
+
+var beatline_positions: Array = []
