@@ -36,11 +36,16 @@ theme = ExtResource("1_h3rhn")
 script = ExtResource("2_qjopp")
 
 [node name="背景图片" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 960.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_h3rhn")
 texture = ExtResource("3_axxke")
+stretch_mode = 6
 
 [node name="洛之动脉" type="Label" parent="."]
 layout_mode = 0
@@ -72,7 +77,7 @@ text = "状态"
 layout_mode = 0
 offset_left = 78.0
 offset_top = 66.0
-offset_right = 1201.0
+offset_right = 1372.0
 offset_bottom = 80.0
 theme_override_styles/background = SubResource("StyleBoxFlat_f7hla")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xehrx")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://d12ltowcqohor"]
+
+[ext_resource type="Texture2D" uid="uid://beco4o1f861xg" path="res://资源/图标/返回.png" id="1_cb0lu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qw121"]
+bg_color = Color(0.964706, 0.960784, 0.941176, 1)
+
+[node name="设置" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qw121")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 35.0
+offset_right = 127.0
+offset_bottom = 129.0
+texture_normal = ExtResource("1_cb0lu")
