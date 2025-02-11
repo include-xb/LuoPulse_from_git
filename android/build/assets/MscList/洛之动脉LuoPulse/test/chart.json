@@ -1,0 +1,178 @@
+{
+	"General": {
+		"Title": "test",
+		"Artist": "test",
+		"Creator": "test",
+		"ShortArtistsList":"test" ,
+		"Version": "1.0",
+		"BPM": 185
+	},
+	"TimingPoints": [
+		{
+			"time": 0,
+			"bpm": 185
+		}
+	],
+	"HitObjects": [
+		{
+			"type": "tap",
+			"time": 1,
+			"column": 1
+		},
+		{
+			"type": "hold",
+			"time": 1,
+			"column": 4,
+			"duration": 5
+		},
+		{
+			"type": "tap",
+			"time": 1.25,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 1.5,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 1.75,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 2,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 2.25,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 2.5,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 2.75,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 3,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 3.25,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 3.5,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 3.75,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 4,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 4.25,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 4.5,
+			"column": 1
+		},
+
+
+
+		{
+			"type": "tap",
+			"time": 6,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 6.15,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 6.3,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 6.45,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 6.6,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 6.75,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 6.9,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 7.05,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 7.2,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 7.35,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 7.5,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 7.65,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 7.8,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 7.95,
+			"column": 1
+		},
+		{
+			"type": "tap",
+			"time": 8.1,
+			"column": 1
+		}
+		
+	]
+}
