@@ -52,8 +52,10 @@ folder_colors={
 "res://资源/图标/": "yellow",
 "res://资源/图片/": "yellow",
 "res://资源/图片/P主头像/": "green",
+"res://资源/图片/插画/": "green",
 "res://资源/字体/": "yellow",
 "res://资源/扩展/": "yellow",
+"res://资源/曲包/": "yellow",
 "res://资源/曲包/奇爱人生Love Elegia/": "yellow",
 "res://资源/曲包/未命名乐章/": "yellow",
 "res://资源/音频/": "yellow"
