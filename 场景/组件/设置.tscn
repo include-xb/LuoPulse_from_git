@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d12ltowcqohor"]
+[gd_scene load_steps=14 format=3 uid="uid://d12ltowcqohor"]
 
 [ext_resource type="Texture2D" uid="uid://beco4o1f861xg" path="res://资源/图标/返回.png" id="1_cb0lu"]
 [ext_resource type="Script" path="res://脚本/主体脚本/设置.gd" id="1_vud10"]
 [ext_resource type="Texture2D" uid="uid://dgbtm7khvju8b" path="res://资源/图标/输入.png" id="2_k1o4h"]
+[ext_resource type="Texture2D" uid="uid://c2275pim3w088" path="res://资源/图标/设置项.png" id="3_c6ct2"]
 [ext_resource type="Texture2D" uid="uid://calmymkaki2i5" path="res://资源/图标/视频.png" id="5_l3yfa"]
 [ext_resource type="Texture2D" uid="uid://8sslpkgitww" path="res://资源/图标/音频.png" id="6_83sln"]
 [ext_resource type="Texture2D" uid="uid://ph0u2ddtw8mv" path="res://资源/图标/关于.png" id="7_7efos"]
@@ -70,6 +71,14 @@ offset_top = 35.0
 offset_right = 127.0
 offset_bottom = 129.0
 texture_normal = ExtResource("1_cb0lu")
+
+[node name="设置项" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 219.0
+offset_top = 135.0
+offset_right = 863.0
+offset_bottom = 706.0
+texture = ExtResource("3_c6ct2")
 
 [node name="选项卡" type="Control" parent="."]
 anchors_preset = 0
