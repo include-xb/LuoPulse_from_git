@@ -1,9 +1,6 @@
 res://scenes/editor_scene.tscn
 res://shaders/misty.gdshader
+res://res/theme.tres
 res://scripts/main_body.gd
-res://res/LPbinary.txt
 res://scenes/Notes/note.tscn
 res://scenes/project_list_scene.tscn
-res://res/theme.tres
-res://scripts/new_project.gd
-res://scripts/project_list_scene.gd
