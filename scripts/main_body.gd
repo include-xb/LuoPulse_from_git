@@ -1,15 +1,19 @@
 extends Panel
 
 
+# TODO: 需要完成的内容:
+#	1. 在创建项目时让用户填写音频的bpm, 存放在 RuntimeData.bpm 中
+#	2. 在创建项目时让用户填写谱面的保存路径, 存放在 RuntimeData.save_path 中
+# 	3. 额...好像有很多东西都要让用户填写, 它们在 RuntimeData (line6 ~ line43)
+
 # INFO: 点击 MainBody 节点, 测试时可在检查器中可修改 BPM Speed SeparateNum
 # INFO: 暂时通过 上下键 控制移动
 # INFO: 场景中的一个音符用于参照移动
-# TODO: 解析音频文件的 bpm
-# TODO: 吸附节拍线
+
 # TODO: 鼠标滚轮移动
 # TODO: 写入谱面
 # TODO: 谱面播放
-# ...
+# TODO: 加一个按钮, 和空格键一个功能
 
 
 @onready var basebeatline: PackedScene = load("res://scenes/BeatLine/basebeatline.tscn")
@@ -18,6 +22,9 @@ extends Panel
 
 @onready var minbeatline_od: PackedScene = load("res://scenes/BeatLine/minbeatline_od.tscn")
 
+@onready var paused_icon: Texture2D = load("res://res/images/pause.svg")
+@onready var continue_icon: Texture2D = load("res://res/images/continue.png")
+
 @onready var audio_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 @onready var canvas: Control = $Tracks
@@ -25,6 +32,14 @@ extends Panel
 @onready var lines: Control = $Tracks/beatline
 
 @onready var decision_line: HSeparator = $ColorRect/Separators/dec
+
+@onready var status_tip_label: Label = $ColorRect/Status
+
+@onready var pause_tip: Label = $ColorRect/PauseTip
+
+@onready var setting_panel: Panel = $Setting
+
+@onready var vslider: VSlider = $ColorRect/VSlider
 
 
 # 每分钟拍数 (从音频获取)
@@ -80,34 +95,48 @@ func _ready() -> void:
 	RuntimeData.beatline_positions.append(current_y)
 	
 	canvas.position.y += line_distance * (2 ** (exprot_separate_num + 2))
-	#set_line(2)
+	
+	change_status(RuntimeData.STATUS.POINTER)
+
+# 轨道上下滚动
+func move(dire: String, delta: float) -> void:
+	is_playing = false
+	update_button_icon()
+	if dire == "up":
+		vslider.value += delta
+	else:
+		vslider.value -= delta
 
 
+var t = true # 在开始是获得音频长度
 func _process(delta: float) -> void:
+	if t and audio_player.stream != null:
+		vslider.max_value = audio_player.stream.get_length()
+		t = false
 	var canvas_top_y: float = canvas.position.y
 	var canvas_bottom_y: float = canvas.position.y + window_height
 	var canvas_decision_line_y: float = canvas.position.y + decision_y
 	
+	
 	if is_playing:
 		canvas.global_position.y += speed * delta
+		audio_player.stream_paused = false
+		vslider.value = audio_player.get_playback_position()
+		pause_tip.visible = false
+	else:
+		audio_player.stream_paused = true
+		pause_tip.visible = true
 	
 	if Input.is_key_pressed(KEY_UP):
-		canvas.position.y += speed * delta
+		move("up", delta)
 	if Input.is_key_pressed(KEY_DOWN):
-		canvas.position.y -= speed * delta
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_WHEEL_DOWN):
-		canvas.position.y -= speed * delta
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_WHEEL_UP):
-		canvas.position.y += speed * delta
-	#if Input.is_action_pressed("wheel_up"):
-		#canvas.position.y += speed * delta
-	#if Input.is_action_pressed("wheel_down"):
-		#canvas.position.y -= speed * delta
+		move("down", delta)
+	
 	
 	if Input.is_key_pressed(KEY_SPACE):
-		is_playing = !is_playing
-		if audio_player.stream != null:
-			audio_player.stream_paused = !audio_player.stream_paused
+		_on_pause_pressed()
+		#if audio_player.stream != null:
+			#audio_player.stream_paused = !audio_player.stream_paused
 	
 	# 如果向上滚动到边界就再向上放置一节拍的节拍线
 	if -current_y <= canvas.position.y + window_height:
@@ -118,10 +147,9 @@ func _process(delta: float) -> void:
 # 从下向上放置
 func set_line(beat: int) -> void:
 	# 一拍
-	for b in range(beat):
-		var instance_base: HSeparator = basebeatline.instantiate()
-		instance_base.position.y = current_y
-		lines.add_child(instance_base)
+	for i in range(beat):
+		# 白线
+		set_base_line()
 		
 		# 每拍内分
 		for div in range(separate_num - 1):
@@ -136,37 +164,183 @@ func set_line(beat: int) -> void:
 		RuntimeData.beatline_positions.append(current_y)
 
 
+func set_base_line() -> void:
+	# 白色线
+	var instance_base: HSeparator = basebeatline.instantiate()
+	instance_base.position.y = current_y
+	lines.add_child(instance_base)
+	
+	if RuntimeData.beat_index == 0:
+		RuntimeData.start_line_global_position_y = instance_base.global_position.y
+		print("start_line_global_position_y: ", RuntimeData.start_line_global_position_y)
+	
+	# 小节数
+	var index_label: Label = Label.new()
+	index_label.text = str(RuntimeData.beat_index)
+	RuntimeData.beat_index += 1
+	lines.add_child(index_label)
+	index_label.position.x = instance_base.position.x - index_label.size.x
+	index_label.position.y = instance_base.position.y - (index_label.size.y / 2)
+
+
+var status_arr: Array = [ "TAP 蓝键", "DRAG 黄键", "RELEASE 红键", "HEART 心跳键", "ERASE 橡皮", "POINTER 指针" ]
+
+func change_status(status: RuntimeData.STATUS) -> void:
+	print("切换状态, 当前状态: ", status_arr[status] , " (from main_body.gd)")
+	RuntimeData.current_status = status
+	status_tip_label.text = status_arr[status]
+
+
 func _on_tap_pressed() -> void:
-	print("切换状态, 当前状态: Tap (from main_body.gd)")
-	RuntimeData.current_status = RuntimeData.STATUS.TAP
+	change_status(RuntimeData.STATUS.TAP)
 
 
 func _on_drug_pressed() -> void:
-	print("切换状态, 当前状态: Drug (from main_body.gd)")
-	RuntimeData.current_status = RuntimeData.STATUS.DRUG
+	change_status(RuntimeData.STATUS.DRAG)
 
 
 func _on_heart_pressed() -> void:
-	print("切换状态, 当前状态: Heart (from main_body.gd)")
-	RuntimeData.current_status = RuntimeData.STATUS.HEART
-
+	change_status(RuntimeData.STATUS.HEART)
 
 
 func _on_release_pressed() -> void:
-	print("切换状态, 当前状态: Release (from main_body.gd)")
-	RuntimeData.current_status = RuntimeData.STATUS.RELEASE
+	change_status(RuntimeData.STATUS.RELEASE)
 
 
 func _on_eraser_pressed() -> void:
-	print("切换状态, 当前状态: Eraser (from main_body.gd)")
-	RuntimeData.current_status = RuntimeData.STATUS.ERASE
+	change_status(RuntimeData.STATUS.ERASE)
 
 
 func _on_poniter_pressed() -> void:
-	print("切换状态, 当前状态: Pointer (from main_body.gd)")
-	RuntimeData.current_status = RuntimeData.STATUS.POINTER
+	change_status(RuntimeData.STATUS.POINTER)
+
+
+# 设置 (暂时不做)
+func _on_setting_pressed() -> void:
+	return
+	is_playing = false
+	setting_panel.visible = true
+
+
+"""
+position.y 从上到下递增.
+
+RuntimeData.contain.track0/1/2/3
+
+"""
+
+func write_binary_file(file_path: String, data: PackedByteArray) -> void:
+	var file: FileAccess
+	if file.open(file_path, FileAccess.WRITE):
+		file.store_buffer(data)
+		file.close()
+	else:
+		print("无法打开文件进行写入: ", file_path)
 
 
 # 导出
 func _on_export_pressed() -> void:
-	pass # Replace with function body.
+	# 写入 general.json
+	DirAccess.make_dir_recursive_absolute(RuntimeData.save_path)
+	var general_file : FileAccess = FileAccess.open(RuntimeData.save_path + "general.json", FileAccess.WRITE)
+	general_file.store_string(JSON.stringify(general_data))
+	general_file.close()
+	
+	is_playing = false
+	
+	var total_note_contain: Array = RuntimeData.contain.track0 + RuntimeData.contain.track1 + RuntimeData.contain.track2 + RuntimeData.contain.track3
+	
+	# 首先对列表中的所有音符排序, 按照从下到上顺序, 这样最终谱面中的音符就是按照时间排列
+	for time in range(total_note_contain.size()):
+		for i in range(total_note_contain.size()):
+			for j in range(i + 1, total_note_contain.size()):
+				if total_note_contain[i].global_position.y < total_note_contain[j].global_position.y:
+					var temp = total_note_contain[j]
+					total_note_contain[i] = total_note_contain[j]
+					total_note_contain[j] = temp
+	# 接下来遍历音符列表, 写入谱面
+	for item in total_note_contain:
+		var type = item.type
+		var column = item.column
+		var distance: float = RuntimeData.start_line_global_position_y - item.position.y - 10 + 1 # 10是音符高度, 1是偏移量
+		var time: float = round(distance / RuntimeData.speed * 1000) # 单位为毫秒
+		
+		note_data.objects.append({
+			"time": time,
+			"type": type,
+			"column": column
+		})
+	var note_file : FileAccess = FileAccess.open(RuntimeData.save_path + "chart.json", FileAccess.WRITE)
+	note_file.store_string(JSON.stringify(note_data))
+	note_file.close()
+
+
+var general_data: Dictionary = {
+	"meta": {
+		"title": RuntimeData.title,
+		"files": {
+			"cover": RuntimeData.cover,
+			"audio": RuntimeData.audio,
+			"video": RuntimeData.video
+		},
+		"makers": {
+			"vocal": RuntimeData.vocal,
+			"lyrics": RuntimeData.lyrics,
+			"compose": RuntimeData.compose,
+			"arrange": RuntimeData.arrange,
+			"adjust": RuntimeData.adjust,
+			"mix": RuntimeData.mix,
+			"pv": RuntimeData.pv,
+			"illustrator": RuntimeData.illustrator,
+			"creator": RuntimeData.creator
+		}
+	},
+	"settings": {
+		"color": {
+			"note": {
+				"tap":      [ 102, 204, 255, 0 ],
+				"drug":     [ 0,   255, 255, 0 ],
+				"release":  [ 255, 0,   0,   0 ],
+				"heart":    [ 255, 50,  50,  0 ]
+			},
+			"track": {
+				"left2":    [ 20,  20,  20, 190 ],
+				"left1":    [ 20,  20,  20, 190 ],
+				"right1":   [ 20,  20,  20, 190 ],
+				"right2":   [ 20,  20,  20, 190 ]
+			},
+			"decisionline": [ 102, 204, 255, 0  ]
+		}
+	}
+}
+
+
+var note_data: Dictionary = {
+	"objects": [
+	]
+}
+
+
+
+# 播放条内容
+func _on_v_slider_value_changed(value: float) -> void:
+	if is_playing:
+		return
+	audio_player.play(value)
+	audio_player.stream_paused = true
+	
+	var distance: float = value * RuntimeData.speed
+	canvas.position.y = line_distance * (2 ** (exprot_separate_num + 2)) + distance
+
+
+func _on_audio_stream_player_finished() -> void:
+	is_playing = false
+
+
+func update_button_icon() -> void:
+	$ColorRect/Tools/MarginContainer/VBoxContainer/pause.icon = paused_icon if is_playing else continue_icon
+
+
+func _on_pause_pressed() -> void:
+	is_playing = !is_playing
+	update_button_icon()

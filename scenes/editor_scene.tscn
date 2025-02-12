@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bnkwa6bhj6txe"]
+[gd_scene load_steps=41 format=3 uid="uid://bnkwa6bhj6txe"]
 
 [ext_resource type="Script" path="res://scripts/editor_scene.gd" id="1_31k60"]
 [ext_resource type="Script" path="res://scripts/main_body.gd" id="2_nyq0k"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://7da8efnt04in" path="res://scenes/BeatLine/minbeatline_od.tscn" id="7_qhdmp"]
 [ext_resource type="Texture2D" uid="uid://bjvq7wfhllty2" path="res://res/images/PhExportBold.svg" id="8_2ykb4"]
 [ext_resource type="Texture2D" uid="uid://d0ccgprci0p4y" path="res://res/images/MaterialSymbolsSettings.svg" id="10_ntbrp"]
+[ext_resource type="Texture2D" uid="uid://cnpbhbrtqim8p" path="res://res/images/continue.png" id="11_rloqu"]
+[ext_resource type="Script" path="res://scripts/setting.gd" id="15_612ul"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl4ph"]
 bg_color = Color(1, 1, 1, 0.156863)
@@ -63,6 +65,12 @@ HSeparator/constants/separation = 0
 HSeparator/styles/separator = SubResource("StyleBoxLine_mb07f")
 VSeparator/constants/separation = 0
 VSeparator/styles/separator = SubResource("StyleBoxLine_qs0uv")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nsrrh"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4xqjh"]
 shader = ExtResource("3_cqnf5")
@@ -289,16 +297,16 @@ theme_override_constants/separation = 5
 [node name="tap" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Tap"
+tooltip_text = "Tap 蓝键"
 theme_override_constants/icon_max_width = 35
 icon = ExtResource("3_ckwtk")
 icon_alignment = 1
 expand_icon = true
 
-[node name="drug" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+[node name="drag" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Drug"
+tooltip_text = "Drag 黄键"
 theme_override_constants/icon_max_width = 35
 icon = ExtResource("4_weuk8")
 icon_alignment = 1
@@ -307,7 +315,7 @@ expand_icon = true
 [node name="release" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Release"
+tooltip_text = "Release 红键"
 theme_override_constants/icon_max_width = 35
 icon = ExtResource("5_1fixe")
 icon_alignment = 1
@@ -316,7 +324,7 @@ expand_icon = true
 [node name="heart" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Release"
+tooltip_text = "Heart 心跳键"
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("6_aqkbi")
 icon_alignment = 1
@@ -325,7 +333,7 @@ expand_icon = true
 [node name="eraser" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Eraser"
+tooltip_text = "Eraser 橡皮"
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("5_pxfch")
 icon_alignment = 1
@@ -334,29 +342,81 @@ expand_icon = true
 [node name="poniter" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Pointer"
+tooltip_text = "Pointer 指针"
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("6_2cci0")
 icon_alignment = 1
 expand_icon = true
 
+[node name="Toolman(doge)" type="HSeparator" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nsrrh")
+
 [node name="export" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Export"
+tooltip_text = "Export 导出"
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("8_2ykb4")
 icon_alignment = 1
 expand_icon = true
 
-[node name="export2" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+[node name="setting" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Export"
+tooltip_text = "Setting 设置"
 theme_override_constants/icon_max_width = 30
 icon = ExtResource("10_ntbrp")
 icon_alignment = 1
 expand_icon = true
+
+[node name="pause" type="Button" parent="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Continue/Pause 继续/暂停"
+theme_override_constants/icon_max_width = 30
+icon = ExtResource("11_rloqu")
+icon_alignment = 1
+expand_icon = true
+
+[node name="BeatIndex" type="Label" parent="MainBody/ColorRect"]
+layout_mode = 0
+offset_left = 322.0
+offset_top = 5.0
+offset_right = 370.0
+offset_bottom = 28.0
+text = "小节数"
+
+[node name="PauseTip" type="Label" parent="MainBody/ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 322.0
+offset_top = 620.0
+offset_right = 370.0
+offset_bottom = 643.0
+text = "已暂停"
+
+[node name="Status" type="Label" parent="MainBody/ColorRect"]
+layout_mode = 0
+offset_left = 792.0
+offset_top = 5.0
+offset_right = 841.0
+offset_bottom = 28.0
+text = "Status"
+
+[node name="VSlider" type="VSlider" parent="MainBody/ColorRect"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -373.0
+offset_top = 10.0
+offset_right = -357.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+step = 0.0
 
 [node name="Tracks" type="Control" parent="MainBody"]
 layout_mode = 1
@@ -445,6 +505,45 @@ offset_right = 3.0
 offset_bottom = 4.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Setting" type="Panel" parent="MainBody"]
+visible = false
+layout_mode = 0
+offset_right = 951.0
+offset_bottom = 648.0
+script = ExtResource("15_612ul")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainBody/Setting"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_bottom = 73.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+
+[node name="Back" type="Button" parent="MainBody/Setting/MarginContainer"]
+layout_mode = 2
+
+[node name="SettingElements" type="MarginContainer" parent="MainBody/Setting"]
+layout_mode = 0
+offset_right = 850.0
+offset_bottom = 648.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainBody/Setting/SettingElements"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainBody/Setting/SettingElements/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainBody/Setting/SettingElements/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 
 [node name="Select" type="Control" parent="."]
 visible = false
@@ -613,11 +712,16 @@ text = "确认"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/tap" to="MainBody" method="_on_tap_pressed"]
-[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/drug" to="MainBody" method="_on_drug_pressed"]
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/drag" to="MainBody" method="_on_drug_pressed"]
 [connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/release" to="MainBody" method="_on_release_pressed"]
 [connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/heart" to="MainBody" method="_on_heart_pressed"]
 [connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/eraser" to="MainBody" method="_on_eraser_pressed"]
 [connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/poniter" to="MainBody" method="_on_poniter_pressed"]
 [connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/export" to="MainBody" method="_on_export_pressed"]
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/setting" to="MainBody" method="_on_setting_pressed"]
+[connection signal="pressed" from="MainBody/ColorRect/Tools/MarginContainer/VBoxContainer/pause" to="MainBody" method="_on_pause_pressed"]
+[connection signal="value_changed" from="MainBody/ColorRect/VSlider" to="MainBody" method="_on_v_slider_value_changed"]
+[connection signal="pressed" from="MainBody/Setting/MarginContainer/Back" to="MainBody/Setting" method="_on_back_pressed"]
 [connection signal="pressed" from="Select/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="Select/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Okay" to="." method="_on_okay_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="MainBody" method="_on_audio_stream_player_finished"]

@@ -11,16 +11,20 @@ extends Control
 
 @onready var select_panel: Control = $Select
 
-@onready var tools: Control = $MainBody/ColorRect/Tools
+@onready var tools: Control = $MainBody
+
+@onready var setting_panel: Panel = $MainBody/Setting
+
 
 
 func _ready() -> void:
-	#var window: Window = get_window()
-	#window.borderless = false
-	#window.size = Vector2i(1920, 1080)
+	var window: Window = get_window()
+	window.borderless = false
+	window.size = Vector2i(1152, 648)
 	
-	#select_panel.visible = true
-	#tools.visible = false
+	select_panel.visible = true
+	tools.visible = false
+	setting_panel.visible = false
 	
 	get_viewport().files_dropped.connect(_on_files_dropped)
 
@@ -38,7 +42,7 @@ func _on_files_dropped(files_path_arr : Array):
 	
 	var audio_path: String = file_path
 	audio_player.stream = load_mp3(audio_path)
-	audio_player.play()
+	audio_player.play(0)
 	
 	path_line.text = audio_path
 
@@ -59,7 +63,8 @@ func _on_cancel_pressed() -> void:
 func _on_okay_pressed() -> void:
 	if path_line.text == "" or name_line.text == "":
 		return
-	audio_player.stop()
+	audio_player.stream_paused = true
+	audio_player.seek(0)
 	RuntimeData.selected_audio_stream = audio_player.stream
 	select_panel.visible = false
 	tools.visible = true

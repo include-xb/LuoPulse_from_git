@@ -32,7 +32,7 @@ var is_note_erased: bool = false
 func _ready() -> void:
 	l_boundary = 373 + 100 * column
 	r_boundary = l_boundary + 100
-	status = note
+	status = note # 用来放置音符
 
 
 func _input(event: InputEvent) -> void:
@@ -49,11 +49,12 @@ func _input(event: InputEvent) -> void:
 		
 		# 鼠标左键点击
 		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
-			# 如果已经放置过音符，则直接返回. 如果当前状态不为音符, 则直接返回
+			# 如果标志为true，则直接返回. 如果当前状态不为音符, 则直接返回
 			if is_note_placed || RuntimeData.current_status in [ 0, 1, 2, 3 ]:
 				print("轨道<", column, ">被点击, 坐标: ", event.position)
 				put_note()
 				is_note_placed = true  # 设置标志变量为 true
+			# 如果当前状态是橡皮
 			if RuntimeData.current_status == RuntimeData.STATUS.ERASE:
 				print("轨道<", column, ">被橡皮擦点击, 坐标: ", event.position)
 				erase_note()
@@ -77,12 +78,14 @@ func _input(event: InputEvent) -> void:
 func put_note() -> void:
 	for child in self.get_children():
 		if child is TextureRect:
-			if child.position.y == -self.global_position.y + mouse_y - (648 / 2): # 648 为屏幕高度
-				print("此处已放置音符")
+			# 下面这个条件判断了鼠标点击位置附近是否已经存在音符, 具体为什么这样算, 我也不知道, 尝试多次得出来的
+			if abs(-self.global_position.y + mouse_y - child.position.y) <= RuntimeData.line_distance / 2:
+				print("此处已放置音符, 不可重复放置")
 				return
 	
 	var note: TextureRect = status.instantiate()
 	note.set_type(RuntimeData.current_status)
+	note.column = column
 	# 计算世界坐标, 设置音符坐标
 	# 要问为什么坐标这样算? 我也不知道, 我试出来的.
 	note.position.x = -self.position.x + l_boundary + 3 	# 2 为偏移量
@@ -93,19 +96,27 @@ func put_note() -> void:
 	var min_distance: float = abs(RuntimeData.beatline_positions[0] - mouse_to_position_y)
 	# 离点击出最近的节拍线在列表中的索引
 	var min_item_index: int = 0
+	
 	for index in range(len(RuntimeData.beatline_positions)):
-		var distance: float = abs(RuntimeData.beatline_positions[index] - mouse_to_position_y)
+		var distance: float = abs(RuntimeData.beatline_positions[index] + (RuntimeData.line_distance / 2) - mouse_to_position_y)
+		# 距离太远直接跳过
+		if distance > RuntimeData.line_distance:
+			continue
 		if distance <= min_distance:
 			min_distance = distance
 			min_item_index = index
-	print("节拍线y坐标: ", RuntimeData.beatline_positions)
+	
+	# print("节拍线y坐标: ", RuntimeData.beatline_positions)
 	print("最近节拍线y坐标: ", RuntimeData.beatline_positions[min_item_index])
 	
-	note.position.y = RuntimeData.beatline_positions[min_item_index] + 16
+	note.position.y = RuntimeData.beatline_positions[min_item_index] + 16 # 16为偏移量
 	# note.position.y = -self.global_position.y + mouse_y - (648 / 2) # 648 为屏幕高度
 	
 	print("note放置, 坐标: ", note.global_position)
 	self.add_child(note)
+	
+	RuntimeData.contain["track" + str(column)].append(note)
+	print(RuntimeData.contain)
 
 
 # 删除音符
@@ -122,5 +133,7 @@ func erase_note() -> void:
 			var mouse_world_y: float = -self.global_position.y + mouse_y
 			# 检查音符是否在鼠标点击范围内
 			if abs(note_y - mouse_world_y) <= 5:
-				child.queue_free()
 				print("音符被删除")
+				RuntimeData.contain["track" + str(column)].erase(child)
+				child.queue_free()
+				print(RuntimeData.contain)

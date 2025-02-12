@@ -83,6 +83,7 @@ same_column_width = true
 [node name="Window" type="Window" parent="."]
 position = Vector2i(0, 36)
 size = Vector2i(1920, 1080)
+visible = false
 
 [node name="NewProject" type="Control" parent="Window"]
 layout_mode = 3
